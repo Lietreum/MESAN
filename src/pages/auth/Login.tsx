@@ -30,7 +30,7 @@ const Login = () => {
       },
       background: {
         default: darkMode ? grey[900] : "#ffffff",
-        paper: darkMode ? grey[800] : "#ffffff",
+        paper: darkMode ? grey[900] : "#ffffff", // Sesuaikan agar tidak terlihat seperti card
       },
       text: {
         primary: darkMode ? grey[300] : "#000000",
@@ -49,13 +49,24 @@ const Login = () => {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <Container maxWidth="xs">
+      <Container
+        maxWidth={false}
+        sx={{
+          minHeight: "100vh",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          backgroundColor: theme.palette.background.default,
+        }}
+      >
         <Box
           sx={{
-            mt: 10,
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
+            width: "100%",
+            maxWidth: 400,
+            backgroundColor: theme.palette.background.paper,
           }}
         >
           {/* Toggle Dark/Light Mode */}
@@ -129,7 +140,7 @@ const Login = () => {
 
             <Grid container justifyContent="flex-end">
               <Grid item>
-                <Link to="/register" style={{ textDecoration: "none" }}>
+                <Link to="/signup" style={{ textDecoration: "none" }}>
                   Don't have an account? Sign Up
                 </Link>
               </Grid>
