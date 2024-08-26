@@ -1,4 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Satoshi:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=CC+Wild+Roman+Words:wght@400;700&display=swap');
+
 
 @tailwind base;
 @tailwind components;
@@ -12,4 +14,6 @@
 
 @layer components {
 }
+
+
 

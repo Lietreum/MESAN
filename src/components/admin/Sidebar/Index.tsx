@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { NavLink, useLocation } from "react-router-dom";
 import SidebarLinkGroup from "./SidebarLinkGroup";
-import Logo from "../../assets/admin/images/logo/logo.png";
+import Logo from "../../../assets/admin/images/logo/logo.png";
 import { AiOutlineAppstore, AiOutlineDown, AiOutlineMenuFold } from "react-icons/ai";
 import { FaCog } from "react-icons/fa";
 import { CiUser } from "react-icons/ci";

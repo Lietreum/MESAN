@@ -1,8 +1,8 @@
 import React, { useState, ReactNode } from 'react';
-import Header from '../../components/Header/index';
-import Sidebar from '../../components/Sidebar/Index'; // Importing Sidebar component
+import Header from '../../components/admin/Header/AdminHeader';
+import Sidebar from '../../components/admin/Sidebar/Index'; 
 
-const DefaultLayout: React.FC<{ children: ReactNode }> = ({ children }) => {
+const AdminLayout: React.FC<{ children: ReactNode }> = ({ children }) => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
   return (
@@ -34,4 +34,4 @@ const DefaultLayout: React.FC<{ children: ReactNode }> = ({ children }) => {
   );
 };
 
-export default DefaultLayout;
+export default AdminLayout;

@@ -1,10 +1,10 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import ClickOutside from '../ClickOutside';
-import UserOne from '../../assets/admin/images/user/user-01.png';
-import UserTwo from '../../assets/admin/images/user/user-02.png';
-import UserThree from '../../assets/admin/images/user/user-03.png';
-import UserFour from '../../assets/admin/images/user/user-04.png';
+import UserOne from '../../../assets/admin/images/user/user-01.png';
+import UserTwo from '../../../assets/admin/images/user/user-01.png';
+import UserThree from'../../../assets/admin/images/user/user-01.png';
+import UserFour from '../../../assets/admin/images/user/user-01.png';
 
 const DropdownMessage = () => {
   const [dropdownOpen, setDropdownOpen] = useState(false);

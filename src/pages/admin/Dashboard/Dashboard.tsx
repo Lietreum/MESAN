@@ -1,8 +1,8 @@
 import React from 'react';
-import CardDataStats from '../../../components/CardDataStats';
+import CardDataStats from '../../../components/admin/CardDataStats';
 import { RiEyeLine, RiMoneyDollarCircleLine, RiProductHuntLine, RiUserLine } from 'react-icons/ri'; 
-import ChartOne from '../../../components/Charts/ChartOne';
-import ChartTwo from '../../../components/Charts/ChartTwo';
+import ChartOne from '../../../components/admin/Charts/ChartOne';
+import ChartTwo from '../../../components/admin/Charts/ChartTwo';
 
 const ECommerce: React.FC = () => {
   return (

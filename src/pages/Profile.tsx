@@ -1,4 +1,4 @@
-import Breadcrumb from "../components/Breadcrumbs/Breadcrumb";
+import Breadcrumb from "../components/admin/Breadcrumbs/Breadcrumb";
 import CoverOne from "../assets/admin/images/cover/cover-01.png";
 import userSix from "../assets/admin/images/user/user-06.png";
 import { CiCamera } from "react-icons/ci";

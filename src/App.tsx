@@ -2,8 +2,8 @@ import { useEffect, useState } from "react";
 import { Route, Routes, useLocation } from "react-router-dom";
 
 import Loader from "./common/Loader";
-import PageTitle from "./components/PageTitle";
-import DefaultLayout from "./layouts/admin/DefaultLayout";
+import PageTitle from "./components/admin/PageTitle";
+import AdminLayout from "./layouts/admin/AdminLayout";
 import UserLayout from "./layouts/user/UserLayout";
 import ECommerce from "./pages/admin/Dashboard/Dashboard";
 import UserDashboard from "./pages/user/userDashboard";
@@ -45,34 +45,34 @@ function App() {
         <Route
           path="/admin"
           element={
-            <DefaultLayout>
+            <AdminLayout>
               <PageTitle title="Admin Dashboard | Koperasi" />
               <ECommerce />
-            </DefaultLayout>
+            </AdminLayout>
           }
         />
 
         <Route
           path="/profile"
           element={
-            <DefaultLayout>
+            <AdminLayout>
               <PageTitle title="Profile" />
               <Profile />
-            </DefaultLayout>
+            </AdminLayout>
           }
         />
 
         <Route
           path="/settings"
           element={
-            <DefaultLayout>
+            <AdminLayout>
               <PageTitle title="Settings" />
               <Settings />
-            </DefaultLayout>
+            </AdminLayout>
           }
         />
 
-        {/* Authentication Route */}
+        {/* Authentication Routes */}
         <Route
           path="/login"
           element={
@@ -86,7 +86,7 @@ function App() {
           path="/signup"
           element={
             <>
-              <PageTitle title="Login" />
+              <PageTitle title="Signup" />
               <Signup />
             </>
           }
