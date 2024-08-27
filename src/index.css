@@ -15,5 +15,18 @@
 @layer components {
 }
 
+.fade-effect {
+  animation: fadeOut 2s ease-in-out infinite;
+}
+
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
 
 

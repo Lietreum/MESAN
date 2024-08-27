@@ -1,11 +1,10 @@
-
-import '../index.css'; // Ensure this import includes your font-face declarations
+import '../index.css';
 
 const Loader = () => {
   return (
     <div className="flex h-screen items-center justify-center" style={{ backgroundColor: '#0a0a0a' }}>
       <div className="flex flex-col items-center space-y-2">
-        <div className="flex items-center space-x-4">
+        <div className="flex items-center space-x-4 fade-effect">
           {/* Left SVG */}
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="48" viewBox="0 0 29 56" className="overflow-visible">
             <defs>
@@ -31,7 +30,7 @@ const Loader = () => {
           </svg>
         </div>
         {/* Loading Text */}
-        <p className="text-white text-lg" style={{ fontFamily: 'CC Wild Roman Words', marginTop: '8px' }}>
+        <p className="text-white text-lg fade-effect" style={{ fontFamily: 'CC Wild Roman Words', marginTop: '8px' }}>
           Loading
         </p>
       </div>
