@@ -1,4 +1,4 @@
-import '../index.css';
+import '../globalcss/index.css';
 
 const Loader = () => {
   return (

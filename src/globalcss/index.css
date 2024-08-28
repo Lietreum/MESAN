@@ -1,0 +1,214 @@
+@import url('https://fonts.googleapis.com/css2?family=Satoshi:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=CC+Wild+Roman+Words:wght@400;700&display=swap');
+
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply font-satoshi font-normal text-base text-body bg-whiten relative z-1;
+  }
+}
+
+@layer components {
+}
+
+.fade-effect {
+  animation: fadeOut 2s ease-in-out infinite;
+}
+
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+body#sub #fullWrap{
+	opacity: 0;
+	transition: .3s ease;
+}
+body#sub #fullWrap.active{
+	opacity: 1;
+}
+@keyframes ani {
+  from {
+	-webkit-mask-position: 0 0;
+	mask-position: 0 0;
+  }
+  to {
+	-webkit-mask-position: 100% 0;
+	mask-position: 100% 0;
+  }
+}
+@keyframes ani2 {
+  from {
+	-webkit-mask-position: 100% 0;
+	mask-position: 100% 0;
+  }
+  to {
+	-webkit-mask-position: 0 0;
+	mask-position: 0 0;
+  }
+}
+@keyframes ani_ie {
+  from {
+	opacity: 1;
+  }
+  to {
+	opacity: 0;
+  }
+}
+/*-- ▼LOADING▼ --*/
+#topLoading{
+	position: fixed;
+	left: 0px;
+	top: 0px;
+	right: 0px;
+	bottom: 0px;
+	min-width: 1240px;
+	min-height: 640px;
+	z-index: 10000;
+}
+.topLoading__mask{
+	content: "";
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+	background: #000;
+	-webkit-mask: url("../src/common/btn_sprite.png");
+	mask: url("../src/common/btn_sprite.png");
+	-webkit-mask-size: 2300% 100%;
+	mask-size: 2300% 100%;
+}
+#topLoading.active .topLoading__mask{
+	animation: ani .7s steps(22) .3s both;
+}
+#cMark{
+	width: 95px;
+	height: 87px;
+	position: absolute;
+	margin: auto;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	color: #fff;
+	z-index: 2;
+	transition: .3s ease;
+}
+#cMark.active{
+	transition-delay: .6s;
+	opacity: 0;
+}
+#cMark:before{
+	content: "";
+	position: absolute;
+	background: url(../src/common/mark_b_l.svg) no-repeat 0 0 / 100%;
+	width: 29px;
+	height: 56px;
+	top: 0;
+	left: 10px;
+	transition: .3s ease;
+}
+#cMark:after{
+	content: "";
+	position: absolute;
+	background: url(../src/common/mark_b_r.svg) no-repeat 0 0 / 100%;
+	width: 29px;
+	height: 56px;
+	top: 0;
+	right: 10px;
+	transition: .3s ease;
+}
+#cMark i {
+	background: url(../src/common/pagetop_icon_in.svg) no-repeat 0 0 / 100%;
+	width: 6px;
+	height: 24px;
+	margin: auto;
+	left: 0;
+	right: 0;
+	top: 10px;
+	transform: rotate(180deg);
+	position: absolute;
+	transition: .3s ease;
+}
+#cMark span{
+	display: block;
+	text-align: center;
+	position: absolute;
+	font-size: 17px;
+	bottom: 0;
+	width: 100%;
+	line-height: 1;
+}
+#blueBg{
+	position: fixed;
+	left: 0px;
+	top: 0px;
+	right: 0px;
+	bottom: 0px;
+	min-width: 1240px;
+	min-height: 640px;
+	z-index: 9999;
+	transition: .3s ease;
+}
+.blueBg__mask{
+	content: "";
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+	background: url(../src/common/blue_bg.jpg) no-repeat center / cover;
+	-webkit-mask: url("../src/common/btn_sprite.png");
+	mask: url("../src/common/btn_sprite.png");
+	-webkit-mask-size: 2300% 100%;
+	mask-size: 2300% 100%;
+}
+#blueBg.active .blueBg__mask{
+	animation: ani .7s steps(22) .3s both;
+}
+#topWrap{
+	opacity: 0;
+	transition: .3s;
+}
+#topWrap.active{
+	opacity: 1;
+}
+/*-- IE --*/
+@media all and (-ms-high-contrast: none){
+	.topLoading__mask{
+		content: "";
+		width: 100%;
+		height: 100%;
+		position: absolute;
+		top: 0;
+		left: 0;
+		background: #000;
+	}
+	#topLoading.active .topLoading__mask{
+		animation: ani_ie .7s;
+	}
+	.blueBg__mask{
+		content: "";
+		width: 100%;
+		height: 100%;
+		position: absolute;
+		top: 0;
+		left: 0;
+		background: url(../src/common/blue_bg.jpg) no-repeat center / cover;
+	}
+	#blueBg.active .blueBg__mask{
+		animation: ani_ie .7s;
+    }
+}
+
+
+

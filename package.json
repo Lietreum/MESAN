@@ -21,6 +21,7 @@
     "apexcharts": "^3.52.0",
     "eslint-plugin-react": "^7.35.0",
     "framer-motion": "^11.3.24",
+    "jquery": "^3.7.1",
     "lucide-react": "^0.427.0",
     "react": "^18.3.1",
     "react-apexcharts": "^1.4.1",
@@ -31,6 +32,7 @@
     "usehooks-ts": "^3.1.0"
   },
   "devDependencies": {
+    "@types/jquery": "^3.5.30",
     "@types/react": "^18.3.3",
     "@types/react-dom": "^18.3.0",
     "@typescript-eslint/eslint-plugin": "^7.18.0",
