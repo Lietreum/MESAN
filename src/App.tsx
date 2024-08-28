@@ -12,7 +12,8 @@ import Settings from "./pages/Settings";
 import Login from "./pages/auth/Login";
 import NotFound from "./pages/NotFound";
 import Signup from "./pages/auth/Signup";
-
+import Product from "./pages/admin/Product/ProductCard";
+import Messages from "./components/admin/Messages/Messages";
 function App() {
   const [loading, setLoading] = useState<boolean>(true);
   const { pathname } = useLocation();
@@ -52,6 +53,17 @@ function App() {
           }
         />
 
+                {/* Admin Routes */}
+                <Route
+          path="/admin/product"
+          element={
+            <AdminLayout>
+              <PageTitle title="Product | Koperasi" />
+              <Product />
+            </AdminLayout>
+          }
+        />
+
         <Route
           path="/profile"
           element={
@@ -72,6 +84,15 @@ function App() {
           }
         />
 
+        <Route
+          path="/admin/messages"
+          element={
+            <AdminLayout>
+              <PageTitle title="Admin Dashboard | Koperasi" />
+              <Messages />
+            </AdminLayout>
+          }
+        />
         {/* Authentication Routes */}
         <Route
           path="/login"

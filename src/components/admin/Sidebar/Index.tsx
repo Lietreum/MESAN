@@ -5,6 +5,7 @@ import Logo from "../../../assets/admin/images/logo/logo.png";
 import { AiOutlineAppstore, AiOutlineDown, AiOutlineMenuFold } from "react-icons/ai";
 import { FaCog } from "react-icons/fa";
 import { CiUser } from "react-icons/ci";
+import { GrCart } from "react-icons/gr";
 
 interface SidebarProps {
   sidebarOpen: boolean;
@@ -159,7 +160,62 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                 }}
               </SidebarLinkGroup>
               {/* <!-- Menu Item Dashboard --> */}
-
+              <SidebarLinkGroup
+                activeCondition={
+                  pathname === "/" || pathname.includes("dashboard")
+                }
+              >
+                {(handleClick, open) => {
+                  return (
+                    <React.Fragment>
+                      <NavLink
+                        to="#"
+                        className={`group relative flex items-center gap-2.5 rounded-sm px-4 py-2 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${
+                          (pathname === "/admin/product" ||
+                            pathname.includes("product")) &&
+                          "bg-graydark dark:bg-meta-4"
+                        }`}
+                        onClick={(e) => {
+                          e.preventDefault();
+                          sidebarExpanded
+                            ? handleClick()
+                            : setSidebarExpanded(true);
+                        }}
+                      >
+                        <GrCart  className="text-current" size={18} />
+                        Product
+                        <AiOutlineDown
+                          className={`absolute right-4 top-1/2 -translate-y-1/2 text-current ${
+                            open && "rotate-180"
+                          }`}
+                          size={20}
+                        />
+                      </NavLink>
+                      {/* <!-- Dropdown Menu Start --> */}
+                      <div
+                        className={`translate transform overflow-hidden ${
+                          !open && "hidden"
+                        }`}
+                      >
+                        <ul className="mt-4 mb-5.5 flex flex-col gap-2.5 pl-6">
+                          <li>
+                            <NavLink
+                              to="/admin/product"
+                              className={({ isActive }) =>
+                                "group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white " +
+                                (isActive && "!text-white")
+                              }
+                            >
+                              Product
+                            </NavLink>
+                          </li>
+                        </ul>
+                      </div>
+                      {/* <!-- Dropdown Menu End --> */}
+                    </React.Fragment>
+                  );
+                }}
+                </SidebarLinkGroup>
               {/* <!-- Menu Item Profile --> */}
               <li>
                 <NavLink

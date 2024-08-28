@@ -2,9 +2,6 @@ import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import ClickOutside from '../ClickOutside';
 import UserOne from '../../../assets/admin/images/user/user-01.png';
-import UserTwo from '../../../assets/admin/images/user/user-01.png';
-import UserThree from'../../../assets/admin/images/user/user-01.png';
-import UserFour from '../../../assets/admin/images/user/user-01.png';
 
 const DropdownMessage = () => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
@@ -66,28 +63,11 @@ const DropdownMessage = () => {
             </div>
 
             <ul className="flex h-auto flex-col overflow-y-auto">
+              {/* Menyisakan hanya satu item */}
               <li>
                 <Link
                   className="flex gap-4.5 border-t border-stroke px-4.5 py-3 hover:bg-gray-2 dark:border-strokedark dark:hover:bg-meta-4"
-                  to="/messages"
-                >
-                  <div className="h-12.5 w-12.5 rounded-full">
-                    <img src={UserTwo} alt="User" />
-                  </div>
-
-                  <div>
-                    <h6 className="text-sm font-medium text-black dark:text-white">
-                      Mariya Desoja
-                    </h6>
-                    <p className="text-sm">I like your confidence 💪</p>
-                    <p className="text-xs">2min ago</p>
-                  </div>
-                </Link>
-              </li>
-              <li>
-                <Link
-                  className="flex gap-4.5 border-t border-stroke px-4.5 py-3 hover:bg-gray-2 dark:border-strokedark dark:hover:bg-meta-4"
-                  to="/messages"
+                  to="/admin/messages"
                 >
                   <div className="h-12.5 w-12.5 rounded-full">
                     <img src={UserOne} alt="User" />
@@ -99,60 +79,6 @@ const DropdownMessage = () => {
                     </h6>
                     <p className="text-sm">Can you share your offer?</p>
                     <p className="text-xs">10min ago</p>
-                  </div>
-                </Link>
-              </li>
-              <li>
-                <Link
-                  className="flex gap-4.5 border-t border-stroke px-4.5 py-3 hover:bg-gray-2 dark:border-strokedark dark:hover:bg-meta-4"
-                  to="/messages"
-                >
-                  <div className="h-12.5 w-12.5 rounded-full">
-                    <img src={UserThree} alt="User" />
-                  </div>
-
-                  <div>
-                    <h6 className="text-sm font-medium text-black dark:text-white">
-                      Henry Dholi
-                    </h6>
-                    <p className="text-sm">I cam across your profile and...</p>
-                    <p className="text-xs">1day ago</p>
-                  </div>
-                </Link>
-              </li>
-              <li>
-                <Link
-                  className="flex gap-4.5 border-t border-stroke px-4.5 py-3 hover:bg-gray-2 dark:border-strokedark dark:hover:bg-meta-4"
-                  to="/messages"
-                >
-                  <div className="h-12.5 w-12.5 rounded-full">
-                    <img src={UserFour} alt="User" />
-                  </div>
-
-                  <div>
-                    <h6 className="text-sm font-medium text-black dark:text-white">
-                      Cody Fisher
-                    </h6>
-                    <p className="text-sm">I’m waiting for you response!</p>
-                    <p className="text-xs">5days ago</p>
-                  </div>
-                </Link>
-              </li>
-              <li>
-                <Link
-                  className="flex gap-4.5 border-t border-stroke px-4.5 py-3 hover:bg-gray-2 dark:border-strokedark dark:hover:bg-meta-4"
-                  to="/messages"
-                >
-                  <div className="h-12.5 w-12.5 rounded-full">
-                    <img src={UserTwo} alt="User" />
-                  </div>
-
-                  <div>
-                    <h6 className="text-sm font-medium text-black dark:text-white">
-                      Mariya Desoja
-                    </h6>
-                    <p className="text-sm">I like your confidence 💪</p>
-                    <p className="text-xs">2min ago</p>
                   </div>
                 </Link>
               </li>
