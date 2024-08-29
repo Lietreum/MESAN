@@ -3,11 +3,11 @@ import { ComponentProps } from 'react';
 import { twMerge } from 'tailwind-merge';
 
 const buttonStyles = {
-  base: 'btn transition-transform ', // Transition for smooth hover effect
+  base: 'btn transition-transform ', 
   variants: {
-    default: 'btn-secondary hover:scale-105', // Scale up on hover
-    ghost: 'btn-ghost hover:bg-gray-100 hover:scale-105', // Ghost button with hover effect
-    dark: 'bg-secondary-dark hover:bg-secondary-dark-hover text-secondary', // Dark button with hover effect
+    default: 'btn-secondary hover:scale-105',
+    ghost: 'btn-ghost hover:bg-gray-100 hover:scale-105', 
+    dark: 'bg-secondary-dark hover:bg-secondary-dark-hover text-secondary', 
   },
   sizes: {
     default: 'rounded p-2',
@@ -21,7 +21,6 @@ type ButtonProps = ComponentProps<'button'> & {
   size?: keyof typeof buttonStyles.sizes;
 };
 
-// Button component using ES7 arrow function
 const Button: React.FC<ButtonProps> = ({
   variant = 'default',
   size = 'default',

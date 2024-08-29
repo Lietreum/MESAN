@@ -1,11 +1,11 @@
 import React from 'react';
 
-type FooterProps = {
-    
+const Footer: React.FC = () => {
+    return (
+        <footer className="bg-transparent text-center py-4">
+            <p className="text-gray-600">Developed By Zaky!!!!! panas tiris!!!!!!!!!</p>
+        </footer>
+    );
 };
 
-const Footer:React.FC<FooterProps> = () => {
-    
-    return <div>User Footer</div>
-}
 export default Footer;

@@ -6,7 +6,7 @@ import PageTitle from "./components/admin/PageTitle";
 import AdminLayout from "./layouts/admin/AdminLayout";
 import UserLayout from "./layouts/user/UserLayout";
 import ECommerce from "./pages/admin/Dashboard/Dashboard";
-import UserDashboard from "./pages/user/userDashboard";
+import UserDashboard from "./pages/user/Homepage";
 import Profile from "./pages/Profile";
 import Settings from "./pages/Settings";
 import Login from "./pages/auth/Login";
@@ -53,7 +53,7 @@ function App() {
           }
         />
 
-                {/* Admin Routes */}
+    {/* Admin Routes */}
                 <Route
           path="/admin/product"
           element={
