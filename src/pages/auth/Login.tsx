@@ -18,9 +18,9 @@ import { Link } from "react-router-dom";
 import { grey } from "@mui/material/colors";
 
 const Login = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [darkMode, setDarkMode] = useState(false);
+  const [email, setEmail] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
+  const [darkMode, setDarkMode] = useState<boolean>(false);
 
   const theme = createTheme({
     palette: {
