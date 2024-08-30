@@ -14,6 +14,7 @@ import NotFound from "./pages/NotFound";
 import Signup from "./pages/auth/Signup";
 import Product from "./pages/admin/Product/ProductCard";
 import Messages from "./components/admin/Messages/Messages";
+import ProductList from "./components/user/ProductList/ProductList";
 function App() {
   const [loading, setLoading] = useState<boolean>(true);
   const { pathname } = useLocation();
@@ -38,6 +39,16 @@ function App() {
             <UserLayout>
               <PageTitle title="User Dashboard" />
               <UserDashboard />
+            </UserLayout>
+          }
+        />
+        
+        <Route
+          path="/product/type/:type" 
+          element={
+            <UserLayout>
+              <PageTitle title="User Dashboard" />
+              <ProductList/>
             </UserLayout>
           }
         />

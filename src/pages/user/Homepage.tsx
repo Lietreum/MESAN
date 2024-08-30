@@ -1,8 +1,8 @@
 import React from "react";
-import { Container, Box } from "@mui/material";
-import Carousel from "../../components/user/SalesBanner/Carousel";
+import { Container } from "@mui/material";
+import { Box } from "@mui/system";
+import Carousel from "../../components/user/Carousel/Carousel";
 import CategoryCard from "../../components/user/CategoryCard/CategoryCard";
-import SearchBar from "../../components/user/SearchBar/SearchBar";
 import BannerData from "../../Helpers/HomePageBanner";
 import AnimatedText from "../../components/AnimatedText";
 
@@ -13,41 +13,36 @@ const Homepage: React.FC<HomepageProps> = () => {
     <Container
       maxWidth="xl"
       style={{
-        padding: "0 20px",
         display: "flex",
+        justifyContent: "center",
+        padding: 0,
         flexDirection: "column",
-        alignItems: "center",
         marginBottom: 70,
       }}
     >
       {/* Carousel Section */}
       <Box
-        padding={2}
-        style={{ width: "100%", maxWidth: "1200px", marginTop: 60 }}
+        padding={0.5}
+        style={{
+          marginTop: 40, // Margin above the carousel
+          marginBottom: 60, // Margin below the carousel
+        }}
       >
         <Carousel />
       </Box>
-      
-      {/* Search Bar Section */}
-      <Box
-        style={{
-          marginTop: 40,
-          width: "100%",
-          maxWidth: "800px",
-          display: "flex",
-          justifyContent: "center",
-        }}
-      >
-        <SearchBar/>
-      </Box>
-      
+
       {/* Animated Text Section */}
       <Box
         style={{
-          marginTop: 40,
+          marginTop: 40, // Margin above the animated text
+          marginBottom: 60, // Margin below the text
           textAlign: "center",
           width: "100%",
           maxWidth: "1200px",
+          display: "flex",
+          justifyContent: "center", // Center the text horizontally
+          alignItems: "center", // Center the text vertically
+          margin: "0 auto", // Center horizontally
         }}
       >
         <AnimatedText
@@ -57,29 +52,35 @@ const Homepage: React.FC<HomepageProps> = () => {
           style={{
             fontWeight: "bold",
             fontSize: "48px",
-            marginTop: 20,
             lineHeight: 1.2,
+            textAlign: "center", // Ensure text itself is centered
+            width: "100%", // Ensures the width is 100% for centering purposes
           }}
         />
       </Box>
-      
+
       {/* Category Cards Section */}
       <Box
         style={{
-          marginTop: 60,
+          marginTop: 40, // Margin above the category cards
           width: "100%",
           maxWidth: "1200px",
           display: "flex",
           justifyContent: "center",
+          alignItems: "center", // Center vertically
           flexWrap: "wrap",
           gap: 20,
+          margin: "0 auto", // Center horizontally
         }}
       >
         {BannerData.map((data) => (
           <CategoryCard data={data} key={data.img} />
         ))}
       </Box>
+
+  
     </Container>
+
   );
 };
 

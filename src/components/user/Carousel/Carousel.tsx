@@ -1,13 +1,13 @@
 import React from 'react';
 import AliceCarousel from 'react-alice-carousel';
-import { Link } from 'react-router-dom';
 import BannerData from '../../../Helpers/HomePageBanner';
 import 'react-alice-carousel/lib/alice-carousel.css';
+import { Link } from 'react-router-dom';
 
-// Define the type for each banner item
+// Define the type for the banner data
 interface BannerItem {
-  name: string;
   img: string;
+  name: string;
 }
 
 const Carousel: React.FC = () => {
@@ -18,7 +18,7 @@ const Carousel: React.FC = () => {
     1024: { items: 3, itemsFit: 'contain' },
   };
 
-  // Create carousel items from BannerData
+  // Prepare the carousel items using BannerData
   const items = BannerData.map((item: BannerItem) => (
     <Link to={`product/type/${item.name.toLowerCase()}`} key={item.name}>
       <div className="item" style={{ marginTop: 10 }}>

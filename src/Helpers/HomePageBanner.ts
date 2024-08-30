@@ -61,5 +61,6 @@ const data = [
         img: KantinPakIwan,
         name: "Kantin Pak Iwan"
     },
+    
 ]
 export default data;
