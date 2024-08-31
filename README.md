@@ -21,7 +21,7 @@ Setoran is a comprehensive point of sale (POS) system designed for cooperative u
 
 ## Project Structure Frontend
 
-```
+
 src/
 ├── assets/
 │   └── (images, logos, etc.)
@@ -52,7 +52,7 @@ src/
 ├── index.css
 ├── main.tsx
 └── vite-env.d.ts
-```
+
 
 ## Components
 
