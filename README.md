@@ -1,113 +1,105 @@
-## Redistribusi Sistem Website
+```markdown
+# MESAN
 
-### Overview
-The Redistribusi Sistem website is a web application designed to efficiently manage and distribute resources. This system is built using modern web technologies to ensure performance, scalability, and maintainability.
+Setoran is a comprehensive point of sale (POS) system designed for cooperative use. It features distinct dashboards for admins and users, facilitating efficient management and seamless transactions.
 
-### Technologies Used
+## Features
 
-Frontend:
-- React: A JavaScript library for building user interfaces.
-- Vite: A build tool that provides a faster and leaner development experience for modern web projects.
-- TypeScript: A typed superset of JavaScript that compiles to plain JavaScript.
-- Axios: A promise-based HTTP client for making requests.
-- TailwindCSS: A utility-first CSS framework for styling.
-- Zustand: A small, fast state-management library for React.
+### Admin Dashboard
 
-Backend:
-- Node.js: A JavaScript runtime built on Chrome's V8 JavaScript engine.
-- Express: A minimal and flexible Node.js web application framework.
-- Prisma ORM: An open-source database toolkit for Typescript and Node.js.
-- JsonWebToken: A compact, URL-safe means of representing claims to be transferred between two parties.
-- Nodemon: A utility that monitors for changes in source files and automatically restarts the server.
 
-Database:
-- MySQL: An open-source relational database management system.
+### User Dashboard (Homepage)
 
-### Features
 
-- User Authentication: Secure login and registration using JWT.
-- Resource Management: Add, update, delete, and view resources.
-- Real-time Updates: Instant updates on resource redistribution using WebSockets.
-- Responsive Design: Optimized for various screen sizes using TailwindCSS.
-- State Management: Efficient state management with Zustand.
-- Database Operations: Robust and efficient database operations using Prisma ORM.
+## Tech Stack
 
-### Installation
+- **Frontend**: React, TypeScript, Vite, TailwindCSS, DaisyUI, Zustand, Lucide React Icons
+- **Backend**: Node.js, Express, Prisma ORM, JsonWebToken, Nodemon
+- **Database**: MySQL
+- **State Management**: Zustand
+- **Styling**: TailwindCSS, DaisyUI
 
-#### Prerequisites
-- Node.js
-- MySQL
+## Project Structure Frontend
 
-#### Backend Setup
+```
+src/
+├── assets/
+│   └── (images, logos, etc.)
+├── components/
+│   ├── CategoryPills.tsx
+│   ├── Sidebar.tsx
+│   ├── NavBar.tsx
+│   └── (other shared components)
+├── layouts/
+│   ├── AdminLayout.tsx
+│   ├── Homepage.tsx
+│   └── PageHeader.tsx
+├── pages/
+│   ├── admin/
+│   │   ├── DashboardHome.tsx
+│   │   ├── Customers.tsx
+│   │   └── Income.tsx
+│   ├── user/
+│   │   ├── Home.tsx
+│   │   ├── ProductList.tsx
+│   │   └── Profile.tsx
+│   └── NotFound.tsx
+├── data/
+│   └── categories.ts
+├── stores/
+│   └── (Zustand state management files)
+├── App.tsx
+├── index.css
+├── main.tsx
+└── vite-env.d.ts
+```
 
-1. Clone the repository:
-   ```sh
-   git clone https://github.com/your-repo/redistribusi-sistem.git
-   cd redistribusi-sistem/backend
+## Components
+
+- **Carousel**: Displays product images with responsive design.
+- **Order History**: Shows detailed order history with dropdown feature.
+- **Favorite Card**: Displays product information with an option to add to favorites.
+- **QR Scan Card**: Includes QR scanning functionality and payment prompts.
+- **Order Details Card**: Shows detailed order information in a horizontal layout.
+- **Stock Notification**: Alerts for low product stock levels.
+
+## Getting Started
+
+1. **Clone the Repository**:
+   ```bash
+   git clone https://github.com/your-username/setoran.git
    ```
 
-2. Install dependencies:
-   ```sh
+2. **Navigate to the Project Directory**:
+   ```bash
+   cd setoran
+   ```
+
+3. **Install Dependencies**:
+   ```bash
    npm install
    ```
 
-3. Set up the environment variables:
-   Create a `.env` file in the `backend` directory and add the following:
-   ```env
-   DATABASE_URL="mysql://user:password@localhost:3306/redistribusi"
-   JWT_SECRET="your_jwt_secret"
-   ```
-
-4. Run database migrations:
-   ```sh
-   npx prisma migrate dev
-   ```
-
-5. Start the backend server:
-   ```sh
+4. **Start the Development Server**:
+   ```bash
    npm run dev
    ```
 
-#### Frontend Setup
+5. **Open Your Browser**:
+   Navigate to `http://localhost:3000` to see the application in action.
 
-1. Navigate to the frontend directory:
-   ```sh
-   cd ../frontend
-   ```
+## Configuration
 
-2. Install dependencies:
-   ```sh
-   npm install
-   ```
+- **Backend**: Ensure your backend server is running and properly connected to your database.
+- **Environment Variables**: Set up any required environment variables as specified in `.env.example`.
 
-3. Set up the environment variables:
-   Create a `.env` file in the `frontend` directory and add the following:
-   ```env
-   VITE_API_URL="http://localhost:3000"
-   ```
+## Contributing
 
-4. Start the frontend development server:
-   ```sh
-   npm run dev
-   ```
+We welcome contributions to enhance the functionality and performance of the project. Please follow the standard pull request process and ensure your code adheres to the project's coding standards.
 
-### Usage
+## License
 
-1. Open your browser and navigate to `http://localhost:5173` for the frontend.
-2. Use `http://localhost:3000/api` for backend API endpoints.
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+```
 
-### Contributing
-
-Contributions are welcome! Please fork the repository and submit a pull request for any improvements or bug fixes.
-
-### License
-
-This project is licensed under the MIT License.
-
-### Contact
-
-For any questions or support, please contact [@Lietreum].
-
----
-
-By following this README, you should be able to set up and run the Redistribusi Sistem website locally. Enjoy developing and contributing to this project!
+You can copy and paste this into your `README.md` file. Adjust any specific details as needed!
