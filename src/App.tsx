@@ -19,6 +19,9 @@ import TransactionHistory from "./components/user/Header/TransactionHistory";
 import ShoppingCart from "./components/user/Header/ShoppingCart";
 import Favorite from "./components/user/Header/Favorite";
 import OverlayCard from "./components/user/Header/OverlayCard";
+import IncomingOrders from "./components/admin/Product/IncomingOrders";
+import StockNotification from "./components/admin/Product/StockNotification";
+import QRAdmin from "./components/admin/Product/QRAdmin";
 function App() {
   const [loading, setLoading] = useState<boolean>(true);
   const { pathname } = useLocation();
@@ -111,6 +114,34 @@ function App() {
             <AdminLayout>
               <PageTitle title="Product | Koperasi" />
               <Product />
+            </AdminLayout>
+          }
+        />
+        <Route
+          path="/admin/incoming-orders"
+          element={
+            <AdminLayout>
+              <PageTitle title="Incoming Orders | Koperasi" />
+              <IncomingOrders />
+            </AdminLayout>
+          }
+        />
+
+        <Route
+          path="/admin/stock-notification"
+          element={
+            <AdminLayout>
+              <PageTitle title="Stock Notification | Koperasi" />
+              <StockNotification />
+            </AdminLayout>
+          }
+        />
+           <Route
+          path="/admin/qrscanplaceholder"
+          element={
+            <AdminLayout>
+              <PageTitle title=" QRScan Admin | Koperasi" />
+              <QRAdmin />
             </AdminLayout>
           }
         />

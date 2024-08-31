@@ -105,7 +105,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                 Dashboard
               </NavLink>
 
-              {/* <!-- Menu Item Product --> */}
+              {/* <!-- Menu Item Products with Dropdown --> */}
               <SidebarLinkGroup
                 activeCondition={pathname.includes("product")}
               >
@@ -124,7 +124,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                       }}
                     >
                       <GrCart className="text-current" size={18} />
-                      Product
+                      Products
                       <AiOutlineDown
                         className={`absolute right-4 top-1/2 -translate-y-1/2 text-current ${
                           open && "rotate-180"
@@ -147,7 +147,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                               (isActive && "!text-white")
                             }
                           >
-                            Product
+                            Products
                           </NavLink>
                         </li>
                       </ul>
@@ -170,6 +170,41 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                 </NavLink>
               </li>
 
+              {/* <!-- Menu Item Messages --> */}
+              <li>
+                <NavLink
+                  to="/admin/messages"
+                  className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${
+                    pathname.includes("messages") && "bg-graydark dark:bg-meta-4"
+                  }`}
+                >
+                  <CiUser size={24} />
+                  Messages
+                </NavLink>
+              </li>
+            </ul>
+          </div>
+
+          {/* <!-- Others Group --> */}
+          <div>
+            <h3 className="mb-4 ml-4 text-sm font-semibold text-bodydark2">
+              OTHERS
+            </h3>
+
+            <ul className="mb-6 flex flex-col gap-1.5">
+              {/* <!-- Menu Item Incoming Orders --> */}
+              <li>
+                <NavLink
+                  to="/admin/incoming-orders"
+                  className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${
+                    pathname.includes("incoming-orders") && "bg-graydark dark:bg-meta-4"
+                  }`}
+                >
+                  <CiUser size={24} />
+                  Incoming Orders
+                </NavLink>
+              </li>
+
               {/* <!-- Menu Item Settings --> */}
               <li>
                 <NavLink
@@ -182,16 +217,18 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                   Settings
                 </NavLink>
               </li>
+              <li>
+                <NavLink
+                  to="/admin/qrscanplaceholder"
+                  className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${
+                    pathname.includes("settings") && "bg-graydark dark:bg-meta-4"
+                  }`}
+                >
+                  <FaCog size={24} />
+                  QRSCAN PLACEHOLDER!!!!!1
+                </NavLink>
+              </li>
             </ul>
-          </div>
-
-          {/* <!-- Others Group --> */}
-          <div>
-            <h3 className="mb-4 ml-4 text-sm font-semibold text-bodydark2">
-              OTHERS
-            </h3>
-
-            <ul className="mb-6 flex flex-col gap-1.5"></ul>
           </div>
         </nav>
         {/* <!-- Sidebar Menu --> */}
