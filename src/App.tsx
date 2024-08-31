@@ -15,6 +15,10 @@ import Signup from "./pages/auth/Signup";
 import Product from "./pages/admin/Product/ProductCard";
 import Messages from "./components/admin/Messages/Messages";
 import ProductList from "./components/user/ProductList/ProductList";
+import TransactionHistory from "./components/user/Header/TransactionHistory";
+import ShoppingCart from "./components/user/Header/ShoppingCart";
+import Favorite from "./components/user/Header/Favorite";
+import OverlayCard from "./components/user/Header/OverlayCard";
 function App() {
   const [loading, setLoading] = useState<boolean>(true);
   const { pathname } = useLocation();
@@ -42,13 +46,49 @@ function App() {
             </UserLayout>
           }
         />
-        
+
         <Route
-          path="/product/type/:type" 
+          path="/product/type/:type"
           element={
             <UserLayout>
-              <PageTitle title="User Dashboard" />
-              <ProductList/>
+              <PageTitle title="Product List" />
+              <ProductList />
+            </UserLayout>
+          }
+        />
+        <Route
+          path="/transactionhistory"
+          element={
+            <UserLayout>
+              <PageTitle title="Transaction History" />
+              <TransactionHistory />
+            </UserLayout>
+          }
+        />
+        <Route
+          path="/cart"
+          element={
+            <UserLayout>
+              <PageTitle title="Cart" />
+              <ShoppingCart />
+            </UserLayout>
+          }
+        />
+        <Route
+          path="/Favorites"
+          element={
+            <UserLayout>
+              <PageTitle title="Favorite" />
+              <Favorite />
+            </UserLayout>
+          }
+        />
+        <Route
+          path="/qrscanplaceholder"
+          element={
+            <UserLayout>
+              <PageTitle title="qrscanplaceholder" />
+              <OverlayCard />
             </UserLayout>
           }
         />
@@ -64,8 +104,8 @@ function App() {
           }
         />
 
-    {/* Admin Routes */}
-                <Route
+        {/* Admin Routes */}
+        <Route
           path="/admin/product"
           element={
             <AdminLayout>

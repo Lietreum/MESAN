@@ -1,31 +1,43 @@
-import React from 'react';
-import Box from '@mui/material/Box';
-import Carousel from '../Carousel/Carousel' 
-import data from '../../../Helpers/HomePageBanner';
-// import AnimatedText from './AnimatedText';
+import React from "react";
+import Box from "@mui/material/Box";
+import Carousel from "../Carousel/Carousel";
+import Card from "./Card";
 
 const ProductList: React.FC = () => {
   return (
     <Box
-      maxWidth="xl"
-      style={{
-        padding: "0 20px",
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        marginBottom: 70,
+      sx={{
+        width: '100%',
+        maxWidth: '1440px',
+        margin: '0 auto',
+        padding: '20px',
+        boxSizing: 'border-box',
       }}
     >
-      {/* Carousel Section */}
+      {/* Carousel */}
       <Box
-        padding={2}
-        style={{ width: "100%", maxWidth: "1200px", marginTop: 60 }}
+        sx={{
+          width: '100%',
+          display: 'flex',
+          justifyContent: 'center',
+          mb: 0, // Adjusted margin for consistency
+        }}
       >
-        <Carousel/>
+        <Carousel />
       </Box>
-      
 
-      
+      {/* Product Cards */}
+      <Box
+        sx={{
+          width: '100%',
+          boxSizing: 'border-box',
+          display: 'flex',
+          justifyContent: 'center',
+          mt: 0, // Adjusted margin to ensure proximity to carousel
+        }}
+      >
+        <Card />
+      </Box>
     </Box>
   );
 };

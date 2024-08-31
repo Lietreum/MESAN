@@ -1,59 +1,18 @@
+import React from "react";
 import { Link } from "react-router-dom";
-// import DropdownNotification from './DropdownNotification';
-import DropdownUser from "../../admin/Header/DropdownUser";
+import DropdownUser from "../Header/Dropdown";
 import LogoIcon from "../../../assets/admin/images/logo/Steam Circled.png";
-import DarkModeSwitcher from "../../admin/Header/DarkModeSwitcher";
+import Sidebar from "./Sidebar";
+import { ShoppingCart, Heart } from "lucide-react"; 
 
-const Header = (props: {
-  sidebarOpen: string | boolean | undefined;
-  setSidebarOpen: (arg0: boolean) => void;
-}) => {
+const Header: React.FC = () => {
   return (
     <nav className="sticky top-0 z-50 flex w-full bg-white drop-shadow-1 dark:bg-boxdark dark:drop-shadow-none">
       <div className="flex flex-grow items-center justify-between px-4 py-4 shadow-2 md:px-6 2xl:px-11">
-        <div className="flex items-center gap-2 sm:gap-4 ">
-          {/* <!-- Hamburger Toggle BTN --> */}
-          <button
-            aria-controls="sidebar"
-            onClick={(e) => {
-              e.stopPropagation();
-              props.setSidebarOpen(!props.sidebarOpen);
-            }}
-            className="z-99999 block rounded-sm border border-stroke bg-white p-1.5 shadow-sm dark:border-strokedark dark:bg-boxdark lg:hidden"
-          >
-            <span className="relative block h-5.5 w-5.5 cursor-pointer">
-              <span className="du-block absolute right-0 h-full w-full">
-                <span
-                  className={`relative left-0 top-0 my-1 block h-0.5 w-0 rounded-sm bg-black delay-[0] duration-200 ease-in-out dark:bg-white ${
-                    !props.sidebarOpen && "!w-full delay-300"
-                  }`}
-                ></span>
-                <span
-                  className={`relative left-0 top-0 my-1 block h-0.5 w-0 rounded-sm bg-black delay-150 duration-200 ease-in-out dark:bg-white ${
-                    !props.sidebarOpen && "delay-400 !w-full"
-                  }`}
-                ></span>
-                <span
-                  className={`relative left-0 top-0 my-1 block h-0.5 w-0 rounded-sm bg-black delay-200 duration-200 ease-in-out dark:bg-white ${
-                    !props.sidebarOpen && "!w-full delay-500"
-                  }`}
-                ></span>
-              </span>
-              <span className="absolute right-0 h-full w-full rotate-45">
-                <span
-                  className={`absolute left-2.5 top-0 block h-full w-0.5 rounded-sm bg-black delay-300 duration-200 ease-in-out dark:bg-white ${
-                    !props.sidebarOpen && "!h-0 !delay-[0]"
-                  }`}
-                ></span>
-                <span
-                  className={`delay-400 absolute left-0 top-2.5 block h-0.5 w-full rounded-sm bg-black duration-200 ease-in-out dark:bg-white ${
-                    !props.sidebarOpen && "!h-0 !delay-200"
-                  }`}
-                ></span>
-              </span>
-            </span>
-          </button>
-          {/* <!-- Hamburger Toggle BTN --> */}
+        <div className="flex items-center gap-2 sm:gap-4">
+          {/* Sidebar Component with Hamburger Icon */}
+          <Sidebar />
+
           {/* Icon Logo Start */}
           <Link className="block flex-shrink-0 ml-1 md:ml-20" to="/">
             <img
@@ -64,17 +23,24 @@ const Header = (props: {
           </Link>
           {/* Icon Logo End */}
         </div>
-
         <div className="flex items-center gap-3 2xsm:gap-7 ml-auto">
-          <ul className="flex items-center gap-2 2xsm:gap-4">
-            {/* <!-- Dark Mode Toggler --> */}
-            <DarkModeSwitcher />
-            {/* <!-- Dark Mode Toggler --> */}
-          </ul>
+          {/* Cart Icon */}
+          <Link to="/cart" className="relative flex items-center justify-center">
+            <ShoppingCart className="w-6 h-6 text-gray-600 dark:text-gray-300" />
+            {/* Optionally, add a badge or notification indicator */}
+            <span className="absolute top-0 right-0 block w-3.5 h-3.5 rounded-full bg-red-600 text-white text-xs flex items-center justify-center">3</span>
+          </Link>
 
-          {/* <!-- User Area --> */}
+          {/* Favorite Icon */}
+          <Link to="/favorites" className="relative flex items-center justify-center">
+            <Heart className="w-6 h-6 text-gray-600 dark:text-gray-300" />
+            {/* Optionally, add a badge or notification indicator */}
+            <span className="absolute top-0 right-0 block w-3.5 h-3.5 rounded-full bg-red-600 text-white text-xs flex items-center justify-center">5</span>
+          </Link>
+          
+
+          {/* User Area */}
           <DropdownUser />
-          {/* <!-- User Area --> */}
         </div>
       </div>
     </nav>

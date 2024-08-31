@@ -11,9 +11,7 @@ const UserLayout: React.FC<{ children: ReactNode }> = ({ children }) => {
       {/* <!-- ===== Page Wrapper Start ===== --> */}
       <div className="flex flex-col min-h-screen overflow">
         {/* <!-- ===== Header Start ===== --> */}
-        <Header sidebarOpen={undefined} setSidebarOpen={function (arg0: boolean): void {
-          throw new Error('Function not implemented.');
-        } } />
+        <Header/>
         {/* <!-- ===== Header End ===== --> */}
 
         {/* <!-- ===== Sales Banner Start ===== --> */}
