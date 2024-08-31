@@ -9,7 +9,7 @@ const Offer = () => {
                 <span className="absolute h-0.5 w-64 z-0 -skew-y-SkewOffer bg-black -top-[0.2rem] -left-[0rem]"></span>
                 <span className="absolute z-10 bg-black h-16 w-80 pr-5 -skew-y-SkewOffer flex justify-end items-center">
                     <p className="text-white text-[3.8rem] -skew-x-6">
-                        Fast &
+                        Jujutsu &
                     </p>
                 </span>
                 <span className="absolute h-0.5 w-36 z-30 -skew-y-SkewOffer bg-black -bottom-[2.2rem] sm:bottom-[6.5rem] left-[20rem]"></span>

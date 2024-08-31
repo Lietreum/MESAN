@@ -26,10 +26,7 @@ const Footer: React.FC = (): JSX.Element => {
             </li>
             <hr className="border-gray-300 dark:border-gray-700" />
             <li>
-              With this <span className="text-gray-800 dark:text-gray-200">project</span> we want
-              to strengthen the bases for the design of an application as well as the consumption of api,
-              distribution of elements in the area, implementation of basic functionalities that every
-              member should have
+            <span className="text-gray-800 dark:text-gray-200">Lietreun</span> Lietreun Lietreun Lietreun Lietreun Lietreun Lietreun Lietreun Lietreun Lietreun Lietreun Lietreun Lietreun Lietreun Lietreun Lietreun Lietreun Lietreun Lietreun Lietreun Lietreun Lietreun Lietreun
             </li>
           </ol>
         </div>
