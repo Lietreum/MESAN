@@ -2,7 +2,6 @@ import KantinIbuKosim from '../assets/data/LeftSukuna.jpg';
 import KantinIbuSumyati from '../assets/data/gojohollow.jpg';
 import KantinIbuAfika from '../assets/data/yujitrain.jpg';
 import KantinIbuIin from '../assets/data/makimaeyeyellow.jpg';
-import KantinIbuIrma from '../assets/data/makimabright.png';
 import KantinIbuEnok from '../assets/data/denjifacelesspng.png';
 import KantinMasSumandi from '../assets/data/madara.jpg';
 import KantinIbuLina from '../assets/data/edohashirama.png';
@@ -10,8 +9,10 @@ import KantinIbuYuliani from '../assets/data/narutofaceless.jpg';
 import KantinPakAtep from '../assets/data/l.jpg';
 import KantinPakDidi from '../assets/data/ryuk.jpg';
 import KantinPakIwan from '../assets/data/light.jpg';
+import KantinIbuIrma from '../assets/data/LeftSukuna.jpg';
 
 
+    
 const data = [
     {
         img: KantinIbuKosim,

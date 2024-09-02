@@ -21,10 +21,10 @@ const Offer = () => {
                 <span className="absolute h-0.5 w-64 z-0 -skew-y-SkewOffer bg-black -bottom-[7.8rem] sm:bottom-[1.5rem] left-[14rem]"></span>
                 <span className="absolute h-0.5 w-28 z-0 -skew-y-SkewOffer bg-black -bottom-[8.4rem] sm:bottom-[1rem] left-[18rem]"></span>
             </div>
-            <div className="text-2xl mb-8 sm:mb-0 h-1/2 sm:h-full sm:w-96 z-20 py-5 text-center flex flex-col justify-between sm:mr-40 ">
-                <span className="text-[8rem] mt-14 sm:top-0">Mesan</span>
-                <p className="text-[2.5rem] mt-10 sm:top-0">
-                    Are ready to help you with your needs
+            <div className="bg-gray-800 h-full  z-20 py-8 px-4 sm:px-8 flex flex-col items-center justify-center text-center">
+                <span className="text-[6rem] font-bold mb-7 ">Mesan</span>
+                <p className="text-[1.5rem] sm:text-[2rem] text-center">
+                    Ready to help you with your needs
                 </p>
             </div>
         </section>
