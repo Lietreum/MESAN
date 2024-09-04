@@ -6,9 +6,9 @@ import BottomNavigation from "../../components/user/Header/BottomNavigation";
 
 const UserLayout: React.FC<{ children: ReactNode }> = ({ children }) => {
   // Define media queries
-  const isDesktop = useMediaQuery({ minWidth: 1024 });  // Adjust the width breakpoint as needed
-  const isMobile = useMediaQuery({ maxWidth: 1023 });   // Adjust the width breakpoint as needed
-
+  const isDesktop = useMediaQuery({ minWidth: 1024 });  
+  const isMobile = useMediaQuery({ maxWidth: 1023 });   
+  
   return (
     <div className="dark:bg-boxdark-2 dark:text-bodydark overflow-x-hidden min-h-screen flex flex-col">
       {/* Sticky Header Wrapper for Desktop */}

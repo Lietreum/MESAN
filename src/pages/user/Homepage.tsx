@@ -5,6 +5,7 @@ import Carousel from "../../components/user/Carousel/Carousel";
 import CategoryCard from "../../components/user/CategoryCard/CategoryCard";
 import BannerData from "../../Helpers/HomePageBanner";
 import AnimatedText from "../../components/AnimatedText";
+import SearchBar from "../../components/user/SearchBar/SearchBar";
 
 type HomepageProps = {};
 
@@ -30,6 +31,10 @@ const Homepage: React.FC<HomepageProps> = () => {
       >
         <Carousel />
       </Box>
+{/* 
+      <Box>
+        <SearchBar/>
+      </Box> */}
 
       {/* Animated Text Section */}
       <Box
@@ -77,10 +82,7 @@ const Homepage: React.FC<HomepageProps> = () => {
           <CategoryCard data={data} key={data.img} />
         ))}
       </Box>
-
-  
     </Container>
-
   );
 };
 
