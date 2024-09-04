@@ -34,17 +34,17 @@ const ProductCard: React.FC<ProductCardProps> = ({ image, productName, price }) 
 const FavoriteCards: React.FC = () => {
   const products = [
     {
-      image: "https://via.placeholder.com/150",
+      image: "https://tailwindui.com/img/ecommerce-images/category-page-04-image-card-04.jpg",
       productName: "Product One",
       price: "$49.99",
     },
     {
-        image: "https://via.placeholder.com/150",
+        image: "https://tailwindui.com/img/ecommerce-images/category-page-04-image-card-04.jpg",
         productName: "Product Two",
       price: "$29.99",
     },
     {
-        image: "https://via.placeholder.com/150",
+        image: "https://tailwindui.com/img/ecommerce-images/category-page-04-image-card-04.jpg",
         productName: "Product Three",
       price: "$39.99",
     },

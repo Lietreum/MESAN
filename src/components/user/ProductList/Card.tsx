@@ -1,3 +1,4 @@
+import { Plus } from 'lucide-react';
 import React from 'react';
 
 // Define a type for the product
@@ -41,18 +42,24 @@ const products: Product[] = [
 ];
 
 const ProductCard: React.FC<Product> = ({ title, price, imageUrl, altText }) => (
-  <a href="#" className="group">
-    <div className="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-lg bg-gray-200 xl:aspect-h-8 xl:aspect-w-7">
-      <img
-        src={imageUrl}
-        alt={altText}
-        className="h-full w-full object-cover object-center group-hover:opacity-75"
-      />
-    </div>
-    <h3 className="mt-4 text-sm text-gray-700">{title}</h3>
-    <p className="mt-1 text-lg font-medium text-gray-900">{price}</p>
-  </a>
+  <a href="#" className="relative group block w-full max-w-sm mx-auto rounded-lg overflow-hidden shadow-lg transition-transform transform hover:scale-105">
+  <div className="w-full h-64 overflow-hidden bg-gray-200">
+    <img
+      src={imageUrl}
+      alt={altText}
+      className="w-full h-full object-cover object-center transition-opacity duration-300 group-hover:opacity-75"
+    />
+  </div>
+  <div className="p-4">
+    <h3 className="text-lg font-semibold text-gray-800">{title}</h3>
+    <p className="mt-1 text-xl font-bold text-gray-900">{price}</p>
+  </div>
+  <div className="absolute bottom-4 right-4 bg-white p-2 rounded-full shadow-lg">
+    <Plus className="text-gray-900 w-6 h-6" />
+  </div>
+</a>
 );
+
 
 const ProductGrid: React.FC = () => (
   <div className="bg-transparent">
