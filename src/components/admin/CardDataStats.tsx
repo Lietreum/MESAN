@@ -1,4 +1,4 @@
-import React, { ReactNode } from 'react';
+import React from 'react';
 import { FaArrowUp, FaArrowDown } from 'react-icons/fa';
 import { CardDataStatsProps } from '../../types/types'; // Adjust the path as needed
 

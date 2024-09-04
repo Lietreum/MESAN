@@ -9,20 +9,8 @@ import { AiOutlineSearch } from 'react-icons/ai';
 // import { getAllProducts } from "./Constant";
 import { SearchBarProps } from "../../../types/types"; 
 const SearchBar: React.FC = () => {
-    const LightStyledTextField = styled(TextField)(({ theme }) => ({
-        '& .MuiInputBase-root': {
-          backgroundColor: 'white', // Light mode background color
-          color: 'black', // Text color
-        },
-        '& .MuiOutlinedInput-notchedOutline': {
-          borderColor: '#ccc', // Border color
-        },
-        '& .MuiInputBase-input': {
-          color: 'black', // Input text color
-        },
-      }));
       
-    const [data, setData] = useState<SearchBarProps[]>([]);
+    const [data] = useState<SearchBarProps[]>([]);
     const [filteredData, setFilteredData] = useState<SearchBarProps[]>([]);
     const [searchTerm, setSearchTerm] = useState<string>('');
 
