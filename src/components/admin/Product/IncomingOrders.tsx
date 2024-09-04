@@ -1,18 +1,8 @@
 // src/components/ProductOrderTable.tsx
-
+import { IncomingOrdersProducts } from '../../../types/types'; // Adjust the path as needed
 import React from 'react';
 
-// Define the type for the product order
-interface ProductOrder {
-  name: string;
-  products: string;
-  createdAt: string;
-  qrT: number;
-  status: 'Active' | 'Suspended' | 'Inactive';
-}
-
-// Example data
-const productOrders: ProductOrder[] = [
+const productOrders: IncomingOrdersProducts[] = [
   {
     name: 'Vera Carpenter',
     products: 'Admin',

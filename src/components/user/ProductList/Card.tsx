@@ -1,22 +1,17 @@
 import { Plus } from 'lucide-react';
 import React, { useState, useEffect } from "react";
+import { ProductListCard } from "../../../types/types";
 
-// Define a type for the product
-interface Product {
-  id: number;
-  title: string;
-  price: string;
-  imageUrl: string;
-  altText: string;
-}
 
-const products: Product[] = [
+
+const products: ProductListCard[] = [
   {
     id: 1,
     title: 'Earthen Bottle',
     price: '$48',
     imageUrl: 'https://tailwindui.com/img/ecommerce-images/category-page-04-image-card-01.jpg',
     altText: 'Tall slender porcelain bottle with natural clay textured body and cork stopper.',
+    type: "yesTopping",
   },
   {
     id: 2,
@@ -24,6 +19,8 @@ const products: Product[] = [
     price: '$35',
     imageUrl: 'https://tailwindui.com/img/ecommerce-images/category-page-04-image-card-02.jpg',
     altText: 'Olive drab green insulated bottle with flared screw lid and flat top.',
+    type: "yesTopping",
+
   },
   {
     id: 3,
@@ -31,6 +28,8 @@ const products: Product[] = [
     price: '$89',
     imageUrl: 'https://tailwindui.com/img/ecommerce-images/category-page-04-image-card-03.jpg',
     altText: 'Person using a pen to cross a task off a productivity paper card.',
+    type: "yesTopping",
+
   },
   {
     id: 4,
@@ -38,27 +37,20 @@ const products: Product[] = [
     price: '$35',
     imageUrl: 'https://tailwindui.com/img/ecommerce-images/category-page-04-image-card-04.jpg',
     altText: 'Hand holding black machined steel mechanical pencil with brass tip and top.',
+    type: "noTopping",
+
   },
 ];
 
 // Modal component
 
-// Ensure the Product interface is imported or defined in the same file
-interface Product {
-  id: number;
-  title: string;
-  price: string; // Price should be a string in format like "Rp.50000"
-  imageUrl: string;
-  altText: string;
-}
-
 const PurchaseModal: React.FC<{
-  product: Product | null;
+  product: ProductListCard | null;
   isOpen: boolean;
   onClose: () => void;
 }> = ({ product, isOpen, onClose }) => {
   const [quantity, setQuantity] = useState(1);
-  const [selectedOption, setSelectedOption] = useState<string | null>(null);
+  const [ ,setSelectedOption] = useState<string | null>(null);
   const [notes, setNotes] = useState("");
 
   useEffect(() => {
@@ -117,37 +109,39 @@ const PurchaseModal: React.FC<{
         </div>
 
         {/* Options Section */}
-        <div className="my-4">
-          <p className="font-semibold text-sm mb-1 text-black">
-            Sambal <span className="text-red-500 text-xs">*Must be selected</span>
-          </p>
-          <div className="flex items-center justify-between mb-2">
-            <label className="flex items-center text-black">
-              <input
-                type="radio"
-                name="sambal"
-                value="Pake"
-                onChange={(e) => setSelectedOption(e.target.value)}
-                className="mr-2"
-              />
-              Pake
-            </label>
-            <span className="text-gray-500 text-sm">Free</span>
+        {product.type === "yesTopping" && (
+          <div className="my-4">
+            <p className="font-semibold text-sm mb-1 text-black">
+              Topping <span className="text-red-500 text-xs">*Must be selected</span>
+            </p>
+            <div className="flex items-center justify-between mb-2">
+              <label className="flex items-center text-black">
+                <input
+                  type="radio"
+                  name="Topping"
+                  value="Pake"
+                  onChange={(e) => setSelectedOption(e.target.value)}
+                  className="mr-2"
+                />
+                Pake
+              </label>
+              <span className="text-gray-500 text-sm">Free</span>
+            </div>
+            <div className="flex items-center justify-between mb-2">
+              <label className="flex items-center text-black">
+                <input
+                  type="radio"
+                  name="Topping"
+                  value="Tidak Pake"
+                  onChange={(e) => setSelectedOption(e.target.value)}
+                  className="mr-2"
+                />
+                Tidak Pake
+              </label>
+              <span className="text-gray-500 text-sm">Free</span>
+            </div>
           </div>
-          <div className="flex items-center justify-between mb-2">
-            <label className="flex items-center text-black">
-              <input
-                type="radio"
-                name="sambal"
-                value="Tidak Pake"
-                onChange={(e) => setSelectedOption(e.target.value)}
-                className="mr-2"
-              />
-              Tidak Pake
-            </label>
-            <span className="text-gray-500 text-sm">Free</span>
-          </div>
-        </div>
+        )}
 
         {/* Notes Section */}
         <textarea
@@ -193,7 +187,8 @@ const PurchaseModal: React.FC<{
 
 
 
-const ProductCard: React.FC<Product & { onPlusClick: () => void }> = ({
+
+const ProductCard: React.FC<ProductListCard & { onPlusClick: () => void }> = ({
   title,
   price,
   imageUrl,
@@ -219,10 +214,10 @@ const ProductCard: React.FC<Product & { onPlusClick: () => void }> = ({
 );
 
 const ProductGrid: React.FC = () => {
-  const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
+  const [selectedProduct, setSelectedProduct] = useState<ProductListCard | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const openModal = (product: Product) => {
+  const openModal = (product: ProductListCard) => {
     setSelectedProduct(product);
     setIsModalOpen(true);
   };

@@ -1,15 +1,6 @@
 import React, { useState } from "react";
+import { OrderItem } from "../../../types/types";
 
-interface OrderItem {
-  id: number;
-  image: string;
-  title: string;
-  color: string;
-  price: string;
-  quantity: number;
-  deliveryDate: string;
-  topUpHistory: string[];
-}
 
 const orderItems: OrderItem[] = [
   {

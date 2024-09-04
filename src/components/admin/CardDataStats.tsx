@@ -1,14 +1,7 @@
 import React, { ReactNode } from 'react';
 import { FaArrowUp, FaArrowDown } from 'react-icons/fa';
+import { CardDataStatsProps } from '../../types/types'; // Adjust the path as needed
 
-interface CardDataStatsProps {
-  title: string;
-  total: string;
-  rate: string;
-  levelUp?: boolean;
-  levelDown?: boolean;
-  children: ReactNode;
-}
 
 const CardDataStats: React.FC<CardDataStatsProps> = ({
   title,

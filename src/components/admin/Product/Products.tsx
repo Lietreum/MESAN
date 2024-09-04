@@ -1,14 +1,6 @@
 import React from 'react';
 import { FaHeart } from 'react-icons/fa';
-
-interface ProductProps {
-  sellerName: string;
-  productName: string;
-  price: string;
-  imageUrl: string;
-  inStock: boolean;
-  onEdit: () => void; // callback function for the Edit button
-}
+import { ProductProps } from '../../../types/types'; // Adjust the path as needed
 
 const ProductCard: React.FC<ProductProps> = ({
   sellerName,

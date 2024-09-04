@@ -1,12 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-
-interface AnimatedTextProps {
-  text: string;
-  variant?: string; // Optional, for different style variants
-  style?: React.CSSProperties; // Optional inline styles
-  loopCount?: number; // Number of times to loop the animation
-}
+import { AnimatedTextProps } from '../types/types';
 
 const AnimatedText: React.FC<AnimatedTextProps> = ({ text, variant, style, loopCount = 3 }) => {
   const words = text.split(' ');

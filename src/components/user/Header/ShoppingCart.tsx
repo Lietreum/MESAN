@@ -1,12 +1,6 @@
 import React, { useState } from "react";
+import {Product} from "../../../types/types";
 
-interface Product {
-  id: number;
-  name: string;
-  price: number;
-  quantity: number;
-  imageUrl: string;
-}
 
 const ShoppingCart: React.FC = () => {
   // Example products data

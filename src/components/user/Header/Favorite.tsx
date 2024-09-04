@@ -1,11 +1,7 @@
 import React from "react";
 import { Heart } from "lucide-react";
+import { ProductCardProps } from '../../../types/types'; // Adjust the path as needed
 
-interface ProductCardProps {
-  image: string;
-  productName: string;
-  price: string;
-}
 
 const ProductCard: React.FC<ProductCardProps> = ({ image, productName, price }) => {
   return (

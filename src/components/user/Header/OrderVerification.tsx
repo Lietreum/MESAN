@@ -1,13 +1,7 @@
 import React, { useState } from 'react';
 import QRCode from 'qrcode';
+import { OrderVerificationProps } from '../../../types/types';
 
-type OrderVerificationProps = {
-  orderId: string;
-  phoneNumber: string;
-  totalOrder: number;
-  tax: number;
-  total: number;
-};
 
 const OrderVerification: React.FC<OrderVerificationProps> = ({ orderId, phoneNumber, totalOrder, tax, total }) => {
   const [src, setSrc] = useState<string>('');

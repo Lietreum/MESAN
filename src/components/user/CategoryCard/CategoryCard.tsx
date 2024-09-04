@@ -1,13 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { CategoryCardProps } from '../../../types/types'; 
 
-// Define the props interface for the component
-interface CategoryCardProps {
-  data: {
-    name: string;
-    img: string;
-  };
-}
 
 const CategoryCard: React.FC<CategoryCardProps> = ({ data }) => {
   return (

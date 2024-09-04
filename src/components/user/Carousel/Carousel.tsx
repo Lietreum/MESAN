@@ -3,12 +3,8 @@ import AliceCarousel from 'react-alice-carousel';
 import BannerData from '../../../Helpers/HomePageBanner';
 import 'react-alice-carousel/lib/alice-carousel.css';
 import { Link } from 'react-router-dom';
+import { BannerItem } from '../../../types/types'; // Adjust the path as needed
 
-// Define the type for the banner data
-interface BannerItem {
-  img: string;
-  name: string;
-}
 
 const Carousel: React.FC = () => {
   // Define responsive settings for the carousel

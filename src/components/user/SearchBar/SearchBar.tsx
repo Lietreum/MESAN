@@ -7,22 +7,7 @@ import { styled } from '@mui/material/styles';
 import { Link } from "react-router-dom";
 import { AiOutlineSearch } from 'react-icons/ai';
 // import { getAllProducts } from "./Constant";
-
-// Define the type for the product
-interface Product {
-    _id: string;
-    name: string;
-    type: string;
-    brand?: string;
-    category?: string;
-    author?: string;
-    description?: string;
-    gender?: string;
-    image: string;
-    className?: string; 
-
-}
-
+import { SearchBarProps } from "../../../types/types"; 
 const SearchBar: React.FC = () => {
     const LightStyledTextField = styled(TextField)(({ theme }) => ({
         '& .MuiInputBase-root': {
@@ -37,8 +22,8 @@ const SearchBar: React.FC = () => {
         },
       }));
       
-    const [data, setData] = useState<Product[]>([]);
-    const [filteredData, setFilteredData] = useState<Product[]>([]);
+    const [data, setData] = useState<SearchBarProps[]>([]);
+    const [filteredData, setFilteredData] = useState<SearchBarProps[]>([]);
     const [searchTerm, setSearchTerm] = useState<string>('');
 
     useEffect(() => {
