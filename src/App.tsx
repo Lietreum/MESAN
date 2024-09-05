@@ -22,6 +22,10 @@ import OverlayCard from "./components/user/Header/OverlayCard";
 import IncomingOrders from "./components/admin/Product/IncomingOrders";
 import StockNotification from "./components/admin/Product/StockNotification";
 import QRAdmin from "./components/admin/Product/QRAdmin";
+import Notification from "./components/user/Header/Notification";
+import PaymentOptions from "./components/user/Header/PaymentOptions";
+import PaymentDetails from "./components/user/Header/PaymentDetails";
+
 function App() {
   const [loading, setLoading] = useState<boolean>(true);
   const { pathname } = useLocation();
@@ -74,6 +78,33 @@ function App() {
             <UserLayout>
               <PageTitle title="Cart" />
               <ShoppingCart />
+            </UserLayout>
+          }
+        />
+        <Route
+          path="/notifications"
+          element={
+            <UserLayout>
+              <PageTitle title="User Notification" />
+              <Notification />
+            </UserLayout>
+          }
+        />
+        <Route
+          path="/TopupPlacehold"
+          element={
+            <UserLayout>
+              <PageTitle title="User Notification" />
+              <PaymentOptions />
+            </UserLayout>
+          }
+        />
+        <Route
+          path="/PaymentDetailsPlchold"
+          element={
+            <UserLayout>
+              <PageTitle title="User Notification" />
+              <PaymentDetails />
             </UserLayout>
           }
         />
@@ -136,7 +167,7 @@ function App() {
             </AdminLayout>
           }
         />
-           <Route
+        <Route
           path="/admin/qrscanplaceholder"
           element={
             <AdminLayout>

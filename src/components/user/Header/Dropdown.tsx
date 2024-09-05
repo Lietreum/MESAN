@@ -52,7 +52,23 @@ const DropdownUser: React.FC = () => {
                 to="/qrscanplaceholder"
                 className="flex items-center gap-3.5 text-sm font-medium duration-300 ease-in-out hover:text-primary lg:text-base"
               >
-                QR PLACEHOLDER!!!!
+                QR PLACEHOLDER!
+              </Link>
+            </li>
+            <li>
+              <Link
+                to="/PaymentDetailsPlchold"
+                className="flex items-center gap-3.5 text-sm font-medium duration-300 ease-in-out hover:text-primary lg:text-base"
+              >
+                Paymentdetail PLACEHOLDER o my futureself!
+              </Link>
+            </li>
+            <li>
+              <Link
+                to="/TopupPlacehold"
+                className="flex items-center gap-3.5 text-sm font-medium duration-300 ease-in-out hover:text-primary lg:text-base"
+              >
+                topup PLACEHOLDER o my futureself!
               </Link>
             </li>
           </ul>

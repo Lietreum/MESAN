@@ -5,7 +5,7 @@ import Carousel from "../../components/user/Carousel/Carousel";
 import CategoryCard from "../../components/user/CategoryCard/CategoryCard";
 import BannerData from "../../Helpers/HomePageBanner";
 import AnimatedText from "../../components/AnimatedText";
-import SearchBar from "../../components/user/SearchBar/SearchBar";
+// import SearchBar from "../../components/user/SearchBar/SearchBar";
 
 type HomepageProps = {};
 
