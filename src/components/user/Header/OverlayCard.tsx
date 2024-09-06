@@ -9,7 +9,7 @@ const OverlayCard: React.FC = () => {
         <div className="flex flex-col items-center p-4 bg-gray-100 rounded-lg">
           <div className="w-32 h-32 bg-gray-200 flex justify-center items-center rounded-md mb-4">
             <OrderVerification
-              orderId="123456"
+              orderId="https://docs.google.com/forms/d/e/1FAIpQLSfCfryO1Ac-OIuRVF_oG2-boXvIk579KfzjyPKDUOBYYVPRxw/viewform?usp=send_form"
               phoneNumber="555-1234"
               totalOrder={100.0}
               tax={8.5}

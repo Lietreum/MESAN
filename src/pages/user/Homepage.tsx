@@ -83,6 +83,7 @@ const Homepage: React.FC<HomepageProps> = () => {
         ))}
       </Box>
     </Container>
+    // Category card lets rename it to shop card or toko jadi si toko ini punya string, image, nama, dan link sendiri untuk produk nya masing masing
   );
 };
 
