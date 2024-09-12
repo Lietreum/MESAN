@@ -74,7 +74,7 @@ const Login = () => {
     } catch (error) {
       console.error("Login failed:", error);
       alert("Login failed. Please check your credentials.");
-    }
+    } 
   };
 
   return (

@@ -16,15 +16,44 @@ import { LockOutlined, DarkMode, LightMode } from "@mui/icons-material";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { grey } from "@mui/material/colors";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const Register = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [darkMode, setDarkMode] = useState(false);
+  const navigate = useNavigate();
 
   const handleRegister = async () => {
-    // Logika register di sini
+    //zka was here
+    try {
+      const response = await axios.post(
+        "http://localhost:3001/api/auth/register", // Backend register route
+        {
+          email,
+          password, // disini harusnya ada name
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+
+      // Assuming the backend sends a JWT token on successful login
+      const { token } = response.data;
+
+      // Save the JWT token to localStorage
+      localStorage.setItem("token", token);
+
+      // Redirect the user to the dashboard or any protected route
+      navigate("/login");
+    } catch (error) {
+      console.error("Register Failed:", error);
+      alert("Register failed. Please check your credentials.");
+    }
   };
 
   const theme = createTheme({
