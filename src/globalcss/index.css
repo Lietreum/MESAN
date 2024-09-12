@@ -136,3 +136,18 @@
       transform: translateY(-100%);
     }
   }
+
+  .icon-style {
+    width: auto; 
+    color: #4b5563; 
+    background: transparent;
+  }
+  
+  @media (min-width: 768px) {
+    .icon-style {
+      width: auto; /* Larger on medium screens */
+      height: 200px;
+      background: transparent;
+    }
+  }
+  
