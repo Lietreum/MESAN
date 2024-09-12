@@ -1,16 +1,15 @@
-import KantinIbuKosim from '../assets/data/yujitrain.jpg';
-import KantinIbuSumyati from '../assets/data/yujitrain.jpg';
-import KantinIbuAfika from '../assets/data/yujitrain.jpg';
-import KantinIbuIin from'../assets/data/yujitrain.jpg';
-import KantinIbuEnok from '../assets/data/yujitrain.jpg';
-import KantinMasSumandi from '../assets/data/yujitrain.jpg';
-import KantinIbuLina from '../assets/data/yujitrain.jpg';
-import KantinIbuYuliani from '../assets/data/narutofaceless.jpg';
-import KantinPakAtep from '../assets/data/l.jpg';
-import KantinPakDidi from '../assets/data/ryuk.jpg';
-import KantinPakIwan from '../assets/data/yujitrain.jpg';
-import KantinIbuIrma from '../assets/data/LeftSukuna.jpg';
-
+import KantinIbuKosim from '../assets/admin//images/cards/ibukosim.jpg';
+import KantinIbuSumyati from '../assets/admin//images/cards/ibusumyati.jpg';
+import KantinIbuAfika from '../assets/admin//images/cards/ibuafika.jpg';
+import KantinIbuIin from '../assets/admin//images/cards/ibuiin.jpg';
+import KantinIbuIrma from '../assets/admin//images/cards/ibuirma.jpg';
+import KantinIbuEnok from '../assets/admin//images/cards/ibuenok.jpg';
+import KantinMasSumandi from '../assets/admin//images/cards/massumandi.jpg';
+import KantinIbuLina from '../assets/admin//images/cards/ibulina.jpg';
+import KantinIbuYuliani from '../assets/admin//images/cards/ibuyuliani.jpg';
+import KantinPakAtep from '../assets/admin//images/cards/pakatep.jpg';
+import KantinPakDidi from '../assets/admin//images/cards/pakdidi.jpg';
+import KantinPakIwan from '../assets/admin//images/cards/pakiwan.jpg';
 
 
 const data = [
@@ -62,6 +61,5 @@ const data = [
         img: KantinPakIwan,
         name: "Kantin Pak Iwan"
     },
-    
 ]
 export default data;

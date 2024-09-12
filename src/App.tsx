@@ -1,7 +1,13 @@
 import { useEffect, useState } from "react";
+<<<<<<< HEAD
 import {  Route, Routes, useLocation, } from "react-router-dom";
 //Deleting broweserrouter alias
 
+=======
+import { BrowserRouter as Router, Route, Routes, useLocation, } from "react-router-dom";
+//dunno when i delete the Router it will go nuts, dont delete it or maybe find some solution 
+// mf how the live demo suppose works
+>>>>>>> 4afe3855302385fab848a650af323d8cdcaaf3ed
 import Loader from "./common/Loader";
 import PageTitle from "./components/admin/PageTitle";
 import AdminLayout from "./layouts/admin/AdminLayout";

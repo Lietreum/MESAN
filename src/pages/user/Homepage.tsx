@@ -1,11 +1,12 @@
 import React from "react";
 import { Container } from "@mui/material";
 import { Box } from "@mui/system";
-import Carousel from "../../components/user/Carousel/Carousel";
 import CategoryCard from "../../components/user/CategoryCard/CategoryCard";
 import BannerData from "../../Helpers/HomePageBanner";
 import AnimatedText from "../../components/AnimatedText";
+import WalletCard from "../../components/user/Header/WalletCard";
 // import SearchBar from "../../components/user/SearchBar/SearchBar";
+import Profileholder from "../../assets/admin/images/user/user-01.png"
 
 type HomepageProps = {};
 
@@ -23,15 +24,24 @@ const Homepage: React.FC<HomepageProps> = () => {
     >
       {/* Carousel Section */}
       <Box
-        padding={0.5}
-        style={{
-          marginTop: 40, // Margin above the carousel
-          marginBottom: 60, // Margin below the carousel
+        sx={{
+          padding: 0.5,
+          marginTop: -4, // Adjusted to MUI's spacing scale
+          marginBottom: 6, // Adjusted to MUI's spacing scale
+          display: "flex", // Added display flex to align WalletCard
+          justifyContent: "center", // Center WalletCard horizontally
         }}
       >
-        <Carousel />
+        {/* Adjust the maxWidth to control the width of the WalletCard */}
+        <Box sx={{ width: "100%", maxWidth: "1000px" }}> 
+          <WalletCard
+            balance={10000}
+            profileName="Thomas Anree"
+            profileImage={Profileholder}
+          />
+        </Box>
       </Box>
-{/* 
+      {/* 
       <Box>
         <SearchBar/>
       </Box> */}
