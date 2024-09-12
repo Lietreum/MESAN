@@ -1,3 +1,4 @@
+// @ts-ignore
 import { useEffect, useState } from "react";
 <<<<<<< HEAD
 import {  Route, Routes, useLocation, } from "react-router-dom";
