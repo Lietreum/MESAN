@@ -1,14 +1,8 @@
-// @ts-nocheck
 import { useEffect, useState } from "react";
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment  
 // @ts-ignore
-import {
-  BrowserRouter as Router,
-  Route,
-  Routes,
-  useLocation,
-} from "react-router-dom";
-//dunno when i delete the Router it will go nuts, dont delete it or maybe find some solution
+import { BrowserRouter as Router, Route, Routes, useLocation, } from "react-router-dom";
+//dunno when i delete the Router it will go nuts, dont delete it or maybe find some solution 
 // mf how the live demo suppose works
 import Loader from "./common/Loader";
 import PageTitle from "./components/admin/PageTitle";
