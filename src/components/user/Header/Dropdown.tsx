@@ -5,19 +5,18 @@ import UserOne from '../../../assets/admin/images/user/user-01.png';
 
 const DropdownUser: React.FC = () => {
   const [dropdownOpen, setDropdownOpen] = useState<boolean>(false);
-
+//i change the name, tried to fetch it from the backend but gpt 4.0 is on the limit lmao, i try it again tomorrow, zka was here
   return (
     <ClickOutside onClick={() => setDropdownOpen(false)} className="relative">
       <Link
         onClick={() => setDropdownOpen(!dropdownOpen)}
         className="flex items-center gap-4"
         to="#"
-      >
+      > 
         <span className="hidden text-right lg:block">
           <span className="block text-sm font-medium text-black dark:text-white">
-            Thomas Anree
-          </span>
-          <span className="block text-xs">UX Designer</span>
+            Sigma
+          </span> 
         </span>
 
         <span className="h-12 w-12 rounded-full">

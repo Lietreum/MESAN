@@ -16,11 +16,16 @@ import {
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { grey } from "@mui/material/colors";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
+
+
 
 const Login = () => {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
   const [darkMode, setDarkMode] = useState<boolean>(false);
+  const navigate = useNavigate();
 
   const theme = createTheme({
     palette: {
@@ -42,8 +47,34 @@ const Login = () => {
     setDarkMode((prevMode) => !prevMode);
   };
 
-  const handleLogin = () => {
-    // Logika login di sini
+  //zka was here
+  const handleLogin = async () => {
+    try {
+      const response = await axios.post(
+        "http://localhost:3001/api/auth/login", // Backend login route
+        {
+          email,
+          password,
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
+
+      // Assuming the backend sends a JWT token on successful login
+      const { token } = response.data;
+
+      // Save the JWT token to localStorage
+      localStorage.setItem("token", token);
+
+      // Redirect the user to the dashboard or any protected route
+      navigate("/");
+    } catch (error) {
+      console.error("Login failed:", error);
+      alert("Login failed. Please check your credentials.");
+    }
   };
 
   return (
