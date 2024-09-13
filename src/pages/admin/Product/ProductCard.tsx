@@ -1,5 +1,5 @@
 import React from 'react';
-import Products from '../../../components/admin/Product/Products';
+//import Products from '../../../components/admin/Product/Products';
 
 const ProductPage: React.FC = () => {
   const handleEdit = () => {
