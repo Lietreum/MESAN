@@ -1,11 +1,11 @@
-import React, { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { NavLink, useLocation } from "react-router-dom";
 import SidebarLinkGroup from "./SidebarLinkGroup";
-import Logo from "../../../assets/admin/images/logo/logo.png";
+import Logo from "../../../assets/data/mesan-removebg-preview.png";
 import { AiOutlineAppstore, AiOutlineMenuFold, AiOutlineDown } from "react-icons/ai";
 import { FaCog } from "react-icons/fa";
 import { CiUser } from "react-icons/ci";
-import { GrCart } from "react-icons/gr";
+import { GrCart, GrInbox } from "react-icons/gr";
 
 interface SidebarProps {
   sidebarOpen: boolean;
@@ -20,11 +20,11 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
   const sidebar = useRef<HTMLElement | null>(null);
 
   const storedSidebarExpanded = localStorage.getItem("sidebar-expanded");
-  const [sidebarExpanded, setSidebarExpanded] = useState(
+  const [sidebarExpanded] = useState(
     storedSidebarExpanded === null ? false : storedSidebarExpanded === "true"
   );
 
-  // close on click outside
+  // Close on click outside
   useEffect(() => {
     const clickHandler = ({ target }: MouseEvent) => {
       if (!sidebar.current || !trigger.current) return;
@@ -40,7 +40,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
     return () => document.removeEventListener("click", clickHandler);
   }, [sidebarOpen]);
 
-  // close if the esc key is pressed
+  // Close if the esc key is pressed
   useEffect(() => {
     const keyHandler = ({ keyCode }: KeyboardEvent) => {
       if (!sidebarOpen || keyCode !== 27) return;
@@ -62,14 +62,14 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
   return (
     <aside
       ref={sidebar}
-      className={`absolute left-0 top-0 z-9999 flex h-screen w-72.5 flex-col overflow-y-hidden bg-black duration-300 ease-linear dark:bg-boxdark lg:static lg:translate-x-0 ${
+      className={`absolute left-0 top-0 z-9999 flex h-screen w-64 flex-col bg-[#0F1E34] transition-all duration-300 ease-in-out lg:static lg:translate-x-0 ${
         sidebarOpen ? "translate-x-0" : "-translate-x-full"
       }`}
     >
-      {/* <!-- SIDEBAR HEADER --> */}
-      <div className="flex items-center justify-between gap-2 px-6 py-5.5 lg:py-6.5">
+      {/* Sidebar Header */}
+      <div className="flex items-center justify-center px-10 py-0 bg-[#0F1E34]">
         <NavLink to="/">
-          <img src={Logo} alt="Logo" className="w-20 h-auto" />
+          <img src={Logo} alt="Logo" className="w-50 h-auto" />
         </NavLink>
 
         <button
@@ -79,159 +79,133 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
           aria-expanded={sidebarOpen}
           className="block lg:hidden"
         >
-          <AiOutlineMenuFold size={20} className="text-current" />
+          <AiOutlineMenuFold size={24} className="text-white" />
         </button>
       </div>
-      {/* <!-- SIDEBAR HEADER --> */}
 
-      <div className="no-scrollbar flex flex-col overflow-y-auto duration-300 ease-linear">
-        {/* <!-- Sidebar Menu --> */}
-        <nav className="mt-5 py-4 px-4 lg:mt-9 lg:px-6">
-          {/* <!-- Menu Group --> */}
-          <div>
-            <h3 className="mb-4 ml-4 text-sm font-semibold text-bodydark2">
-              MENU
-            </h3>
+      {/* Sidebar Content */}
+      <div className="flex flex-col overflow-y-auto">
+        <nav className="mt-6">
+          <h3 className="mb-4 px-6 text-sm font-semibold text-white opacity-50">
+            MENU
+          </h3>
 
-            <ul className="mb-6 flex flex-col gap-1.5">
-              {/* <!-- Menu Item Dashboard --> */}
+          <ul className="flex flex-col space-y-2 px-4">
+            {/* Dashboard */}
+            <li>
               <NavLink
                 to="/admin"
-                className={`group relative flex items-center gap-2.5 rounded-sm px-4 py-2 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${
-                  pathname === "/admin" && "bg-graydark dark:bg-meta-4"
+                className={`flex items-center gap-3 px-4 py-2 rounded-md text-white hover:bg-[#1E293B] transition ${
+                  pathname === "/admin" ? "bg-[#1E293B]" : ""
                 }`}
               >
-                <AiOutlineAppstore className="text-current" size={18} />
+                <AiOutlineAppstore size={20} />
                 Dashboard
               </NavLink>
+            </li>
 
-              {/* <!-- Menu Item Products with Dropdown --> */}
-              <SidebarLinkGroup
-                activeCondition={pathname.includes("product")}
-              >
-                {(handleClick, open) => (
-                  <React.Fragment>
-                    <NavLink
-                      to="#"
-                      className={`group relative flex items-center gap-2.5 rounded-sm px-4 py-2 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${
-                        pathname.includes("product") && "bg-graydark dark:bg-meta-4"
-                      }`}
-                      onClick={(e) => {
-                        e.preventDefault();
-                        sidebarExpanded
-                          ? handleClick()
-                          : setSidebarExpanded(true);
-                      }}
-                    >
-                      <GrCart className="text-current" size={18} />
+            {/* Products Dropdown */}
+            <SidebarLinkGroup activeCondition={pathname.includes("product")}>
+              {(handleClick, open) => (
+                <>
+                  <button
+                    onClick={(e) => {
+                      e.preventDefault();
+                      handleClick();
+                    }}
+                    className={`flex items-center justify-between w-full gap-3 px-4 py-2 rounded-md text-white hover:bg-[#1E293B] transition ${
+                      pathname.includes("product") ? "bg-[#1E293B]" : ""
+                    }`}
+                  >
+                    <div className="flex items-center gap-3">
+                      <GrCart size={20} />
                       Products
-                      <AiOutlineDown
-                        className={`absolute right-4 top-1/2 -translate-y-1/2 text-current ${
-                          open && "rotate-180"
-                        }`}
-                        size={20}
-                      />
-                    </NavLink>
-                    {/* <!-- Dropdown Menu Start --> */}
-                    <div
-                      className={`translate transform overflow-hidden ${
-                        !open && "hidden"
-                      }`}
-                    >
-                      <ul className="mt-4 mb-5.5 flex flex-col gap-2.5 pl-6">
-                        <li>
-                          <NavLink
-                            to="/admin/product"
-                            className={({ isActive }) =>
-                              "group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-white " +
-                              (isActive && "!text-white")
-                            }
-                          >
-                            Products
-                          </NavLink>
-                        </li>
-                      </ul>
                     </div>
-                    {/* <!-- Dropdown Menu End --> */}
-                  </React.Fragment>
-                )}
-              </SidebarLinkGroup>
+                    <AiOutlineDown
+                      className={`transition-transform duration-200 ${
+                        open ? "rotate-180" : ""
+                      }`}
+                    />
+                  </button>
+                  {/* Dropdown */}
+                  <div
+                    className={`pl-8 pt-2 ${!open && "hidden"}`}
+                  >
+                    <NavLink
+                      to="/admin/product"
+                      className={({ isActive }) =>
+                        `block py-2 text-white transition hover:text-blue-400 ${
+                          isActive ? "text-blue-400" : ""
+                        }`
+                      }
+                    >
+                      Products
+                    </NavLink>
+                  </div>
+                </>
+              )}
+            </SidebarLinkGroup>
 
-              {/* <!-- Menu Item Profile --> */}
-              <li>
-                <NavLink
-                  to="/profile"
-                  className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${
-                    pathname.includes("profile") && "bg-graydark dark:bg-meta-4"
-                  }`}
-                >
-                  <CiUser size={24} />
-                  Profile
-                </NavLink>
-              </li>
+            {/* Messages */}
+            <li>
+              <NavLink
+                to="/admin/messages"
+                className={`flex items-center gap-3 px-4 py-2 rounded-md text-white hover:bg-[#1E293B] transition ${
+                  pathname.includes("messages") ? "bg-[#1E293B]" : ""
+                }`}
+              >
+                <GrInbox size={20} />
+                Messages
+              </NavLink>
+            </li>
 
-              {/* <!-- Menu Item Messages --> */}
-              <li>
-                <NavLink
-                  to="/admin/messages"
-                  className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${
-                    pathname.includes("messages") && "bg-graydark dark:bg-meta-4"
-                  }`}
-                >
-                  <CiUser size={24} />
-                  Messages
-                </NavLink>
-              </li>
-            </ul>
-          </div>
+            {/* Incoming Orders */}
+            <li>
+              <NavLink
+                to="/admin/incoming-orders"
+                className={`flex items-center gap-3 px-4 py-2 rounded-md text-white hover:bg-[#1E293B] transition ${
+                  pathname.includes("incoming-orders") ? "bg-[#1E293B]" : ""
+                }`}
+              >
+                <GrCart size={20} />
+                Incoming Orders
+              </NavLink>
+            </li>
 
-          {/* <!-- Others Group --> */}
-          <div>
-            <h3 className="mb-4 ml-4 text-sm font-semibold text-bodydark2">
-              OTHERS
-            </h3>
+            {/* Profile */}
+            <li>
+              <NavLink
+                to="/profile"
+                className={`flex items-center gap-3 px-4 py-2 rounded-md text-white hover:bg-[#1E293B] transition ${
+                  pathname.includes("profile") ? "bg-[#1E293B]" : ""
+                }`}
+              >
+                <CiUser size={20} />
+                Profile
+              </NavLink>
+            </li>
 
-            <ul className="mb-6 flex flex-col gap-1.5">
-              {/* <!-- Menu Item Incoming Orders --> */}
-              <li>
-                <NavLink
-                  to="/admin/incoming-orders"
-                  className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${
-                    pathname.includes("incoming-orders") && "bg-graydark dark:bg-meta-4"
-                  }`}
-                >
-                  <CiUser size={24} />
-                  Incoming Orders
-                </NavLink>
-              </li>
-
-              {/* <!-- Menu Item Settings --> */}
-              <li>
-                <NavLink
-                  to="/settings"
-                  className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${
-                    pathname.includes("settings") && "bg-graydark dark:bg-meta-4"
-                  }`}
-                >
-                  <FaCog size={24} />
-                  Settings
-                </NavLink>
-              </li>
-              <li>
-                <NavLink
-                  to="/admin/qrscanplaceholder"
-                  className={`group relative flex items-center gap-2.5 rounded-sm py-2 px-4 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4 ${
-                    pathname.includes("settings") && "bg-graydark dark:bg-meta-4"
-                  }`}
-                >
-                  <FaCog size={24} />
-                  QRSCAN PLACEHOLDER!!!!!1
-                </NavLink>
-              </li>
-            </ul>
-          </div>
+            {/* Settings */}
+            <li>
+              <NavLink
+                to="/settings"
+                className={`flex items-center gap-3 px-4 py-2 rounded-md text-white hover:bg-[#1E293B] transition ${
+                  pathname.includes("settings") ? "bg-[#1E293B]" : ""
+                }`}
+              >
+                <FaCog size={20} />
+                Settings
+              </NavLink>
+            </li>
+          </ul>
         </nav>
-        {/* <!-- Sidebar Menu --> */}
+
+        {/* Footer */}
+        <div className="mt-auto flex items-center justify-center py-4">
+          <p className="text-xs text-white opacity-60">
+            Created by SMKN 4 Bandung with support from PT. Curaweda Palagam Innotec
+          </p>
+        </div>
       </div>
     </aside>
   );
