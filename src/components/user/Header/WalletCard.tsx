@@ -1,6 +1,7 @@
 import React from "react";
 import { FaPlusCircle } from "react-icons/fa";
 import { BiSolidCoinStack } from "react-icons/bi";
+import { Link } from "react-router-dom";
 
 interface WalletCardProps {
   balance: number;
@@ -36,6 +37,7 @@ const WalletCard: React.FC<WalletCardProps> = ({ balance, profileName, profileIm
       </div>
 
       {/* Middle: Top Up Button */}
+      <Link to={"/TopupPlacehold"}>
       <button
         style={{
           display: "flex",
@@ -52,6 +54,7 @@ const WalletCard: React.FC<WalletCardProps> = ({ balance, profileName, profileIm
         <FaPlusCircle />
         Top Up
       </button>
+      </Link>
 
       {/* Right Side: Profile */}
       <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
