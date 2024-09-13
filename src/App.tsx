@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Route, Routes, useLocation, } from "react-router-dom";
 //dunno when i delete the Router it will go nuts, dont delete it or maybe find some solution 
-// mf how the live demo suppose works
+// mf solved
 import Loader from "./common/Loader";
 import PageTitle from "./components/admin/PageTitle";
 import AdminLayout from "./layouts/admin/AdminLayout";
@@ -26,8 +26,12 @@ import QRAdmin from "./components/admin/Product/QRAdmin";
 import Notification from "./components/user/Header/Notification";
 import PaymentOptions from "./components/user/Header/PaymentOptions";
 import PaymentDetails from "./components/user/Header/PaymentDetails";
+import { inject } from '@vercel/analytics';
+
 
 function App() {
+  inject();
+
   const [loading, setLoading] = useState<boolean>(true);
   const { pathname } = useLocation();
 

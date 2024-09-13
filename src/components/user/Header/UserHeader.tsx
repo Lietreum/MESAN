@@ -33,13 +33,13 @@ const Header: React.FC = () => {
           </Link>
 
           <Link
-            to="/notifications"
+            to="/#"
             className="relative flex items-center justify-center"
           >
             <LuClipboardList className="w-6 h-6 text-gray-600 dark:text-gray-300" />
           </Link>
           <Link
-            to="/notifications"
+            to="/qrscanplaceholder"
             className="relative flex items-center justify-center"
           >
             <AiOutlineScan className="w-6 h-6 text-gray-600 dark:text-gray-300" />
