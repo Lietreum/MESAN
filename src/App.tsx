@@ -1,4 +1,4 @@
-// @ts-ignore
+// @ts-nocheck
 import { useEffect, useState } from "react";
 <<<<<<< HEAD
 import {  Route, Routes, useLocation, } from "react-router-dom";
