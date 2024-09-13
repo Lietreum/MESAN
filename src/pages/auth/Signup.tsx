@@ -20,20 +20,22 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 const Register = () => {
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
   const [darkMode, setDarkMode] = useState(false);
   const navigate = useNavigate();
 
   const handleRegister = async () => {
-    //zka was here
     try {
       const response = await axios.post(
         "http://localhost:3001/api/auth/register", // Backend register route
         {
+          firstName,
+          lastName,
           email,
-          password, // disini harusnya ada name
+          password,
         },
         {
           headers: {
@@ -42,13 +44,13 @@ const Register = () => {
         }
       );
 
-      // Assuming the backend sends a JWT token on successful login
+      // Assuming the backend sends a JWT token on successful registration
       const { token } = response.data;
 
       // Save the JWT token to localStorage
       localStorage.setItem("token", token);
 
-      // Redirect the user to the dashboard or any protected route
+      // Redirect the user to the login page
       navigate("/login");
     } catch (error) {
       console.error("Register Failed:", error);
@@ -64,7 +66,7 @@ const Register = () => {
       },
       background: {
         default: darkMode ? grey[900] : "#ffffff",
-        paper: darkMode ? grey[900] : "#ffffff", // Sama seperti background layar
+        paper: darkMode ? grey[900] : "#ffffff",
       },
       text: {
         primary: darkMode ? grey[300] : "#000000",
@@ -97,6 +99,8 @@ const Register = () => {
             width: "100%",
             maxWidth: 400,
             backgroundColor: theme.palette.background.paper,
+            padding: 3,
+            borderRadius: 2,
           }}
         >
           {/* Toggle Dark/Light Mode */}
@@ -136,6 +140,30 @@ const Register = () => {
                 <TextField
                   required
                   fullWidth
+                  id="firstName"
+                  label="First Name"
+                  name="firstName"
+                  autoComplete="given-name"
+                  value={firstName}
+                  onChange={(e) => setFirstName(e.target.value)}
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  required
+                  fullWidth
+                  id="lastName"
+                  label="Last Name"
+                  name="lastName"
+                  autoComplete="family-name"
+                  value={lastName}
+                  onChange={(e) => setLastName(e.target.value)}
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <TextField
+                  required
+                  fullWidth
                   id="email"
                   label="Email Address"
                   name="email"
@@ -148,26 +176,13 @@ const Register = () => {
                 <TextField
                   required
                   fullWidth
-                  name="password"
-                  label="Password"
-                  type="password"
                   id="password"
+                  label="Password"
+                  name="password"
+                  type="password"
                   autoComplete="new-password"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
-                />
-              </Grid>
-              <Grid item xs={12}>
-                <TextField
-                  required
-                  fullWidth
-                  name="confirmPassword"
-                  label="Confirm Password"
-                  type="password"
-                  id="confirmPassword"
-                  autoComplete="new-password"
-                  value={confirmPassword}
-                  onChange={(e) => setConfirmPassword(e.target.value)}
                 />
               </Grid>
             </Grid>
