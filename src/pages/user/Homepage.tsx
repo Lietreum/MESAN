@@ -4,7 +4,8 @@ import CategoryCard from "../../components/user/CategoryCard/CategoryCard"; // G
 import BannerData from "../../Helpers/HomePageBanner";
 import AnimatedText from "../../components/AnimatedText";
 import WalletCard from "../../components/user/Header/WalletCard";
-import Profileholder from "../../assets/admin/images/user/user-01.png";
+// import SearchBar from "../../components/user/SearchBar/SearchBar";
+import Profileholder from "../../assets/admin/images/user/user-01.png"
 
 const Homepage: React.FC = () => {
   return (

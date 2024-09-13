@@ -2,28 +2,23 @@ import React from "react";
 import { Link } from "react-router-dom";
 import DropdownUser from "../Header/Dropdown";
 import LogoIcon from "../../../assets/data/mesan-removebg-preview.png";
-import Sidebar from "./Sidebar";
 import { ShoppingCart, Heart, Bell } from "lucide-react";
 import { PiChatDotsBold } from "react-icons/pi";
 import { LuClipboardList } from "react-icons/lu";
 import { AiOutlineScan } from "react-icons/ai";
-import '../../../globalcss/index.css'
+import "../../../globalcss/index.css";
 
 const Header: React.FC = () => {
   return (
-    <nav className="sticky top-0 z-50 flex w-full bg-white-400">
-      <div className="relative flex w-full items-center justify-between px-4 py-4 md:px-6 2xl:px-11" style={{ height: '70px' }}>
-      <div className="flex items-center gap-2 sm:gap-4">
-          {/* Sidebar Component with Hamburger Icon */}
-          <Sidebar />
-
+    <nav className="sticky top-0 z-50 flex w-full border-b border-slate-300 ">
+      <div
+        className="relative flex w-full items-center justify-between px-4 py-4 md:px-6 2xl:px-11"
+        style={{ height: "70px" }}
+      >
+        <div className="flex items-center gap-2 sm:gap-4">
           {/* Icon Logo Start */}
           <Link className="block flex-shrink-0 " to="/">
-            <img
-              src={LogoIcon}
-              alt="Logo"
-              className="icon-style"
-            />
+            <img src={LogoIcon} alt="Logo" className="icon-style" />
           </Link>
 
           {/* Icon Logo End */}

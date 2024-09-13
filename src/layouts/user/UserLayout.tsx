@@ -1,19 +1,19 @@
-import React, { ReactNode } from 'react';
-import { useMediaQuery } from 'react-responsive';
+import React, { ReactNode } from "react";
+import { useMediaQuery } from "react-responsive";
 import Header from "../../components/user/Header/UserHeader";
-import Footer from '../../components/user/Footer/Footer';
+import Footer from "../../components/user/Footer/Footer";
 import BottomNavigation from "../../components/user/Header/BottomNavigation";
 
 const UserLayout: React.FC<{ children: ReactNode }> = ({ children }) => {
   // Define media queries
-  const isDesktop = useMediaQuery({ minWidth: 1024 });  
-  const isMobile = useMediaQuery({ maxWidth: 1023 });   
-  
+  const isDesktop = useMediaQuery({ minWidth: 1024 });
+  const isMobile = useMediaQuery({ maxWidth: 1023 });
+
   return (
-    <div className="dark:bg-boxdark-2 dark:text-bodydark overflow-x-hidden min-h-screen flex flex-col">
+    <div className="overflow-x-hidden min-h-screen flex flex-col">
       {/* Sticky Header Wrapper for Desktop */}
       {isDesktop && (
-        <div className="sticky overflow-visible top-0 z-50 bg-white dark:bg-boxdark-2 ">
+        <div className="overflow-visible top-0 z-50 bg-white">
           <Header />
         </div>
       )}
@@ -26,10 +26,12 @@ const UserLayout: React.FC<{ children: ReactNode }> = ({ children }) => {
       )}
 
       {/* Main content area */}
-      <div className="flex-grow">{children}</div>
+      <div className="flex-grow bg-white">{children}</div>
 
       {/* Footer */}
-      <Footer />
+      <div className="bg-white">
+        <Footer />
+      </div>
     </div>
   );
 };
