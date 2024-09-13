@@ -13,7 +13,7 @@ const UserLayout: React.FC<{ children: ReactNode }> = ({ children }) => {
     <div className="dark:bg-boxdark-2 dark:text-bodydark overflow-x-hidden min-h-screen flex flex-col">
       {/* Sticky Header Wrapper for Desktop */}
       {isDesktop && (
-        <div className="sticky overflow-visible top-0 z-50 bg-white dark:bg-boxdark-2 ">
+        <div className="overflow-visible top-0 z-50 bg-black ">
           <Header />
         </div>
       )}

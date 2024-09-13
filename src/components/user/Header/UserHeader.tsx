@@ -11,7 +11,7 @@ import '../../../globalcss/index.css'
 
 const Header: React.FC = () => {
   return (
-    <nav className="sticky top-0 z-50 flex w-full bg-white-400">
+    <nav className="sticky top-0 z-50 flex w-full bg-black-400">
       <div className="relative flex w-full items-center justify-between px-4 py-4 md:px-6 2xl:px-11" style={{ height: '70px' }}>
       <div className="flex items-center gap-2 sm:gap-4">
           {/* Sidebar Component with Hamburger Icon */}

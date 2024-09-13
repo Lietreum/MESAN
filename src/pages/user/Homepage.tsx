@@ -5,7 +5,6 @@ import CategoryCard from "../../components/user/CategoryCard/CategoryCard";
 import BannerData from "../../Helpers/HomePageBanner";
 import AnimatedText from "../../components/AnimatedText";
 import WalletCard from "../../components/user/Header/WalletCard";
-// import SearchBar from "../../components/user/SearchBar/SearchBar";
 import Profileholder from "../../assets/admin/images/user/user-01.png"
 
 type HomepageProps = {};
