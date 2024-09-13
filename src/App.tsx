@@ -27,10 +27,13 @@ import Notification from "./components/user/Header/Notification";
 import PaymentOptions from "./components/user/Header/PaymentOptions";
 import PaymentDetails from "./components/user/Header/PaymentDetails";
 import { inject } from '@vercel/analytics';
+import { injectSpeedInsights } from '@vercel/speed-insights';
+
 
 
 function App() {
   inject();
+  injectSpeedInsights();
 
   const [loading, setLoading] = useState<boolean>(true);
   const { pathname } = useLocation();
