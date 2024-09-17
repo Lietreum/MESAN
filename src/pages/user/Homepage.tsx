@@ -6,6 +6,7 @@ import AnimatedText from "../../components/AnimatedText";
 import WalletCard from "../../components/user/Header/WalletCard";
 // import SearchBar from "../../components/user/SearchBar/SearchBar";
 import Profileholder from "../../assets/admin/images/user/user-01.png"
+import Footer from "../../components/user/Footer/Footer";
 
 const Homepage: React.FC = () => {
   return (
@@ -82,6 +83,7 @@ const Homepage: React.FC = () => {
           </Grid>
         ))}
       </Grid>
+      <Footer />
     </Container>
   );
 };
