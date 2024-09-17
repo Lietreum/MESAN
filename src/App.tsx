@@ -9,7 +9,7 @@ import UserRoutes from "./routes/UserRoutes";
 import PedagangRoutes from "./routes/PedagangRoutes";
 import KasirRoutes from "./routes/KasirRoutes";
 import AuthRoutes from "./routes/AuthRoutes";
-import NotFoundRoute from "./routes/NotFoundRoute";
+import NotFound from "./pages/NotFound";
 
 function App() {
   // vercel analytics start
@@ -34,11 +34,11 @@ function App() {
     <>
       <Routes>
         {/* Route groups */}
-        <Route path="/*" element={<UserRoutes />} />
+        <Route path="/" element={<UserRoutes />} />
         <Route path="/admin/*" element={<PedagangRoutes />} />
         <Route path="/kasir/*" element={<KasirRoutes />} />
         <Route path="/auth/*" element={<AuthRoutes />} />
-        <Route path="*" element={<NotFoundRoute />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </>
   );
