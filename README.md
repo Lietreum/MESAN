@@ -18,12 +18,6 @@
     disabled?: boolean;
   }
   ```
-- Default Props: Define default values for optional props.
-  ```tsx
-  Button.defaultProps = {
-    disabled: false,
-  };
-  ```
 
 
 ### 🔄 Reusability and Composition
@@ -49,7 +43,7 @@
 
 
 ### 📜 Documentation
-- Component Documentation: Use JSDoc comments.
+- Component Documentation: Use JSDoc comments if you want.
   ```tsx
   /
     Button component for user actions.
@@ -57,20 +51,6 @@
     @param onClick - Callback for button click.
     @param disabled - Whether the button is disabled.
    /
-  ```
-
-
-### 🔍 Testing
-- Unit Testing: Use Jest and React Testing Library.
-  ```tsx
-  import { render, screen } from '@testing-library/react';
-  import MainButton from './MainButton';
-
-
-  test('renders button with label', () => {
-    render(<MainButton label="Click me" onClick={() => {}} />);
-    expect(screen.getByText(/Click me/i)).toBeInTheDocument();
-  });
   ```
 
 
@@ -129,22 +109,7 @@
   ```
 
 
-### 🔍 Testing
-- Integration Testing: Test page interactions.
-  ```tsx
-  import { render, screen } from '@testing-library/react';
-  import Home from './Home';
 
-
-  test('renders Home page with hero section and product list', () => {
-    render(<Home />);
-    expect(screen.getByRole('heading', { name: /Hero Section/i })).toBeInTheDocument();
-    expect(screen.getByRole('list')).toBeInTheDocument();
-  });
-  ```
-
-
-```
 
 
 # 🧩 Coding Standards for Components and Pages
