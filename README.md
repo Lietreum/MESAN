@@ -1,105 +1,299 @@
-```markdown
-# MESAN
-
-Setoran is a comprehensive point of sale (POS) system designed for cooperative use. It features distinct dashboards for admins and users, facilitating efficient management and seamless transactions.
-
-## Features
-
-### Admin Dashboard
+# 🧩 Coding Standards for Components and Pages
 
 
-### User Dashboard (Homepage)
+## 📁 Component Guidelines
 
 
-## Tech Stack
-
-- **Frontend**: React, TypeScript, Vite, TailwindCSS, DaisyUI, Zustand, Lucide React Icons
-- **Backend**: Node.js, Express, Prisma ORM, JsonWebToken, Nodemon
-- **Database**: MySQL
-- **State Management**: Zustand
-- **Styling**: TailwindCSS, DaisyUI
-
-## Project Structure Frontend
+### 🛠 Component Structure
+- File Naming: Use `PascalCase` for component filenames (e.g., `CategoryCard.tsx`).
+- Folder Organization: Store components in `/components/` or relevant feature folders.
 
 
-src/
-├── assets/
-│   └── (images, logos, etc.)
-├── components/
-│   ├── CategoryPills.tsx
-│   ├── Sidebar.tsx
-│   ├── NavBar.tsx
-│   └── (other shared components)
-├── layouts/
-│   ├── AdminLayout.tsx
-│   ├── Homepage.tsx
-│   └── PageHeader.tsx
-├── pages/
-│   ├── admin/
-│   │   ├── DashboardHome.tsx
-│   │   ├── Customers.tsx
-│   │   └── Income.tsx
-│   ├── user/
-│   │   ├── Home.tsx
-│   │   ├── ProductList.tsx
-│   │   └── Profile.tsx
-│   └── NotFound.tsx
-├── data/
-│   └── categories.ts
-├── stores/
-│   └── (Zustand state management files)
-├── App.tsx
-├── index.css
-├── main.tsx
-└── vite-env.d.ts
+### 🧩 Props and State Management
+- Props Definition: Use TypeScript interfaces for props.
+  ```tsx
+  interface ButtonProps {
+    label: string;
+    onClick: () => void;
+    disabled?: boolean;
+  }
+  ```
+- Default Props: Define default values for optional props.
+  ```tsx
+  Button.defaultProps = {
+    disabled: false,
+  };
+  ```
 
 
-## Components
+### 🔄 Reusability and Composition
+- Small and Reusable: Create small, reusable components.
+- Composition: Build complex UIs from simpler components.
+  ```tsx
+  const MainButton: React.FC<ButtonProps> = ({ label, onClick, disabled }) => (
+    <button onClick={onClick} disabled={disabled} className="btn">
+      {label}
+    </button>
+  );
+  ```
 
-- **Carousel**: Displays product images with responsive design.
-- **Order History**: Shows detailed order history with dropdown feature.
-- **Favorite Card**: Displays product information with an option to add to favorites.
-- **QR Scan Card**: Includes QR scanning functionality and payment prompts.
-- **Order Details Card**: Shows detailed order information in a horizontal layout.
-- **Stock Notification**: Alerts for low product stock levels.
 
-## Getting Started
+### ✨ Styling
+- Utility-First: Use TailwindCSS for styling.
+  ```tsx
+  <div className="p-4 bg-gray-200 rounded">
+    {/ Component content /}
+  </div>
+  ```
+- CSS Modules (Optional): For scoped styles.
 
-1. **Clone the Repository**:
-   ```bash
-   git clone https://github.com/your-username/setoran.git
-   ```
 
-2. **Navigate to the Project Directory**:
-   ```bash
-   cd setoran
-   ```
+### 📜 Documentation
+- Component Documentation: Use JSDoc comments.
+  ```tsx
+  /
+    Button component for user actions.
+    @param label - The button text.
+    @param onClick - Callback for button click.
+    @param disabled - Whether the button is disabled.
+   /
+  ```
 
-3. **Install Dependencies**:
-   ```bash
-   npm install
-   ```
 
-4. **Start the Development Server**:
-   ```bash
-   npm run dev
-   ```
+### 🔍 Testing
+- Unit Testing: Use Jest and React Testing Library.
+  ```tsx
+  import { render, screen } from '@testing-library/react';
+  import MainButton from './MainButton';
 
-5. **Open Your Browser**:
-   Navigate to `http://localhost:3000` to see the application in action.
 
-## Configuration
+  test('renders button with label', () => {
+    render(<MainButton label="Click me" onClick={() => {}} />);
+    expect(screen.getByText(/Click me/i)).toBeInTheDocument();
+  });
+  ```
 
-- **Backend**: Ensure your backend server is running and properly connected to your database.
-- **Environment Variables**: Set up any required environment variables as specified in `.env.example`.
 
-## Contributing
+## 📂 Page Guidelines
 
-We welcome contributions to enhance the functionality and performance of the project. Please follow the standard pull request process and ensure your code adheres to the project's coding standards.
 
-## License
+### 🛠 Page Structure
+- File Naming: Use `PascalCase` for page filenames (e.g., `Home.tsx`).
+- Folder Organization: Store pages in `/pages/`, organized by feature.
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+### 🗂 Page Layout and Composition
+- Layout Components: Use layout components (e.g., `Header`, `Footer`).
+  ```tsx
+  const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => (
+    <div>
+      <Header />
+      <main>{children}</main>
+      <Footer />
+    </div>
+  );
+  ```
+
+
+### 📊 Data Fetching and State Management
+- Data Fetching: Use hooks for fetching data.
+  ```tsx
+  const { data, error } = useQuery('fetchUser', fetchUser);
+  ```
+- State Management: Use Zustand or React’s `useState`/`useReducer`.
+
+
+### 🧩 Component Integration
+- Compose Components: Integrate smaller components into pages.
+  ```tsx
+  const Home: React.FC = () => (
+    <Layout>
+      <HeroSection />
+      <ProductList />
+    </Layout>
+  );
+  ```
+
+
+### ✨ Styling and Layout
+- Consistent Styling: Apply TailwindCSS utility classes.
+- Responsive Design: Ensure responsiveness with TailwindCSS utilities.
+
+
+### 📜 Documentation and Comments
+- Page Documentation: Document pages and complex logic.
+  ```tsx
+  /
+    Home page displaying hero section and product list.
+   /
+  ```
+
+
+### 🔍 Testing
+- Integration Testing: Test page interactions.
+  ```tsx
+  import { render, screen } from '@testing-library/react';
+  import Home from './Home';
+
+
+  test('renders Home page with hero section and product list', () => {
+    render(<Home />);
+    expect(screen.getByRole('heading', { name: /Hero Section/i })).toBeInTheDocument();
+    expect(screen.getByRole('list')).toBeInTheDocument();
+  });
+  ```
+
+
 ```
 
-You can copy and paste this into your `README.md` file. Adjust any specific details as needed!
+
+# 🧩 Coding Standards for Components and Pages
+
+
+## 📁 Component Guidelines
+
+
+### 🛠 Component Structure
+- File Naming: Use `PascalCase` for component filenames (e.g., `CategoryCard.tsx`).
+- Folder Organization: Store components in `/components/` or relevant feature folders.
+
+
+### 🧩 Props and State Management
+- Props Definition: Use TypeScript interfaces for props.
+  ```tsx
+  interface ButtonProps {
+    label: string;
+    onClick: () => void;
+    disabled?: boolean;
+  }
+  ```
+- Default Props: Define default values for optional props.
+  ```tsx
+  Button.defaultProps = {
+    disabled: false,
+  };
+  ```
+
+
+### 🔄 Reusability and Composition
+- Small and Reusable: Create small, reusable components.
+- Composition: Build complex UIs from simpler components.
+  ```tsx
+  const MainButton: React.FC<ButtonProps> = ({ label, onClick, disabled }) => (
+    <button onClick={onClick} disabled={disabled} className="btn">
+      {label}
+    </button>
+  );
+  ```
+
+
+### ✨ Styling
+- Utility-First: Use TailwindCSS for styling.
+  ```tsx
+  <div className="p-4 bg-gray-200 rounded">
+    {/ Component content /}
+  </div>
+  ```
+- CSS Modules (Optional): For scoped styles.
+
+
+### 📜 Documentation
+- Component Documentation: Use JSDoc comments.
+  ```tsx
+  /
+    Button component for user actions.
+    @param label - The button text.
+    @param onClick - Callback for button click.
+    @param disabled - Whether the button is disabled.
+   /
+  ```
+
+
+### 🔍 Testing
+- Unit Testing: Use Jest and React Testing Library.
+  ```tsx
+  import { render, screen } from '@testing-library/react';
+  import MainButton from './MainButton';
+
+
+  test('renders button with label', () => {
+    render(<MainButton label="Click me" onClick={() => {}} />);
+    expect(screen.getByText(/Click me/i)).toBeInTheDocument();
+  });
+  ```
+
+
+## 📂 Page Guidelines
+
+
+### 🛠 Page Structure
+- File Naming: Use `PascalCase` for page filenames (e.g., `Home.tsx`).
+- Folder Organization: Store pages in `/pages/`, organized by feature.
+
+
+### 🗂 Page Layout and Composition
+- Layout Components: Use layout components (e.g., `Header`, `Footer`).
+  ```tsx
+  const Layout: React.FC<{ children: React.ReactNode }> = ({ children }) => (
+    <div>
+      <Header />
+      <main>{children}</main>
+      <Footer />
+    </div>
+  );
+  ```
+
+
+### 📊 Data Fetching and State Management
+- Data Fetching: Use hooks for fetching data.
+  ```tsx
+  const { data, error } = useQuery('fetchUser', fetchUser);
+  ```
+- State Management: Use Zustand or React’s `useState`/`useReducer`.
+
+
+### 🧩 Component Integration
+- Compose Components: Integrate smaller components into pages.
+  ```tsx
+  const Home: React.FC = () => (
+    <Layout>
+      <HeroSection />
+      <ProductList />
+    </Layout>
+  );
+  ```
+
+
+### ✨ Styling and Layout
+- Consistent Styling: Apply TailwindCSS utility classes.
+- Responsive Design: Ensure responsiveness with TailwindCSS utilities.
+
+
+### 📜 Documentation and Comments
+- Page Documentation: Document pages and complex logic.
+  ```tsx
+  /
+    Home page displaying hero section and product list.
+   /
+  ```
+
+
+### 🔍 Testing
+- Integration Testing: Test page interactions.
+  ```tsx
+  import { render, screen } from '@testing-library/react';
+  import Home from './Home';
+
+
+  test('renders Home page with hero section and product list', () => {
+    render(<Home />);
+    expect(screen.getByRole('heading', { name: /Hero Section/i })).toBeInTheDocument();
+    expect(screen.getByRole('list')).toBeInTheDocument();
+  });
+  ```
+
+
+```
+
+
+
