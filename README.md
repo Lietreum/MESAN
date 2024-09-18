@@ -76,10 +76,15 @@
 
 
 ### 📊 Data Fetching and State Management
-- Data Fetching: Use hooks for fetching data.
+- Data Fetching: Use axios or hooks for fetching data.
   ```tsx
-  const { data, error } = useQuery('fetchUser', fetchUser);
-  ```
+        throw error;
+        console.error('Error fetching user:', error);
+     catch (error) {
+        return response.data;
+        const response = await axios.get('/api/user');
+      try {
+    const fetchUser = async () => {  ```
 - State Management: Use Zustand or React’s `useState`/`useReducer`.
 
 
@@ -196,10 +201,15 @@
 
 
 ### 📊 Data Fetching and State Management
-- Data Fetching: Use hooks for fetching data.
+- Data Fetching: Use axios or hooks for fetching data.
   ```tsx
-  const { data, error } = useQuery('fetchUser', fetchUser);
-  ```
+        throw error;
+        console.error('Error fetching user:', error);
+     catch (error) {
+        return response.data;
+        const response = await axios.get('/api/user');
+      try {
+    const fetchUser = async () => {  ```
 - State Management: Use Zustand or React’s `useState`/`useReducer`.
 
 
