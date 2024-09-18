@@ -174,20 +174,6 @@
   ```
 
 
-### 🔍 Testing
-- Unit Testing: Use Jest and React Testing Library.
-  ```tsx
-  import { render, screen } from '@testing-library/react';
-  import MainButton from './MainButton';
-
-
-  test('renders button with label', () => {
-    render(<MainButton label="Click me" onClick={() => {}} />);
-    expect(screen.getByText(/Click me/i)).toBeInTheDocument();
-  });
-  ```
-
-
 ## 📂 Page Guidelines
 
 
@@ -243,19 +229,6 @@
   ```
 
 
-### 🔍 Testing
-- Integration Testing: Test page interactions.
-  ```tsx
-  import { render, screen } from '@testing-library/react';
-  import Home from './Home';
-
-
-  test('renders Home page with hero section and product list', () => {
-    render(<Home />);
-    expect(screen.getByRole('heading', { name: /Hero Section/i })).toBeInTheDocument();
-    expect(screen.getByRole('list')).toBeInTheDocument();
-  });
-  ```
 
 
 ```
