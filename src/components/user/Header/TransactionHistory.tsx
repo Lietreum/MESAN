@@ -8,7 +8,7 @@ const orderItems: OrderItem[] = [
     image: "https://pagedone.io/asset/uploads/1705474950.png",
     title: "Apple Airpods Pro",
     color: "White",
-    price: "$249.99",
+    price: "Rp25.000",
     quantity: 2,
     deliveryDate: "23rd March 2021",
     topUpHistory: ["+500 Credit on 23rd March 2021"],
@@ -33,13 +33,13 @@ const OrderHistory: React.FC = () => {
               <p className="font-medium text-lg leading-8 text-indigo-600">Product </p>
             </div>
             <div className="col-span-1 max-lg:hidden">
-              <p className="font-medium text-lg leading-8 text-gray-600 text-center">Price </p>
+              <p className="font-medium text-lg leading-8 text-gray-600 text-center">Harga </p>
             </div>
             <div className="col-span-1 max-lg:hidden flex items-center justify-center">
-              <p className="font-medium text-lg leading-8 text-gray-600">Qty </p>
+              <p className="font-medium text-lg leading-8 text-gray-600">Jumlah </p>
             </div>
             <div className="col-span-2 max-lg:hidden">
-              <p className="font-medium text-lg leading-8 text-gray-500">Delivery Expected by </p>
+              <p className="font-medium text-lg leading-8 text-gray-500">Estimasi </p>
             </div>
           </div>
           

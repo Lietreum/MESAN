@@ -2,13 +2,12 @@ import { Plus } from 'lucide-react';
 import React, { useState, useEffect } from "react";
 import { ProductListCard } from "../../../types/types";
 
-
-
+// Product List with Rupiah prices
 const products: ProductListCard[] = [
   {
     id: 1,
     title: 'Earthen Bottle',
-    price: '$48',
+    price: 'Rp.48.000',
     imageUrl: 'https://tailwindui.com/img/ecommerce-images/category-page-04-image-card-01.jpg',
     altText: 'Tall slender porcelain bottle with natural clay textured body and cork stopper.',
     type: "yesTopping",
@@ -16,7 +15,7 @@ const products: ProductListCard[] = [
   {
     id: 2,
     title: 'Nomad Tumbler',
-    price: '$35',
+    price: 'Rp.35.000',
     imageUrl: 'https://tailwindui.com/img/ecommerce-images/category-page-04-image-card-02.jpg',
     altText: 'Olive drab green insulated bottle with flared screw lid and flat top.',
     type: "yesTopping",
@@ -25,7 +24,7 @@ const products: ProductListCard[] = [
   {
     id: 3,
     title: 'Focus Paper Refill',
-    price: '$89',
+    price: 'Rp.89.000',
     imageUrl: 'https://tailwindui.com/img/ecommerce-images/category-page-04-image-card-03.jpg',
     altText: 'Person using a pen to cross a task off a productivity paper card.',
     type: "yesTopping",
@@ -34,7 +33,7 @@ const products: ProductListCard[] = [
   {
     id: 4,
     title: 'Machined Mechanical Pencil',
-    price: '$35',
+    price: 'Rp.35.000',
     imageUrl: 'https://tailwindui.com/img/ecommerce-images/category-page-04-image-card-04.jpg',
     altText: 'Hand holding black machined steel mechanical pencil with brass tip and top.',
     type: "noTopping",
@@ -43,26 +42,21 @@ const products: ProductListCard[] = [
 ];
 
 // Modal component
-
 const PurchaseModal: React.FC<{
   product: ProductListCard | null;
   isOpen: boolean;
   onClose: () => void;
 }> = ({ product, isOpen, onClose }) => {
   const [quantity, setQuantity] = useState(1);
-  const [ ,setSelectedOption] = useState<string | null>(null);
+  const [, setSelectedOption] = useState<string | null>(null);
   const [notes, setNotes] = useState("");
 
   useEffect(() => {
     if (isOpen) {
-      // Disable scrolling on the body when the modal is open
       document.body.style.overflow = "hidden";
     } else {
-      // Enable scrolling when the modal is closed
       document.body.style.overflow = "";
     }
-
-    // Cleanup function to reset overflow style when component unmounts
     return () => {
       document.body.style.overflow = "";
     };
@@ -81,7 +75,6 @@ const PurchaseModal: React.FC<{
 
   return (
     <div className="fixed inset-0 z-50 flex items-end justify-center bg-black bg-opacity-50">
-      {/* Modal container with slide-up animation */}
       <div
         className={`bg-white rounded-t-lg p-6 w-full max-w-lg shadow-xl relative transform transition-transform duration-300 ${
           isOpen ? "translate-y-0" : "translate-y-full"
@@ -98,9 +91,7 @@ const PurchaseModal: React.FC<{
         {/* Modal Header */}
         <div className="flex justify-between items-center border-b border-gray-300 pb-4">
           <h2 className="text-xl font-bold text-black ml-8">Custom purchase</h2>
-          <p className="text-lg font-bold text-black">{`Rp.${totalPrice.toLocaleString(
-            "id-ID"
-          )}`}</p>
+          <p className="text-lg font-bold text-black">{`Rp.${totalPrice.toLocaleString("id-ID")}`}</p>
         </div>
 
         {/* Product Title */}
@@ -185,9 +176,6 @@ const PurchaseModal: React.FC<{
   );
 };
 
-
-
-
 const ProductCard: React.FC<ProductListCard & { onPlusClick: () => void }> = ({
   title,
   price,
@@ -207,7 +195,10 @@ const ProductCard: React.FC<ProductListCard & { onPlusClick: () => void }> = ({
       <h3 className="text-lg font-semibold text-gray-800">{title}</h3>
       <p className="mt-1 text-xl font-bold text-gray-900">{price}</p>
     </div>
-    <div className="absolute bottom-4 right-4 bg-white p-2 rounded-full shadow-lg cursor-pointer" onClick={onPlusClick}>
+    <div
+      className="absolute bottom-4 right-4 bg-white p-2 rounded-full shadow-lg cursor-pointer"
+      onClick={onPlusClick}
+    >
       <Plus className="text-gray-900 w-6 h-6" />
     </div>
   </div>
