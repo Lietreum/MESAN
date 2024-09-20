@@ -151,3 +151,7 @@
     }
   }
   
+  .bg-\[\#150002\] {
+    --tw-bg-opacity: 1;
+    background-color: rgb(21 0 2/var(--tw-bg-opacity))
+}

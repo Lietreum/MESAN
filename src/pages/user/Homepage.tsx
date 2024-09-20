@@ -24,7 +24,7 @@ const Homepage: React.FC = () => {
       {/* Wallet Section */}
       <Box
         sx={{
-          marginTop: -4,
+          marginTop: 2,
           marginBottom: 6,
           display: "flex",
           justifyContent: "center",
@@ -63,9 +63,13 @@ const Homepage: React.FC = () => {
             lineHeight: 1.2,
             textAlign: "center",
             width: "100%",
+            color: "#000",
           }}
+          
         />
+        
       </Box>
+      
 
       {/* Store Cards Section */}
       <Grid

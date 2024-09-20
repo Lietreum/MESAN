@@ -5,7 +5,6 @@ import LogoIcon from "../../../assets/data/mesan-removebg-preview.png";
 import { ShoppingCart, Heart, Bell } from "lucide-react";
 import { PiChatDotsBold } from "react-icons/pi";
 import { LuClipboardList } from "react-icons/lu";
-import { AiOutlineScan } from "react-icons/ai";
 import "../../../globalcss/index.css";
 
 const Header: React.FC = () => {
@@ -38,12 +37,13 @@ const Header: React.FC = () => {
           >
             <LuClipboardList className="w-6 h-6 text-gray-600 dark:text-gray-300" />
           </Link>
-          <Link
+
+          {/* <Link
             to="/qrscanplaceholder"
             className="relative flex items-center justify-center"
           >
             <AiOutlineScan className="w-6 h-6 text-gray-600 dark:text-gray-300" />
-          </Link>
+          </Link> */}
 
           <Link
             to="/notifications"
