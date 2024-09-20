@@ -27,6 +27,8 @@ import PaymentOptions from "./components/user/Header/PaymentOptions";
 import PaymentDetails from "./components/user/Header/PaymentDetails";
 import { inject } from "@vercel/analytics";
 import { injectSpeedInsights } from "@vercel/speed-insights";
+import KasirLayout from "./layouts/kasir/KasirLayout";
+import HomeKasir from "./pages/kasir/HomeKasir";
 
 function App() {
   // vercel analytics start
@@ -50,13 +52,13 @@ function App() {
   ) : (
     <>
       <Routes>
-      <Route
+        <Route
           path="/kasir"
           element={
-            <AdminLayout>
+            <KasirLayout>
               <PageTitle title="Kasir Dashboard" />
-              <UserDashboard />
-            </AdminLayout>
+              <HomeKasir />
+            </KasirLayout>
           }
         />
         {/* Public Routes - User Dashboard */}
