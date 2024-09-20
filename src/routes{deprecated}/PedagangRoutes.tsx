@@ -3,7 +3,7 @@ import { Route, Routes } from "react-router-dom";
 import AdminLayout from "../layouts/admin/AdminLayout";
 import ECommerce from "../pages/admin/Dashboard/Dashboard";
 import Product from "../pages/admin/Product/ProductCard";
-import IncomingOrders from "../components/admin/Product/IncomingOrders";
+import IncomingOrders from "../components/admin/Product/History";
 import StockNotification from "../components/admin/Product/StockNotification";
 import QRAdmin from "../components/admin/Product/QRAdmin";
 import PageTitle from "../components/admin/PageTitle";

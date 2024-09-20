@@ -3,9 +3,9 @@ import { NavLink, useLocation } from "react-router-dom";
 import SidebarLinkGroup from "./SidebarLinkGroup";
 import Logo from "../../../assets/data/mesan-removebg-preview.png";
 import { AiOutlineAppstore, AiOutlineMenuFold, AiOutlineDown } from "react-icons/ai";
-import { FaCog } from "react-icons/fa";
-import { CiUser } from "react-icons/ci";
-import { GrCart, GrInbox } from "react-icons/gr";
+import { FaWallet } from "react-icons/fa";
+import { MdHistory } from "react-icons/md";
+import { TiDocumentText } from "react-icons/ti";
 
 interface SidebarProps {
   sidebarOpen: boolean;
@@ -104,8 +104,8 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
               </NavLink>
             </li>
 
-            {/* Products Dropdown */}
-            <SidebarLinkGroup activeCondition={pathname.includes("product")}>
+            {/* Top Up Dropdown */}
+            <SidebarLinkGroup activeCondition={pathname.includes("top-up")}>
               {(handleClick, open) => (
                 <>
                   <button
@@ -114,12 +114,12 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                       handleClick();
                     }}
                     className={`flex items-center justify-between w-full gap-3 px-4 py-2 rounded-md text-white hover:bg-[#1E293B] transition ${
-                      pathname.includes("product") ? "bg-[#1E293B]" : ""
+                      pathname.includes("top-up") ? "bg-[#1E293B]" : ""
                     }`}
                   >
                     <div className="flex items-center gap-3">
-                      <GrCart size={20} />
-                      Products
+                      <FaWallet size={20} />
+                      Top Up
                     </div>
                     <AiOutlineDown
                       className={`transition-transform duration-200 ${
@@ -128,73 +128,45 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                     />
                   </button>
                   {/* Dropdown */}
-                  <div
-                    className={`pl-8 pt-2 ${!open && "hidden"}`}
-                  >
+                  <div className={`pl-8 pt-2 ${!open && "hidden"}`}>
                     <NavLink
-                      to="/admin/product"
+                      to="/admin/top-up/withdrawal"
                       className={({ isActive }) =>
                         `block py-2 text-white transition hover:text-blue-400 ${
                           isActive ? "text-blue-400" : ""
                         }`
                       }
                     >
-                      Products
+                      Withdrawal
                     </NavLink>
                   </div>
                 </>
               )}
             </SidebarLinkGroup>
 
-            {/* Messages */}
+            {/* History */}
             <li>
               <NavLink
-                to="/admin/messages"
-                className={`flex items-center gap-3 px-4 py-2 rounded-md text-white hover:bg-[#1E293B] transition ${
-                  pathname.includes("messages") ? "bg-[#1E293B]" : ""
-                }`}
-              >
-                <GrInbox size={20} />
-                Messages
-              </NavLink>
-            </li>
-
-            {/* Incoming Orders */}
-            <li>
-              <NavLink
-                to="/admin/incoming-orders"
+                to="/admin/History"
                 className={`flex items-center gap-3 px-4 py-2 rounded-md text-white hover:bg-[#1E293B] transition ${
                   pathname.includes("incoming-orders") ? "bg-[#1E293B]" : ""
                 }`}
               >
-                <GrCart size={20} />
-                Incoming Orders
-              </NavLink>
-            </li>
-
-            {/* Profile */}
-            <li>
-              <NavLink
-                to="/profile"
-                className={`flex items-center gap-3 px-4 py-2 rounded-md text-white hover:bg-[#1E293B] transition ${
-                  pathname.includes("profile") ? "bg-[#1E293B]" : ""
-                }`}
-              >
-                <CiUser size={20} />
-                Profile
+                <MdHistory size={20} />
+                History
               </NavLink>
             </li>
 
             {/* Settings */}
             <li>
               <NavLink
-                to="/settings"
+                to="/ManageAccount"
                 className={`flex items-center gap-3 px-4 py-2 rounded-md text-white hover:bg-[#1E293B] transition ${
-                  pathname.includes("settings") ? "bg-[#1E293B]" : ""
+                  pathname.includes("ManageAccount") ? "bg-[#1E293B]" : ""
                 }`}
               >
-                <FaCog size={20} />
-                Settings
+                <TiDocumentText size={20} />
+                Manage Account
               </NavLink>
             </li>
           </ul>
