@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Route, Routes, useLocation } from "react-router-dom";
-import Loader from "./common/Loader";
+import Loader from "./components/common/Loader";
 import PageTitle from "./components/admin/PageTitle";
 import AdminLayout from "./layouts/admin/AdminLayout";
 import UserLayout from "./layouts/user/UserLayout";
