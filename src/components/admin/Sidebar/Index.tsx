@@ -62,7 +62,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
   return (
     <aside
       ref={sidebar}
-      className={`absolute left-0 top-0 z-9999 flex h-screen w-64 flex-col bg-[#0F1E34] transition-all duration-300 ease-in-out lg:static lg:translate-x-0 ${
+      className={`absolute left-0 top-0 z-9999 flex flex-col h-screen w-64 bg-[#0F1E34] transition-all duration-300 ease-in-out lg:static lg:translate-x-0 ${
         sidebarOpen ? "translate-x-0" : "-translate-x-full"
       }`}
     >
@@ -84,7 +84,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
       </div>
 
       {/* Sidebar Content */}
-      <div className="flex flex-col overflow-y-auto">
+      <div className="flex flex-col flex-grow overflow-y-auto">
         <nav className="mt-6">
           <h3 className="mb-4 px-6 text-sm font-semibold text-white opacity-50">
             MENU
@@ -199,13 +199,13 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
             </li>
           </ul>
         </nav>
+      </div>
 
-        {/* Footer */}
-        <div className="mt-auto flex items-center justify-center py-4">
-          <p className="text-xs text-white opacity-60">
-            Created by SMKN 4 Bandung with support from PT. Curaweda Palagam Innotec
-          </p>
-        </div>
+      {/* Footer */}
+      <div className="py-4 px-6 mt-auto">
+        <p className="text-xs text-white opacity-60 text-center">
+          Created by SMKN 4 Bandung with support from PT. Curaweda Palagam Innotec
+        </p>
       </div>
     </aside>
   );

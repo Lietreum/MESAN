@@ -49,6 +49,15 @@ function App() {
   ) : (
     <>
       <Routes>
+      <Route
+          path="/kasir"
+          element={
+            <AdminLayout>
+              <PageTitle title="Kasir Dashboard" />
+              <UserDashboard />
+            </AdminLayout>
+          }
+        />
         {/* Public Routes - User Dashboard */}
         <Route
           path="/"
