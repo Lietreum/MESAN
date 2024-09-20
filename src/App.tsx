@@ -15,6 +15,7 @@ import Product from "./pages/admin/Product/ProductCard";
 import Messages from "./components/admin/Messages/Messages";
 import ProductList from "./components/user/ProductList/ProductList";
 import TransactionHistory from "./components/user/Header/TransactionHistory";
+import MessagesUser from "./components/user/Header/Messages";
 import ShoppingCart from "./components/user/Header/ShoppingCart";
 import Favorite from "./components/user/Header/Favorite";
 import OverlayCard from "./components/user/Header/OverlayCard";
@@ -138,6 +139,15 @@ function App() {
             <UserLayout>
               <PageTitle title="qrscanplaceholder" />
               <OverlayCard />
+            </UserLayout>
+          }
+        />
+        <Route
+          path="/messages"
+          element={
+            <UserLayout>
+              <PageTitle title="messages" />
+              <MessagesUser />
             </UserLayout>
           }
         />

@@ -30,7 +30,6 @@ const UserLayout: React.FC<{ children: ReactNode }> = ({ children }) => {
 
       {/* Footer */}
       <div className="bg-white">
-        <Footer />
       </div>
     </div>
   );
