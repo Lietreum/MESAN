@@ -1,14 +1,12 @@
 import React, { useState } from "react";
-import {Product} from "../../../types/types";
-
+import { Product } from "../../../types/types";
 
 const ShoppingCart: React.FC = () => {
-  // Example products data
   const [products, setProducts] = useState<Product[]>([
     {
       id: 1,
       name: "Product name",
-      price: 19.99,
+      price: 10000,
       quantity: 1,
       imageUrl: "https://via.placeholder.com/150",
     },
@@ -19,6 +17,13 @@ const ShoppingCart: React.FC = () => {
     setProducts(products.map(product =>
       product.id === id ? { ...product, quantity: Math.max(product.quantity + delta, 1) } : product
     ));
+  };
+
+  const formatRupiah = (number: number) => {
+    return new Intl.NumberFormat("id-ID", {
+      style: "currency",
+      currency: "IDR",
+    }).format(number);
   };
 
   const subtotal = products.reduce((total, product) => total + product.price * product.quantity, 0);
@@ -51,7 +56,7 @@ const ShoppingCart: React.FC = () => {
                           <span className="font-semibold">{product.name}</span>
                         </div>
                       </td>
-                      <td className="py-4">${product.price.toFixed(2)}</td>
+                      <td className="py-4">{formatRupiah(product.price)}</td>
                       <td className="py-4">
                         <div className="flex items-center">
                           <button
@@ -69,7 +74,7 @@ const ShoppingCart: React.FC = () => {
                           </button>
                         </div>
                       </td>
-                      <td className="py-4">${(product.price * product.quantity).toFixed(2)}</td>
+                      <td className="py-4">{formatRupiah(product.price * product.quantity)}</td>
                     </tr>
                   ))}
                 </tbody>
@@ -81,20 +86,20 @@ const ShoppingCart: React.FC = () => {
               <h2 className="text-lg font-semibold mb-4">Summary</h2>
               <div className="flex justify-between mb-2">
                 <span>Subtotal</span>
-                <span>${subtotal.toFixed(2)}</span>
+                <span>{formatRupiah(subtotal)}</span>
               </div>
               <div className="flex justify-between mb-2">
                 <span>Taxes</span>
-                <span>${taxes.toFixed(2)}</span>
+                <span>{formatRupiah(taxes)}</span>
               </div>
               <div className="flex justify-between mb-2">
                 <span>Shipping</span>
-                <span>${shipping.toFixed(2)}</span>
+                <span>{formatRupiah(shipping)}</span>
               </div>
               <hr className="my-2" />
               <div className="flex justify-between mb-2">
                 <span className="font-semibold">Total</span>
-                <span className="font-semibold">${total.toFixed(2)}</span>
+                <span className="font-semibold">{formatRupiah(total)}</span>
               </div>
               <button className="bg-blue-500 text-white py-2 px-4 rounded-lg mt-4 w-full">Checkout</button>
             </div>

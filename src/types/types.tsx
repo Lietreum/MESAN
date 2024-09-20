@@ -110,3 +110,10 @@ export interface AnimatedTextProps {
     style?: React.CSSProperties; // Optional inline styles
     loopCount?: number; // Number of times to loop the animation
   }
+
+  // src/types/types.tsx
+export interface ProductCardProps {
+  image: string;
+  productName: string;
+  price: string; // Ubah dari string ke number
+}
