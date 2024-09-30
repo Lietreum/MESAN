@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { FaSearch, FaUser } from "react-icons/fa";
-import { AiOutlinePlus, AiOutlineSortAscending, AiOutlineSortDescending } from "react-icons/ai";
+import { FaSearch, FaUser, FaSortAmountDown, FaSortAmountUp } from "react-icons/fa";
+import { AiOutlinePlus } from "react-icons/ai";
 
 type Account = {
   name: string;
@@ -36,7 +36,6 @@ const ManageAccount: React.FC = () => {
 
   return (
     <div className="p-6">
-      {/* Header Section */}
       <div className="flex justify-between items-center mb-6">
         {/* Search Bar */}
         <div className="flex items-center space-x-3">
@@ -46,22 +45,24 @@ const ManageAccount: React.FC = () => {
             placeholder="Find account"
             value={searchTerm}
             onChange={handleSearch}
-            className="px-4 py-2 w-80 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 transition duration-300"
+            className="px-4 py-2 w-80 border rounded-md"
           />
         </div>
 
-        {/* Sort and Add Buttons */}
+        {/* Sort and Layout Buttons */}
         <div className="flex items-center space-x-4">
-          <button
-            onClick={handleSort}
-            className="flex items-center space-x-1 px-4 py-2 border rounded-md text-gray-700 hover:bg-gray-100 transition duration-300"
-          >
-            <span>Sort by</span>
-            {sortAsc ? <AiOutlineSortAscending /> : <AiOutlineSortDescending />}
-          </button>
+          <div className="flex items-center space-x-2">
+            <button
+              onClick={handleSort}
+              className="flex items-center space-x-1 px-4 py-2 border rounded-md"
+            >
+              <span>Sort by</span>
+              {sortAsc ? <FaSortAmountUp /> : <FaSortAmountDown />}
+            </button>
+          </div>
 
           {/* Add Account Button */}
-          <button className="flex items-center px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition duration-300 space-x-2">
+          <button className="flex items-center px-4 py-2 bg-blue-500 text-white rounded-md space-x-2">
             <AiOutlinePlus />
             <span>Add Account</span>
           </button>
@@ -71,36 +72,17 @@ const ManageAccount: React.FC = () => {
       {/* Accounts Grid */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {filteredAccounts.map((account, index) => (
-          <AccountCard key={index} account={account} />
+          <div
+            key={index}
+            className="p-4 border rounded-md flex flex-col items-center bg-gradient-to-r from-indigo-500 to-blue-700 text-white"
+          >
+            <div className="bg-white rounded-full p-3 mb-4">
+              <FaUser className="text-blue-700 text-2xl" />
+            </div>
+            <h3 className="text-lg font-semibold">{account.name}</h3>
+            <p className="text-sm">{account.email}</p>
+          </div>
         ))}
-      </div>
-    </div>
-  );
-};
-
-type AccountCardProps = {
-  account: Account;
-};
-
-const AccountCard: React.FC<AccountCardProps> = ({ account }) => {
-  return (
-    <div className="relative p-4 border rounded-lg flex flex-col items-center bg-gradient-to-r from-purple-500 to-indigo-600 text-white transition transform hover:scale-105 hover:shadow-lg duration-300">
-      {/* User Icon */}
-      <div className="absolute -top-6 w-16 h-16 bg-white rounded-full flex items-center justify-center shadow-lg">
-        <FaUser className="text-indigo-600 text-3xl" />
-      </div>
-
-      {/* Account Info */}
-      <div className="mt-8 text-center">
-        <h3 className="text-lg font-semibold">{account.name}</h3>
-        <p className="text-sm">{account.email}</p>
-      </div>
-
-      {/* Hover effect */}
-      <div className="absolute inset-0 bg-indigo-800 opacity-0 hover:opacity-90 flex items-center justify-center rounded-lg transition-opacity duration-300">
-        <button className="text-white px-4 py-2 bg-blue-500 rounded-md hover:bg-blue-600">
-          View Details
-        </button>
       </div>
     </div>
   );
