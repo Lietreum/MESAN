@@ -13,13 +13,14 @@ import NotFound from "./pages/NotFound";
 import Signup from "./pages/auth/Signup";
 import Product from "./pages/admin/Product/ProductCard";
 import Messages from "./components/admin/Messages/Messages";
+import History from "./components/admin/Product/History";
 import ProductList from "./components/user/ProductList/ProductList";
 import TransactionHistory from "./components/user/Header/TransactionHistory";
 import MessagesUser from "./components/user/Header/Messages";
 import ShoppingCart from "./components/user/Header/ShoppingCart";
 import Favorite from "./components/user/Header/Favorite";
 import OverlayCard from "./components/user/Header/OverlayCard";
-import IncomingOrders from "./components/admin/Product/IncomingOrders";
+import ManageAccount from "./pages/admin/ManageAccount";
 import StockNotification from "./components/admin/Product/StockNotification";
 import QRAdmin from "./components/admin/Product/QRAdmin";
 import Notification from "./components/user/Header/Notification";
@@ -71,7 +72,6 @@ function App() {
             </UserLayout>
           }
         />
-
         <Route
           path="/product/type/:type"
           element={
@@ -153,7 +153,6 @@ function App() {
             </UserLayout>
           }
         />
-
         {/* Admin Routes */}
         <Route
           path="/admin"
@@ -164,7 +163,6 @@ function App() {
             </AdminLayout>
           }
         />
-
         {/* Admin Routes */}
         <Route
           path="/admin/product"
@@ -175,16 +173,6 @@ function App() {
             </AdminLayout>
           }
         />
-        <Route
-          path="/admin/incoming-orders"
-          element={
-            <AdminLayout>
-              <PageTitle title="Incoming Orders | Koperasi" />
-              <IncomingOrders />
-            </AdminLayout>
-          }
-        />
-
         <Route
           path="/admin/stock-notification"
           element={
@@ -203,7 +191,6 @@ function App() {
             </AdminLayout>
           }
         />
-
         <Route
           path="/profile"
           element={
@@ -213,7 +200,6 @@ function App() {
             </AdminLayout>
           }
         />
-
         <Route
           path="/settings"
           element={
@@ -223,7 +209,6 @@ function App() {
             </AdminLayout>
           }
         />
-
         <Route
           path="/admin/messages"
           element={
@@ -252,9 +237,27 @@ function App() {
             </>
           }
         />
-
         {/* 404 Not Found Route */}
         <Route path="*" element={<NotFound />} />
+        /
+        <Route
+          path="/ManageAccount"
+          element={
+            <AdminLayout>
+              <PageTitle title="ManageAccount" />
+              <ManageAccount />
+            </AdminLayout>
+          }
+        />
+        <Route
+          path="/admin/History"
+          element={
+            <AdminLayout>
+              <PageTitle title="History" />
+              <History/>
+            </AdminLayout>
+          }
+        />
       </Routes>
     </>
   );
