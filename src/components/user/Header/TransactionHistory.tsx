@@ -1,19 +1,36 @@
 import React, { useState } from "react";
-import { OrderItem } from "../../../types/types";
+import { FaArrowUp, FaArrowDown, FaWallet } from "react-icons/fa"; // Icons for top-up and expenses
 
+// Define transaction type
+type Transaction = {
+  id: number;
+  date: string;
+  storeName: string;
+  topUpHistory?: { type: string; amount: number }[];
+  expenseHistory?: { type: string; amount: number }[];
+};
 
-const orderItems: OrderItem[] = [
+// Example order items with top-up and expense history
+const transactions: Transaction[] = [
   {
     id: 1,
-    image: "https://pagedone.io/asset/uploads/1705474950.png",
-    title: "Apple Airpods Pro",
-    color: "White",
-    price: "Rp25.000",
-    quantity: 2,
-    deliveryDate: "23rd March 2021",
-    topUpHistory: ["+500 Credit on 23rd March 2021"],
+    date: "28 August 2024",
+    storeName: "Kantin Ibu Kosim",
+    topUpHistory: [{ type: "Top Up", amount: 100000 }],
+    expenseHistory: [{ type: "Expense", amount: 10000 }],
   },
-  // Add more items if needed
+  {
+    id: 2,
+    date: "27 August 2024",
+    storeName: "Kantin Ibu Afika",
+    expenseHistory: [{ type: "Expense", amount: 7500 }],
+  },
+  {
+    id: 3,
+    date: "26 August 2024",
+    storeName: "Kantin Ibu Kosim",
+    expenseHistory: [{ type: "Expense", amount: 3000 }],
+  },
 ];
 
 const OrderHistory: React.FC = () => {
@@ -24,66 +41,95 @@ const OrderHistory: React.FC = () => {
   };
 
   return (
-    <section className="py-24 bg-white">
+    <section className="py-12 bg-gray-50">
       <div className="w-full max-w-7xl mx-auto px-4 md:px-8">
-        <div className="main-data p-8 sm:p-14 bg-gray-50 rounded-3xl">
-          <h2 className="text-center font-manrope font-semibold text-4xl text-black mb-16">Order History</h2>
-          <div className="grid grid-cols-8 pb-9">
-            <div className="col-span-8 lg:col-span-4">
-              <p className="font-medium text-lg leading-8 text-indigo-600">Product </p>
-            </div>
-            <div className="col-span-1 max-lg:hidden">
-              <p className="font-medium text-lg leading-8 text-gray-600 text-center">Harga </p>
-            </div>
-            <div className="col-span-1 max-lg:hidden flex items-center justify-center">
-              <p className="font-medium text-lg leading-8 text-gray-600">Jumlah </p>
-            </div>
-            <div className="col-span-2 max-lg:hidden">
-              <p className="font-medium text-lg leading-8 text-gray-500">Estimasi </p>
-            </div>
+        {/* Header for History Transaction */}
+        <div className="flex justify-between items-center mb-8">
+          <h2 className="font-bold text-4xl text-gray-900">History Transaction</h2>
+          <div className="flex space-x-4">
+            <button className="border border-gray-300 rounded-lg px-4 py-2 text-sm transition-all duration-200 hover:bg-gray-100">
+              Date
+            </button>
+            <button className="border border-gray-300 rounded-lg px-4 py-2 text-sm transition-all duration-200 hover:bg-gray-100">
+              Service
+            </button>
           </div>
-          
-          {orderItems.map((item) => (
-            <div
-              key={item.id}
-              className="box p-8 rounded-3xl bg-gray-100 grid grid-cols-8 mb-7 cursor-pointer transition-all duration-500 hover:bg-indigo-50 max-lg:max-w-xl max-lg:mx-auto"
-              onClick={() => handleItemClick(item.id)}
-            >
-              <div className="col-span-8 sm:col-span-4 lg:col-span-1 sm:row-span-4 lg:row-span-1">
-                <img
-                  src={item.image}
-                  alt={`${item.title} image`}
-                  className="max-lg:w-auto max-sm:mx-auto rounded-xl"
-                />
-              </div>
-              <div className="col-span-8 sm:col-span-4 lg:col-span-3 flex h-full justify-center pl-4 flex-col max-lg:items-center">
-                <h5 className="font-manrope font-semibold text-2xl leading-9 text-black mb-1 whitespace-nowrap">
-                  {item.title}
-                </h5>
-                <p className="font-normal text-base leading-7 text-gray-600 max-md:text-center">{item.color}</p>
-              </div>
-              <div className="col-span-8 sm:col-span-4 lg:col-span-1 flex items-center justify-center">
-                <p className="font-semibold text-xl leading-8 text-black">{item.price}</p>
-              </div>
-              <div className="col-span-8 sm:col-span-4 lg:col-span-1 flex items-center justify-center ">
-                <p className="font-semibold text-xl leading-8 text-indigo-600 text-center">{item.quantity}</p>
-              </div>
-              <div className="col-span-8 sm:col-span-4 lg:col-span-2 flex items-center justify-center ">
-                <p className="font-semibold text-xl leading-8 text-black">{item.deliveryDate}</p>
+        </div>
+
+        {/* Transaction List */}
+        {transactions.map((item) => (
+          <div
+            key={item.id}
+            className={`mb-6 p-6 bg-white rounded-2xl shadow-lg transition-transform duration-300 ease-in-out transform hover:scale-[1.02] cursor-pointer ${openItemId === item.id ? '' : ''}`}
+            onClick={() => handleItemClick(item.id)}
+          >
+            <div className="flex justify-between items-center">
+              <div className="flex items-center space-x-4">
+                <FaWallet className="text-gray-500" size={28} />
+                <div>
+                  <p className="font-semibold text-xl">{item.storeName}</p>
+                  <p className="text-sm text-gray-400">{item.date}</p>
+                </div>
               </div>
 
-              {openItemId === item.id && (
-                <div className="topup-history p-8 rounded-3xl bg-gray-100 max-lg:max-w-xl max-lg:mx-auto mt-4">
-                  <h3 className="font-manrope font-semibold text-2xl leading-9 text-black mb-4">Top-Up History</h3>
-                  <ul>
-                    {item.topUpHistory.map((history, index) => (
-                      <li key={index} className="font-medium text-lg leading-8 text-indigo-600">{history}</li>
-                    ))}
-                  </ul>
-                </div>
-              )}
+              <div>
+                {/* Show total top-up and expense (Swapped Position) */}
+                {item.topUpHistory && (
+                  <p className="text-green-600 font-bold">
+                    +Rp{item.topUpHistory.reduce((acc, curr) => acc + curr.amount, 0).toLocaleString()}
+                  </p>
+                )}
+                {item.expenseHistory && (
+                  <p className="text-red-600 font-bold">
+                    -Rp{item.expenseHistory.reduce((acc, curr) => acc + curr.amount, 0).toLocaleString()}
+                  </p>
+                )}
+              </div>
             </div>
-          ))}
+
+            {/* Expandable section for more details */}
+            {openItemId === item.id && (
+              <div className="mt-4 bg-gray-50 p-6 rounded-xl transition-all duration-300">
+                <h3 className="text-lg font-semibold mb-3 text-gray-700">Transaction Details</h3>
+                <ul className="space-y-3">
+                  {/* Show top-up first */}
+                  {item.topUpHistory?.map((history, index) => (
+                    <li
+                      key={index}
+                      className="flex justify-between items-center text-green-500 text-md font-medium"
+                    >
+                      <FaArrowUp className="text-green-500" />
+                      <p className="ml-2">{history.type}:</p>
+                      <p>+Rp{history.amount.toLocaleString()}</p>
+                    </li>
+                  ))}
+                  {/* Show expenses after top-up */}
+                  {item.expenseHistory?.map((history, index) => (
+                    <li
+                      key={index}
+                      className="flex justify-between items-center text-red-500 text-md font-medium"
+                    >
+                      <FaArrowDown className="text-red-500" />
+                      <p className="ml-2">{history.type}:</p>
+                      <p>-Rp{history.amount.toLocaleString()}</p>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+          </div>
+        ))}
+
+        {/* Summary of income and expenses (Swapped Position) */}
+        <div className="mt-8 flex justify-between bg-white p-6 rounded-xl shadow-md">
+          <div className="flex items-center space-x-4">
+            <FaArrowUp className="text-green-500" size={28} />
+            <p className="font-semibold text-xl">Income: Rp100.000</p>
+          </div>
+          <div className="flex items-center space-x-4">
+            <FaArrowDown className="text-red-500" size={28} />
+            <p className="font-semibold text-xl">Expense: Rp21.500</p>
+          </div>
         </div>
       </div>
     </section>

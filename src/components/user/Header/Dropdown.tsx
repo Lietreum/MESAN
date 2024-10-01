@@ -32,18 +32,10 @@ const DropdownUser: React.FC = () => {
           <ul className="flex flex-col gap-5 border-b border-stroke px-6 py-7.5 dark:border-strokedark">
           <li>
               <Link
-                to="/transactionhistory"
-                className="flex items-center gap-3.5 text-sm font-medium duration-300 ease-in-out hover:text-primary lg:text-base"
-              >
-                Transaction History
-              </Link>
-            </li>
-            <li>
-              <Link
                 to="/settings"
                 className="flex items-center gap-3.5 text-sm font-medium duration-300 ease-in-out hover:text-primary lg:text-base"
               >
-                Account Settings
+                Profile
               </Link>
             </li>
             <li>
@@ -51,23 +43,15 @@ const DropdownUser: React.FC = () => {
                 to="/qrscanplaceholder"
                 className="flex items-center gap-3.5 text-sm font-medium duration-300 ease-in-out hover:text-primary lg:text-base"
               >
-                QR PLACEHOLDER!
+                Wallet
               </Link>
             </li>
-            <li>
+          <li>
               <Link
-                to="/PaymentDetailsPlchold"
+                to="/transactionhistory"
                 className="flex items-center gap-3.5 text-sm font-medium duration-300 ease-in-out hover:text-primary lg:text-base"
               >
-                Paymentdetail PLACEHOLDER o my futureself!
-              </Link>
-            </li>
-            <li>
-              <Link
-                to="/TopupPlacehold"
-                className="flex items-center gap-3.5 text-sm font-medium duration-300 ease-in-out hover:text-primary lg:text-base"
-              >
-                topup PLACEHOLDER o my futureself!
+                Transaction History
               </Link>
             </li>
           </ul>
