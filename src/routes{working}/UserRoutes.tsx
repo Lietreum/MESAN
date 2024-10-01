@@ -1,6 +1,6 @@
 import { Routes, Route } from "react-router-dom";
 import UserLayout from "../layouts/user/UserLayout";
-import UserDashboard from "../pages/user/Homepage";
+import UserDashboard from "../pages/siswa/Homepage";
 import ProductList from "../components/user/ProductList/ProductList";
 import TransactionHistory from "../components/user/Header/TransactionHistory";
 import { Favorite } from "@mui/icons-material";

@@ -5,7 +5,7 @@ import PageTitle from "./components/admin/PageTitle";
 import AdminLayout from "./layouts/admin/AdminLayout";
 import UserLayout from "./layouts/user/UserLayout";
 import ECommerce from "./pages/admin/Dashboard/Dashboard";
-import UserDashboard from "./pages/user/Homepage";
+import UserDashboard from "./pages/siswa/Homepage";
 import Profile from "./pages/Profile";
 import Settings from "./pages/Settings";
 import Login from "./pages/auth/Login";
