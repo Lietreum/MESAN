@@ -1,11 +1,13 @@
 import { useEffect, useRef, useState } from "react";
 import { NavLink, useLocation } from "react-router-dom";
-import SidebarLinkGroup from "./SidebarLinkGroup";
 import Logo from "../../../assets/data/mesan-removebg-preview.png";
-import { AiOutlineAppstore, AiOutlineMenuFold, AiOutlineDown } from "react-icons/ai";
-import { FaWallet } from "react-icons/fa";
-import { MdHistory } from "react-icons/md";
+import { AiOutlineAppstore, AiOutlineMenuFold} from "react-icons/ai";
+import { IoChatboxEllipses } from "react-icons/io5";
 import { TiDocumentText } from "react-icons/ti";
+import { AiFillProduct } from "react-icons/ai";
+import Logo4 from "../../../assets/data/Logo SMKN 4 Transparent.png";
+import LogoC from "../../../assets/data/curaweda_ui.png";
+
 
 interface SidebarProps {
   sidebarOpen: boolean;
@@ -38,9 +40,8 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
     };
     document.addEventListener("click", clickHandler);
     return () => document.removeEventListener("click", clickHandler);
-  }, [sidebarOpen]);
-
-  // Close if the esc key is pressed
+  }, [sidebarOpen, setSidebarOpen]);
+  
   useEffect(() => {
     const keyHandler = ({ keyCode }: KeyboardEvent) => {
       if (!sidebarOpen || keyCode !== 27) return;
@@ -48,7 +49,8 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
     };
     document.addEventListener("keydown", keyHandler);
     return () => document.removeEventListener("keydown", keyHandler);
-  }, [sidebarOpen]);
+  }, [sidebarOpen, setSidebarOpen]);
+  
 
   useEffect(() => {
     localStorage.setItem("sidebar-expanded", sidebarExpanded.toString());
@@ -62,7 +64,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
   return (
     <aside
       ref={sidebar}
-      className={`absolute left-0 top-0 z-9999 flex flex-col h-screen w-64 bg-[#0F1E34] transition-all duration-300 ease-in-out lg:static lg:translate-x-0 ${
+      className={`absolute left-0 top-0 z-9999 flex flex-col h-screen w-80 bg-[#0F1E34] transition-all duration-300 ease-in-out lg:static lg:translate-x-0 ${
         sidebarOpen ? "translate-x-0" : "-translate-x-full"
       }`}
     >
@@ -104,69 +106,45 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
               </NavLink>
             </li>
 
-            {/* Top Up Dropdown */}
-            <SidebarLinkGroup activeCondition={pathname.includes("top-up")}>
-              {(handleClick, open) => (
-                <>
-                  <button
-                    onClick={(e) => {
-                      e.preventDefault();
-                      handleClick();
-                    }}
-                    className={`flex items-center justify-between w-full gap-3 px-4 py-2 rounded-md text-white hover:bg-[#1E293B] transition ${
-                      pathname.includes("top-up") ? "bg-[#1E293B]" : ""
-                    }`}
-                  >
-                    <div className="flex items-center gap-3">
-                      <FaWallet size={20} />
-                      Top Up
-                    </div>
-                    <AiOutlineDown
-                      className={`transition-transform duration-200 ${
-                        open ? "rotate-180" : ""
-                      }`}
-                    />
-                  </button>
-                  {/* Dropdown */}
-                  <div className={`pl-8 pt-2 ${!open && "hidden"}`}>
-                    <NavLink
-                      to="/admin/top-up/withdrawal"
-                      className={({ isActive }) =>
-                        `block py-2 text-white transition hover:text-blue-400 ${
-                          isActive ? "text-blue-400" : ""
-                        }`
-                      }
-                    >
-                      Withdrawal
-                    </NavLink>
-                  </div>
-                </>
-              )}
-            </SidebarLinkGroup>
-
-            {/* History */}
+            {/* Product Link */}
             <li>
               <NavLink
-                to="/admin/History"
-                className={`flex items-center gap-3 px-4 py-2 rounded-md text-white hover:bg-[#1E293B] transition ${
-                  pathname.includes("incoming-orders") ? "bg-[#1E293B]" : ""
-                }`}
+                to="/admin/product"
+                className={({ isActive }) =>
+                  `flex items-center justify-start w-full gap-3 px-4 py-2 rounded-md text-white hover:bg-[#1E293B] transition ${
+                    isActive ? "bg-[#1E293B]" : ""
+                  }`
+                }
               >
-                <MdHistory size={20} />
-                History
+                <AiFillProduct size={20} />
+                Product
               </NavLink>
             </li>
+
+            {/* Top Up Link */}
+            <NavLink
+              to="/admin/messages"
+              className={({ isActive }) =>
+                `flex items-center justify-start w-full gap-3 px-4 py-2 rounded-md text-white hover:bg-[#1E293B] transition ${
+                  isActive ? "bg-[#1E293B]" : ""
+                }`
+              }
+            >
+              <IoChatboxEllipses size={20} />
+              Messages
+            </NavLink>
+
 
             {/* Settings */}
             <li>
               <NavLink
-                to="/ManageAccount"
+                to="/admin/incoming-orders"
                 className={`flex items-center gap-3 px-4 py-2 rounded-md text-white hover:bg-[#1E293B] transition ${
                   pathname.includes("ManageAccount") ? "bg-[#1E293B]" : ""
                 }`}
               >
                 <TiDocumentText size={20} />
-                Manage Account
+                Incomming order
               </NavLink>
             </li>
           </ul>
@@ -174,11 +152,15 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
       </div>
 
       {/* Footer */}
-      <div className="py-4 px-6 mt-auto">
-        <p className="text-xs text-white opacity-60 text-center">
-          Created by SMKN 4 Bandung with support from PT. Curaweda Palagam Innotec
-        </p>
+      <div className="py-4 px-6 mt-auto flex items-center space-x-4">
+        <div className="flex items-center space-x-4">
+          <img src={Logo4} alt="Logo 1" className="h-8 w-auto" />
+          <img src={LogoC} alt="Logo 2" className="h-10 w-auto" />
       </div>
+         <p className="text-xs text-white opacity-60 text-center flex-grow">
+          Created by SMKN 4 Bandung with support from PT. Curaweda Palagam Innotec
+         </p>
+    </div>
     </aside>
   );
 };
