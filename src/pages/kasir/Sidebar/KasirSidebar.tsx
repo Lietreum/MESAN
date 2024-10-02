@@ -10,6 +10,8 @@ import { GrCart } from "react-icons/gr";
 import { NavLink, useLocation } from "react-router-dom";
 import Logo from "../../../assets/data/mesan-removebg-preview.png";
 import SidebarLinkGroup from "./SidebarLinkGroup";
+import Logo4 from "../../../assets/data/Logo SMKN 4 Transparent.png";
+import LogoC from "../../../assets/data/curaweda_ui.png";
 
 interface SidebarProps {
   sidebarOpen: boolean;
@@ -180,11 +182,15 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
       </div>
 
       {/* Footer */}
-      <div className="py-4 px-6 mt-auto">
-        <p className="text-xs text-white opacity-60 text-center">
-          Created by SMKN 4 Bandung with support from PT. Curaweda Palagam
-          Innotec
-        </p>
+      <div className="py-4 px-6 mt-auto flex items-center space-x-4">
+        <div className="flex items-center space-x-4">
+          <img src={Logo4} alt="Logo 1" className="h-8 w-auto" />
+          <img src={LogoC} alt="Logo 2" className="h-10 w-auto" />{" "}
+          <p className="text-xs text-white opacity-60 text-center flex-grow">
+            Created by SMKN 4 Bandung with support from PT. Curaweda Palagam
+            Innotec
+          </p>
+        </div>
       </div>
     </aside>
   );
