@@ -1,6 +1,6 @@
 // src/routes/AdminRoutes.tsx
 import { Route, Routes } from "react-router-dom";
-import AdminLayout from "../layouts/admin/AdminLayout";
+import AdminLayout from "../layouts/pedagang/AdminLayout";
 import ECommerce from "../pages/admin/Dashboard/Dashboard";
 import Product from "../pages/admin/Product/ProductCard";
 import IncomingOrders from "../components/admin/Product/History";

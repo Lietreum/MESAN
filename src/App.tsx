@@ -2,8 +2,8 @@ import { useEffect, useState } from "react";
 import { Route, Routes, useLocation } from "react-router-dom";
 import Loader from "./components/common/Loader";
 import PageTitle from "./components/admin/PageTitle";
-import AdminLayout from "./layouts/admin/AdminLayout";
-import UserLayout from "./layouts/user/UserLayout";
+import AdminLayout from "./layouts/pedagang/AdminLayout";
+import UserLayout from "./layouts/siswa/UserLayout";
 import ECommerce from "./pages/admin/Dashboard/Dashboard";
 import UserDashboard from "./pages/siswa/Homepage";
 import Profile from "./pages/Profile";
@@ -25,15 +25,13 @@ import QRAdmin from "./components/admin/Product/QRAdmin";
 import Notification from "./components/user/Header/Notification";
 import PaymentOptions from "./components/user/Header/PaymentOptions";
 import PaymentDetails from "./components/user/Header/PaymentDetails";
-import { inject } from "@vercel/analytics";
-import { injectSpeedInsights } from "@vercel/speed-insights";
 import KasirLayout from "./layouts/kasir/KasirLayout";
-import HomeKasir from "./pages/kasir/HomeKasir";
+import HomeKasir from "./pages/kasir/DashboardKasir";
 
 function App() {
   // vercel analytics start
-  inject();
-  injectSpeedInsights();
+  // inject();
+  // injectSpeedInsights();
   // vercel analytics end
 
   const [loading, setLoading] = useState<boolean>(true);

@@ -150,8 +150,27 @@
       background: transparent;
     }
   }
-  
+  /* black bg very black */
   .bg-\[\#150002\] {
     --tw-bg-opacity: 1;
     background-color: rgb(21 0 2/var(--tw-bg-opacity))
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-hide {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+/* Hide the scrollbar for the entire page */
+html, body {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;     /* Firefox */
+}
+
+html::-webkit-scrollbar, 
+body::-webkit-scrollbar {
+  display: none;             /* Chrome, Safari, and Opera */
 }
