@@ -155,11 +155,11 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
       <div className="py-4 px-6 mt-auto flex items-center space-x-4">
         <div className="flex items-center space-x-4">
           <img src={Logo4} alt="Logo 1" className="h-8 w-auto" />
-          <img src={LogoC} alt="Logo 2" className="h-10 w-auto" />
-      </div>
-         <p className="text-xs text-white opacity-60 text-center flex-grow">
+          <img src={LogoC} alt="Logo 2" className="h-10 w-auto" />         <p className="text-xs text-white opacity-60 text-center flex-grow">
           Created by SMKN 4 Bandung with support from PT. Curaweda Palagam Innotec
          </p>
+      </div>
+
     </div>
     </aside>
   );

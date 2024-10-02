@@ -1,5 +1,5 @@
-import { IncomingOrdersProducts } from '../../../types/types'; 
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 type Order = {
   orderNo: string;
@@ -27,23 +27,35 @@ const IncomingOrders: React.FC = () => {
   const [selectedTab, setSelectedTab] = useState<'Coming Order' | 'In Progress' | 'Waiting To Pick Up' | 'Done'>(
     'Coming Order'
   );
+  const navigate = useNavigate();
 
   const handleConfirm = (orderNo: string) => {
     setIncomingOrders((prevOrders) =>
       prevOrders.map((order) => {
         if (order.orderNo === orderNo) {
           if (order.status === 'Coming Order') {
-            setSelectedTab('In Progress'); 
+            setSelectedTab('In Progress');
             return { ...order, status: 'In Progress' };
           }
           if (order.status === 'In Progress') {
-            setSelectedTab('Waiting To Pick Up'); 
+            setSelectedTab('Waiting To Pick Up');
             return { ...order, status: 'Waiting To Pick Up' };
           }
           if (order.status === 'Waiting To Pick Up') {
-            setSelectedTab('Done'); 
+            setSelectedTab('Done');
             return { ...order, status: 'Done' };
           }
+        }
+        return order;
+      })
+    );
+  };
+
+  const handleDoneClick = (orderNo: string) => {
+    setIncomingOrders((prevOrders) =>
+      prevOrders.map((order) => {
+        if (order.orderNo === orderNo && order.status === 'Done') {
+          navigate('/admin/qrscanplaceholder');
         }
         return order;
       })
@@ -111,7 +123,10 @@ const IncomingOrders: React.FC = () => {
                           Confirm
                         </button>
                       ) : (
-                        <button className="bg-green-500 px-4 py-2 rounded text-white transform transition-transform duration-200 ease-in-out hover:scale-110">
+                        <button
+                          onClick={() => handleDoneClick(order.orderNo)}
+                          className="bg-green-500 px-4 py-2 rounded text-white transform transition-transform duration-200 ease-in-out hover:scale-110"
+                        >
                           Done
                         </button>
                       )}
