@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 
 const AddProductPage: React.FC = () => {
-  const [picture, setPicture] = useState<File | null>(null);
   const [stock, setStock] = useState('');
   const [productName, setProductName] = useState('');
   const [description, setDescription] = useState('');
@@ -10,7 +9,6 @@ const AddProductPage: React.FC = () => {
     console.log('Save button clicked!');
 
   };
-
 
   return (
     <div className="container mx-auto px-4 py-8">
