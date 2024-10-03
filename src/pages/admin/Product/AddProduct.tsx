@@ -78,4 +78,4 @@ const AddProductPage: React.FC = () => {
   );
 };
 
-export default ;
+export default AddProductPage;
