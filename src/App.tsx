@@ -27,6 +27,8 @@ import PaymentOptions from "./components/user/Header/PaymentOptions";
 import PaymentDetails from "./components/user/Header/PaymentDetails";
 import KasirLayout from "./layouts/kasir/KasirLayout";
 import HomeKasir from "./pages/kasir/DashboardKasir";
+import AddProductPage from "./pages/admin/Product/AddProduct";
+
 
 function App() {
   // vercel analytics start
@@ -231,6 +233,27 @@ function App() {
             </AdminLayout>
           }
         />
+
+        {/* AddProduct Routes */}
+        <Route
+          path="/admin/add-product"
+          element={
+            <AdminLayout>
+              <PageTitle title="Add Product | Koperasi" />
+              <AddProductPage />
+            </AdminLayout>
+          }
+          />
+
+        <Route
+          path="/admin/edit-product"
+          element={
+            <AdminLayout>
+              <PageTitle title="Edit Product | Koperasi" />
+              <AddProductPage />
+            </AdminLayout>
+          }
+          />
         {/* Authentication Routes */}
         <Route
           path="/login"
