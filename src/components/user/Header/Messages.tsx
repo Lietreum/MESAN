@@ -97,7 +97,7 @@ const Messages: React.FC = () => {
         </div>
 
         {/* Chat Input */}
-        <div className="sticky bottom-0 p-6 bg-white border-t border-white">
+        <div className=" bottom-0 p-6 bg-white border-t border-white">
           <div className="flex items-center space-x-4">
             {/* Icon for Emoji */}
             <button className="p-2 text-gray-500 hover:text-blue-500 transition">
