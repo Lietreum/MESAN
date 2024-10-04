@@ -28,6 +28,7 @@ import PaymentDetails from "./components/user/Header/PaymentDetails";
 import KasirLayout from "./layouts/kasir/KasirLayout";
 import HomeKasir from "./pages/kasir/DashboardKasir";
 import AddProductPage from "./pages/admin/Product/AddProduct";
+import ProfilePage from "./components/user/Profile/Profile";
 
 
 function App() {
@@ -153,6 +154,15 @@ function App() {
             </UserLayout>
           }
         />
+        <Route
+          path="/profile-page"
+          element={
+            <UserLayout>
+              <PageTitle title="ProfilePage" />
+              <ProfilePage/>
+            </UserLayout>
+          }
+          />
 
         {/* Admin Routes */}
         <Route
@@ -205,7 +215,7 @@ function App() {
         />
 
         <Route
-          path="/profile"
+          path="/admin/profile"
           element={
             <AdminLayout>
               <PageTitle title="Profile" />
