@@ -1,13 +1,9 @@
 import React from 'react';
-//import Products from '../../../components/admin/Product/Products';
+
 
 const ProductPage: React.FC = () => {
   const handleEdit = () => {
     console.log('Edit button clicked!');
-  };
-
-  const handleAddProduct = () => {
-    console.log('Add Product button clicked');
   };
 
   return (
