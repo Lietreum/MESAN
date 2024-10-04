@@ -25,7 +25,7 @@ const AddProductPage: React.FC = () => {
         </div>
 
         {/* Stock Input */}
-        <div className="mb-4">
+        <div className="mb-4">  
           <label className="block text-lg font-bold mb-2">
             Stock <span className="text-red-500">*</span>
           </label>

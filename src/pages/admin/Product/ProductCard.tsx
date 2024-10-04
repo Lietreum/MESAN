@@ -6,10 +6,6 @@ const ProductPage: React.FC = () => {
     console.log('Edit button clicked!');
   };
 
-  const handleAddProduct = () => {
-    console.log('Add Product button clicked');
-  };
-
   return (
     <div className="container mx-auto px-4">
       {/* Add Product Button */}
