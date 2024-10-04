@@ -6,35 +6,35 @@ import { ProductListCard } from "../../../types/types";
 const products: ProductListCard[] = [
   {
     id: 1,
-    title: 'Earthen Bottle',
-    price: 'Rp.48.000',
-    imageUrl: 'https://tailwindui.com/img/ecommerce-images/category-page-04-image-card-01.jpg',
+    title: 'Nasi Goreng',
+    price: 'Rp.15.000',
+    imageUrl: 'https://i.pinimg.com/564x/a2/a1/aa/a2a1aa02d183d6151427a97a99a15511.jpg',
     altText: 'Tall slender porcelain bottle with natural clay textured body and cork stopper.',
     type: "yesTopping",
   },
   {
     id: 2,
-    title: 'Nomad Tumbler',
-    price: 'Rp.35.000',
-    imageUrl: 'https://tailwindui.com/img/ecommerce-images/category-page-04-image-card-02.jpg',
+    title: 'Seblak',
+    price: 'Rp.10.000',
+    imageUrl: 'https://i.pinimg.com/736x/1d/27/5d/1d275d02f38bef5a4ffe63cb83720d85.jpg',
     altText: 'Olive drab green insulated bottle with flared screw lid and flat top.',
     type: "yesTopping",
 
   },
   {
     id: 3,
-    title: 'Focus Paper Refill',
-    price: 'Rp.89.000',
-    imageUrl: 'https://tailwindui.com/img/ecommerce-images/category-page-04-image-card-03.jpg',
+    title: 'Gorengan',
+    price: 'Rp.1.000',
+    imageUrl: 'https://i.pinimg.com/564x/69/98/e7/6998e7c9c175a39bc5f7eac7d0696534.jpg',
     altText: 'Person using a pen to cross a task off a productivity paper card.',
     type: "yesTopping",
 
   },
   {
     id: 4,
-    title: 'Machined Mechanical Pencil',
-    price: 'Rp.35.000',
-    imageUrl: 'https://tailwindui.com/img/ecommerce-images/category-page-04-image-card-04.jpg',
+    title: 'Batagor',
+    price: 'Rp.5.000',
+    imageUrl: 'https://i.pinimg.com/564x/b4/27/9a/b4279a9dc7fbe09c12a49d3ea98ca71c.jpg',
     altText: 'Hand holding black machined steel mechanical pencil with brass tip and top.',
     type: "noTopping",
 
