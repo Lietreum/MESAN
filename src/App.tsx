@@ -31,6 +31,9 @@ import KasirTopup from "./pages/kasir/Topup/KasirTopup";
 import ManageAccount from "./pages/admin/ManageAccount";
 import Withdrawal from "./pages/kasir/Withdrawal/Withdrawal";
 import HistoryKasir from "./pages/kasir/History/HistoryKasir";
+import AddProductPage from "./pages/admin/Product/AddProduct";
+import ProfilePage from "./components/user/Profile/Profile";
+
 
 function App() {
   // vercel analytics start
@@ -192,6 +195,15 @@ function App() {
             </UserLayout>
           }
         />
+        <Route
+          path="/profile-page"
+          element={
+            <UserLayout>
+              <PageTitle title="ProfilePage" />
+              <ProfilePage/>
+            </UserLayout>
+          }
+          />
 
         {/* Admin Routes */}
         <Route
@@ -244,7 +256,7 @@ function App() {
         />
 
         <Route
-          path="/profile"
+          path="/admin/profile"
           element={
             <AdminLayout>
               <PageTitle title="Profile" />
@@ -272,6 +284,27 @@ function App() {
             </AdminLayout>
           }
         />
+
+        {/* AddProduct Routes */}
+        <Route
+          path="/admin/add-product"
+          element={
+            <AdminLayout>
+              <PageTitle title="Add Product | Koperasi" />
+              <AddProductPage />
+            </AdminLayout>
+          }
+          />
+
+        <Route
+          path="/admin/edit-product"
+          element={
+            <AdminLayout>
+              <PageTitle title="Edit Product | Koperasi" />
+              <AddProductPage />
+            </AdminLayout>
+          }
+          />
         {/* Authentication Routes */}
         <Route
           path="/login"

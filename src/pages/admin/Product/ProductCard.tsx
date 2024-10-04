@@ -1,5 +1,5 @@
 import React from 'react';
-//import Products from '../../../components/admin/Product/Products';
+
 
 const ProductPage: React.FC = () => {
   const handleEdit = () => {
@@ -8,6 +8,13 @@ const ProductPage: React.FC = () => {
 
   return (
     <div className="container mx-auto px-4">
+      {/* Add Product Button */}
+      <div className="flex justify-end my-4">
+        <button className="px-4 py-2 text-white bg-blue-500 rounded transition-color duration-300 hover:bg-blue-600 onClick={handleAddProduct}">
+          Add Product
+        </button>
+      </div>
+
       {/* Grid layout for responsive design */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
         <div className="p-4 border border-gray-200 rounded-lg shadow-sm transform transition-transform duration-300 hover:scale-105">
