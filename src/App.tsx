@@ -27,6 +27,10 @@ import PaymentOptions from "./components/user/Header/PaymentOptions";
 import PaymentDetails from "./components/user/Header/PaymentDetails";
 import KasirLayout from "./layouts/kasir/KasirLayout";
 import HomeKasir from "./pages/kasir/DashboardKasir";
+import KasirTopup from "./pages/kasir/Topup/KasirTopup";
+import ManageAccount from "./pages/admin/ManageAccount";
+import Withdrawal from "./pages/kasir/Withdrawal/Withdrawal";
+import HistoryKasir from "./pages/kasir/History/HistoryKasir";
 
 function App() {
   // vercel analytics start
@@ -86,6 +90,43 @@ function App() {
               <PageTitle title="Transaction History" />
               <TransactionHistory />
             </UserLayout>
+          }
+        />
+        <Route
+          path="/kasir/ManageAccounts"
+          element={
+            <KasirLayout>
+              <PageTitle title="Transaction History" />
+              <ManageAccount />
+            </KasirLayout>
+          }
+        />
+        <Route
+          path="/kasir/history"
+          element={
+            <KasirLayout>
+              <PageTitle title="Transaction History" />
+              <HistoryKasir />
+            </KasirLayout>
+          }
+        />
+        <Route
+          path="/kasir/withdrawal"
+          element={
+            <KasirLayout>
+              <PageTitle title="Transaction History" />
+              <Withdrawal />
+            </KasirLayout>
+          }
+        />
+
+        <Route
+          path="/kasir/Topup"
+          element={
+            <KasirLayout>
+              <PageTitle title="Topup" />
+              <KasirTopup />
+            </KasirLayout>
           }
         />
         <Route
