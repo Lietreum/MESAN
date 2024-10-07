@@ -207,10 +207,10 @@ function App() {
 
         {/* Admin Routes */}
         <Route
-          path="/admin"
+          path="/pedagang"
           element={
             <AdminLayout>
-              <PageTitle title="Admin Dashboard | Koperasi" />
+              <PageTitle title="Pedagang Dashboard | Koperasi" />
               <ECommerce />
             </AdminLayout>
           }
@@ -218,7 +218,7 @@ function App() {
 
         {/* Admin Routes */}
         <Route
-          path="/admin/product"
+          path="/pedagang/product"
           element={
             <AdminLayout>
               <PageTitle title="Product | Koperasi" />
@@ -227,7 +227,7 @@ function App() {
           }
         />
         <Route
-          path="/admin/incoming-orders"
+          path="/pedagang/incoming-orders"
           element={
             <AdminLayout>
               <PageTitle title="Incoming Orders | Koperasi" />
@@ -237,7 +237,7 @@ function App() {
         />
 
         <Route
-          path="/admin/stock-notification"
+          path="/pedagang/stock-notification"
           element={
             <AdminLayout>
               <PageTitle title="Stock Notification | Koperasi" />
@@ -246,7 +246,7 @@ function App() {
           }
         />
         <Route
-          path="/admin/qrscanplaceholder"
+          path="/pedagang/qrscanplaceholder"
           element={
             <AdminLayout>
               <PageTitle title=" QRScan Admin | Koperasi" />
@@ -256,7 +256,7 @@ function App() {
         />
 
         <Route
-          path="/admin/profile"
+          path="/pedagang/profile"
           element={
             <AdminLayout>
               <PageTitle title="Profile" />
@@ -276,10 +276,10 @@ function App() {
         />
 
         <Route
-          path="/admin/messages"
+          path="/pedagang/messages"
           element={
             <AdminLayout>
-              <PageTitle title="Admin Dashboard | Koperasi" />
+              <PageTitle title="Pedagang Dashboard | Koperasi" />
               <Messages />
             </AdminLayout>
           }
@@ -287,7 +287,7 @@ function App() {
 
         {/* AddProduct Routes */}
         <Route
-          path="/admin/add-product"
+          path="/pedagang/add-product"
           element={
             <AdminLayout>
               <PageTitle title="Add Product | Koperasi" />
@@ -297,7 +297,7 @@ function App() {
           />
 
         <Route
-          path="/admin/edit-product"
+          path="/pedagang/edit-product"
           element={
             <AdminLayout>
               <PageTitle title="Edit Product | Koperasi" />
