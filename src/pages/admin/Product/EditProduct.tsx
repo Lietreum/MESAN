@@ -1,11 +1,11 @@
 import React, { useEffect } from 'react';
 
-interface AddProductModalProps {
+interface EditProductModalProps {
   show: boolean;
   onClose: () => void;
 }
 
-const AddProductModal: React.FC<AddProductModalProps> = ({ show, onClose }) => {
+const EditProductModal: React.FC<EditProductModalProps> = ({ show, onClose }) => {
   useEffect(() => {
     if (show) {
       document.body.style.overflow = 'hidden';
@@ -31,7 +31,7 @@ const AddProductModal: React.FC<AddProductModalProps> = ({ show, onClose }) => {
           className="modal-box bg-white rounded-lg shadow-lg p-8 w-[600px] space-y-6"
           style={{ marginTop: '10%', marginLeft: '15%' }} // Custom position
         >
-          <h2 className="text-2xl font-bold text-center mb-6 text-black-600">Add New Product</h2>
+          <h2 className="text-2xl font-bold text-center mb-6 text-black-600">Edit Product</h2>
 
           {/* Form Fields */}
           <div className="space-y-4">
@@ -91,4 +91,4 @@ const AddProductModal: React.FC<AddProductModalProps> = ({ show, onClose }) => {
   );
 };
 
-export default AddProductModal;
+export default EditProductModal;
