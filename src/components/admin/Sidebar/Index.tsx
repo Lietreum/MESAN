@@ -94,7 +94,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
             {/* Dashboard */}
             <li>
               <NavLink
-                to="/admin"
+                to="/pedagang"
                 className={`flex items-center gap-3 px-4 py-2 rounded-md text-white hover:bg-[#1E293B] transition ${
                   pathname === "/admin" ? "bg-[#1E293B]" : ""
                 }`}
@@ -107,7 +107,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
             {/* Product Link */}
             <li>
               <NavLink
-                to="/admin/product"
+                to="/pedagang/product"
                 className={({ isActive }) =>
                   `flex items-center justify-start w-full gap-3 px-4 py-2 rounded-md text-white hover:bg-[#1E293B] transition ${
                     isActive ? "bg-[#1E293B]" : ""
@@ -121,7 +121,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
 
             {/* Top Up Link */}
             <NavLink
-              to="/admin/messages"
+              to="/pedagang/messages"
               className={({ isActive }) =>
                 `flex items-center justify-start w-full gap-3 px-4 py-2 rounded-md text-white hover:bg-[#1E293B] transition ${
                   isActive ? "bg-[#1E293B]" : ""
@@ -135,7 +135,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
             {/* Settings */}
             <li>
               <NavLink
-                to="/admin/incoming-orders"
+                to="/pedagang/incoming-orders"
                 className={`flex items-center gap-3 px-4 py-2 rounded-md text-white hover:bg-[#1E293B] transition ${
                   pathname.includes("ManageAccount") ? "bg-[#1E293B]" : ""
                 }`}
