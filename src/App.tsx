@@ -291,7 +291,9 @@ function App() {
           element={
             <AdminLayout>
               <PageTitle title="Add Product | Koperasi" />
-              <AddProductPage />
+              <AddProductPage show={false} onClose={function (): void {
+                throw new Error("Function not implemented.");
+              } } />
             </AdminLayout>
           }
           />
@@ -301,7 +303,9 @@ function App() {
           element={
             <AdminLayout>
               <PageTitle title="Edit Product | Koperasi" />
-              <AddProductPage />
+              <AddProductPage show={false} onClose={function (): void {
+                throw new Error("Function not implemented.");
+              } } />
             </AdminLayout>
           }
           />
