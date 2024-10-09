@@ -28,14 +28,16 @@ const ProductCard: React.FC<ProductProps> = ({
             </ol>
           </nav>
         </div>
-        <div className="relative w-72 h-96 bg-gray-800 rounded-3xl p-6 shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105">
+
+        {/* Product Card */}
+        <div className="relative w-full max-w-xs h-96 md:h-[28rem] bg-gray-800 rounded-3xl p-6 shadow-xl hover:shadow-2xl transition-transform duration-300 transform hover:scale-105 mx-auto">
           <div className="flex flex-col h-full">
-            {/* Image Section with subtle hover effect */}
+            {/* Image Section */}
             <div className="relative h-48 w-full mb-4 rounded-2xl overflow-hidden">
               <img
                 src={imageUrl}
                 alt={productName}
-                className="w-full h-full object-cover rounded-2xl transform transition-transform duration-500 ease-in-out hover:scale-110"
+                className="w-full h-full object-cover rounded-2xl transition-transform duration-500 ease-in-out hover:scale-110"
               />
               <button className="absolute top-3 right-3 bg-gray-700 bg-opacity-70 hover:bg-pink-500 p-2 rounded-full shadow-lg transition-all duration-300 ease-in-out">
                 <FaHeart className="text-white h-5 w-5" />

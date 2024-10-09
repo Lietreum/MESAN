@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { AiOutlineClose } from 'react-icons/ai';
 
 interface EditProductModalProps {
   show: boolean;
@@ -26,18 +27,21 @@ const EditProductModal: React.FC<EditProductModalProps> = ({ show, onClose }) =>
       <div className="fixed inset-0 bg-black bg-opacity-50 z-40" onClick={onClose}></div>
 
       {/* Modal Structure */}
-      <dialog id="my_modal_2" className="modal fixed inset-0 z-50 flex items-start justify-center" open>
-        <div
-          className="modal-box bg-white rounded-lg shadow-lg p-8 w-[600px] space-y-6"
-          style={{ marginTop: '10%', marginLeft: '15%' }} // Custom position
-        >
-          <h2 className="text-2xl font-bold text-center mb-6 text-black-600">Edit Product</h2>
+      <div className="fixed inset-0 flex items-center justify-center z-50 mt-18 ml-40">
+        <div className="modal-box bg-white rounded-lg shadow-lg p-6 w-full max-w-lg relative">
+          <button
+            className="absolute top-2 right-2 text-gray-500 hover:text-gray-700"
+            onClick={onClose}
+          >
+            <AiOutlineClose size={24} />
+          </button>
+          <h2 className="text-2xl font-bold text-center mb-4 text-black">Edit Product</h2>
 
           {/* Form Fields */}
           <div className="space-y-4">
             <div className="flex flex-col">
               <label className="text-gray-700 mb-1">Image</label>
-              <button className="btn bg-[#A0D8EF] hover:bg-opacity-80 w-1/2 text-white outline-none">
+              <button className="btn bg-[#A0D8EF] hover:bg-opacity-80 w-full text-white outline-none">
                 Select Image
               </button>
             </div>
@@ -50,18 +54,18 @@ const EditProductModal: React.FC<EditProductModalProps> = ({ show, onClose }) =>
             </div>
 
             <div className="flex flex-col">
-              <label className="text-gray-700 mb-1">Name Product</label>
-              <input className="input w-full bg-white border border-gray-300" placeholder="Enter name" />
+              <label className="text-gray-700 mb-1">Product Name</label>
+              <input className="input w-full bg-white border border-gray-300 rounded-md p-2" placeholder="Enter name" />
             </div>
 
             <div className="flex flex-col">
               <label className="text-gray-700 mb-1">Price</label>
-              <input className="input w-full bg-white border border-gray-300" placeholder="Enter price" />
+              <input className="input w-full bg-white border border-gray-300 rounded-md p-2" placeholder="Enter price" />
             </div>
 
             <div className="flex flex-col">
               <label className="text-gray-700 mb-1">Stock</label>
-              <input className="input w-full bg-white border border-gray-300" placeholder="Enter stock" />
+              <input className="input w-full bg-white border border-gray-300 rounded-md p-2" placeholder="Enter stock" />
             </div>
           </div>
 
@@ -81,12 +85,7 @@ const EditProductModal: React.FC<EditProductModalProps> = ({ show, onClose }) =>
             </button>
           </div>
         </div>
-
-        {/* Form untuk menutup modal */}
-        <form method="dialog" className="modal-backdrop" onClick={onClose}>
-          <button type="button">Close</button>
-        </form>
-      </dialog>
+      </div>
     </>
   );
 };

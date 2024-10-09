@@ -33,13 +33,10 @@ import Withdrawal from "./pages/kasir/Withdrawal/Withdrawal";
 import HistoryKasir from "./pages/kasir/History/HistoryKasir";
 import AddProductPage from "./pages/admin/Product/AddProduct";
 import ProfilePage from "./components/user/Profile/Profile";
+import WalletSiswa from "./pages/siswa/walletdashboard/WalletSiswa";
 
 
 function App() {
-  // vercel analytics start
-  // inject();
-  // injectSpeedInsights();
-  // vercel analytics end
 
   const [loading, setLoading] = useState<boolean>(true);
   const { pathname } = useLocation();
@@ -291,7 +288,9 @@ function App() {
           element={
             <AdminLayout>
               <PageTitle title="Add Product | Koperasi" />
-              <AddProductPage />
+              <AddProductPage show={false} onClose={function (): void {
+                throw new Error("Function not implemented.");
+              } } />
             </AdminLayout>
           }
           />
@@ -301,7 +300,9 @@ function App() {
           element={
             <AdminLayout>
               <PageTitle title="Edit Product | Koperasi" />
-              <AddProductPage />
+              <AddProductPage show={false} onClose={function (): void {
+                throw new Error("Function not implemented.");
+              } } />
             </AdminLayout>
           }
           />
@@ -327,6 +328,16 @@ function App() {
 
         {/* 404 Not Found Route */}
         <Route path="*" element={<NotFound />} />
+
+        <Route
+          path="/walletsiswa"
+          element={
+            <UserLayout>
+              <PageTitle title="Wallet Siswa | Koperasi" />
+              <WalletSiswa />
+            </UserLayout>
+          }
+        />
       </Routes>
     </>
   );

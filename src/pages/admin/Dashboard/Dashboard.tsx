@@ -1,13 +1,14 @@
 import React from 'react';
 import CardDataStats from '../../../components/admin/CardDataStats';
-import { RiEyeLine, RiMoneyDollarCircleLine, RiProductHuntLine, RiUserLine } from 'react-icons/ri'; 
+import { RiEyeLine, RiMoneyDollarCircleLine, RiProductHuntLine, RiUserLine } from 'react-icons/ri';
 import ChartOne from '../../../components/admin/Charts/ChartOne';
 import ChartTwo from '../../../components/admin/Charts/ChartTwo';
 
 const PedagangDashboard: React.FC = () => {
   return (
     <>
-      <div className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-6 xl:grid-cols-4 2xl:gap-7.5">
+      {/* Section for displaying card stats */}
+      <div className="grid grid-cols-1 gap-4 md:grid-cols-2 xl:grid-cols-4 md:gap-6 2xl:gap-7.5">
         <CardDataStats title="Total views" total="Rp. 48.000" rate="0.43%" levelUp>
           <RiEyeLine className="text-primary dark:text-white" size={22} />
         </CardDataStats>
@@ -22,11 +23,16 @@ const PedagangDashboard: React.FC = () => {
         </CardDataStats>
       </div>
 
-      <div className="mt-4 grid grid-cols-12 gap-4 md:mt-6 md:gap-6 2xl:mt-7.5 2xl:gap-7.5">
-        <ChartOne />
-        <ChartTwo />
+      {/* Section for displaying charts */}
+      <div className="mt-4 grid grid-cols-12 gap-4 md:mt-6 2xl:mt-7.5 md:gap-6 2xl:gap-7.5">
+        <div className="col-span-12 xl:col-span-6">
+          <ChartOne />
+        </div>
+        <div className="col-span-12 xl:col-span-6">
+          <ChartTwo />
+        </div>
         <div className="col-span-12 xl:col-span-8">
-          {/* Additional content can go here */}
+          {/* Additional content or chart can be placed here if needed */}
         </div>
       </div>
     </>

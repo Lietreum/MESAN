@@ -1,13 +1,32 @@
+import { useState } from "react"; // Import useState untuk mengelola state
 import Breadcrumb from "../components/admin/Breadcrumbs/Breadcrumb";
 import CoverOne from "../assets/admin/images/cover/cover-01.png";
 import userSix from "../assets/admin/images/user/user-06.png";
-import { CiCamera } from "react-icons/ci";
+import { FaCamera } from "react-icons/fa";
 
 const Profile = () => {
+  // State untuk menyimpan nilai input
+  const [email, setEmail] = useState("kosimnurhayat@gmail.com");
+  const [storeName, setStoreName] = useState("Kantin Ibu Kosim");
+  const [status, setStatus] = useState("Aktif");
+  const [delivery, setDelivery] = useState("on");
+
+  // Menambahkan tipe untuk parameter 'e'
+  const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => setEmail(e.target.value);
+  const handleStoreNameChange = (e: React.ChangeEvent<HTMLInputElement>) => setStoreName(e.target.value);
+  const handleStatusChange = (e: React.ChangeEvent<HTMLSelectElement>) => setStatus(e.target.value);
+  const handleDeliveryChange = (e: React.ChangeEvent<HTMLSelectElement>) => setDelivery(e.target.value);
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    // Logika untuk menyimpan data bisa ditambahkan di sini
+    console.log({ email, storeName, status, delivery });
+  };
+
   return (
     <>
       <Breadcrumb pageName="Profile" />
-    
+
       <div className="overflow-hidden rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark">
         <div className="relative z-20 h-35 md:h-65">
           <img
@@ -15,21 +34,9 @@ const Profile = () => {
             alt="profile cover"
             className="h-full w-full rounded-tl-sm rounded-tr-sm object-cover object-center"
           />
-          <div className="absolute bottom-1 right-1 z-10 xsm:bottom-4 xsm:right-4">
-            <label
-              htmlFor="cover"
-              className="flex cursor-pointer items-center justify-center gap-2 rounded bg-primary py-1 px-2 text-sm font-medium text-white hover:bg-opacity-90 xsm:px-4"
-            >
-              <input type="file" name="cover" id="cover" className="sr-only" />
-              <span>
-                <CiCamera size={19} className="text-white" />
-              </span>
-              <span>Edit</span>
-            </label>
-          </div>
         </div>
         <div className="px-4 pb-6 text-center lg:pb-8 xl:pb-11.5">
-          <div className="relative z-30 mx-auto -mt-22 h-30 w-full max-w-30 rounded-full bg-white/20 p-1 backdrop-blur sm:h-44 sm:max-w-44 sm:p-3">
+          <div className="relative z-30 mx-auto -mt-22 h-30 w-full max-w-30 rounded-full bg-white/20 p-1 backdrop-blur sm:h-44 sm:max-w-44 sm:p-3 ">
             <div className="relative drop-shadow-2">
               <img src={userSix} alt="profile" />
               <label
@@ -68,7 +75,7 @@ const Profile = () => {
           </div>
           <div className="mt-4">
             <h3 className="mb-1.5 text-2xl font-semibold text-black dark:text-white">
-              Kantin Bu Kosim
+              {storeName} {/* Menampilkan nama toko */}
             </h3>
             <p className="font-medium">Pedagang</p>
           </div>
@@ -76,73 +83,81 @@ const Profile = () => {
 
         {/* Form Section */}
         <div className="px-4 pb-6">
-          <form>
-            <div className="mb-4">
+          <form onSubmit={handleSubmit}>
+            <div className="mb-4 flex justify-between">
               <label className="block text-sm font-medium text-gray-700" htmlFor="email">
                 Email Address
               </label>
-              <input
-                type="email"
-                id="email"
-                value="kosimnurhayat@gmail.com"
-                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring-primary h-12 bg-[#f0f4fc]" // Warna background diperbarui
-                disabled
-              />
+              <div className="absolute bottom-1 right-1 z-10 xsm:bottom-4 xsm:right-4">
+            <label
+              htmlFor="cover"
+              className="flex cursor-pointer items-center justify-center gap-2 rounded bg-primary py-2 mr-6 mb-10 px-1 text-sm font-medium text-white hover:bg-opacity-90 xsm:px-4"
+            >
+              <input type="file" name="cover" id="cover" className="sr-only" />
+              <span>
+                <FaCamera size={19} className="text-white " />
+              </span>
+              <span>Edit</span>
+            </label>
+          </div>
             </div>
-            <div className="mb-4">
+            <input
+              type="email"
+              id="email"
+              value={email}
+              onChange={handleEmailChange}
+              className="w-full rounded border border-gray-300 bg-white p-2 text-sm text-gray-700 shadow-sm focus:border-primary focus:ring focus:ring-primary"
+            />
+            {/* Tambahkan input lain sesuai kebutuhan */}
+            <div className="mt-4">
               <label className="block text-sm font-medium text-gray-700" htmlFor="store-name">
                 Store Name
               </label>
               <input
                 type="text"
                 id="store-name"
-                value="Kantin Ibu Kosim"
-                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring-primary h-12 bg-[#f0f4fc]" // Warna background diperbarui
+                value={storeName}
+                onChange={handleStoreNameChange}
+                className="w-full rounded border border-gray-300 bg-white p-2 text-sm text-gray-700 shadow-sm focus:border-primary focus:ring focus:ring-primary"
               />
             </div>
-            <div className="mb-4">
-              <label className="block text-sm font-medium text-gray-700">
+
+            <div className="mt-4">
+              <label className="block text-sm font-medium text-gray-700" htmlFor="status">
                 Status
               </label>
               <select
-                className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring-primary h-12 bg-[#f0f4fc]" // Warna background diperbarui
+                id="status"
+                value={status}
+                onChange={handleStatusChange}
+                className="w-full rounded border border-gray-300 bg-white p-2 text-sm text-gray-700 shadow-sm focus:border-primary focus:ring focus:ring-primary"
               >
-                <option>Aktif</option>
-                <option>Sibuk</option>
-                <option>Tutup</option>
+                <option value="Aktif">Aktif</option>
+                <option value="Non-Aktif">Non-Aktif</option>
               </select>
             </div>
-            <div className="mb-4">
-              <label className="block text-sm font-medium text-gray-700">
+
+            <div className="mt-4">
+              <label className="block text-sm font-medium text-gray-700" htmlFor="delivery">
                 Delivery
               </label>
-              <div className="flex items-center">
-                <label className="mr-2">
-                  <input type="radio" name="delivery" value="on" defaultChecked />
-                  ON
-                </label>
-                <label>
-                  <input type="radio" name="delivery" value="off" />
-                  OFF
-                </label>
-              </div>
+              <select
+                id="delivery"
+                value={delivery}
+                onChange={handleDeliveryChange}
+                className="w-full rounded border border-gray-300 bg-white p-2 text-sm text-gray-700 shadow-sm focus:border-primary focus:ring focus:ring-primary"
+              >
+                <option value="on">On</option>
+                <option value="off">Off</option>
+              </select>
             </div>
 
-            {/* Tombol Cancel & Save */}
-            <div className="flex justify-end space-x-2">
-              <button
-                type="button"
-                className="inline-flex justify-center rounded-md border border-gray-300 bg-white py-2 px-4 text-sm font-medium text-gray-700 hover:bg-gray-50"
-              >
-                Cancel
-              </button>
-              <button
-                type="submit"
-                className="inline-flex justify-center rounded-md border border-transparent bg-primary py-2 px-4 text-sm font-medium text-white hover:bg-opacity-90"
-              >
-                Save
-              </button>
-            </div>
+            <button
+              type="submit"
+              className="mt-6 w-full rounded bg-primary py-2 text-center text-white hover:bg-opacity-90"
+            >
+              Simpan Perubahan
+            </button>
           </form>
         </div>
       </div>
