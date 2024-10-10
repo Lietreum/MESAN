@@ -1,0 +1,19 @@
+.input-field-enter {
+    opacity: 0;
+    max-height: 0;
+  }
+  .input-field-enter-active {
+    opacity: 1;
+    max-height: 100px;
+    transition: opacity 300ms, max-height 300ms;
+  }
+  .input-field-exit {
+    opacity: 1;
+    max-height: 100px;
+  }
+  .input-field-exit-active {
+    opacity: 0;
+    max-height: 0;
+    transition: opacity 300ms, max-height 300ms;
+  }
+  
