@@ -1,10 +1,34 @@
-import React from "react";
+import React, { useState } from "react";
+import axios from "axios";
 import LoginImage from "../../assets/data/onigiri.png";
 import { FaCaravan } from "react-icons/fa";
 
-type LoginProps = {};
+const Login: React.FC = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
 
-const Login: React.FC<LoginProps> = () => {
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    try {
+      const response = await axios.post("http://localhost:3001/auth/login", {
+        email,
+        password,
+      });
+
+      const { token, refreshToken } = response.data;
+
+      // Store tokens in local storage or cookies
+      localStorage.setItem("token", token);
+      localStorage.setItem("refreshToken", refreshToken);
+
+      // Redirect the user to the dashboard
+      window.location.href = "/";
+    } catch (err) {
+      setError("Invalid login credentials");
+    }
+  };
+
   return (
     <section className="bg-white">
       <div className="lg:grid lg:min-h-screen lg:grid-cols-12">
@@ -46,7 +70,9 @@ const Login: React.FC<LoginProps> = () => {
             </div>
 
             {/* Login Form */}
-            <form action="#" className="mt-8 grid grid-cols-6 gap-6">
+            <form onSubmit={handleSubmit} className="mt-8 grid grid-cols-6 gap-6">
+              {error && <p className="col-span-6 text-red-500">{error}</p>}
+
               {/* Email */}
               <div className="col-span-6">
                 <label
@@ -59,6 +85,8 @@ const Login: React.FC<LoginProps> = () => {
                   type="email"
                   id="Email"
                   name="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
                   className="mt-1 w-full rounded-md border border-gray-300 bg-white text-lg text-gray-800 shadow-sm focus:border-blue-500 focus:ring-blue-500 py-3 px-4"
                 />
               </div>
@@ -75,6 +103,8 @@ const Login: React.FC<LoginProps> = () => {
                   type="password"
                   id="Password"
                   name="password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
                   className="mt-1 w-full rounded-md border border-gray-300 bg-white text-lg text-gray-800 shadow-sm focus:border-blue-500 focus:ring-blue-500 py-3 px-4"
                 />
               </div>

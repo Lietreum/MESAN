@@ -1,10 +1,56 @@
-import React from "react";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import LoginImage from "../../assets/data/onigiri.png";
 import { FaCaravan } from "react-icons/fa";
+import axios from "axios";
 
-type LoginProps = {};
+const Signup: React.FC = () => {
+  const navigate = useNavigate();
+  const [formData, setFormData] = useState({
+    first_name: "",
+    last_name: "",
+    email: "",
+    password: "",
+    password_confirmation: "",
+  });
+  const [error, setError] = useState("");
 
-const Signup: React.FC<LoginProps> = () => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    const { first_name, last_name, email, password, password_confirmation } = formData;
+
+    if (password !== password_confirmation) {
+      setError("Passwords do not match");
+      return;
+    }
+
+    try {
+      // Menggunakan URL yang sesuai untuk API pendaftaran
+      const response = await axios.post("http://localhost:3001/auth/register", {
+        name: `${first_name} ${last_name}`,
+        email,
+        password,
+      });
+
+      if (response.status === 201) {
+        // Registrasi berhasil, arahkan ke halaman login
+        navigate("/login");
+      }
+    } catch (err) {
+      console.error("Registration error", err);
+      // Menampilkan pesan kesalahan yang lebih informatif
+      if (axios.isAxiosError(err)) {
+        setError(err.response?.data.message || "Failed to register. Please try again.");
+      } else {
+        setError("Failed to register. Please try again.");
+      }
+    }
+  };
+
   return (
     <section className="bg-white">
       <div className="lg:grid lg:min-h-screen lg:grid-cols-12">
@@ -40,13 +86,13 @@ const Signup: React.FC<LoginProps> = () => {
                 Welcome to Mesan 👋
               </h1>
               <p className="mt-4 text-gray-500 leading-relaxed">
-                We help you order your favorite food from your school canteen, 
+                We help you order your favorite food from your school canteen,
                 cooperation, or any other place you prefer.
               </p>
             </div>
 
             {/* Form Section */}
-            <form action="#" className="mt-8 grid grid-cols-6 gap-6">
+            <form onSubmit={handleSubmit} className="mt-8 grid grid-cols-6 gap-6">
               {/* First Name */}
               <div className="col-span-6 sm:col-span-3">
                 <label
@@ -59,6 +105,8 @@ const Signup: React.FC<LoginProps> = () => {
                   type="text"
                   id="FirstName"
                   name="first_name"
+                  value={formData.first_name}
+                  onChange={handleChange}
                   className="mt-1 w-full rounded-md border border-gray-300 bg-white text-lg text-gray-800 shadow-sm focus:border-blue-500 focus:ring-blue-500 py-3 px-4"
                 />
               </div>
@@ -75,6 +123,8 @@ const Signup: React.FC<LoginProps> = () => {
                   type="text"
                   id="LastName"
                   name="last_name"
+                  value={formData.last_name}
+                  onChange={handleChange}
                   className="mt-1 w-full rounded-md border border-gray-300 bg-white text-lg text-gray-800 shadow-sm focus:border-blue-500 focus:ring-blue-500 py-3 px-4"
                 />
               </div>
@@ -91,6 +141,8 @@ const Signup: React.FC<LoginProps> = () => {
                   type="email"
                   id="Email"
                   name="email"
+                  value={formData.email}
+                  onChange={handleChange}
                   className="mt-1 w-full rounded-md border border-gray-300 bg-white text-lg text-gray-800 shadow-sm focus:border-blue-500 focus:ring-blue-500 py-3 px-4"
                 />
               </div>
@@ -107,6 +159,8 @@ const Signup: React.FC<LoginProps> = () => {
                   type="password"
                   id="Password"
                   name="password"
+                  value={formData.password}
+                  onChange={handleChange}
                   className="mt-1 w-full rounded-md border border-gray-300 bg-white text-lg text-gray-800 shadow-sm focus:border-blue-500 focus:ring-blue-500 py-3 px-4"
                 />
               </div>
@@ -123,9 +177,18 @@ const Signup: React.FC<LoginProps> = () => {
                   type="password"
                   id="PasswordConfirmation"
                   name="password_confirmation"
+                  value={formData.password_confirmation}
+                  onChange={handleChange}
                   className="mt-1 w-full rounded-md border border-gray-300 bg-white text-lg text-gray-800 shadow-sm focus:border-blue-500 focus:ring-blue-500 py-3 px-4"
                 />
               </div>
+
+              {/* Error Message */}
+              {error && (
+                <div className="col-span-6">
+                  <p className="text-red-500">{error}</p>
+                </div>
+              )}
 
               {/* Submit Button */}
               <div className="col-span-6 sm:flex sm:items-center sm:gap-4">
@@ -135,7 +198,7 @@ const Signup: React.FC<LoginProps> = () => {
 
                 <p className="mt-4 text-sm text-gray-500 sm:mt-0">
                   Already have an account?{" "}
-                  <a href="#" className="text-blue-600 underline">
+                  <a href="/login" className="text-blue-600 underline">
                     Log in
                   </a>
                   .
@@ -148,4 +211,5 @@ const Signup: React.FC<LoginProps> = () => {
     </section>
   );
 };
+
 export default Signup;
