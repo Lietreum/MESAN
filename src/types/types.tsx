@@ -129,7 +129,7 @@ export interface AnimatedTextProps {
 export interface ProductCardProps {
   image: string;
   productName: string;
-  price: string; // Ubah dari string ke number
+  price: number; // Ubah dari string ke number
 }
 
 // Notification 
