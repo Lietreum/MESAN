@@ -7,6 +7,7 @@ import WalletCard from "../../components/user/Header/WalletCard";
 // import SearchBar from "../../components/user/SearchBar/SearchBar";
 import Profileholder from "../../assets/admin/images/user/user-01.png"
 import SearchBar from "../../components/user/SearchBar/SearchBar";
+import Filter from "../../components/user/SearchBar/Filter";
 // import Footer from "../../components/user/Footer/Footer";
 
 const Homepage: React.FC = () => {
@@ -42,6 +43,10 @@ const Homepage: React.FC = () => {
       </Box>
 
 
+<Box>
+  <SearchBar/><Filter/>
+</Box>
+
       {/* Animated Text Section */}
       <Box
         sx={{
@@ -71,12 +76,6 @@ const Homepage: React.FC = () => {
         />
         
       </Box>
-
-      <Box>
-  <SearchBar
-  
-  />
-</Box>
       
 
       {/* Store Cards Section */}

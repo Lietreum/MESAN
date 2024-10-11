@@ -117,3 +117,17 @@ export interface ProductCardProps {
   productName: string;
   price: string; // Ubah dari string ke number
 }
+
+// Notification 
+export interface PesananProps  {
+  PesananList ?: {
+  storeName: string;
+  imageUrl: string;
+  foodName: string;
+  price: string;
+  quantity: string;
+  orderId: number;
+  userId: number;
+  storeId: number;
+  }[];
+}

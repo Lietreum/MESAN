@@ -220,9 +220,8 @@ function App() {
             {<OrderItem />}
             <PageTitle title="User Notification" />
           </UserLayout>
-        }
-        />
-
+          }
+         />
         {/* Admin Routes */}
         <Route
           path="/pedagang"
