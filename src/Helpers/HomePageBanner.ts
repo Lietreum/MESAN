@@ -63,4 +63,5 @@ const data = [
         name: "Kantin Pak Iwan"
     },
 ]
-export default data;
+
+export default data ;

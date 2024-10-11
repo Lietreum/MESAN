@@ -22,7 +22,7 @@ import OverlayCard from "./components/user/Header/OverlayCard";
 import IncomingOrders from "./components/admin/Product/IncomingOrders";
 import StockNotification from "./components/admin/Product/StockNotification";
 import QRAdmin from "./components/admin/Product/QRAdmin";
-import Notification from "./components/user/Header/Notification";
+import Notification from "./components/user/NotificationOrder/Notification";
 import PaymentOptions from "./components/user/Header/PaymentOptions";
 import PaymentDetails from "./components/user/Header/PaymentDetails";
 import KasirLayout from "./layouts/kasir/KasirLayout";
@@ -34,8 +34,13 @@ import HistoryKasir from "./pages/kasir/History/HistoryKasir";
 import AddProductPage from "./pages/admin/Product/AddProduct";
 import ProfilePage from "./components/user/Profile/Profile";
 import WalletSiswa from "./pages/siswa/walletdashboard/WalletSiswa";
+<<<<<<< HEAD
 import Order from "./pages/siswa/orderstatus/Order";
 import OrderStatus from "./pages/siswa/orderstatus/OrderStatus";
+=======
+import PaymentCountdownPage from "./components/user/Header/PaymentCountdown";
+import OrderItem from "./components/user/NotificationOrder/Notification";
+>>>>>>> 675c5db116c815b01e4ff36c873e8508e67319fd
 
 
 function App() {
@@ -130,6 +135,7 @@ function App() {
               <KasirTopup />
             </KasirLayout>
           }
+          
         />
         <Route
           path="/cart"
@@ -155,6 +161,15 @@ function App() {
             <UserLayout>
               <PageTitle title="User Notification" />
               <PaymentOptions />
+            </UserLayout>
+          }
+          />
+          <Route
+          path="/Countdown"
+          element={
+            <UserLayout>
+              <PageTitle title="User Notification" />
+              <PaymentCountdownPage />
             </UserLayout>
           }
           />
@@ -203,7 +218,15 @@ function App() {
             </UserLayout>
           }
           />
-
+          <Route
+       path="/orders/:userId"
+        element={
+          <UserLayout>
+            {<OrderItem />}
+            <PageTitle title="User Notification" />
+          </UserLayout>
+          }
+         />
         {/* Admin Routes */}
         <Route
           path="/pedagang"

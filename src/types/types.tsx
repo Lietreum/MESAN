@@ -3,6 +3,20 @@ import { ReactNode } from "react";
 export interface BreadcrumbProps {
   pageName: string;
 }
+// Notifiaion
+export interface PesananProps  {
+  PesananList ?: {
+  storeName: string;
+  imageUrl: string;
+  foodName: string;
+  price: string;
+  quantity: string;
+  orderId: number;
+  userId: number;
+  storeId: number;
+  
+  }[];
+}
 
 //   C:\Users\User\Desktop\allcode\s\src\components\admin\Product\IncomingOrders.tsx
 export interface IncomingOrdersProducts {
@@ -49,7 +63,7 @@ export interface CategoryCardProps {
 export interface ProductCardProps {
   image: string;
   productName: string;
-  price: string;
+  price: number;
 }
 
 export interface OrderVerificationProps {
@@ -115,5 +129,19 @@ export interface AnimatedTextProps {
 export interface ProductCardProps {
   image: string;
   productName: string;
-  price: string; // Ubah dari string ke number
+  price: number; // Ubah dari string ke number
+}
+
+// Notification 
+export interface PesananProps  {
+  PesananList ?: {
+  storeName: string;
+  imageUrl: string;
+  foodName: string;
+  price: string;
+  quantity: string;
+  orderId: number;
+  userId: number;
+  storeId: number;
+  }[];
 }

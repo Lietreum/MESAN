@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { BiHide } from "react-icons/bi";
+import { FaCoins } from "react-icons/fa"; // Import FaCoins icon
 import { useNavigate } from 'react-router-dom'; 
 
 const PaymentOptions: React.FC = () => {
@@ -17,7 +18,8 @@ const PaymentOptions: React.FC = () => {
 
   const handleContinue = () => {
     if (selectedMethod) {
-      navigate(`/${selectedMethod}`);
+      // Navigate to the Countdown page with the selected payment method
+      navigate('/Countdown'); // Change this line to navigate to Countdown
     }
   };
 
@@ -30,8 +32,15 @@ const PaymentOptions: React.FC = () => {
           <div className="flex justify-between items-center mb-4">
             <div>
               <span className="block text-sm text-gray-200">Your Balance</span>
-              <span className="text-4xl font-bold">
-                {isBalanceHidden ? '● ● ● ● ● ● ● ●' : 'Rp 169,000'}
+              <span className="text-4xl font-bold flex items-center">
+                {isBalanceHidden ? (
+                  '● ● ● ● ● ● ● ●'
+                ) : (
+                  <>
+                    <FaCoins className="mr-2" /> {/* Add FaCoins icon */}
+                    Rp 169,000
+                  </>
+                )}
               </span>
             </div>
             <div onClick={toggleBalanceVisibility} className="cursor-pointer">
