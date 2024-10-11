@@ -135,7 +135,7 @@ const Signup: React.FC<LoginProps> = () => {
 
                 <p className="mt-4 text-sm text-gray-500 sm:mt-0">
                   Already have an account?{" "}
-                  <a href="#" className="text-blue-600 underline">
+                  <a href="/login" className="text-blue-600 underline">
                     Log in
                   </a>
                   .

@@ -102,7 +102,7 @@ const Login: React.FC<LoginProps> = () => {
 
                 <p className="mt-4 text-sm text-gray-500 sm:mt-0">
                   Don’t have an account?{" "}
-                  <a href="#" className="text-blue-600 underline">
+                  <a href="/signup" className="text-blue-600 underline">
                     Sign up
                   </a>
                   .
