@@ -34,6 +34,7 @@ import HistoryKasir from "./pages/kasir/History/HistoryKasir";
 import AddProductPage from "./pages/admin/Product/AddProduct";
 import ProfilePage from "./components/user/Profile/Profile";
 import WalletSiswa from "./pages/siswa/walletdashboard/WalletSiswa";
+import PaymentCountdownPage from "./components/user/Header/PaymentCountdown";
 
 
 function App() {
@@ -153,6 +154,15 @@ function App() {
             <UserLayout>
               <PageTitle title="User Notification" />
               <PaymentOptions />
+            </UserLayout>
+          }
+          />
+          <Route
+          path="/Countdown"
+          element={
+            <UserLayout>
+              <PageTitle title="User Notification" />
+              <PaymentCountdownPage />
             </UserLayout>
           }
           />
