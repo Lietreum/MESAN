@@ -39,7 +39,6 @@ const FavoriteCards: React.FC = () => {
 
   const products = [
     {
-<<<<<<< HEAD
       image: "https://i.pinimg.com/564x/ee/ca/be/eecabed96fda864cf6f6f76441a260d5.jpg",
       productName: "Martabak Telur",
       price: 0.333333 * usdToIdr, // Konversi dolar ke rupiah
@@ -53,21 +52,6 @@ const FavoriteCards: React.FC = () => {
       image: "https://i.pinimg.com/564x/a2/4c/d5/a24cd5106510c99bccb6c79567fc82b0.jpg",
       productName: "Seblak",
       price: 0.6666666 * usdToIdr, // Konversi dolar ke rupiah
-=======
-      image: "https://tailwindui.com/img/ecommerce-images/category-page-04-image-card-04.jpg",
-      productName: "Product One",
-      price: 49.99 * usdToIdr, // Convert USD to IDR
-    },
-    {
-      image: "https://tailwindui.com/img/ecommerce-images/category-page-04-image-card-04.jpg",
-      productName: "Product Two",
-      price: 29.99 * usdToIdr, // Convert USD to IDR
-    },
-    {
-      image: "https://tailwindui.com/img/ecommerce-images/category-page-04-image-card-04.jpg",
-      productName: "Product Three",
-      price: 39.99 * usdToIdr, // Convert USD to IDR
->>>>>>> 675c5db116c815b01e4ff36c873e8508e67319fd
     },
   ];
 

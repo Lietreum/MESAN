@@ -34,14 +34,10 @@ import HistoryKasir from "./pages/kasir/History/HistoryKasir";
 import AddProductPage from "./pages/admin/Product/AddProduct";
 import ProfilePage from "./components/user/Profile/Profile";
 import WalletSiswa from "./pages/siswa/walletdashboard/WalletSiswa";
-<<<<<<< HEAD
 import Order from "./pages/siswa/orderstatus/Order";
 import OrderStatus from "./pages/siswa/orderstatus/OrderStatus";
-=======
 import PaymentCountdownPage from "./components/user/Header/PaymentCountdown";
 import OrderItem from "./components/user/NotificationOrder/Notification";
->>>>>>> 675c5db116c815b01e4ff36c873e8508e67319fd
-
 
 function App() {
 
