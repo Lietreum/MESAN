@@ -15,7 +15,7 @@ const SortDropdown: React.FC = () => {
         <div className="relative">
           <button
             onClick={() => setOpenSort(!openSort)}
-            className="flex text-white bg-gray-200 items-center justify-start w-40 py-2 mt-2 text-sm font-semibold text-left bg-transparent rounded-lg"
+            className="flex text-black bg-gray-200 items-center justify-start w-40 py-2 mt-2 text-sm font-semibold text-left bg-transparent rounded-lg"
           >
             <span>{sortType}</span>
             <svg

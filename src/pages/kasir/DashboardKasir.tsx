@@ -2,33 +2,18 @@ import React from "react";
 import TopRightContent from "../../components/kasir/dashboard/TopRightContent";
 import CategoryCard from "../../components/user/CategoryCard/CategoryCard";
 import BottomRightContent from "../../components/kasir/dashboard/BottomRightContent";
+import canteenData from "../../Helpers/HomePageBanner";  // Import the data
 
-const DashboardKasir = () => {
+const DashboardKasir: React.FC = () => {
   return (
     <div className="grid grid-cols-12 gap-2 p-2 h-screen">
       {/* Left content (Products grid) */}
       <div className="col-span-8 grid grid-cols-2 gap-2 border p-2 overflow-auto scrollbar-hide">
-        <div className="border p-2">
-          <CategoryCard data={{ name: "Kantin Ibu Kosim", img: "image1" }} />
-        </div>
-        <div className="border p-2">
-          <CategoryCard data={{ name: "Kantin Ibu Sumyati", img: "image2" }} />
-        </div>
-        <div className="border p-2">
-          <CategoryCard data={{ name: "Kantin Ibu Afika", img: "image3" }} />
-        </div>
-        <div className="border p-2">
-          <CategoryCard data={{ name: "Kantin Ibu Irma", img: "image4" }} />
-        </div>
-        <div className="border p-2">
-          <CategoryCard data={{ name: "Kantin Ibu Enok", img: "image5" }} />
-        </div>
-        <div className="border p-2">
-          <CategoryCard data={{ name: "Kantin Pak Iwan", img: "image6" }} />
-        </div>
-        <div className="border p-2">
-          <CategoryCard data={{ name: "Kantin Ibu Lina", img: "image7" }} />
-        </div>
+        {canteenData.map((canteen, index) => (
+          <div key={index} className="border p-2">
+            <CategoryCard data={{ name: canteen.name, img: canteen.img }} />
+          </div>
+        ))}
       </div>
 
       {/* Right content */}
@@ -39,7 +24,7 @@ const DashboardKasir = () => {
         </div>
 
         {/* Bottom-right content (payment summary) */}
-        <BottomRightContent /> {/* Use the PaymentSummary component */}
+        <BottomRightContent />
       </div>
     </div>
   );
