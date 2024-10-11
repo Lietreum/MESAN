@@ -9,7 +9,7 @@ import PageTitle from "../components/admin/PageTitle";
 import OverlayCard from "../components/user/Header/OverlayCard";
 import PaymentDetails from "../components/user/Header/PaymentDetails";
 import PaymentOptions from "../components/user/Header/PaymentOptions";
-import Notification from "../components/user/Header/Notification";
+import Notification from "../components/user/NotificationOrder/Notification";
 
 const UserRoutes = () => (
   <Routes>
