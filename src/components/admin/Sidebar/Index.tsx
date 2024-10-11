@@ -1,11 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { NavLink, useLocation } from "react-router-dom";
-<<<<<<< HEAD
-import Logo from "../../../assets/data/mesan-removebg-preview.png";
-import { AiOutlineAppstore, AiOutlineMenuFold } from "react-icons/ai";
-=======
 import { AiOutlineAppstore, AiOutlineMenuFold, AiFillProduct } from "react-icons/ai";
->>>>>>> 57fa3e4f6f3f7f576fb8a033e0f196f94eff0cc5
 import { IoChatboxEllipses } from "react-icons/io5";
 import { TiDocumentText } from "react-icons/ti";
 import Logo from "../../../assets/data/mesan-removebg-preview.png";
@@ -44,18 +39,6 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
     document.addEventListener("click", handleClickOutside);
     return () => document.removeEventListener("click", handleClickOutside);
   }, [sidebarOpen, setSidebarOpen]);
-<<<<<<< HEAD
-
-  useEffect(() => {
-    const keyHandler = ({ keyCode }: KeyboardEvent) => {
-      if (!sidebarOpen || keyCode !== 27) return;
-      setSidebarOpen(false);
-    };
-    document.addEventListener("keydown", keyHandler);
-    return () => document.removeEventListener("keydown", keyHandler);
-  }, [sidebarOpen, setSidebarOpen]);
-=======
->>>>>>> 57fa3e4f6f3f7f576fb8a033e0f196f94eff0cc5
 
   // Close sidebar on `Esc` key press
   useEffect(() => {
@@ -130,23 +113,6 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
               </NavLink>
             </li>
 
-<<<<<<< HEAD
-            {/* Top Up Link */}
-            <NavLink
-              to="/admin/messages"
-              className={({ isActive }) =>
-                `flex items-center justify-start w-full gap-3 px-4 py-2 rounded-md text-white hover:bg-[#1E293B] transition ${
-                  isActive ? "bg-[#1E293B]" : ""
-                }`
-              }
-            >
-              <IoChatboxEllipses size={20} />
-              Messages
-            </NavLink>
-
-            {/* Settings */}
-=======
->>>>>>> 57fa3e4f6f3f7f576fb8a033e0f196f94eff0cc5
             <li>
               <NavLink
                 to="/pedagang/messages"
@@ -174,18 +140,6 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
         </nav>
       </div>
 
-<<<<<<< HEAD
-      {/* Footer */}
-      <div className="py-4 px-6 mt-auto flex items-center space-x-4">
-        <div className="flex items-center space-x-4">
-          <img src={Logo4} alt="Logo 1" className="h-8 w-auto" />
-          <img src={LogoC} alt="Logo 2" className="h-10 w-auto" />{" "}
-          <p className="text-xs text-white opacity-60 text-center flex-grow">
-            Created by SMKN 4 Bandung with support from PT. Curaweda Palagam
-            Innotec
-          </p>
-        </div>
-=======
       {/* Sidebar Footer */}
       <div className="mt-auto flex items-center space-x-4 px-6 py-4 bg-[#0F1E34]">
         <img src={Logo4} alt="Logo SMKN 4" className="h-8" />
@@ -193,7 +147,6 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
         <p className="text-xs text-white opacity-60 text-center flex-grow">
           Created by SMKN 4 Bandung with support from PT. Curaweda Palagam Innotec
         </p>
->>>>>>> 57fa3e4f6f3f7f576fb8a033e0f196f94eff0cc5
       </div>
     </aside>
   );
