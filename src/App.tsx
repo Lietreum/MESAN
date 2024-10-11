@@ -22,7 +22,7 @@ import OverlayCard from "./components/user/Header/OverlayCard";
 import IncomingOrders from "./components/admin/Product/IncomingOrders";
 import StockNotification from "./components/admin/Product/StockNotification";
 import QRAdmin from "./components/admin/Product/QRAdmin";
-import Notification from "./components/user/NotificationOrder/Notification";
+import Notification from "./components/user/Notification/Notification";
 import PaymentOptions from "./components/user/Header/PaymentOptions";
 import PaymentDetails from "./components/user/Header/PaymentDetails";
 import KasirLayout from "./layouts/kasir/KasirLayout";
@@ -34,9 +34,10 @@ import HistoryKasir from "./pages/kasir/History/HistoryKasir";
 import AddProductPage from "./pages/admin/Product/AddProduct";
 import ProfilePage from "./components/user/Profile/Profile";
 import WalletSiswa from "./pages/siswa/walletdashboard/WalletSiswa";
+import Order from "./pages/siswa/orderstatus/Order";
+import OrderStatus from "./pages/siswa/orderstatus/OrderStatus";
 import PaymentCountdownPage from "./components/user/Header/PaymentCountdown";
-import OrderItem from "./components/user/NotificationOrder/Notification";
-
+import OrderItem from "./components/user/NotificationOrder/percobaannotifikasi";
 
 function App() {
 
@@ -299,6 +300,25 @@ function App() {
               <PageTitle title="Pedagang Dashboard | Koperasi" />
               <Messages />
             </AdminLayout>
+          }
+        />
+        <Route
+          path="/order"
+          element={
+            <UserLayout>
+              <PageTitle title="Order" />
+              <Order />
+            </UserLayout>
+          }
+        />
+
+        <Route
+          path="/order/orderstatus"
+          element={
+            <UserLayout>
+              <PageTitle title="Order status | Koperasi" />
+              <OrderStatus />
+            </UserLayout>
           }
         />
 

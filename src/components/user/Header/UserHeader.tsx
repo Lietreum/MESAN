@@ -32,7 +32,7 @@ const Header: React.FC = () => {
           </Link>
 
           <Link
-            to="/#"
+            to="/order"
             className="relative flex items-center justify-center"
           >
             <LuClipboardList className="w-6 h-6 text-gray-600 dark:text-gray-300" />
