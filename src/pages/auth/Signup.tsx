@@ -30,7 +30,7 @@ const Register = () => {
   const handleRegister = async () => {
     try {
       const response = await axios.post(
-        "http://localhost:3001/api/auth/register", // Backend register route
+        "http://localhost:3001/auth/register", // Sesuaikan URL dengan backend register route
         {
           firstName,
           lastName,
