@@ -55,7 +55,7 @@ const IncomingOrders: React.FC = () => {
     setIncomingOrders((prevOrders) =>
       prevOrders.map((order) => {
         if (order.orderNo === orderNo && order.status === 'Done') {
-          navigate('/admin/qrscanplaceholder');
+          navigate('/pedagang/qrscanplaceholder');
         }
         return order;
       })

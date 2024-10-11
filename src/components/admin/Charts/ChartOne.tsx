@@ -8,7 +8,7 @@ const chartOptions: ApexOptions = {
     position: 'top',
     horizontalAlign: 'left',
   },
-  colors: ['#3C50E0', '#80CAEE'],
+  colors: ['#FFC107', '#FF5722'], // Yellow and Orange
   chart: {
     fontFamily: 'Satoshi, sans-serif',
     height: 335,
@@ -45,7 +45,7 @@ const chartOptions: ApexOptions = {
   markers: {
     size: 1,
     colors: '#fff',
-    strokeColors: ['#3056D3', '#80CAEE'],
+    strokeColors: ['#FFC107', '#FF5722'], // Yellow and Orange for stroke colors
     strokeWidth: 3,
     hover: { sizeOffset: 5 },
   },
@@ -76,7 +76,7 @@ const initialSeries = [
 ];
 
 const ChartOne: React.FC = () => {
-  const [] = useState(initialSeries);
+  const [series] = useState(initialSeries);
   const [activeSeries, setActiveSeries] = useState<number[]>([0]);
 
   const toggleSeries = (index: number) => {
@@ -87,7 +87,7 @@ const ChartOne: React.FC = () => {
     }
   };
 
-  const filteredSeries = initialSeries.filter((_, index) => activeSeries.includes(index));
+  const filteredSeries = series.filter((_, index) => activeSeries.includes(index));
 
   return (
     <div className="col-span-12 rounded-sm border border-stroke bg-white px-5 pt-7.5 pb-5 shadow-default dark:border-strokedark dark:bg-boxdark sm:px-7.5 xl:col-span-8">
@@ -101,7 +101,7 @@ const ChartOne: React.FC = () => {
             isActive={activeSeries.includes(0)}
           />
           <LegendItem
-            color="secondary"
+            color="primary"
             label="Total Sales"
             dateRange="12.04.2022 - 12.05.2022"
             onClick={() => toggleSeries(1)}

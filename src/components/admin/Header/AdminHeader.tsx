@@ -3,7 +3,6 @@ import DropdownMessage from './DropdownMessage';
 import DropdownNotification from './DropdownNotification';
 import DropdownUser from './DropdownAdmin';
 import LogoIcon from '../../../assets/admin/images/logo/Steam Circled.png';
-import DarkModeSwitcher from './DarkModeSwitcher';
 
 const Header = (props: {
   sidebarOpen: string | boolean | undefined;

@@ -27,12 +27,17 @@ import PaymentOptions from "./components/user/Header/PaymentOptions";
 import PaymentDetails from "./components/user/Header/PaymentDetails";
 import KasirLayout from "./layouts/kasir/KasirLayout";
 import HomeKasir from "./pages/kasir/DashboardKasir";
+import KasirTopup from "./pages/kasir/Topup/KasirTopup";
+import ManageAccount from "./pages/admin/ManageAccount";
+import Withdrawal from "./pages/kasir/Withdrawal/Withdrawal";
+import HistoryKasir from "./pages/kasir/History/HistoryKasir";
+import AddProductPage from "./pages/admin/Product/AddProduct";
+import ProfilePage from "./components/user/Profile/Profile";
+import WalletSiswa from "./pages/siswa/walletdashboard/WalletSiswa";
+import PaymentCountdownPage from "./components/user/Header/PaymentCountdown";
+
 
 function App() {
-  // vercel analytics start
-  // inject();
-  // injectSpeedInsights();
-  // vercel analytics end
 
   const [loading, setLoading] = useState<boolean>(true);
   const { pathname } = useLocation();
@@ -89,6 +94,43 @@ function App() {
           }
         />
         <Route
+          path="/kasir/ManageAccounts"
+          element={
+            <KasirLayout>
+              <PageTitle title="Transaction History" />
+              <ManageAccount />
+            </KasirLayout>
+          }
+        />
+        <Route
+          path="/kasir/history"
+          element={
+            <KasirLayout>
+              <PageTitle title="Transaction History" />
+              <HistoryKasir />
+            </KasirLayout>
+          }
+        />
+        <Route
+          path="/kasir/withdrawal"
+          element={
+            <KasirLayout>
+              <PageTitle title="Transaction History" />
+              <Withdrawal />
+            </KasirLayout>
+          }
+        />
+
+        <Route
+          path="/kasir/Topup"
+          element={
+            <KasirLayout>
+              <PageTitle title="Topup" />
+              <KasirTopup />
+            </KasirLayout>
+          }
+        />
+        <Route
           path="/cart"
           element={
             <UserLayout>
@@ -114,7 +156,16 @@ function App() {
               <PaymentOptions />
             </UserLayout>
           }
-        />
+          />
+          <Route
+          path="/Countdown"
+          element={
+            <UserLayout>
+              <PageTitle title="User Notification" />
+              <PaymentCountdownPage />
+            </UserLayout>
+          }
+          />
         <Route
           path="/PaymentDetailsPlchold"
           element={
@@ -151,13 +202,22 @@ function App() {
             </UserLayout>
           }
         />
+        <Route
+          path="/profile-page"
+          element={
+            <UserLayout>
+              <PageTitle title="ProfilePage" />
+              <ProfilePage/>
+            </UserLayout>
+          }
+          />
 
         {/* Admin Routes */}
         <Route
-          path="/admin"
+          path="/pedagang"
           element={
             <AdminLayout>
-              <PageTitle title="Admin Dashboard | Koperasi" />
+              <PageTitle title="Pedagang Dashboard | Koperasi" />
               <ECommerce />
             </AdminLayout>
           }
@@ -165,7 +225,7 @@ function App() {
 
         {/* Admin Routes */}
         <Route
-          path="/admin/product"
+          path="/pedagang/product"
           element={
             <AdminLayout>
               <PageTitle title="Product | Koperasi" />
@@ -174,7 +234,7 @@ function App() {
           }
         />
         <Route
-          path="/admin/incoming-orders"
+          path="/pedagang/incoming-orders"
           element={
             <AdminLayout>
               <PageTitle title="Incoming Orders | Koperasi" />
@@ -184,7 +244,7 @@ function App() {
         />
 
         <Route
-          path="/admin/stock-notification"
+          path="/pedagang/stock-notification"
           element={
             <AdminLayout>
               <PageTitle title="Stock Notification | Koperasi" />
@@ -193,7 +253,7 @@ function App() {
           }
         />
         <Route
-          path="/admin/qrscanplaceholder"
+          path="/pedagang/qrscanplaceholder"
           element={
             <AdminLayout>
               <PageTitle title=" QRScan Admin | Koperasi" />
@@ -203,7 +263,7 @@ function App() {
         />
 
         <Route
-          path="/profile"
+          path="/pedagang/profile"
           element={
             <AdminLayout>
               <PageTitle title="Profile" />
@@ -223,14 +283,39 @@ function App() {
         />
 
         <Route
-          path="/admin/messages"
+          path="/pedagang/messages"
           element={
             <AdminLayout>
-              <PageTitle title="Admin Dashboard | Koperasi" />
+              <PageTitle title="Pedagang Dashboard | Koperasi" />
               <Messages />
             </AdminLayout>
           }
         />
+
+        {/* AddProduct Routes */}
+        <Route
+          path="/pedagang/add-product"
+          element={
+            <AdminLayout>
+              <PageTitle title="Add Product | Koperasi" />
+              <AddProductPage show={false} onClose={function (): void {
+                throw new Error("Function not implemented.");
+              } } />
+            </AdminLayout>
+          }
+          />
+
+        <Route
+          path="/pedagang/edit-product"
+          element={
+            <AdminLayout>
+              <PageTitle title="Edit Product | Koperasi" />
+              <AddProductPage show={false} onClose={function (): void {
+                throw new Error("Function not implemented.");
+              } } />
+            </AdminLayout>
+          }
+          />
         {/* Authentication Routes */}
         <Route
           path="/login"
@@ -253,6 +338,16 @@ function App() {
 
         {/* 404 Not Found Route */}
         <Route path="*" element={<NotFound />} />
+
+        <Route
+          path="/walletsiswa"
+          element={
+            <UserLayout>
+              <PageTitle title="Wallet Siswa | Koperasi" />
+              <WalletSiswa />
+            </UserLayout>
+          }
+        />
       </Routes>
     </>
   );

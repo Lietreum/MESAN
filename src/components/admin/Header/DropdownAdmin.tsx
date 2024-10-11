@@ -33,7 +33,7 @@ const DropdownUser: React.FC = () => {
           <ul className="flex flex-col gap-5 border-b border-stroke px-6 py-7.5 dark:border-strokedark">
             <li>
               <Link
-                to="/profile"
+                to="/pedagang/profile"
                 className="flex items-center gap-3.5 text-sm font-medium duration-300 ease-in-out hover:text-primary lg:text-base"
               >
                 My Profile

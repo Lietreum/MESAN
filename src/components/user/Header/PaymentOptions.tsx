@@ -1,58 +1,85 @@
-import React from 'react';
-import { Plus, ChevronDown, Wallet, CreditCard, ShoppingCart, DollarSign } from 'lucide-react';
+import React, { useState } from 'react';
+import { BiHide } from "react-icons/bi";
+import { FaCoins } from "react-icons/fa"; // Import FaCoins icon
+import { useNavigate } from 'react-router-dom'; 
 
 const PaymentOptions: React.FC = () => {
+  const [selectedMethod, setSelectedMethod] = useState('');
+  const [isBalanceHidden, setIsBalanceHidden] = useState(false);
+  const navigate = useNavigate();
+
+  const handleSelectMethod = (method: string) => {
+    setSelectedMethod(method);
+  };
+
+  const toggleBalanceVisibility = () => {
+    setIsBalanceHidden(!isBalanceHidden);
+  };
+
+  const handleContinue = () => {
+    if (selectedMethod) {
+      // Navigate to the Countdown page with the selected payment method
+      navigate('/Countdown'); // Change this line to navigate to Countdown
+    }
+  };
+
   return (
-    <div className="p-6">
-      {/* Header Section */}
-      <header className="mb-6">
-        <h1 className="text-2xl font-bold text-gray-900">Topup</h1>
-        <h3 className="text-lg font-semibold text-gray-800 mt-2">Kartu Pembayaran Saya</h3>
-      </header>
-
-      {/* Card Section */}
-      <div className="rounded-xl bg-white shadow-md p-4 mb-6 flex items-center">
-        <div className="flex items-center justify-between w-full">
-          <div className="flex items-center space-x-4">
-            <div className="bg-gray-100 p-3 rounded-full">
-              <Plus className="text-gray-800" />
+    <div className="min-h-screen flex items-center justify-center bg-gray-100 p-6">
+      <div className="w-full max-w-5xl bg-white rounded-3xl overflow-hidden shadow-lg transition-all">
+        
+        {/* Header Section */}
+        <div className="relative bg-gradient-to-r from-[#1C2434] to-indigo-900 text-white p-10 rounded-3xl">
+          <div className="flex justify-between items-center mb-4">
+            <div>
+              <span className="block text-sm text-gray-200">Your Balance</span>
+              <span className="text-4xl font-bold flex items-center">
+                {isBalanceHidden ? (
+                  '● ● ● ● ● ● ● ●'
+                ) : (
+                  <>
+                    <FaCoins className="mr-2" /> {/* Add FaCoins icon */}
+                    Rp 169,000
+                  </>
+                )}
+              </span>
             </div>
-            <h3 className="text-gray-800 text-lg font-bold">Kartu Baru</h3>
+            <div onClick={toggleBalanceVisibility} className="cursor-pointer">
+              <BiHide className="w-8 h-8 text-white" /> 
+            </div>
           </div>
-          <ChevronDown className="text-gray-500" />
+          <div className="text-sm text-gray-300">User Number</div>
+          <div className="text-lg font-mono tracking-wider">1230 0236 0923</div>
         </div>
-      </div>
 
-      {/* E-Wallet Section */}
-      <div className="rounded-xl bg-white shadow-md p-4 mb-6">
-        <h4 className="text-sm font-semibold text-gray-600 mb-4">E - Wallet</h4>
-        <div className="flex flex-wrap items-center gap-4">
-          <div className="flex items-center space-x-2">
-            <Wallet className="text-gray-800 h-8 w-8" />
-            <span className="text-gray-800">Gopay</span>
+        {/* White Box Content */}
+        <div className="p-6">
+          <h2 className="text-xl font-semibold mb-6 text-gray-800">Choose Payment Method</h2>
+          
+          {/* Payment Methods */}
+          <div className="space-y-4">
+            {['DANA', 'GoPay', 'BCA', 'BRI', 'Mandiri'].map((method) => (
+              <button
+                key={method}
+                onClick={() => handleSelectMethod(method)}
+                className={`flex items-center w-full px-4 py-3 rounded-lg shadow-lg transform transition-transform 
+                  ${selectedMethod === method ? 'bg-blue-500 scale-105 border-2 border-blue-500' : 'bg-white hover:bg-blue-50 border border-gray-200'}`}
+              >
+                <img src={`https://via.placeholder.com/40?text=${method}`} alt={method} className="w-10 h-10 mr-4" />
+                <span className={`text-lg font-semibold transition-all ${selectedMethod === method ? 'text-white' : 'text-gray-700'}`}>{method}</span>
+              </button>
+            ))}
           </div>
-          <div className="flex items-center space-x-2">
-            <CreditCard className="text-gray-800 h-8 w-8" />
-            <span className="text-gray-800">OVO</span>
-          </div>
-          <div className="flex items-center space-x-2">
-            <DollarSign className="text-gray-800 h-8 w-8" />
-            <span className="text-gray-800">Dana</span>
-          </div>
-        </div>
-      </div>
 
-      {/* Agent Section */}
-      <div className="rounded-xl bg-white shadow-md p-4">
-        <h4 className="text-sm font-semibold text-gray-600 mb-4">AGEN</h4>
-        <div className="flex flex-wrap items-center gap-4">
-          <div className="flex items-center space-x-2">
-            <ShoppingCart className="text-gray-800 h-8 w-8" />
-            <span className="text-gray-800">Indomaret</span>
-          </div>
-          <div className="flex items-center space-x-2">
-            <ShoppingCart className="text-gray-800 h-8 w-8" />
-            <span className="text-gray-800">Alfamart</span>
+          {/* Continue Button */}
+          <div className="mt-8">
+            <button
+              onClick={handleContinue} 
+              className={`w-full py-3 rounded-full text-lg font-semibold text-white bg-gradient-to-r from-[#1C2434] to-indigo-900 transition-all
+                ${selectedMethod ? 'hover:bg-gray-800 cursor-pointer' : 'bg-gray-300 cursor-not-allowed'}`}
+              disabled={!selectedMethod}
+            >
+              Continue
+            </button>
           </div>
         </div>
       </div>

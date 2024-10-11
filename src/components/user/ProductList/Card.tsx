@@ -1,4 +1,4 @@
-import { Plus } from 'lucide-react';
+import { Plus, Search } from 'lucide-react';
 import React, { useState, useEffect } from "react";
 import { ProductListCard } from "../../../types/types";
 
@@ -6,38 +6,35 @@ import { ProductListCard } from "../../../types/types";
 const products: ProductListCard[] = [
   {
     id: 1,
-    title: 'Earthen Bottle',
-    price: 'Rp.48.000',
-    imageUrl: 'https://tailwindui.com/img/ecommerce-images/category-page-04-image-card-01.jpg',
+    title: 'Nasi Goreng',
+    price: 'Rp.15.000',
+    imageUrl: 'https://i.pinimg.com/564x/a2/a1/aa/a2a1aa02d183d6151427a97a99a15511.jpg',
     altText: 'Tall slender porcelain bottle with natural clay textured body and cork stopper.',
     type: "yesTopping",
   },
   {
     id: 2,
-    title: 'Nomad Tumbler',
-    price: 'Rp.35.000',
-    imageUrl: 'https://tailwindui.com/img/ecommerce-images/category-page-04-image-card-02.jpg',
+    title: 'Seblak',
+    price: 'Rp.10.000',
+    imageUrl: 'https://i.pinimg.com/736x/1d/27/5d/1d275d02f38bef5a4ffe63cb83720d85.jpg',
     altText: 'Olive drab green insulated bottle with flared screw lid and flat top.',
     type: "yesTopping",
-
   },
   {
     id: 3,
-    title: 'Focus Paper Refill',
-    price: 'Rp.89.000',
-    imageUrl: 'https://tailwindui.com/img/ecommerce-images/category-page-04-image-card-03.jpg',
+    title: 'Gorengan',
+    price: 'Rp.1.000',
+    imageUrl: 'https://i.pinimg.com/564x/69/98/e7/6998e7c9c175a39bc5f7eac7d0696534.jpg',
     altText: 'Person using a pen to cross a task off a productivity paper card.',
     type: "yesTopping",
-
   },
   {
     id: 4,
-    title: 'Machined Mechanical Pencil',
-    price: 'Rp.35.000',
-    imageUrl: 'https://tailwindui.com/img/ecommerce-images/category-page-04-image-card-04.jpg',
+    title: 'Batagor',
+    price: 'Rp.5.000',
+    imageUrl: 'https://i.pinimg.com/564x/b4/27/9a/b4279a9dc7fbe09c12a49d3ea98ca71c.jpg',
     altText: 'Hand holding black machined steel mechanical pencil with brass tip and top.',
     type: "noTopping",
-
   },
 ];
 
@@ -183,7 +180,7 @@ const ProductCard: React.FC<ProductListCard & { onPlusClick: () => void }> = ({
   altText,
   onPlusClick,
 }) => (
-  <div className="relative group block w-full max-w-sm mx-auto rounded-lg overflow-hidden shadow-lg transition-transform transform hover:scale-105">
+  <div className="relative group block w-full max-w-sm mx-auto rounded-lg overflow-hidden shadow-lg transition-transform transform hover:scale-105" style={{ height: '400px' }}> {/* Set a fixed height */}
     <div className="w-full h-64 overflow-hidden bg-gray-200">
       <img
         src={imageUrl}
@@ -191,22 +188,26 @@ const ProductCard: React.FC<ProductListCard & { onPlusClick: () => void }> = ({
         className="w-full h-full object-cover object-center transition-opacity duration-300 group-hover:opacity-75"
       />
     </div>
-    <div className="p-4">
-      <h3 className="text-lg font-semibold text-gray-800">{title}</h3>
-      <p className="mt-1 text-xl font-bold text-gray-900">{price}</p>
-    </div>
-    <div
-      className="absolute bottom-4 right-4 bg-white p-2 rounded-full shadow-lg cursor-pointer"
-      onClick={onPlusClick}
-    >
-      <Plus className="text-gray-900 w-6 h-6" />
+    <div className="p-4 flex flex-col justify-between h-full"> {/* Flex to ensure consistent height */}
+      <div>
+        <h3 className="text-lg font-semibold text-gray-800">{title}</h3>
+        <p className="mt-1 text-xl font-bold text-gray-900">{price}</p>
+      </div>
+      <div
+        className="absolute bottom-4 right-4 bg-white p-2 rounded-full shadow-lg cursor-pointer"
+        onClick={onPlusClick}
+      >
+        <Plus className="text-gray-900 w-6 h-6" />
+      </div>
     </div>
   </div>
 );
 
+
 const ProductGrid: React.FC = () => {
   const [selectedProduct, setSelectedProduct] = useState<ProductListCard | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
 
   const openModal = (product: ProductListCard) => {
     setSelectedProduct(product);
@@ -218,12 +219,32 @@ const ProductGrid: React.FC = () => {
     setIsModalOpen(false);
   };
 
+  // Filter products based on the search query
+  const filteredProducts = products.filter(product =>
+    product.title.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+
   return (
-    <div className="bg-transparent">
+    <div className="bg-light-gray-100"> {/* Changed to light gray background */}
       <div className="mx-auto max-w-2xl px-4 py-16 sm:px-6 sm:py-24 lg:max-w-7xl lg:px-8">
         <h2 className="sr-only">Products</h2>
+
+        {/* Modern Search Input */}
+        <div className="relative mb-6">
+          <input
+            type="text"
+            placeholder="Search for products..."
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            className="bg-slate-200 w-full p-3 pl-10 border border-slate-200 rounded-lg shadow-md focus:outline-none focus:ring focus:ring-black transition duration-300"
+          />
+          <span className="absolute left-3 top-1/2 transform -translate-y-1/2">
+            <Search className="text-black w-5 h-5" />
+          </span>
+        </div>
+
         <div className="grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
-          {products.map((product) => (
+          {filteredProducts.map((product) => (
             <ProductCard
               key={product.id}
               {...product}

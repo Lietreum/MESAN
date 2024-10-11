@@ -114,36 +114,47 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
             <SidebarLinkGroup activeCondition={pathname.includes("product")}>
               {(handleClick, open) => (
                 <>
-                  <button
-                    onClick={(e) => {
-                      e.preventDefault();
-                      handleClick();
-                    }}
-                    className={`flex items-center justify-between w-full gap-3 px-4 py-2 rounded-md text-white hover:bg-[#1E293B] transition ${
-                      pathname.includes("product") ? "bg-[#1E293B]" : ""
-                    }`}
-                  >
-                    <div className="flex items-center gap-3">
+                  <div className="flex items-center justify-between w-full px-4 py-2 rounded-md text-white hover:bg-[#1E293B] transition">
+                    {/* Topup Link */}
+                    <NavLink
+                      to="/kasir/topup"
+                      className={({ isActive }) =>
+                        `flex items-center gap-3 transition hover:text-blue-400 ${
+                          isActive ? "text-blue-400" : "text-white"
+                        }`
+                      }
+                    >
                       <GrCart size={20} />
                       Topup
-                    </div>
-                    <AiOutlineDown
-                      className={`transition-transform duration-200 ${
-                        open ? "rotate-180" : ""
-                      }`}
-                    />
-                  </button>
+                    </NavLink>
+
+                    {/* Dropdown Toggle Button */}
+                    <button
+                      onClick={(e) => {
+                        e.preventDefault();
+                        handleClick();
+                      }}
+                      className="flex items-center"
+                    >
+                      <AiOutlineDown
+                        className={`transition-transform duration-200 ${
+                          open ? "rotate-180" : ""
+                        }`}
+                      />
+                    </button>
+                  </div>
+
                   {/* Dropdown */}
                   <div className={`pl-8 pt-2 ${!open && "hidden"}`}>
                     <NavLink
-                      to="/"
+                      to="/kasir/withdrawal"
                       className={({ isActive }) =>
                         `block py-2 text-white transition hover:text-blue-400 ${
                           isActive ? "text-blue-400" : ""
                         }`
                       }
                     >
-                      Topup
+                      Withdrawal
                     </NavLink>
                   </div>
                 </>
@@ -153,7 +164,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
             {/* Messages */}
             <li>
               <NavLink
-                to="/"
+                to="/kasir/history"
                 className={`flex items-center gap-3 px-4 py-2 rounded-md text-white hover:bg-[#1E293B] transition ${
                   pathname.includes("messages") ? "bg-[#1E293B]" : ""
                 }`}
@@ -168,7 +179,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
             {/* Profile */}
             <li>
               <NavLink
-                to="/"
+                to="/kasir/ManageAccounts"
                 className={`flex items-center gap-3 px-4 py-2 rounded-md text-white hover:bg-[#1E293B] transition ${
                   pathname.includes("profile") ? "bg-[#1E293B]" : ""
                 }`}
