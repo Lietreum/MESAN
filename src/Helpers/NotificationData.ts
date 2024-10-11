@@ -1,4 +1,4 @@
-import KantinIbuKosim from '../../assets/data/arrang.jpg';
+import KantinIbuKosim from '../assets/data/arrang.jpg';
 
 const Pesanan = [
   {
