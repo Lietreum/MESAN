@@ -22,7 +22,7 @@ import OverlayCard from "./components/user/Header/OverlayCard";
 import IncomingOrders from "./components/admin/Product/IncomingOrders";
 import StockNotification from "./components/admin/Product/StockNotification";
 import QRAdmin from "./components/admin/Product/QRAdmin";
-import Notification from "./components/user/NotificationOrder/Notification";
+import Notification from "./components/user/Notification/Notification";
 import PaymentOptions from "./components/user/Header/PaymentOptions";
 import PaymentDetails from "./components/user/Header/PaymentDetails";
 import KasirLayout from "./layouts/kasir/KasirLayout";
@@ -37,7 +37,7 @@ import WalletSiswa from "./pages/siswa/walletdashboard/WalletSiswa";
 import Order from "./pages/siswa/orderstatus/Order";
 import OrderStatus from "./pages/siswa/orderstatus/OrderStatus";
 import PaymentCountdownPage from "./components/user/Header/PaymentCountdown";
-import OrderItem from "./components/user/NotificationOrder/Notification";
+import OrderItem from "./components/user/NotificationOrder/percobaannotifikasi";
 
 function App() {
 

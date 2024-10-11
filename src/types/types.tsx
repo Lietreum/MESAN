@@ -133,7 +133,7 @@ export interface ProductCardProps {
 }
 
 // Notification 
-export interface PesananProps  {
+export interface NotificationProps  {
   PesananList ?: {
   storeName: string;
   imageUrl: string;
@@ -144,4 +144,23 @@ export interface PesananProps  {
   userId: number;
   storeId: number;
   }[];
+}
+
+// types.ts
+export interface Notification {
+  id: number;
+  title: string;
+  message: string;
+  imageUrl?: string; // Gambar opsional
+  timestamp: string;
+  actions?: NotificationAction[]; // Array action opsional
+}
+
+export interface NotificationAction {
+  label: string;
+  onClick: () => void;
+}
+
+export interface NotificationProps {
+  notifications: Notification[]; // Array notifikasi
 }
