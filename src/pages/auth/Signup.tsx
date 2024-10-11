@@ -30,7 +30,7 @@ const Signup: React.FC = () => {
 
     try {
       // Menggunakan URL yang sesuai untuk API pendaftaran
-      const response = await axios.post("http://localhost:3001/auth/register", {
+      const response = await axios.post("https://api-mesan.curaweda.com/register", {
         name: `${first_name} ${last_name}`,
         email,
         password,
