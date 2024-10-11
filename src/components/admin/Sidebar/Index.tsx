@@ -1,13 +1,12 @@
 import { useEffect, useRef, useState } from "react";
 import { NavLink, useLocation } from "react-router-dom";
 import Logo from "../../../assets/data/mesan-removebg-preview.png";
-import { AiOutlineAppstore, AiOutlineMenuFold} from "react-icons/ai";
+import { AiOutlineAppstore, AiOutlineMenuFold } from "react-icons/ai";
 import { IoChatboxEllipses } from "react-icons/io5";
 import { TiDocumentText } from "react-icons/ti";
 import { AiFillProduct } from "react-icons/ai";
 import Logo4 from "../../../assets/data/Logo SMKN 4 Transparent.png";
 import LogoC from "../../../assets/data/curaweda_ui.png";
-
 
 interface SidebarProps {
   sidebarOpen: boolean;
@@ -41,7 +40,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
     document.addEventListener("click", clickHandler);
     return () => document.removeEventListener("click", clickHandler);
   }, [sidebarOpen, setSidebarOpen]);
-  
+
   useEffect(() => {
     const keyHandler = ({ keyCode }: KeyboardEvent) => {
       if (!sidebarOpen || keyCode !== 27) return;
@@ -50,7 +49,6 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
     document.addEventListener("keydown", keyHandler);
     return () => document.removeEventListener("keydown", keyHandler);
   }, [sidebarOpen, setSidebarOpen]);
-  
 
   useEffect(() => {
     localStorage.setItem("sidebar-expanded", sidebarExpanded.toString());
@@ -134,7 +132,6 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
               Messages
             </NavLink>
 
-
             {/* Settings */}
             <li>
               <NavLink
@@ -155,12 +152,13 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
       <div className="py-4 px-6 mt-auto flex items-center space-x-4">
         <div className="flex items-center space-x-4">
           <img src={Logo4} alt="Logo 1" className="h-8 w-auto" />
-          <img src={LogoC} alt="Logo 2" className="h-10 w-auto" />         <p className="text-xs text-white opacity-60 text-center flex-grow">
-          Created by SMKN 4 Bandung with support from PT. Curaweda Palagam Innotec
-         </p>
+          <img src={LogoC} alt="Logo 2" className="h-10 w-auto" />{" "}
+          <p className="text-xs text-white opacity-60 text-center flex-grow">
+            Created by SMKN 4 Bandung with support from PT. Curaweda Palagam
+            Innotec
+          </p>
+        </div>
       </div>
-
-    </div>
     </aside>
   );
 };

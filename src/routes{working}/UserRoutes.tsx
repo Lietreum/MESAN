@@ -9,7 +9,7 @@ import PageTitle from "../components/admin/PageTitle";
 import OverlayCard from "../components/user/Header/OverlayCard";
 import PaymentDetails from "../components/user/Header/PaymentDetails";
 import PaymentOptions from "../components/user/Header/PaymentOptions";
-import Notification from "../components/user/Header/Notification";
+import OrderItem from "../components/user/Notification/OrderNotification";
 
 const UserRoutes = () => (
   <Routes>
@@ -49,15 +49,15 @@ const UserRoutes = () => (
         </UserLayout>
       }
     />
-    <Route
-      path="/notifications"
-      element={
-        <UserLayout>
-          <PageTitle title="User Notification" />
-          <Notification />
-        </UserLayout>
-      }
-    />
+<Route
+       path="/orders/:userId"
+        element={
+          <UserLayout>
+            {<OrderItem />}
+            <PageTitle title="User Notification" />
+          </UserLayout>
+        }
+      />
     <Route
       path="/TopupPlacehold"
       element={

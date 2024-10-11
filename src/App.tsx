@@ -22,7 +22,7 @@ import OverlayCard from "./components/user/Header/OverlayCard";
 import IncomingOrders from "./components/admin/Product/IncomingOrders";
 import StockNotification from "./components/admin/Product/StockNotification";
 import QRAdmin from "./components/admin/Product/QRAdmin";
-import Notification from "./components/user/Header/Notification";
+import Notification from "./components/user/Notification/OrderNotification";
 import PaymentOptions from "./components/user/Header/PaymentOptions";
 import PaymentDetails from "./components/user/Header/PaymentDetails";
 import KasirLayout from "./layouts/kasir/KasirLayout";
