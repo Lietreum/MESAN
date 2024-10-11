@@ -1,6 +1,6 @@
 import React from "react";
 import { Heart } from "lucide-react";
-import { ProductCardProps } from '../../../types/types'; // Sesuaikan path jika diperlukan
+import { ProductCardProps } from '../../../types/types'; // Make sure the path is correct
 
 const ProductCard: React.FC<ProductCardProps> = ({ image, productName, price }) => {
   const formatRupiah = (number: number) => {
@@ -34,24 +34,24 @@ const ProductCard: React.FC<ProductCardProps> = ({ image, productName, price }) 
 };
 
 const FavoriteCards: React.FC = () => {
-  // Konversi harga dolar ke rupiah (1 USD = 15,000 IDR)
+  // Conversion rate from USD to IDR (1 USD = 15,000 IDR)
   const usdToIdr = 15000;
 
   const products = [
     {
       image: "https://tailwindui.com/img/ecommerce-images/category-page-04-image-card-04.jpg",
       productName: "Product One",
-      price: 49.99 * usdToIdr, // Konversi dolar ke rupiah
+      price: 49.99 * usdToIdr, // Convert USD to IDR
     },
     {
       image: "https://tailwindui.com/img/ecommerce-images/category-page-04-image-card-04.jpg",
       productName: "Product Two",
-      price: 29.99 * usdToIdr, // Konversi dolar ke rupiah
+      price: 29.99 * usdToIdr, // Convert USD to IDR
     },
     {
       image: "https://tailwindui.com/img/ecommerce-images/category-page-04-image-card-04.jpg",
       productName: "Product Three",
-      price: 39.99 * usdToIdr, // Konversi dolar ke rupiah
+      price: 39.99 * usdToIdr, // Convert USD to IDR
     },
   ];
 

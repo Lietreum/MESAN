@@ -55,6 +55,13 @@ const Invoice: React.FC = () => {
               </div>
             </div>
           ))}
+
+          {/* Total Section */}
+          <div className="mt-4">
+            <p className="text-lg font-bold text-black dark:text-white">
+              Total: ${total.toFixed(2)}
+            </p>
+          </div>
         </div>
       </div>
     </div>

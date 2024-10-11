@@ -63,7 +63,7 @@ export interface CategoryCardProps {
 export interface ProductCardProps {
   image: string;
   productName: string;
-  price: string;
+  price: number;
 }
 
 export interface OrderVerificationProps {

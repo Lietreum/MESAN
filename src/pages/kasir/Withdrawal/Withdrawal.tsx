@@ -19,7 +19,10 @@ const WithdrawalPage: React.FC = () => {
 
   return (
     <div className="p-4">
-
+      {/* Header with Balance */}
+      <div className="mb-4">
+        <h2 className="text-2xl font-bold">Balance: Rp {balance.toLocaleString('id-ID')}</h2>
+      </div>
 
       {/* Search Bar */}
       <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
