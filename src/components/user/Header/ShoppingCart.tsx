@@ -1,17 +1,20 @@
 import React, { useState } from "react";
 import { Product } from "../../../types/types";
+import { FaRegCheckCircle, FaTruck } from "react-icons/fa"; // Importing icons from react-icons
 
 const ShoppingCart: React.FC = () => {
   const [products, setProducts] = useState<Product[]>([
     {
       id: 1,
-      name: "Product name",
-      price: 10000,
-      quantity: 1,
+      name: "Nasi Kuning",
+      price: 6000,
+      quantity: 10,
       imageUrl: "https://via.placeholder.com/150",
     },
     // Add more products as needed
   ]);
+  
+  const [isPickUp, setIsPickUp] = useState(true); // State to toggle between pick up and delivery
 
   const handleQuantityChange = (id: number, delta: number) => {
     setProducts(products.map(product =>
@@ -82,6 +85,27 @@ const ShoppingCart: React.FC = () => {
             </div>
           </div>
           <div className="md:w-1/4">
+            {/* Pick Up / Delivery Card */}
+            <div className="bg-white rounded-lg shadow-md p-6 mb-4">
+              <div className="flex justify-between items-center">
+                <h2 className="text-lg font-semibold mb-4">Pick Up / Delivery</h2>
+                <button
+                  className="text-black border-2 border-slate-800 rounded-md font-semibold w-17 h-9"
+                  onClick={() => setIsPickUp(!isPickUp)} // Toggle the state on button click
+                >
+                  Switch
+                </button>
+              </div>
+              <div className="flex items-center">
+                {isPickUp ? (
+                  <FaRegCheckCircle className="text-green-500 mr-2" />
+                ) : (
+                  <FaTruck className="text-blue-500 mr-2" />
+                )}
+                <span>{isPickUp ? "Pick Up" : "Delivery"}</span>
+              </div>
+            </div>
+            {/* Summary Section */}
             <div className="bg-white rounded-lg shadow-md p-6">
               <h2 className="text-lg font-semibold mb-4">Summary</h2>
               <div className="flex justify-between mb-2">

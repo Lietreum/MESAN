@@ -34,6 +34,8 @@ import HistoryKasir from "./pages/kasir/History/HistoryKasir";
 import AddProductPage from "./pages/admin/Product/AddProduct";
 import ProfilePage from "./components/user/Profile/Profile";
 import WalletSiswa from "./pages/siswa/walletdashboard/WalletSiswa";
+import Order from "./pages/siswa/orderstatus/Order";
+import OrderStatus from "./pages/siswa/orderstatus/OrderStatus";
 
 
 function App() {
@@ -279,6 +281,25 @@ function App() {
               <PageTitle title="Pedagang Dashboard | Koperasi" />
               <Messages />
             </AdminLayout>
+          }
+        />
+        <Route
+          path="/order"
+          element={
+            <UserLayout>
+              <PageTitle title="Order" />
+              <Order />
+            </UserLayout>
+          }
+        />
+
+        <Route
+          path="/order/orderstatus"
+          element={
+            <UserLayout>
+              <PageTitle title="Order status | Koperasi" />
+              <OrderStatus />
+            </UserLayout>
           }
         />
 

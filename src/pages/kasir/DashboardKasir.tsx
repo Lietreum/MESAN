@@ -1,4 +1,3 @@
-import React from "react";
 import TopRightContent from "../../components/kasir/dashboard/TopRightContent";
 import CategoryCard from "../../components/user/CategoryCard/CategoryCard";
 import BottomRightContent from "../../components/kasir/dashboard/BottomRightContent";
