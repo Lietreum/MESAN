@@ -22,4 +22,4 @@ jobs:
         username: ${{ secrets.FTP_USERNAME }}
         password: ${{ secrets.FTP_PASSWORD }}
         local-dir: ./dist/
-        server-dir: /mesan.curaweda.com
+        server-dir: /mesan.curaweda.com/
