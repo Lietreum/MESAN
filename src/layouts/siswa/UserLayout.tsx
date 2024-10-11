@@ -2,9 +2,7 @@ import React, { ReactNode } from "react";
 import { useMediaQuery } from "react-responsive";
 import Header from "../../components/user/Header/UserHeader";
 // import Footer from "../../components/user/Footer/Footer";
-// import BottomNavigation from "../../components/user/Header/BottomNavigation";
-import NotFound from "../../pages/NotFound";
-
+import BottomNavigation from "../../components/user/Header/BottomNavigation";
 
 const UserLayout: React.FC<{ children: ReactNode }> = ({ children }) => {
   // Define media queries
@@ -23,7 +21,7 @@ const UserLayout: React.FC<{ children: ReactNode }> = ({ children }) => {
       {/* Bottom Navigation for Mobile */}
       {isMobile && (
         <div className="sticky bottom-0 z-50 w-full">
-          <NotFound />
+          <BottomNavigation />
         </div>
       )}
 
