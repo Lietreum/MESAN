@@ -1,10 +1,61 @@
-import React from "react";
+import React, { useState } from "react";
 import LoginImage from "../../assets/data/onigiri.png";
 import { FaCaravan } from "react-icons/fa";
+import axios from "axios"; // Import axios for making HTTP requests
 
-type LoginProps = {};
+type SignupProps = {};
 
-const Login: React.FC<LoginProps> = () => {
+const Signup: React.FC<SignupProps> = () => {
+  const [formData, setFormData] = useState({
+    first_name: "",
+    last_name: "",
+    email: "",
+    password: "",
+    password_confirmation: "",
+  });
+  
+  const [error, setError] = useState<string | null>(null);
+  const [isLoading, setIsLoading] = useState(false);
+
+  // Handle form input changes
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+  };
+
+  // Handle form submission
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+
+    // Basic validation
+    if (formData.password !== formData.password_confirmation) {
+      setError("Password and Confirm Password do not match");
+      return;
+    }
+
+    setIsLoading(true);
+
+    try {
+      // Send the data to the backend API to create the user
+      const response = await axios.post("http://your-api-endpoint/signup", {
+        name: formData.first_name + " " + formData.last_name,
+        email: formData.email,
+        password: formData.password,
+        confPassword: formData.password_confirmation,
+        role: "user", // You can modify this as needed
+      });
+
+      // Handle success response (redirect, show success message, etc.)
+      console.log(response.data);
+      // Redirect user to login page or home page after successful signup
+      window.location.href = "/login";
+    } catch (error: any) {
+      setError(error.response?.data?.msg || "An error occurred while creating the account");
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   return (
     <section className="bg-white">
       <div className="lg:grid lg:min-h-screen lg:grid-cols-12">
@@ -17,10 +68,10 @@ const Login: React.FC<LoginProps> = () => {
           />
           <div className="hidden lg:relative lg:block lg:p-12">
             <h1 className="mt-6 text-3xl text-center font-extrabold text-black sm:text-4xl">
-              Welcome Back,
+              Enjoy your time,
             </h1>
             <h2 className="mt-4 text-xl leading-relaxed text-black/90">
-              Ready to grab some food? 😋
+              Enjoy your food 😋
             </h2>
           </div>
         </section>
@@ -40,13 +91,49 @@ const Login: React.FC<LoginProps> = () => {
                 Welcome to Mesan 👋
               </h1>
               <p className="mt-4 text-gray-500 leading-relaxed">
-                Sign in to continue ordering your favorite food from your
-                school canteen or nearby stores.
+                We help you order your favorite food from your school canteen, 
+                cooperation, or any other place you prefer.
               </p>
             </div>
 
-            {/* Login Form */}
-            <form action="#" className="mt-8 grid grid-cols-6 gap-6">
+            {/* Form Section */}
+            <form onSubmit={handleSubmit} className="mt-8 grid grid-cols-6 gap-6">
+              {/* First Name */}
+              <div className="col-span-6 sm:col-span-3">
+                <label
+                  htmlFor="FirstName"
+                  className="block text-sm font-semibold text-gray-800"
+                >
+                  First Name
+                </label>
+                <input
+                  type="text"
+                  id="FirstName"
+                  name="first_name"
+                  value={formData.first_name}
+                  onChange={handleInputChange}
+                  className="mt-1 w-full rounded-md border border-gray-300 bg-white text-lg text-gray-800 shadow-sm focus:border-blue-500 focus:ring-blue-500 py-3 px-4"
+                />
+              </div>
+
+              {/* Last Name */}
+              <div className="col-span-6 sm:col-span-3">
+                <label
+                  htmlFor="LastName"
+                  className="block text-sm font-semibold text-gray-800"
+                >
+                  Last Name
+                </label>
+                <input
+                  type="text"
+                  id="LastName"
+                  name="last_name"
+                  value={formData.last_name}
+                  onChange={handleInputChange}
+                  className="mt-1 w-full rounded-md border border-gray-300 bg-white text-lg text-gray-800 shadow-sm focus:border-blue-500 focus:ring-blue-500 py-3 px-4"
+                />
+              </div>
+
               {/* Email */}
               <div className="col-span-6">
                 <label
@@ -59,12 +146,14 @@ const Login: React.FC<LoginProps> = () => {
                   type="email"
                   id="Email"
                   name="email"
+                  value={formData.email}
+                  onChange={handleInputChange}
                   className="mt-1 w-full rounded-md border border-gray-300 bg-white text-lg text-gray-800 shadow-sm focus:border-blue-500 focus:ring-blue-500 py-3 px-4"
                 />
               </div>
 
               {/* Password */}
-              <div className="col-span-6">
+              <div className="col-span-6 sm:col-span-3">
                 <label
                   htmlFor="Password"
                   className="block text-sm font-semibold text-gray-800"
@@ -75,35 +164,47 @@ const Login: React.FC<LoginProps> = () => {
                   type="password"
                   id="Password"
                   name="password"
+                  value={formData.password}
+                  onChange={handleInputChange}
                   className="mt-1 w-full rounded-md border border-gray-300 bg-white text-lg text-gray-800 shadow-sm focus:border-blue-500 focus:ring-blue-500 py-3 px-4"
                 />
               </div>
 
-              {/* Remember Me Checkbox */}
-              <div className="col-span-6 flex items-center">
-                <input
-                  id="remember-me"
-                  type="checkbox"
-                  className="h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500"
-                />
+              {/* Password Confirmation */}
+              <div className="col-span-6 sm:col-span-3">
                 <label
-                  htmlFor="remember-me"
-                  className="ml-2 block text-sm text-gray-800"
+                  htmlFor="PasswordConfirmation"
+                  className="block text-sm font-semibold text-gray-800"
                 >
-                  Remember me
+                  Confirm Password
                 </label>
+                <input
+                  type="password"
+                  id="PasswordConfirmation"
+                  name="password_confirmation"
+                  value={formData.password_confirmation}
+                  onChange={handleInputChange}
+                  className="mt-1 w-full rounded-md border border-gray-300 bg-white text-lg text-gray-800 shadow-sm focus:border-blue-500 focus:ring-blue-500 py-3 px-4"
+                />
               </div>
+
+              {/* Error Message */}
+              {error && <p className="text-red-500 text-sm col-span-6">{error}</p>}
 
               {/* Submit Button */}
               <div className="col-span-6 sm:flex sm:items-center sm:gap-4">
-                <button className="inline-block shrink-0 rounded-md border border-blue-600 bg-blue-600 px-12 py-3 text-lg font-semibold text-white transition hover:bg-transparent hover:text-blue-600 focus:outline-none focus:ring active:text-blue-500">
-                  Log in
+                <button
+                  type="submit"
+                  className={`inline-block shrink-0 rounded-md border border-blue-600 bg-blue-600 px-12 py-3 text-lg font-semibold text-white transition hover:bg-transparent hover:text-blue-600 focus:outline-none focus:ring active:text-blue-500 ${isLoading ? "opacity-50 cursor-not-allowed" : ""}`}
+                  disabled={isLoading}
+                >
+                  {isLoading ? "Creating..." : "Create an account"}
                 </button>
 
                 <p className="mt-4 text-sm text-gray-500 sm:mt-0">
-                  Don’t have an account?{" "}
-                  <a href="/signup" className="text-blue-600 underline">
-                    Sign up
+                  Already have an account?{" "}
+                  <a href="/login" className="text-blue-600 underline">
+                    Log in
                   </a>
                   .
                 </p>
@@ -116,4 +217,4 @@ const Login: React.FC<LoginProps> = () => {
   );
 };
 
-export default Login;
+export default Signup;

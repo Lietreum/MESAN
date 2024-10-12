@@ -1,10 +1,79 @@
-import React from "react";
+import React, { useState } from "react";
 import LoginImage from "../../assets/data/onigiri.png";
 import { FaCaravan } from "react-icons/fa";
 
-type LoginProps = {};
+// Define the initial state type for the form inputs
+type SignupFormData = {
+  name: string;
+  email: string;
+  password: string;
+  confPassword: string;
+  role: string;
+};
 
-const Signup: React.FC<LoginProps> = () => {
+const Signup: React.FC = () => {
+  const [formData, setFormData] = useState<SignupFormData>({
+    name: "",
+    email: "",
+    password: "",
+    confPassword: "",
+    role: "user", // Default role
+  });
+  const [error, setError] = useState<string | null>(null);
+  const [loading, setLoading] = useState<boolean>(false);
+
+  // Handle form input changes
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
+
+  // Handle form submission
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setError(null);
+  
+    if (formData.password !== formData.confPassword) {
+      setError("Passwords do not match!");
+      return;
+    }
+  
+    try {
+      setLoading(true);
+      console.log("Sending request to backend...");
+      const response = await fetch("https://api-mesan.curaweda.com/", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          password: formData.password,
+          confPassword: formData.confPassword,
+          role: formData.role,
+        }),
+      });
+  
+      console.log("Response received:", response);
+      const result = await response.json();
+  
+      if (response.ok) {
+        alert("Account created successfully! Please log in.");
+      } else {
+        setError(result.msg || "An error occurred while creating the account.");
+      }
+    } catch (error) {
+      console.error("Failed to connect to the backend:", error);
+      setError("Failed to connect to the backend. Please try again later.");
+    } finally {
+      setLoading(false);
+    }
+  };
+  
   return (
     <section className="bg-white">
       <div className="lg:grid lg:min-h-screen lg:grid-cols-12">
@@ -46,7 +115,7 @@ const Signup: React.FC<LoginProps> = () => {
             </div>
 
             {/* Form Section */}
-            <form action="#" className="mt-8 grid grid-cols-6 gap-6">
+            <form onSubmit={handleSubmit} className="mt-8 grid grid-cols-6 gap-6">
               {/* First Name */}
               <div className="col-span-6 sm:col-span-3">
                 <label
@@ -58,24 +127,11 @@ const Signup: React.FC<LoginProps> = () => {
                 <input
                   type="text"
                   id="FirstName"
-                  name="first_name"
+                  name="name"
+                  value={formData.name}
+                  onChange={handleChange}
                   className="mt-1 w-full rounded-md border border-gray-300 bg-white text-lg text-gray-800 shadow-sm focus:border-blue-500 focus:ring-blue-500 py-3 px-4"
-                />
-              </div>
-
-              {/* Last Name */}
-              <div className="col-span-6 sm:col-span-3">
-                <label
-                  htmlFor="LastName"
-                  className="block text-sm font-semibold text-gray-800"
-                >
-                  Last Name
-                </label>
-                <input
-                  type="text"
-                  id="LastName"
-                  name="last_name"
-                  className="mt-1 w-full rounded-md border border-gray-300 bg-white text-lg text-gray-800 shadow-sm focus:border-blue-500 focus:ring-blue-500 py-3 px-4"
+                  required
                 />
               </div>
 
@@ -91,7 +147,10 @@ const Signup: React.FC<LoginProps> = () => {
                   type="email"
                   id="Email"
                   name="email"
+                  value={formData.email}
+                  onChange={handleChange}
                   className="mt-1 w-full rounded-md border border-gray-300 bg-white text-lg text-gray-800 shadow-sm focus:border-blue-500 focus:ring-blue-500 py-3 px-4"
+                  required
                 />
               </div>
 
@@ -107,7 +166,10 @@ const Signup: React.FC<LoginProps> = () => {
                   type="password"
                   id="Password"
                   name="password"
+                  value={formData.password}
+                  onChange={handleChange}
                   className="mt-1 w-full rounded-md border border-gray-300 bg-white text-lg text-gray-800 shadow-sm focus:border-blue-500 focus:ring-blue-500 py-3 px-4"
+                  required
                 />
               </div>
 
@@ -122,15 +184,22 @@ const Signup: React.FC<LoginProps> = () => {
                 <input
                   type="password"
                   id="PasswordConfirmation"
-                  name="password_confirmation"
+                  name="confPassword"
+                  value={formData.confPassword}
+                  onChange={handleChange}
                   className="mt-1 w-full rounded-md border border-gray-300 bg-white text-lg text-gray-800 shadow-sm focus:border-blue-500 focus:ring-blue-500 py-3 px-4"
+                  required
                 />
               </div>
 
               {/* Submit Button */}
               <div className="col-span-6 sm:flex sm:items-center sm:gap-4">
-                <button className="inline-block shrink-0 rounded-md border border-blue-600 bg-blue-600 px-12 py-3 text-lg font-semibold text-white transition hover:bg-transparent hover:text-blue-600 focus:outline-none focus:ring active:text-blue-500">
-                  Create an account
+                <button
+                  type="submit"
+                  className="inline-block shrink-0 rounded-md border border-blue-600 bg-blue-600 px-12 py-3 text-lg font-semibold text-white transition hover:bg-transparent hover:text-blue-600 focus:outline-none focus:ring active:text-blue-500"
+                  disabled={loading}
+                >
+                  {loading ? "Creating..." : "Create an account"}
                 </button>
 
                 <p className="mt-4 text-sm text-gray-500 sm:mt-0">
@@ -142,10 +211,14 @@ const Signup: React.FC<LoginProps> = () => {
                 </p>
               </div>
             </form>
+
+            {/* Error Message */}
+            {error && <div className="mt-4 text-red-500">{error}</div>}
           </div>
         </main>
       </div>
     </section>
   );
 };
+
 export default Signup;
