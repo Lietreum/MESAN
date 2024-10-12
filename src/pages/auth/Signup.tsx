@@ -35,25 +35,27 @@ const Signup: React.FC = () => {
         password,
         role: "USER",
       });
-
-      if (response.status === 201) {
+    
+      if (response.status === 200) {
         const { token, refreshToken } = response.data;
-
+    
         // Store tokens in local storage or cookies
         localStorage.setItem("token", token);
         localStorage.setItem("refreshToken", refreshToken);
-
+    
         // Redirect to the login page or dashboard
         navigate("/login");
       }
     } catch (err) {
-      console.error("Registration error", err);
+      console.error("Registration error:", err);
       if (axios.isAxiosError(err)) {
+        console.error("Axios error response:", err.response);
         setError(err.response?.data.error || "Failed to register. Please try again.");
       } else {
         setError("Failed to register. Please try again.");
       }
     }
+    
   };
 
   return (
