@@ -29,20 +29,25 @@ const Signup: React.FC = () => {
     }
 
     try {
-      // Menggunakan URL yang sesuai untuk API pendaftaran
-      const response = await axios.post("https:/api-mesan.curaweda.com/auth/register", {
+      // Using the appropriate URL for the registration API
+      const response = await axios.post("https://api-mesan.curaweda.com/auth/register", {
         name: `${first_name} ${last_name}`,
         email,
         password,
       });
 
       if (response.status === 200) {
-        // Registrasi berhasil, arahkan ke halaman login
+        const { token, refreshToken } = response.data;
+
+        // Store tokens in local storage or cookies
+        localStorage.setItem("token", token);
+        localStorage.setItem("refreshToken", refreshToken);
+
+        // Redirect to the login or dashboard page after successful registration
         navigate("/login");
       }
     } catch (err) {
       console.error("Registration error", err);
-      // Menampilkan pesan kesalahan yang lebih informatif
       if (axios.isAxiosError(err)) {
         setError(err.response?.data.message || "Failed to register. Please try again.");
       } else {
