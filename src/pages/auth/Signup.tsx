@@ -1,67 +1,92 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import LoginImage from "../../assets/data/onigiri.png";
 import { FaCaravan } from "react-icons/fa";
-import axios from "axios";
+
+type SignupFormData = {
+  name: string;
+  email: string;
+  password: string;
+  confPassword: string;
+};
 
 const Signup: React.FC = () => {
-  const navigate = useNavigate();
-  const [formData, setFormData] = useState({
-    first_name: "",
-    last_name: "",
+  const [formData, setFormData] = useState<SignupFormData>({
+    name: "",
     email: "",
     password: "",
-    password_confirmation: "",
+    confPassword: "",
   });
-  const [error, setError] = useState("");
+  const [error, setError] = useState<string | null>(null);
+  const [loading, setLoading] = useState<boolean>(false);
 
+  // Handle form input changes
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    const { name, value } = e.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
   };
 
+  // Handle form submission
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const { first_name, last_name, email, password, password_confirmation } = formData;
+    setError(null);
 
-    if (password !== password_confirmation) {
-      setError("Passwords do not match");
+    if (formData.password !== formData.confPassword) {
+      setError("Passwords do not match!");
+      return;
+    }
+
+    // Ensure email validation according to backend logic
+    if (!formData.email.endsWith('.siswa@smkn4bdg.sch.id')) {
+      setError("You must use a valid school email.");
       return;
     }
 
     try {
-      const response = await axios.post("https://api-mesan.curaweda.com/auth/register", {
-        name: `${first_name} ${last_name}`,
-        email,
-        password,
-        role: "USER",
+      setLoading(true);
+      console.log("Sending request to backend...");
+
+      const response = await fetch("https://api-mesan.curaweda.com/auth/register", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          password: formData.password,
+          role: 'USER'  // Setting role as 'USER'
+        }),
       });
 
-      if (response.status === 200) {
-        const { token, refreshToken } = response.data;
+      const result = await response.json();
 
-        // Store tokens in local storage or cookies
+      if (response.ok) {
+        const { token, refreshToken } = result;
+        console.log("Token:", token);
+        console.log("Refresh Token:", refreshToken);
+
+        // Save tokens (consider secure storage or HttpOnly cookies)
         localStorage.setItem("token", token);
         localStorage.setItem("refreshToken", refreshToken);
-        console.log("Registration successful", token);
-        console.log("Registration successful", refreshToken);
 
-        // Redirect to the login page or dashboard
-        navigate("/login");
-      }
-    } catch (err) {
-      console.error("Registration error", err);
-      if (axios.isAxiosError(err)) {
-        setError(err.response?.data.error || "Failed to register. Please try again.");
+        alert("Account created successfully! Please log in.");
       } else {
-        setError("Failed to register. Please try again.");
+        setError(result.error || "An error occurred while creating the account.");
       }
+    } catch (error) {
+      console.error("Failed to connect to the backend:", error);
+      setError("Failed to connect to the backend. Please try again later.");
+    } finally {
+      setLoading(false);
     }
   };
 
   return (
     <section className="bg-white">
       <div className="lg:grid lg:min-h-screen lg:grid-cols-12">
-        {/* Left Image Section */}
         <section className="relative flex h-32 items-end bg-gray-900 lg:col-span-5 lg:h-full xl:col-span-6">
           <img
             alt="imagelogin"
@@ -78,12 +103,13 @@ const Signup: React.FC = () => {
           </div>
         </section>
 
-        {/* Form Section */}
         <main className="flex items-center justify-center px-8 py-8 sm:px-12 lg:col-span-7 lg:px-16 lg:py-12 xl:col-span-6">
           <div className="max-w-xl lg:max-w-3xl">
-            {/* Mobile View Header */}
             <div className="relative -mt-16 block lg:hidden text-center">
-              <a className="inline-flex items-center justify-center rounded-full bg-white text-blue-600" href="#">
+              <a
+                className="inline-flex items-center justify-center rounded-full bg-white text-blue-600"
+                href="#"
+              >
                 <FaCaravan size={40} />
               </a>
               <h1 className="mt-4 text-3xl font-bold text-gray-900 sm:text-4xl">
@@ -95,41 +121,32 @@ const Signup: React.FC = () => {
               </p>
             </div>
 
-            {/* Form Section */}
             <form onSubmit={handleSubmit} className="mt-8 grid grid-cols-6 gap-6">
               {/* First Name */}
               <div className="col-span-6 sm:col-span-3">
-                <label htmlFor="FirstName" className="block text-sm font-semibold text-gray-800">
+                <label
+                  htmlFor="FirstName"
+                  className="block text-sm font-semibold text-gray-800"
+                >
                   First Name
                 </label>
                 <input
                   type="text"
                   id="FirstName"
-                  name="first_name"
-                  value={formData.first_name}
+                  name="name"
+                  value={formData.name}
                   onChange={handleChange}
                   className="mt-1 w-full rounded-md border border-gray-300 bg-white text-lg text-gray-800 shadow-sm focus:border-blue-500 focus:ring-blue-500 py-3 px-4"
-                />
-              </div>
-
-              {/* Last Name */}
-              <div className="col-span-6 sm:col-span-3">
-                <label htmlFor="LastName" className="block text-sm font-semibold text-gray-800">
-                  Last Name
-                </label>
-                <input
-                  type="text"
-                  id="LastName"
-                  name="last_name"
-                  value={formData.last_name}
-                  onChange={handleChange}
-                  className="mt-1 w-full rounded-md border border-gray-300 bg-white text-lg text-gray-800 shadow-sm focus:border-blue-500 focus:ring-blue-500 py-3 px-4"
+                  required
                 />
               </div>
 
               {/* Email */}
               <div className="col-span-6">
-                <label htmlFor="Email" className="block text-sm font-semibold text-gray-800">
+                <label
+                  htmlFor="Email"
+                  className="block text-sm font-semibold text-gray-800"
+                >
                   Email
                 </label>
                 <input
@@ -139,12 +156,16 @@ const Signup: React.FC = () => {
                   value={formData.email}
                   onChange={handleChange}
                   className="mt-1 w-full rounded-md border border-gray-300 bg-white text-lg text-gray-800 shadow-sm focus:border-blue-500 focus:ring-blue-500 py-3 px-4"
+                  required
                 />
               </div>
 
               {/* Password */}
               <div className="col-span-6 sm:col-span-3">
-                <label htmlFor="Password" className="block text-sm font-semibold text-gray-800">
+                <label
+                  htmlFor="Password"
+                  className="block text-sm font-semibold text-gray-800"
+                >
                   Password
                 </label>
                 <input
@@ -154,45 +175,41 @@ const Signup: React.FC = () => {
                   value={formData.password}
                   onChange={handleChange}
                   className="mt-1 w-full rounded-md border border-gray-300 bg-white text-lg text-gray-800 shadow-sm focus:border-blue-500 focus:ring-blue-500 py-3 px-4"
+                  required
                 />
               </div>
 
               {/* Password Confirmation */}
               <div className="col-span-6 sm:col-span-3">
-                <label htmlFor="PasswordConfirmation" className="block text-sm font-semibold text-gray-800">
+                <label
+                  htmlFor="PasswordConfirmation"
+                  className="block text-sm font-semibold text-gray-800"
+                >
                   Confirm Password
                 </label>
                 <input
                   type="password"
                   id="PasswordConfirmation"
-                  name="password_confirmation"
-                  value={formData.password_confirmation}
+                  name="confPassword"
+                  value={formData.confPassword}
                   onChange={handleChange}
                   className="mt-1 w-full rounded-md border border-gray-300 bg-white text-lg text-gray-800 shadow-sm focus:border-blue-500 focus:ring-blue-500 py-3 px-4"
+                  required
                 />
               </div>
 
-              {/* Error Message */}
-              {error && (
-                <div className="col-span-6">
-                  <p className="text-red-500">{error}</p>
-                </div>
-              )}
-
               {/* Submit Button */}
               <div className="col-span-6 sm:flex sm:items-center sm:gap-4">
-                <button className="inline-block shrink-0 rounded-md border border-blue-600 bg-blue-600 px-12 py-3 text-lg font-semibold text-white transition hover:bg-transparent hover:text-blue-600 focus:outline-none focus:ring active:text-blue-500">
-                  Create an account
+                <button
+                  type="submit"
+                  className="inline-block shrink-0 rounded-md border border-blue-600 bg-blue-600 px-12 py-3 text-lg font-semibold text-white transition hover:bg-transparent hover:text-blue-600 focus:outline-none focus:ring focus:ring-blue-600"
+                  disabled={loading}
+                >
+                  {loading ? "Signing up..." : "Create an account"}
                 </button>
-
-                <p className="mt-4 text-sm text-gray-500 sm:mt-0">
-                  Already have an account?{" "}
-                  <a href="/login" className="text-blue-600 underline">
-                    Log in
-                  </a>
-                  .
-                </p>
               </div>
+
+              {error && <p className="col-span-6 text-red-500">{error}</p>}
             </form>
           </div>
         </main>
