@@ -36,7 +36,7 @@ const Signup: React.FC = () => {
         password,
       });
 
-      if (response.status === 201) {
+      if (response.status === 200) {
         // Registrasi berhasil, arahkan ke halaman login
         navigate("/login");
       }
