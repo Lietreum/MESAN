@@ -42,6 +42,8 @@ const Signup: React.FC = () => {
         // Store tokens in local storage or cookies
         localStorage.setItem("token", token);
         localStorage.setItem("refreshToken", refreshToken);
+        console.log("token anda", token);
+        console.log("r token anda", refreshToken);
 
         // Redirect to the login page or dashboard
         navigate("/login");
