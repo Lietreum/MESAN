@@ -29,27 +29,27 @@ const Signup: React.FC = () => {
     }
 
     try {
-      // Using the appropriate URL for the registration API
       const response = await axios.post("https://api-mesan.curaweda.com/auth/register", {
         name: `${first_name} ${last_name}`,
         email,
         password,
+        role: "USER",
       });
 
-      if (response.status === 200) {
+      if (response.status === 201) {
         const { token, refreshToken } = response.data;
 
         // Store tokens in local storage or cookies
         localStorage.setItem("token", token);
         localStorage.setItem("refreshToken", refreshToken);
 
-        // Redirect to the login or dashboard page after successful registration
+        // Redirect to the login page or dashboard
         navigate("/login");
       }
     } catch (err) {
       console.error("Registration error", err);
       if (axios.isAxiosError(err)) {
-        setError(err.response?.data.message || "Failed to register. Please try again.");
+        setError(err.response?.data.error || "Failed to register. Please try again.");
       } else {
         setError("Failed to register. Please try again.");
       }
@@ -81,10 +81,7 @@ const Signup: React.FC = () => {
           <div className="max-w-xl lg:max-w-3xl">
             {/* Mobile View Header */}
             <div className="relative -mt-16 block lg:hidden text-center">
-              <a
-                className="inline-flex items-center justify-center rounded-full bg-white text-blue-600"
-                href="#"
-              >
+              <a className="inline-flex items-center justify-center rounded-full bg-white text-blue-600" href="#">
                 <FaCaravan size={40} />
               </a>
               <h1 className="mt-4 text-3xl font-bold text-gray-900 sm:text-4xl">
@@ -100,10 +97,7 @@ const Signup: React.FC = () => {
             <form onSubmit={handleSubmit} className="mt-8 grid grid-cols-6 gap-6">
               {/* First Name */}
               <div className="col-span-6 sm:col-span-3">
-                <label
-                  htmlFor="FirstName"
-                  className="block text-sm font-semibold text-gray-800"
-                >
+                <label htmlFor="FirstName" className="block text-sm font-semibold text-gray-800">
                   First Name
                 </label>
                 <input
@@ -118,10 +112,7 @@ const Signup: React.FC = () => {
 
               {/* Last Name */}
               <div className="col-span-6 sm:col-span-3">
-                <label
-                  htmlFor="LastName"
-                  className="block text-sm font-semibold text-gray-800"
-                >
+                <label htmlFor="LastName" className="block text-sm font-semibold text-gray-800">
                   Last Name
                 </label>
                 <input
@@ -136,10 +127,7 @@ const Signup: React.FC = () => {
 
               {/* Email */}
               <div className="col-span-6">
-                <label
-                  htmlFor="Email"
-                  className="block text-sm font-semibold text-gray-800"
-                >
+                <label htmlFor="Email" className="block text-sm font-semibold text-gray-800">
                   Email
                 </label>
                 <input
@@ -154,10 +142,7 @@ const Signup: React.FC = () => {
 
               {/* Password */}
               <div className="col-span-6 sm:col-span-3">
-                <label
-                  htmlFor="Password"
-                  className="block text-sm font-semibold text-gray-800"
-                >
+                <label htmlFor="Password" className="block text-sm font-semibold text-gray-800">
                   Password
                 </label>
                 <input
@@ -172,10 +157,7 @@ const Signup: React.FC = () => {
 
               {/* Password Confirmation */}
               <div className="col-span-6 sm:col-span-3">
-                <label
-                  htmlFor="PasswordConfirmation"
-                  className="block text-sm font-semibold text-gray-800"
-                >
+                <label htmlFor="PasswordConfirmation" className="block text-sm font-semibold text-gray-800">
                   Confirm Password
                 </label>
                 <input
