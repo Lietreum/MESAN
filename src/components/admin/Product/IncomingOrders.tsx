@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { Box, Button, Typography, Table, TableBody, TableCell, TableHead, TableRow, Chip, Paper, Stack } from '@mui/material';
 
 type Order = {
   orderNo: string;
@@ -24,9 +25,7 @@ const incomingOrdersData: Order[] = [
 
 const IncomingOrders: React.FC = () => {
   const [incomingOrders, setIncomingOrders] = useState(incomingOrdersData);
-  const [selectedTab, setSelectedTab] = useState<'Coming Order' | 'In Progress' | 'Waiting To Pick Up' | 'Done'>(
-    'Coming Order'
-  );
+  const [selectedTab, setSelectedTab] = useState<'Coming Order' | 'In Progress' | 'Waiting To Pick Up' | 'Done'>('Coming Order');
   const navigate = useNavigate();
 
   const handleConfirm = (orderNo: string) => {
@@ -63,83 +62,69 @@ const IncomingOrders: React.FC = () => {
   };
 
   return (
-    <div className="bg-[#0e1726] p-8 rounded-md w-full text-white">
-      <div className="pb-6">
-        <h2 className="text-white font-semibold text-lg">Incoming Orders</h2>
-      </div>
-      <div className="flex space-x-4 mb-4">
-        {['Coming Order', 'In Progress', 'Waiting To Pick Up', 'Done'].map((tab, index) => (
-          <button
-            key={index}
+    <Box sx={{ bgcolor: '#0e1726', p: 2, borderRadius: 2, color: 'white', width: '100%' }}>
+      <Typography variant="h4" sx={{ pb: 2, textAlign: 'center' }}>
+        Incoming Orders
+      </Typography>
+
+      {/* Tabs for Status */}
+      <Stack direction={{ xs: 'column', sm: 'row' }} spacing={1} sx={{ mb: 4, justifyContent: 'center' }}>
+        {['Coming Order', 'In Progress', 'Waiting To Pick Up', 'Done'].map((tab) => (
+          <Chip
+            key={tab}
+            label={tab}
+            clickable
+            color={selectedTab === tab ? 'primary' : 'default'}
             onClick={() => setSelectedTab(tab as Order['status'])}
-            className={`${
-              selectedTab === tab ? 'text-black bg-white' : 'text-white'
-            } px-4 py-2 rounded-md font-semibold`}
-          >
-            {tab}
-          </button>
+            sx={{ color: 'white' }}
+          />
         ))}
-      </div>
-      <div className="bg-[#1a2230] rounded-lg overflow-hidden shadow-md">
-        <table className="min-w-full">
-          <thead>
-            <tr className="text-left text-gray-400 text-sm">
-              <th className="p-4">No. Order</th>
-              <th className="p-4">Name Customer</th>
-              <th className="p-4">Product</th>
-              <th className="p-4">Subtotal</th>
-              <th className="p-4">Notes</th>
-              <th className="p-4"></th>
-            </tr>
-          </thead>
-          <tbody>
+      </Stack>
+
+      <Paper sx={{ bgcolor: '#1a2230', borderRadius: 2, p: 2, overflow: 'hidden' }}>
+        <Table>
+          <TableHead>
+            <TableRow>
+              <TableCell sx={{ color: 'white' }}>No. Order</TableCell>
+              <TableCell sx={{ color: 'white' }}>Customer</TableCell>
+              <TableCell sx={{ color: 'white' }}>Products</TableCell>
+              <TableCell sx={{ color: 'white' }}>Subtotal</TableCell>
+              <TableCell sx={{ color: 'white' }}>Notes</TableCell>
+            </TableRow>
+          </TableHead>
+          <TableBody>
             {incomingOrders
               .filter((order) => order.status === selectedTab)
               .map((order) => {
                 const subtotal = order.products.reduce((acc, product) => acc + product.price * product.quantity, 0);
                 return (
-                  <tr key={order.orderNo} className="border-t border-gray-700">
-                    <td className="p-4">{order.orderNo}</td>
-                    <td className="p-4">{order.customerName}</td>
-                    <td className="p-4">
+                  <TableRow key={order.orderNo} sx={{ '&:hover': { bgcolor: '#2b3442' } }}>
+                    <TableCell sx={{ color: 'white' }}>{order.orderNo}</TableCell>
+                    <TableCell sx={{ color: 'white' }}>{order.customerName}</TableCell>
+                    <TableCell sx={{ color: 'white' }}>
                       {order.products.map((product, index) => (
-                        <div key={index}>
-                          {product.name} {product.quantity}x
-                        </div>
+                        <Box key={index}>
+                          {product.name} x{product.quantity}
+                        </Box>
                       ))}
-                    </td>
-                    <td className="p-4">Rp.{subtotal.toLocaleString('id-ID')}</td>
-                    <td className="p-4">
+                    </TableCell>
+                    <TableCell sx={{ color: 'white' }}>Rp.{subtotal.toLocaleString('id-ID')}</TableCell>
+                    <TableCell sx={{ color: 'white' }}>
                       {order.notes.map((note, index) => (
-                        <div key={index}>{note}</div>
+                        <Box key={index}>{note}</Box>
                       ))}
-                    </td>
-                    <td className="p-4">
-                      {order.status !== 'Done' ? (
-                        <button
-                          onClick={() => handleConfirm(order.orderNo)}
-                          className="bg-blue-500 px-4 py-2 rounded text-white transform transition-transform duration-200 ease-in-out hover:scale-110"
-                        >
-                          Confirm
-                        </button>
-                      ) : (
-                        <button
-                          onClick={() => handleDoneClick(order.orderNo)}
-                          className="bg-green-500 px-4 py-2 rounded text-white transform transition-transform duration-200 ease-in-out hover:scale-110"
-                        >
-                          Done
-                        </button>
-                      )}
-                    </td>
-                  </tr>
+                    </TableCell>
+                  </TableRow>
                 );
               })}
+
+            {/* Total Row */}
             {incomingOrders.filter((order) => order.status === selectedTab).length > 0 && (
-              <tr className="border-t border-gray-700">
-                <td colSpan={3} className="p-4 font-semibold text-right">
-                  Total :
-                </td>
-                <td className="p-4 font-semibold">
+              <TableRow>
+                <TableCell colSpan={3} sx={{ color: 'white', fontWeight: 'bold', textAlign: 'right' }}>
+                  Total:
+                </TableCell>
+                <TableCell sx={{ color: 'white', fontWeight: 'bold' }}>
                   Rp.
                   {incomingOrders
                     .filter((order) => order.status === selectedTab)
@@ -149,14 +134,55 @@ const IncomingOrders: React.FC = () => {
                       0
                     )
                     .toLocaleString('id-ID')}
-                </td>
-                <td colSpan={2}></td>
-              </tr>
+                </TableCell>
+                <TableCell colSpan={2}></TableCell>
+              </TableRow>
             )}
-          </tbody>
-        </table>
-      </div>
-    </div>
+          </TableBody>
+        </Table>
+      </Paper>
+
+      {/* Buttons at the bottom for mobile view */}
+      <Stack direction={{ xs: 'column', sm: 'row' }} spacing={2} sx={{ mt: 2 }}>
+        {incomingOrders
+          .filter((order) => order.status === selectedTab)
+          .map((order) => (
+            <Box key={order.orderNo} sx={{ display: 'flex', justifyContent: 'center', width: '100%' }}>
+              {order.status !== 'Done' ? (
+                <Button
+                  variant="contained"
+                  color="primary"
+                  onClick={() => handleConfirm(order.orderNo)}
+                  sx={{
+                    transition: 'transform 0.3s ease',
+                    '&:hover': { transform: 'scale(1.05)' },
+                    bgcolor: '#1976d2', // Mengatur warna latar belakang tombol
+                    color: 'white', // Mengatur warna teks tombol
+                    width: '100%', // Tombol mengisi lebar penuh
+                  }}
+                >
+                  Confirm
+                </Button>
+              ) : (
+                <Button
+                  variant="contained"
+                  color="success"
+                  onClick={() => handleDoneClick(order.orderNo)}
+                  sx={{
+                    transition: 'transform 0.3s ease',
+                    '&:hover': { transform: 'scale(1.05)' },
+                    bgcolor: '#4caf50', // Mengatur warna latar belakang tombol
+                    color: 'white', // Mengatur warna teks tombol
+                    width: '100%', // Tombol mengisi lebar penuh
+                  }}
+                >
+                  Done
+                </Button>
+              )}
+            </Box>
+          ))}
+      </Stack>
+    </Box>
   );
 };
 
