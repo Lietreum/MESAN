@@ -10,7 +10,7 @@ const OrderTracking: React.FC = () => {
       </div>
 
 {/* Progress Stepper */}
-<ul className="timeline mb-6">
+<ul className="timeline mb-6 justify-center">
   <li>
     <div className="timeline-middle">
       <svg
@@ -103,7 +103,7 @@ const OrderTracking: React.FC = () => {
       <div className="border-t border-b border-gray-200 py-4">
         <div className="flex items-center">
           <img
-            src="https://example.com/nasi-kuning.jpg" // Replace with actual image URL
+            src="https://i.pinimg.com/564x/0c/c0/c6/0cc0c6a5662e002a7967d7cdbf164d5c.jpg" // Replace with actual image URL
             alt="Nasi Kuning"
             className="w-16 h-16 rounded-lg mr-4"
           />

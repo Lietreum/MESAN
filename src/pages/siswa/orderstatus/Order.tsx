@@ -52,7 +52,7 @@ const Order: React.FC = () => {
           {/* Order details */}
           <div className="flex items-center">
             <img
-              src="https://i.pinimg.com/564x/a2/a1/aa/a2a1aa02d183d6151427a97a99a15511.jpg" // Ganti dengan URL gambar yang sesuai
+              src="https://i.pinimg.com/564x/0c/c0/c6/0cc0c6a5662e002a7967d7cdbf164d5c.jpg" // Ganti dengan URL gambar yang sesuai
               alt="Nasi Kuning"
               className="w-20 h-20 rounded-md mr-4"
             />
