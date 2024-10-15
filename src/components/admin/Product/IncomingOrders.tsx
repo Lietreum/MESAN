@@ -156,9 +156,9 @@ const IncomingOrders: React.FC = () => {
                   sx={{
                     transition: 'transform 0.3s ease',
                     '&:hover': { transform: 'scale(1.05)' },
-                    bgcolor: '#1976d2', // Mengatur warna latar belakang tombol
-                    color: 'white', // Mengatur warna teks tombol
-                    width: '100%', // Tombol mengisi lebar penuh
+                    bgcolor: '#1976d2', 
+                    color: 'white', 
+                    width: '100%',
                   }}
                 >
                   Confirm
