@@ -1,5 +1,5 @@
 import React from "react";
-import { Card, CardMedia } from "@mui/material";
+import { Card, CardMedia, Typography, Box } from "@mui/material";
 import { Link } from "react-router-dom";
 import { CategoryCardProps } from '../../../types/types';
 
@@ -10,55 +10,67 @@ const CategoryCard: React.FC<CategoryCardProps> = ({ data }) => {
       style={{ textDecoration: 'none' }}
       aria-label={`View ${data.name} products`}
     >
-      <div
-        style={{
+      <Box
+        sx={{
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
           justifyContent: "center",
-          marginBottom: "24px", // Adjust the spacing between cards
-          padding: "10px", // Add padding for a more refined look
+          mb: 3, // marginBottom (space between cards)
+          px: 2, // padding horizontal for consistent spacing
+          textAlign: "center",
+          margin: '10px', // Tambahkan jarak antar card
         }}
       >
         <Card
           sx={{
-            borderRadius: 3,
-            boxShadow: 2,
-            transition: "transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out",
+            borderRadius: 2,
+            boxShadow: 3,
+            transition: "transform 0.3s ease, box-shadow 0.3s ease",
             '&:hover': {
-              transform: "scale(1.03)", // Subtle hover effect
-              boxShadow: 4,
+              transform: "scale(1.05)",
+              boxShadow: 6,
             },
             position: "relative",
-            height: 160, // Reduced height for smaller cards
-            width: 240,  // Reduced width for smaller cards
+            height: { xs: 160, sm: 180, md: 200 }, // Responsive height
+            width: { xs: 220, sm: 240, md: 260 }, // Responsive width
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
+            overflow: "hidden", // Prevent image overflow
           }}
         >
           <CardMedia
             component="img"
             image={data.img}
             alt={data.name}
-            sx={{ height: "100%", objectFit: "cover", width: "100%", borderRadius: 2 }}
+            sx={{
+              height: "100%",
+              width: "100%",
+              objectFit: "cover",
+              transition: "opacity 0.3s ease-in-out",
+              borderRadius: 2,
+              '&:hover': {
+                opacity: 0.9, // Slight dimming on hover for effect
+              },
+            }}
             loading="lazy"
           />
         </Card>
 
         {/* Category Name below the card */}
-        <div
-          style={{
-            marginTop: "12px", // Spacing between the card and the name
-            textAlign: "center",
-            fontSize: "16px", // Slightly smaller font
-            fontWeight: "600", // Bold text for emphasis
-            color: "#4A4A4A", // Dark grey for a softer look
+        <Typography
+          variant="body1"
+          sx={{
+            mt: 2, // marginTop for space between card and text
+            fontWeight: 600,
+            fontSize: { xs: "14px", sm: "16px" }, // Responsive font size
+            color: "#4A4A4A",
           }}
         >
           {data.name}
-        </div>
-      </div>
+        </Typography>
+      </Box>
     </Link>
   );
 };

@@ -20,47 +20,55 @@ const Invoice: React.FC = () => {
   const total = products.reduce((sum, product) => sum + product.quantity * product.pricePerUnit, 0) + shippingCost - couponDiscount + vat;
 
   return (
-    <div className="relative group p-4 max-w-sm mx-auto">
-      {/* Hover effect */}
-      <span className="absolute inset-0 w-full h-full transition duration-400 ease-out transform translate-x-1 translate-y-1 bg-black group-hover:translate-x-0 group-hover:translate-y-0"></span>
-      <span className="absolute inset-0 w-full h-full bg-white border border-black"></span>
+    <div className="max-w-md mx-auto bg-white shadow-lg rounded-lg p-6">
+      <h2 className="text-2xl font-bold text-center text-blue-600 mb-4">Invoice</h2>
+      <div className="overflow-x-auto">
+        {/* Table header */}
+        <div className="grid grid-cols-12 border-b border-gray-300 py-2 text-left">
+          <div className="col-span-6">
+            <h5 className="font-semibold text-gray-700">Brand</h5>
+          </div>
+          <div className="col-span-3">
+            <h5 className="font-semibold text-gray-700">Qty</h5>
+          </div>
+          <div className="col-span-3">
+            <h5 className="font-semibold text-gray-700">Unit Price</h5>
+          </div>
+        </div>
 
-      {/* Invoice content */}
-      <div className="relative z-10 bg-white border border-stroke dark:border-strokedark p-4 rounded-md">
-        <div className="overflow-x-auto">
-          {/* Table header */}
-          <div className="grid grid-cols-12 border-b border-stroke py-2 dark:border-strokedark text-left">
+        {/* Product items */}
+        {products.map((product, index) => (
+          <div key={index} className="grid grid-cols-12 border-b border-gray-200 py-2 text-left">
             <div className="col-span-6">
-              <h5 className="font-medium text-black dark:text-white">Brand</h5>
+              <p className="text-gray-700">{product.brandName}</p>
             </div>
             <div className="col-span-3">
-              <h5 className="font-medium text-black dark:text-white">Qty</h5>
+              <p className="text-gray-700">{product.quantity}</p>
             </div>
             <div className="col-span-3">
-              <h5 className="font-medium text-black dark:text-white">Unit Price</h5>
+              <p className="text-gray-700">${product.pricePerUnit}</p>
             </div>
           </div>
+        ))}
 
-          {/* Product items */}
-          {products.map((product, index) => (
-            <div key={index} className="grid grid-cols-12 border-b border-stroke py-2 dark:border-strokedark text-left">
-              <div className="col-span-6">
-                <p className="font-medium text-black dark:text-white">{product.brandName}</p>
-              </div>
-              <div className="col-span-3">
-                <p className="font-medium text-black dark:text-white">{product.quantity}</p>
-              </div>
-              <div className="col-span-3">
-                <p className="font-medium text-black dark:text-white">${product.pricePerUnit}</p>
-              </div>
-            </div>
-          ))}
+        {/* Summary Section */}
+        <div className="mt-6 text-gray-800">
+          <div className="flex justify-between mb-2 font-semibold">
+            <p>Shipping Cost:</p>
+            <p>${shippingCost.toFixed(2)}</p>
+          </div>
+          <div className="flex justify-between mb-2 font-semibold">
+            <p>Coupon Discount:</p>
+            <p>-${couponDiscount.toFixed(2)}</p>
+          </div>
+          <div className="flex justify-between mb-4 font-semibold">
+            <p>VAT:</p>
+            <p>${vat.toFixed(2)}</p>
+          </div>
 
-          {/* Total Section */}
-          <div className="mt-4">
-            <p className="text-lg font-bold text-black dark:text-white">
-              Total: ${total.toFixed(2)}
-            </p>
+          <div className="flex justify-between text-lg font-bold border-t border-gray-300 pt-2">
+            <p>Total:</p>
+            <p>${total.toFixed(2)}</p>
           </div>
         </div>
       </div>
