@@ -9,7 +9,7 @@ const ShoppingCart: React.FC = () => {
       name: "Nasi Kuning",
       price: 6000,
       quantity: 10,
-      imageUrl: "https://via.placeholder.com/150",
+      imageUrl: "https://i.pinimg.com/736x/0d/71/f9/0d71f945c5b61e4b0bc57b9c0728f946.jpg",
     },
     // Add more products as needed
   ]);

@@ -1,6 +1,6 @@
 import React from "react";
 import { Container, Grid, Box } from "@mui/material";
-import CategoryCard from "../../components/user/CategoryCard/CategoryCard"; // Ganti nama komponen
+import CategoryCard from "../../components/user/CategoryCard/CategoryCard"; 
 import BannerData from "../../Helpers/HomePageBanner";
 import AnimatedText from "../../components/AnimatedText";
 import WalletCard from "../../components/user/Header/WalletCard";
@@ -103,7 +103,6 @@ const Homepage: React.FC = () => {
           </Grid>
         ))}
       </Grid>
-      {/* <Footer /> */}
     </Container>
   );
 };

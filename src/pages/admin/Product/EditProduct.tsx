@@ -41,7 +41,7 @@ const EditProductModal: React.FC<EditProductModalProps> = ({ show, onClose }) =>
           <div className="space-y-4">
             <div className="flex flex-col">
               <label className="text-gray-700 mb-1">Image</label>
-              <button className="btn bg-[#A0D8EF] hover:bg-opacity-80 w-full text-white outline-none">
+              <button className="btn bg-blue-900 hover:bg-blue-500 w-full text-white outline-none">
                 Select Image
               </button>
             </div>
@@ -72,13 +72,13 @@ const EditProductModal: React.FC<EditProductModalProps> = ({ show, onClose }) =>
           {/* Save and Close Buttons */}
           <div className="flex justify-between items-center space-x-4 mt-6">
             <button
-              className="btn bg-[#A0D8EF] hover:bg-opacity-80 w-1/2 text-white outline-none"
+              className="btn bg-blue-900 hover:bg-blue-500 w-1/2 text-white outline-none"
               onClick={onClose} 
             >
               Save
             </button>
             <button
-              className="btn bg-white hover:bg-gray-200 w-1/2 text-gray-700 outline-none"
+              className="btn bg-red-700 hover:bg-red-500 w-1/2 text-white outline-none"
               onClick={onClose} 
             >
               Cancel

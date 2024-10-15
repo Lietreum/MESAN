@@ -1,7 +1,14 @@
 import React, { useState } from 'react';
 import { BiHide } from "react-icons/bi";
-import { FaCoins } from "react-icons/fa"; // Import FaCoins icon
-import { useNavigate } from 'react-router-dom'; 
+import { FaCoins } from "react-icons/fa";
+import { useNavigate } from 'react-router-dom';
+
+// Import gambar secara manual
+import DANA from '../../../assets/admin/images/payment/Dana.png';
+import GoPay from '../../../assets/admin/images/payment/Gopay.png';
+import BCA from '../../../assets/admin/images/payment/BCA.png';
+import BRI from '../../../assets/admin/images/payment/BRI.png';
+import BNI from '../../../assets/admin/images/payment/BNI.png';
 
 const PaymentOptions: React.FC = () => {
   const [selectedMethod, setSelectedMethod] = useState('');
@@ -18,10 +25,18 @@ const PaymentOptions: React.FC = () => {
 
   const handleContinue = () => {
     if (selectedMethod) {
-      // Navigate to the Countdown page with the selected payment method
-      navigate('/Countdown'); // Change this line to navigate to Countdown
+      navigate('/Countdown');
     }
   };
+
+  // Daftar metode pembayaran dengan gambar yang sesuai
+  const paymentMethods = [
+    { name: 'DANA', image: DANA },
+    { name: 'GoPay', image: GoPay },
+    { name: 'BCA', image: BCA },
+    { name: 'BRI', image: BRI },
+    { name: 'BNI', image: BNI },
+  ];
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100 p-6">
@@ -37,14 +52,14 @@ const PaymentOptions: React.FC = () => {
                   '● ● ● ● ● ● ● ●'
                 ) : (
                   <>
-                    <FaCoins className="mr-2" /> {/* Add FaCoins icon */}
+                    <FaCoins className="mr-2" />
                     Rp 169,000
                   </>
                 )}
               </span>
             </div>
             <div onClick={toggleBalanceVisibility} className="cursor-pointer">
-              <BiHide className="w-8 h-8 text-white" /> 
+              <BiHide className="w-8 h-8 text-white" />
             </div>
           </div>
           <div className="text-sm text-gray-300">User Number</div>
@@ -57,15 +72,15 @@ const PaymentOptions: React.FC = () => {
           
           {/* Payment Methods */}
           <div className="space-y-4">
-            {['DANA', 'GoPay', 'BCA', 'BRI', 'Mandiri'].map((method) => (
+            {paymentMethods.map((method) => (
               <button
-                key={method}
-                onClick={() => handleSelectMethod(method)}
+                key={method.name}
+                onClick={() => handleSelectMethod(method.name)}
                 className={`flex items-center w-full px-4 py-3 rounded-lg shadow-lg transform transition-transform 
-                  ${selectedMethod === method ? 'bg-blue-500 scale-105 border-2 border-blue-500' : 'bg-white hover:bg-blue-50 border border-gray-200'}`}
+                  ${selectedMethod === method.name ? 'bg-blue-500 scale-105 border-2 border-blue-500' : 'bg-white hover:bg-blue-50 border border-gray-200'}`}
               >
-                <img src={`https://via.placeholder.com/40?text=${method}`} alt={method} className="w-10 h-10 mr-4" />
-                <span className={`text-lg font-semibold transition-all ${selectedMethod === method ? 'text-white' : 'text-gray-700'}`}>{method}</span>
+                <img src={method.image} alt={method.name} className="w-10 h-10 mr-4" />
+                <span className={`text-lg font-semibold transition-all ${selectedMethod === method.name ? 'text-white' : 'text-gray-700'}`}>{method.name}</span>
               </button>
             ))}
           </div>
@@ -88,4 +103,3 @@ const PaymentOptions: React.FC = () => {
 };
 
 export default PaymentOptions;
-  

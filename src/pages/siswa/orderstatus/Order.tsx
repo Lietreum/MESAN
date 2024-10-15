@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { FaArrowLeft } from 'react-icons/fa';
+import { Link, useNavigate } from 'react-router-dom';
 
 // Definisi props untuk komponen OrderStatus
 interface OrderStatusProps {
@@ -25,22 +26,23 @@ const OrderStatus: React.FC<OrderStatusProps> = ({ show, onClose }) => {
 // Komponen Order
 const Order: React.FC = () => {
   const [isOrderStatusVisible, setOrderStatusVisible] = useState(false);
+  const navigate = useNavigate(); // Hook untuk navigasi
 
   const handleOrderStatusClose = () => {
     setOrderStatusVisible(false);
   };
 
-  const handleViewOrderStatus = () => {
-    setOrderStatusVisible(true);
+  const handleBack = () => {
+    navigate(-1); // Navigasi kembali ke halaman sebelumnya
   };
 
   return (
     <div className="max-w-3xl mx-auto p-4">
       {/* Back button */}
-      <div className="flex items-center text-gray-600 mb-6 cursor-pointer">
+      <button className="flex items-center mb-4 text-gray-700 hover:text-gray-900 transition" onClick={handleBack}>
         <FaArrowLeft className="mr-2" />
-        <span className="text-lg font-semibold">Back</span>
-      </div>
+        Back
+      </button>
 
       {/* Order card */}
       <div className="bg-white shadow-md rounded-lg p-6">
@@ -67,12 +69,11 @@ const Order: React.FC = () => {
             <button className="bg-blue-500 text-white px-4 py-2 rounded-md mb-2">
               View QR Order
             </button>
-            <button
-              onClick={handleViewOrderStatus}
-              className="bg-blue-500 text-white px-4 py-2 rounded-md"
-            >
-              View Order Status
-            </button>
+            <Link to="/order/orderstatus"> {/* Link ke route OrderStatus */}
+              <button className="bg-blue-500 text-white px-4 py-2 rounded-md">
+                View Order Status
+              </button>
+            </Link>
           </div>
         </div>
       </div>
