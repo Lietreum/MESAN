@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import LoginImage from "../../assets/data/onigiri.png";
 import { FaCaravan } from "react-icons/fa";
+import { useNavigate } from 'react-router-dom';
+
 
 type LoginFormData = {
   email: string;
@@ -8,6 +10,7 @@ type LoginFormData = {
 };
 
 const Login: React.FC = () => {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState<LoginFormData>({
     email: "",
     password: "",
@@ -54,7 +57,7 @@ const Login: React.FC = () => {
         localStorage.setItem("token", Token);
   
         alert("Login successful!");
-        // Redirect user to the desired page
+        navigate('/')
       } else {
         setError(result.message || "An error occurred while logging in.");
       }

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import LoginImage from "../../assets/data/onigiri.png";
 import { FaCaravan } from "react-icons/fa";
+import { useNavigate } from 'react-router-dom';
 
 type SignupFormData = {
   name: string;
@@ -10,6 +11,7 @@ type SignupFormData = {
 };
 
 const Signup: React.FC = () => {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState<SignupFormData>({
     name: "",
     email: "",
@@ -65,7 +67,7 @@ const Signup: React.FC = () => {
 
       if (response.ok) {
         // User registered successfully
-        alert("Account created successfully! Please log in.");
+        navigate('/login');
       } else {
         setError(result.message || "An error occurred while creating the account.");
       }
