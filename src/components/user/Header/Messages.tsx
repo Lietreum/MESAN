@@ -76,7 +76,7 @@ const Messages: React.FC = () => {
         </div>
 
         {/* Chat Messages */}
-        <div className="flex-1 p-6 space-y-4 overflow-y-auto bg-gray-50">
+        <div className="flex-1 p-4 md:p-6 space-y-4 overflow-y-auto bg-gray-50">
           {messages.map((msg, index) => (
             <div
               key={index}
@@ -97,7 +97,7 @@ const Messages: React.FC = () => {
         </div>
 
         {/* Chat Input */}
-        <div className=" bottom-0 p-6 bg-white border-t border-white">
+        <div className="p-4 md:p-6 bg-white border-t border-gray-200">
           <div className="flex items-center space-x-4">
             {/* Icon for Emoji */}
             <button className="p-2 text-gray-500 hover:text-blue-500 transition">
@@ -111,7 +111,7 @@ const Messages: React.FC = () => {
               onKeyDown={(e) => {
                 if (e.key === 'Enter') sendMessage();
               }}
-              className="flex-1 px-4 py-3 rounded-full border border-gray-300 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent transition bg-slate-300"
+              className="flex-1 px-4 py-3 rounded-full border border-gray-300 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent transition"
             />
             <button
               onClick={sendMessage}

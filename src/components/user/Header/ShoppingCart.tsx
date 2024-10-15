@@ -9,7 +9,7 @@ const ShoppingCart: React.FC = () => {
       name: "Nasi Kuning",
       price: 6000,
       quantity: 10,
-      imageUrl: "https://via.placeholder.com/150",
+      imageUrl: "https://i.pinimg.com/736x/0d/71/f9/0d71f945c5b61e4b0bc57b9c0728f946.jpg",
     },
     // Add more products as needed
   ]);
@@ -35,13 +35,13 @@ const ShoppingCart: React.FC = () => {
   const total = subtotal + taxes + shipping;
 
   return (
-    <div className="bg-gray-100 h-screen py-8">
+    <div className="bg-gray-100 min-h-screen py-4">
       <div className="container mx-auto px-4">
-        <h1 className="text-2xl font-semibold mb-4">Shopping Cart</h1>
+        <h1 className="text-xl md:text-2xl font-semibold mb-4">Shopping Cart</h1>
         <div className="flex flex-col md:flex-row gap-4">
-          <div className="md:w-3/4">
-            <div className="bg-white rounded-lg shadow-md p-6 mb-4">
-              <table className="w-full">
+          <div className="w-full md:w-3/4">
+            <div className="bg-white rounded-lg shadow-md p-4 md:p-6 mb-4">
+              <table className="w-full text-sm md:text-base">
                 <thead>
                   <tr>
                     <th className="text-left font-semibold">Product</th>
@@ -53,44 +53,44 @@ const ShoppingCart: React.FC = () => {
                 <tbody>
                   {products.map(product => (
                     <tr key={product.id}>
-                      <td className="py-4">
+                      <td className="py-2">
                         <div className="flex items-center">
-                          <img className="h-16 w-16 mr-4" src={product.imageUrl} alt={product.name} />
+                          <img className="h-12 w-12 md:h-16 md:w-16 mr-4" src={product.imageUrl} alt={product.name} />
                           <span className="font-semibold">{product.name}</span>
                         </div>
                       </td>
-                      <td className="py-4">{formatRupiah(product.price)}</td>
-                      <td className="py-4">
+                      <td className="py-2">{formatRupiah(product.price)}</td>
+                      <td className="py-2">
                         <div className="flex items-center">
                           <button
-                            className="border rounded-md py-2 px-4 mr-2"
+                            className="border rounded-md py-1 px-2 md:py-1 md:px-2 mr-2"
                             onClick={() => handleQuantityChange(product.id, -1)}
                           >
                             -
                           </button>
-                          <span className="text-center w-8">{product.quantity}</span>
+                          <span className="text-center w-8 md:w-8">{product.quantity}</span>
                           <button
-                            className="border rounded-md py-2 px-4 ml-2"
+                            className="border rounded-md py-1 px-2 md:py-1 md:px-2 ml-2"
                             onClick={() => handleQuantityChange(product.id, 1)}
                           >
                             +
                           </button>
                         </div>
                       </td>
-                      <td className="py-4">{formatRupiah(product.price * product.quantity)}</td>
+                      <td className="py-2">{formatRupiah(product.price * product.quantity)}</td>
                     </tr>
                   ))}
                 </tbody>
               </table>
             </div>
           </div>
-          <div className="md:w-1/4">
+          <div className="w-full md:w-1/4">
             {/* Pick Up / Delivery Card */}
-            <div className="bg-white rounded-lg shadow-md p-6 mb-4">
-              <div className="flex justify-between items-center">
-                <h2 className="text-lg font-semibold mb-4">Pick Up / Delivery</h2>
+            <div className="bg-white rounded-lg shadow-md p-4 md:p-6 mb-4">
+              <div className="flex justify-between items-center mb-2">
+                <h2 className="text-lg font-semibold">Pick Up / Delivery</h2>
                 <button
-                  className="text-black border-2 border-slate-800 rounded-md font-semibold w-17 h-9"
+                  className="text-black border-2 border-slate-800 rounded-md font-semibold w-16 h-8"
                   onClick={() => setIsPickUp(!isPickUp)} // Toggle the state on button click
                 >
                   Switch
@@ -106,26 +106,26 @@ const ShoppingCart: React.FC = () => {
               </div>
             </div>
             {/* Summary Section */}
-            <div className="bg-white rounded-lg shadow-md p-6">
-              <h2 className="text-lg font-semibold mb-4">Summary</h2>
-              <div className="flex justify-between mb-2">
+            <div className="bg-white rounded-lg shadow-md p-4 md:p-6">
+              <h2 className="text-lg font-semibold mb-2">Summary</h2>
+              <div className="flex justify-between mb-1 text-sm md:text-base">
                 <span>Subtotal</span>
                 <span>{formatRupiah(subtotal)}</span>
               </div>
-              <div className="flex justify-between mb-2">
+              <div className="flex justify-between mb-1 text-sm md:text-base">
                 <span>Taxes</span>
                 <span>{formatRupiah(taxes)}</span>
               </div>
-              <div className="flex justify-between mb-2">
+              <div className="flex justify-between mb-1 text-sm md:text-base">
                 <span>Shipping</span>
                 <span>{formatRupiah(shipping)}</span>
               </div>
-              <hr className="my-2" />
-              <div className="flex justify-between mb-2">
-                <span className="font-semibold">Total</span>
-                <span className="font-semibold">{formatRupiah(total)}</span>
+              <hr className="my-1" />
+              <div className="flex justify-between mb-2 text-sm md:text-base font-semibold">
+                <span>Total</span>
+                <span>{formatRupiah(total)}</span>
               </div>
-              <button className="bg-blue-500 text-white py-2 px-4 rounded-lg mt-4 w-full">Checkout</button>
+              <button className="bg-blue-500 text-white py-2 px-4 rounded-lg mt-2 w-full">Checkout</button>
             </div>
           </div>
         </div>

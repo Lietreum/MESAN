@@ -49,7 +49,7 @@ const ProductPage: React.FC = () => {
 
   return (
     <div className="container mx-auto px-4 py-8">
-      <h2 className="text-3xl font-bold text-gray-800 mb-8 text-center tracking-wide">Our Products</h2>
+      <h2 className="text-3xl font-bold text-black mb-8 text-center tracking-wide">Our Products</h2>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
         {products.map((product) => (
@@ -73,7 +73,7 @@ const ProductPage: React.FC = () => {
 
               <div className="card-actions justify-end mt-4">
                 <button
-                  className="bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 flex items-center transition-colors duration-300"
+                  className="bg-blue-900 text-white px-4 py-2 rounded-lg hover:bg-blue-600 flex items-center transition-colors duration-300"
                   onClick={handleEdit}
                 >
                   <ImPencil className="mr-2" /> Edit Product
