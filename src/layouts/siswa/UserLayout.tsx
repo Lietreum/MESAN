@@ -1,35 +1,29 @@
 import React, { ReactNode } from "react";
-import { useMediaQuery } from "react-responsive";
 import Header from "../../components/user/Header/UserHeader";
 // import Footer from "../../components/user/Footer/Footer";
 import BottomNavigation from "../../components/user/Header/BottomNavigation";
 
 const UserLayout: React.FC<{ children: ReactNode }> = ({ children }) => {
-  // Define media queries
-  const isDesktop = useMediaQuery({ minWidth: 1024 });
-  const isMobile = useMediaQuery({ maxWidth: 1023 });
-
   return (
     <div className="overflow-x-hidden min-h-screen flex flex-col">
-      {/* Sticky Header Wrapper for Desktop */}
-      {isDesktop && (
-        <div className="overflow-visible top-0 z-50 bg-white">
-          <Header />
-        </div>
-      )}
+      {/* Sticky Header for Desktop (md: 768px, lg: 1024px) */}
+      <div className="hidden lg:block overflow-visible top-0 z-50 bg-white">
+        <Header />
+      </div>
 
-      {/* Bottom Navigation for Mobile */}
-      {isMobile && (
-        <div className="sticky bottom-0 z-50 w-full">
-          <BottomNavigation />
-        </div>
-      )}
+      {/* Bottom Navigation for Mobile (up to md: 768px) */}
+      <div className="lg:hidden sticky bottom-0 z-50 w-full">
+        <BottomNavigation />
+      </div>
 
       {/* Main content area */}
-      <div className="flex-grow bg-white">{children}</div>
+      <div className="flex-grow bg-white px-4 md:px-8 lg:px-16 xl:px-24 2xl:px-32">
+        {children}
+      </div>
 
       {/* Footer */}
       <div className="bg-white">
+        {/* Footer content goes here */}
       </div>
     </div>
   );

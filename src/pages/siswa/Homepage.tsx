@@ -4,9 +4,9 @@ import CategoryCard from "../../components/user/CategoryCard/CategoryCard"; // G
 import BannerData from "../../Helpers/HomePageBanner";
 import AnimatedText from "../../components/AnimatedText";
 import WalletCard from "../../components/user/Header/WalletCard";
-import Profileholder from "../../assets/admin/images/user/user-01.png";
-import SearchBar from "../../components/user/SearchBar/SearchBar";
-import Filter from "../../components/user/SearchBar/Filter";
+// import SearchBar from "../../components/user/SearchBar/SearchBar";
+import Profileholder from "../../assets/admin/images/user/user-01.png"
+// import Footer from "../../components/user/Footer/Footer";
 
 const Homepage: React.FC = () => {
   return (
@@ -25,7 +25,7 @@ const Homepage: React.FC = () => {
       <Box
         sx={{
           marginTop: 2,
-          marginBottom: -40,
+          marginBottom: 6,
           display: "flex",
           justifyContent: "center",
           width: "100%",
@@ -40,29 +40,10 @@ const Homepage: React.FC = () => {
         </Box>
       </Box>
 
-      {/* SearchBar and Filter Section */}
-      <Box
-        sx={{
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center",
-          width: "100%",
-          maxWidth: "1000px",
-          marginBottom: 4,
-        }}
-      >
-        <Box sx={{ flexGrow: 1 }}>
-          <SearchBar />
-        </Box>
-        <Box sx={{ marginLeft: 2 }}>
-          <Filter />
-        </Box>
-      </Box>
-
       {/* Animated Text Section */}
       <Box
         sx={{
-          marginTop: -40,
+          marginTop: 4,
           marginBottom: 6,
           textAlign: "center",
           width: "100%",
@@ -84,8 +65,11 @@ const Homepage: React.FC = () => {
             width: "100%",
             color: "#000",
           }}
+          
         />
+        
       </Box>
+      
 
       {/* Store Cards Section */}
       <Grid
