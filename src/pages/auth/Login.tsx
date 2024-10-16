@@ -34,9 +34,7 @@ const Login: React.FC = () => {
   
     try {
       setLoading(true);
-      console.log("Sending request to backend...");
-  
-      const response = await fetch("https://api-mesan.curaweda.com/auth/login", {
+      const response = await fetch("http://localhost:3001/auth/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -50,17 +48,14 @@ const Login: React.FC = () => {
       const result = await response.json();
   
       if (response.ok) {
-        console.log("Login successful!");
-
-      setTimeout(() => {
-        navigate('/'); // Redirect to the protected route
-      }, 100);
+        localStorage.setItem("token", result.accessToken); // Store token in local storage
+        navigate("/"); // Or any route you want to navigate to after login
       } else {
-        setError(result.message || "An error occurred while logging in.");
+        setError(result.message || "An error occurred during login.");
       }
     } catch (error) {
-      console.error("Login error:", error);
-      setError("Failed to connect. Please try again later.");
+      console.error("Login failed:", error);
+      setError("Login failed. Please try again.");
     } finally {
       setLoading(false);
     }

@@ -51,7 +51,7 @@ const Signup: React.FC = () => {
       setLoading(true);
       console.log("Sending request to backend...");
 
-      const response = await fetch("https://api-mesan.curaweda.com/auth/register", {
+      const response = await fetch("http://localhost:3001/auth/register", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
