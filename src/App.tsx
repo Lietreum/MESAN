@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Route, Routes, useLocation } from "react-router-dom";
+import ProtectedRoute from "./components/protect/Protected";
 import Loader from "./components/common/Loader";
 import PageTitle from "./components/admin/PageTitle";
 import AdminLayout from "./layouts/pedagang/AdminLayout";
@@ -38,6 +39,7 @@ import Order from "./pages/siswa/orderstatus/Order";
 import OrderStatus from "./pages/siswa/orderstatus/OrderStatus";
 import PaymentCountdownPage from "./components/user/Header/PaymentCountdown";
 import OrderItem from "./components/user/NotificationOrder/percobaannotifikasi";
+import NotAuthorized from './pages/auth/NotAuthorized';
 
 function App() {
 
@@ -60,20 +62,24 @@ function App() {
         <Route
           path="/kasir"
           element={
+            <ProtectedRoute allowedRoles={['ADMIN']}>
             <KasirLayout>
               <PageTitle title="Kasir Dashboard" />
               <HomeKasir />
             </KasirLayout>
+            </ProtectedRoute>
           }
         />
-        {/* Public Routes - User Dashboard */}
-        <Route
+         {/* Protected Routes */}
+         <Route
           path="/"
           element={
-            <UserLayout>
-              <PageTitle title="User Dashboard" />
-              <UserDashboard />
-            </UserLayout>
+            <ProtectedRoute allowedRoles={['USER', 'ADMIN']}>
+              <UserLayout>
+                <PageTitle title="User Dashboard" />
+                <UserDashboard />
+              </UserLayout>
+            </ProtectedRoute>
           }
         />
 
@@ -225,12 +231,14 @@ function App() {
          />
         {/* Admin Routes */}
         <Route
-          path="/pedagang"
+          path="/merchant"
           element={
+            <ProtectedRoute allowedRoles={['MERCHANT']}>
             <AdminLayout>
               <PageTitle title="Pedagang Dashboard | Koperasi" />
               <ECommerce />
             </AdminLayout>
+            </ProtectedRoute>
           }
         />
 
@@ -368,6 +376,7 @@ function App() {
 
         {/* 404 Not Found Route */}
         <Route path="*" element={<NotFound />} />
+        <Route path="/unauthorized" element={<NotAuthorized />} /> 
 
         <Route
           path="/walletsiswa"

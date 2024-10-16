@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import LoginImage from "../../assets/data/onigiri.png";
 import { FaCaravan } from "react-icons/fa";
+import { useNavigate } from 'react-router-dom';
+
 
 type LoginFormData = {
   email: string;
@@ -8,6 +10,7 @@ type LoginFormData = {
 };
 
 const Login: React.FC = () => {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState<LoginFormData>({
     email: "",
     password: "",
@@ -28,11 +31,11 @@ const Login: React.FC = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setError(null);
-
+  
     try {
       setLoading(true);
       console.log("Sending request to backend...");
-
+  
       const response = await fetch("https://api-mesan.curaweda.com/auth/login", {
         method: "POST",
         headers: {
@@ -42,31 +45,28 @@ const Login: React.FC = () => {
           email: formData.email,
           password: formData.password,
         }),
+        credentials: "include",
       });
-
+  
       const result = await response.json();
-
+  
       if (response.ok) {
-        const { token, refreshToken } = result;
-        console.log("Token:", token);
-        console.log("Refresh Token:", refreshToken);
+        console.log("Login successful!");
 
-        // Save tokens (consider secure storage or HttpOnly cookies)
-        localStorage.setItem("token", token);
-        localStorage.setItem("refreshToken", refreshToken);
-
-        alert("Login successful!");
-        // Redirect to the main page or user dashboard
+      setTimeout(() => {
+        navigate('/'); // Redirect to the protected route
+      }, 100);
       } else {
-        setError(result.error || "An error occurred while logging in.");
+        setError(result.message || "An error occurred while logging in.");
       }
     } catch (error) {
-      console.error("Failed to connect to the backend:", error);
-      setError("Failed to connect to the backend. Please try again later.");
+      console.error("Login error:", error);
+      setError("Failed to connect. Please try again later.");
     } finally {
       setLoading(false);
     }
   };
+  
 
   return (
     <section className="bg-white">

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import LoginImage from "../../assets/data/onigiri.png";
 import { FaCaravan } from "react-icons/fa";
+import { useNavigate } from 'react-router-dom';
 
 type SignupFormData = {
   name: string;
@@ -10,6 +11,7 @@ type SignupFormData = {
 };
 
 const Signup: React.FC = () => {
+  const navigate = useNavigate();
   const [formData, setFormData] = useState<SignupFormData>({
     name: "",
     email: "",
@@ -33,6 +35,7 @@ const Signup: React.FC = () => {
     e.preventDefault();
     setError(null);
 
+    // Validate passwords
     if (formData.password !== formData.confPassword) {
       setError("Passwords do not match!");
       return;
@@ -57,24 +60,16 @@ const Signup: React.FC = () => {
           name: formData.name,
           email: formData.email,
           password: formData.password,
-          role: 'USER'  // Setting role as 'USER'
         }),
       });
 
       const result = await response.json();
 
       if (response.ok) {
-        const { token, refreshToken } = result;
-        console.log("Token:", token);
-        console.log("Refresh Token:", refreshToken);
-
-        // Save tokens (consider secure storage or HttpOnly cookies)
-        localStorage.setItem("token", token);
-        localStorage.setItem("refreshToken", refreshToken);
-
-        alert("Account created successfully! Please log in.");
+        // User registered successfully
+        navigate('/login');
       } else {
-        setError(result.error || "An error occurred while creating the account.");
+        setError(result.message || "An error occurred while creating the account.");
       }
     } catch (error) {
       console.error("Failed to connect to the backend:", error);
