@@ -3,7 +3,7 @@ import { Navigate } from 'react-router-dom';
 
 interface ProtectedRouteProps {
   children: React.ReactNode; // Define children prop type
-  allowedRoles: string[]; // Define allowed roles prop type
+  allowedRoles?: string[]; // Define allowed roles prop type
 }
 
 const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ children, allowedRoles }) => {
@@ -45,7 +45,7 @@ const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ children, allowedRoles 
     return <Navigate to="/login" />; // Redirect to login if not authenticated
   }
 
-  if (!allowedRoles.some((role) => role === userRole)) {
+  if (allowedRoles && !allowedRoles.some((role) => role === userRole)) {
     return <Navigate to="/unauthorized" />; // Redirect to unauthorized page if role not allowed
   }
 

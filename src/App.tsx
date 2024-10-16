@@ -62,7 +62,7 @@ function App() {
         <Route
           path="/kasir"
           element={
-            <ProtectedRoute allowedRoles={['ADMIN']}>
+            <ProtectedRoute allowedRoles={["ADMIN"]}>
             <KasirLayout>
               <PageTitle title="Kasir Dashboard" />
               <HomeKasir />
@@ -74,7 +74,7 @@ function App() {
          <Route
           path="/"
           element={
-            <ProtectedRoute allowedRoles={['USER', 'ADMIN']}>
+            <ProtectedRoute allowedRoles={["USER"]}>
               <UserLayout>
                 <PageTitle title="User Dashboard" />
                 <UserDashboard />
