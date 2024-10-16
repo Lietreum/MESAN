@@ -45,19 +45,16 @@ const Login: React.FC = () => {
           email: formData.email,
           password: formData.password,
         }),
+        credentials: "include",
       });
   
       const result = await response.json();
   
       if (response.ok) {
-        const { Token } = result;
-        console.log("Token:", Token);
-  
-        // Save tokens securely in localStorage
-        localStorage.setItem("token", Token);
-  
-        alert("Login successful!");
-        navigate('/')
+        console.log("Login successful!");
+
+        //storing the token into cookie
+        navigate('/'); // Redirect to home or dashboard
       } else {
         setError(result.message || "An error occurred while logging in.");
       }
