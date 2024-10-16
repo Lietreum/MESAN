@@ -53,8 +53,9 @@ const Login: React.FC = () => {
       if (response.ok) {
         console.log("Login successful!");
 
-        //storing the token into cookie
-        navigate('/'); // Redirect to home or dashboard
+      setTimeout(() => {
+        navigate('/'); // Redirect to the protected route
+      }, 100);
       } else {
         setError(result.message || "An error occurred while logging in.");
       }
