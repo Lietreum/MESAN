@@ -1,18 +1,56 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import ClickOutside from '../../admin/ClickOutside';
+import { motion } from 'framer-motion'; 
 
 interface DropdownProps {
-  profileName: string | null; // Accepts the profile name or null
+  profileName: string | null; 
 }
 
 const DropdownUser: React.FC<DropdownProps> = ({ profileName }) => {
   const [dropdownOpen, setDropdownOpen] = useState<boolean>(false);
-//i change the name, tried to fetch it from the backend but gpt 4.0 is on the limit lmao, i try it again tomorrow, zka was here
+  const [animationCompleted, setAnimationCompleted] = useState<boolean>(false); // Track animation state
+
+  // Dropdown animation variants
+  const dropdownVariants = {
+    hidden: {
+      opacity: 0,
+      y: -10,
+      transition: {
+        when: "afterChildren",
+      },
+    },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        when: "beforeChildren",
+        staggerChildren: 0.4,
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: -10 },
+    visible: { opacity: 1, y: 0 },
+  };
+
+  // Handle opening the dropdown
+  const handleDropdownToggle = () => {
+    setDropdownOpen(prev => !prev);
+  };
+
+  // Trigger animation only once on first open
+  useEffect(() => {
+    if (dropdownOpen) {
+      setAnimationCompleted(true); // Animation happens only when the dropdown is first opened
+    }
+  }, [dropdownOpen]);
+
   return (
     <ClickOutside onClick={() => setDropdownOpen(false)} className="relative">
       <Link
-        onClick={() => setDropdownOpen(!dropdownOpen)}
+        onClick={handleDropdownToggle}
         className="flex items-center gap-4"
         to="#"
       > 
@@ -29,39 +67,48 @@ const DropdownUser: React.FC<DropdownProps> = ({ profileName }) => {
 
       {/* Dropdown Start */}
       {dropdownOpen && (
-        <div
+        <motion.div
           className="absolute right-0 mt-4 flex w-62.5 flex-col rounded-sm border border-stroke bg-white shadow-default dark:border-strokedark dark:bg-boxdark"
+          initial={animationCompleted ? "visible" : "hidden"} // Only animate if animationCompleted is true
+          animate="visible"
+          exit="hidden"
+          variants={dropdownVariants}
         >
-          <ul className="flex flex-col gap-5 border-b border-stroke px-6 py-7.5 dark:border-strokedark">
-          <li>
+          <motion.ul 
+            className="flex flex-col gap-5 border-b border-stroke px-6 py-7.5 dark:border-strokedark"
+          >
+            <motion.li variants={itemVariants}>
               <Link
                 to="/Profile-page"
                 className="flex items-center gap-3.5 text-sm font-medium duration-300 ease-in-out hover:text-primary lg:text-base"
               >
                 Profile
               </Link>
-            </li>
-            <li>
+            </motion.li>
+            <motion.li variants={itemVariants}>
               <Link
                 to="/walletsiswa"
                 className="flex items-center gap-3.5 text-sm font-medium duration-300 ease-in-out hover:text-primary lg:text-base"
               >
                 Wallet
               </Link>
-            </li>
-          <li>
+            </motion.li>
+            <motion.li variants={itemVariants}>
               <Link
                 to="/transactionhistory"
                 className="flex items-center gap-3.5 text-sm font-medium duration-300 ease-in-out hover:text-primary lg:text-base"
               >
                 Transaction History
               </Link>
-            </li>
-          </ul>
-          <button className="flex items-center gap-3.5 px-6 py-4 text-sm font-medium duration-300 ease-in-out hover:text-primary lg:text-base">
+            </motion.li>
+          </motion.ul>
+          <motion.button 
+            className="flex items-center gap-3.5 px-6 py-4 text-sm font-medium duration-300 ease-in-out hover:text-primary lg:text-base"
+            variants={itemVariants}
+          >
             Log Out
-          </button>
-        </div>
+          </motion.button>
+        </motion.div>
       )}
       {/* Dropdown End */}
     </ClickOutside>

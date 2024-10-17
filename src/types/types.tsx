@@ -61,9 +61,12 @@ export interface CategoryCardProps {
 
 //  C:\Users\User\Desktop\allcode\s\src\components\user\Header\Favorite.tsx
 export interface ProductCardProps {
+  storeName: string;
+  products: {
   image: string;
   productName: string;
   price: number;
+}[];
 }
 
 export interface OrderVerificationProps {

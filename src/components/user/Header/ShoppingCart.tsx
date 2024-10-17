@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Product } from "../../../types/types";
 import { FaRegCheckCircle, FaTruck } from "react-icons/fa"; // Importing icons from react-icons
+import { Link } from "react-router-dom"; // Import Link from react-router-dom
 
 const ShoppingCart: React.FC = () => {
   const [products, setProducts] = useState<Product[]>([
@@ -37,8 +38,13 @@ const ShoppingCart: React.FC = () => {
   return (
     <div className="bg-gray-100 min-h-screen py-4">
       <div className="container mx-auto px-4">
+        {/* Back Button */}
+        <Link to="/" className="text-blue-500 font-semibold mb-4 inline-block">
+          &larr; Back to Home
+        </Link>
+        
         <h1 className="text-xl md:text-2xl font-semibold mb-4">Shopping Cart</h1>
-        <div className="flex flex-col md:flex-row gap-4">
+        <div className="flex flex-col md:flex-row gap-4 mt-8"> {/* Add margin-top to make it lower */}
           <div className="w-full md:w-3/4">
             <div className="bg-white rounded-lg shadow-md p-4 md:p-6 mb-4">
               <table className="w-full text-sm md:text-base">
