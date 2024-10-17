@@ -48,8 +48,8 @@ const Login: React.FC = () => {
       const result = await response.json();
   
       if (response.ok) {
-        localStorage.setItem("token", result.accessToken); // Store token in local storage
-        navigate("/"); // Or any route you want to navigate to after login
+        localStorage.setItem("token", result.accessToken); 
+        navigate("/"); 
       } else {
         setError(result.message || "An error occurred during login.");
       }

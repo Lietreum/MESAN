@@ -1,15 +1,63 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Box, Typography, Card, CardContent, Avatar, Button, TextField, Grid } from '@mui/material';
+import DropdownUser from '../Header/Dropdown';
 
 const ProfilePage: React.FC = () => {
+  interface UserProfile {
+    name: string;
+    email: string;
+    class: string | null;
+    role: string;
+  }
+
+  const [profileData, setProfileData] = useState<UserProfile | null>(null);
   const [editMode, setEditMode] = useState(false);  
+
+  const fetchProfileData = async () => {
+    try {
+      console.log('Authorization Token:', localStorage.getItem('token')); // Log the token
+      const response = await fetch('http://localhost:3001/user/profile', {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${localStorage.getItem('token')}`,
+        },
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to fetch profile data');
+      }
+
+      const result = await response.json();
+      console.log('Fetched data:', result); // Log the entire response
+
+      if (result && result.data) {
+        setProfileData(result.data);
+      } else {
+        console.error('Unexpected response structure:', result);
+      }
+    } catch (error) {
+      console.error('Error fetching profile data:', error);
+    }
+  };
+
+  useEffect(() => {
+    fetchProfileData();
+  }, []);
+
   const handleEditClick = () => {
     setEditMode((prevMode) => !prevMode);
   };
 
+  const handleSaveChanges = async () => {
+    console.log("Save changes");
+    fetchProfileData();
+    setEditMode(false);
+  };
+
   return (
     <Box sx={{ padding: '20px' }}>
-      {/* Back Button */}
+      
       <Button
         variant="text"
         sx={{
@@ -28,125 +76,98 @@ const ProfilePage: React.FC = () => {
         &lt; Back
       </Button>
 
-      {/* Profile Section */}
       <Card
         variant="outlined"
         sx={{ display: 'flex', alignItems: 'center', padding: '20px', marginBottom: '20px' }}
       >
         <Avatar
-          sx={{ width: 80, height: 80, marginRight: '20px' }}
-          src="https://via.placeholder.com/80"
+          sx={{
+            width: 90,
+            height: 90,
+            marginRight: '20px',
+            borderRadius: '50%',
+            objectFit: 'cover',
+          }}
+          src="/prof_img.jpg"
           alt="Profile"
         />
         <Box>
-          <Typography variant="h6">Abdan Salhari</Typography>
-          <Typography variant="subtitle1">User</Typography>
-          <Typography variant="subtitle2">Bandung, Indonesia</Typography>
+          <Typography variant="h6">{profileData ? profileData.name : 'Loading...'}</Typography>
+          <Typography variant="subtitle1">{profileData ? profileData.role : 'Loading...'}</Typography>
+          <Typography variant="subtitle2">{profileData ? profileData.class : 'Loading...'}</Typography>
         </Box>
         <Button
           variant="outlined"
-          sx={{ marginLeft: 'auto' }}
+          sx={{ marginLeft: 'auto' }} 
           onClick={handleEditClick}
         >
           {editMode ? 'Cancel' : 'Edit'}
         </Button>
       </Card>
 
-      {/* Personal Information Section */}
       <Card variant="outlined">
         <CardContent>
           <Typography variant="h6" sx={{ marginBottom: '20px' }}>
             Personal Information
           </Typography>
 
-          {/* Grid Layout for Information Fields */}
           <Grid container spacing={2}>
-            {/* First Name */}
             <Grid item xs={12} sm={6}>
-              {editMode ? (
-                <TextField label="First Name" defaultValue="Abdan" variant="outlined" fullWidth />
-              ) : (
-                <Box>
-                  <Typography variant="subtitle1" color="textSecondary">
-                    First Name
-                  </Typography>
-                  <Typography variant="body1">Abdan</Typography>
-                </Box>
-              )}
-            </Grid>
-
-            {/* Last Name */}
-            <Grid item xs={12} sm={6}>
-              {editMode ? (
-                <TextField label="Last Name" defaultValue="Salhari" variant="outlined" fullWidth />
-              ) : (
-                <Box>
-                  <Typography variant="subtitle1" color="textSecondary">
-                    Last Name
-                  </Typography>
-                  <Typography variant="body1">Salhari</Typography>
-                </Box>
-              )}
-            </Grid>
-
-            {/* Email Address */}
-            <Grid item xs={12} sm={6}>
-              {editMode ? (
-                <TextField label="Email Address" defaultValue="abdansal@gmail.com" variant="outlined" fullWidth />
-              ) : (
-                <Box>
-                  <Typography variant="subtitle1" color="textSecondary">
-                    Email Address
-                  </Typography>
-                  <Typography variant="body1">abdansal@gmail.com</Typography>
-                </Box>
-              )}
-            </Grid>
-
-            {/* Phone */}
-            <Grid item xs={12} sm={6}>
-              {editMode ? (
-                <TextField label="Phone" defaultValue="+62 087786606782" variant="outlined" fullWidth />
-              ) : (
-                <Box>
-                  <Typography variant="subtitle1" color="textSecondary">
-                    Phone
-                  </Typography>
-                  <Typography variant="body1">+62 087786606782</Typography>
-                </Box>
-              )}
-            </Grid>
-
-            {/* Bio */}
-            <Grid item xs={12}>
               {editMode ? (
                 <TextField
-                  label="Bio"
-                  defaultValue="Keep it up!"
+                  label="Name"
+                  defaultValue={profileData ? profileData.name : ''}
                   variant="outlined"
-                  multiline
-                  rows={4}
                   fullWidth
                 />
               ) : (
                 <Box>
-                  <Typography variant="subtitle1" color="textSecondary">
-                    Bio
-                  </Typography>
-                  <Typography variant="body1">Keep it up!</Typography>
+                  <Typography variant="subtitle1" color="textSecondary">Name</Typography>
+                  <Typography variant="body1">{profileData ? profileData.name : 'Loading...'}</Typography>
+                </Box>
+              )}
+            </Grid>
+
+            <Grid item xs={12} sm={6}>
+              {editMode ? (
+                <TextField
+                  label="Email Address"
+                  defaultValue={profileData ? profileData.email : ''}
+                  variant="outlined"
+                  fullWidth
+                />
+              ) : (
+                <Box>
+                  <Typography variant="subtitle1" color="textSecondary">Email Address</Typography>
+                  <Typography variant="body1">{profileData ? profileData.email : 'Loading...'}</Typography>
+                </Box>
+              )}
+            </Grid>
+
+            <Grid item xs={12} sm={6}>
+              {editMode ? (
+                <TextField
+                  label="Class"
+                  defaultValue={profileData ? profileData.class : ''}
+                  variant="outlined"
+                  fullWidth
+                />
+              ) : (
+                <Box>
+                  <Typography variant="subtitle1" color="textSecondary">Class</Typography>
+                  <Typography variant="body1">{profileData?.class ? profileData.class : 'Set up class first'}</Typography>
                 </Box>
               )}
             </Grid>
           </Grid>
         </CardContent>
 
-        {/* Edit and Cancel Buttons */}
         {editMode && (
           <Box display="flex" justifyContent="flex-end" padding="10px">
             <Button
               variant="contained"
               color="primary"
-              onClick={handleEditClick}
+              onClick={handleSaveChanges}
               sx={{ marginRight: '10px' }}
             >
               Save

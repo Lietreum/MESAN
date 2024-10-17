@@ -1,9 +1,12 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import ClickOutside from '../../admin/ClickOutside';
-import UserOne from '../../../assets/admin/images/user/user-01.png';
 
-const DropdownUser: React.FC = () => {
+interface DropdownProps {
+  profileName: string | null; // Accepts the profile name or null
+}
+
+const DropdownUser: React.FC<DropdownProps> = ({ profileName }) => {
   const [dropdownOpen, setDropdownOpen] = useState<boolean>(false);
 //i change the name, tried to fetch it from the backend but gpt 4.0 is on the limit lmao, i try it again tomorrow, zka was here
   return (
@@ -15,12 +18,12 @@ const DropdownUser: React.FC = () => {
       > 
         <span className="hidden text-right lg:block">
           <span className="block text-sm font-medium text-black dark:text-white">
-            Sigma
+            {profileName}
           </span> 
         </span>
 
         <span className="h-12 w-12 rounded-full">
-          <img src={UserOne} alt="User" />
+          <img src='/prof_img.jpg' alt="User" />
         </span>
       </Link>
 
