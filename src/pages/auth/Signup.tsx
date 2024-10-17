@@ -1,7 +1,8 @@
 import React, { useState } from "react";
-import LoginImage from "../../assets/data/onigiri.png";
+import { motion } from "framer-motion"; // Import framer-motion
+import SignupImage from "../../assets/data/onigiri.png";
 import { FaCaravan } from "react-icons/fa";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 
 type SignupFormData = {
   name: string;
@@ -42,15 +43,13 @@ const Signup: React.FC = () => {
     }
 
     // Ensure email validation according to backend logic
-    if (!formData.email.endsWith('.siswa@smkn4bdg.sch.id')) {
+    if (!formData.email.endsWith(".siswa@smkn4bdg.sch.id")) {
       setError("You must use a valid school email.");
       return;
     }
 
     try {
       setLoading(true);
-      console.log("Sending request to backend...");
-
       const response = await fetch("http://localhost:3001/auth/register", {
         method: "POST",
         headers: {
@@ -66,57 +65,106 @@ const Signup: React.FC = () => {
       const result = await response.json();
 
       if (response.ok) {
-        // User registered successfully
-        navigate('/login');
+        navigate("/login");
       } else {
-        setError(result.message || "An error occurred while creating the account.");
+        setError(
+          result.message || "An error occurred while creating the account."
+        );
       }
     } catch (error) {
-      console.error("Failed to connect to the backend:", error);
       setError("Failed to connect to the backend. Please try again later.");
     } finally {
       setLoading(false);
     }
   };
 
+  // Animation variants
+  const ariseVariant = {
+    hidden: { opacity: 0, y: 50 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.7, ease: "easeInOut" },
+    },
+  };
+
   return (
-    <section className="bg-white">
+    <motion.section
+      className="bg-white"
+      initial="hidden"
+      animate="visible"
+      variants={ariseVariant}
+    >
       <div className="lg:grid lg:min-h-screen lg:grid-cols-12">
         <section className="relative flex h-32 items-end bg-gray-900 lg:col-span-5 lg:h-full xl:col-span-6">
           <img
-            alt="imagelogin"
-            src={LoginImage}
+            alt="imageSignup"
+            src={SignupImage}
             className="absolute inset-0 h-full w-full object-cover opacity-80"
           />
           <div className="hidden lg:relative lg:block lg:p-12">
-            <h1 className="mt-6 text-3xl text-center font-extrabold text-black sm:text-4xl">
+            <motion.h1
+              className="mt-6 text-3xl text-center font-extrabold text-black sm:text-4xl"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.2, duration: 0.7 }}
+            >
               Enjoy your time,
-            </h1>
-            <h2 className="mt-4 text-xl leading-relaxed text-black/90">
+            </motion.h1>
+            <motion.h2
+              className="mt-4 text-xl leading-relaxed text-black/90"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.3, duration: 0.7 }}
+            >
               Enjoy your food 😋
-            </h2>
+            </motion.h2>
           </div>
         </section>
 
         <main className="flex items-center justify-center px-8 py-8 sm:px-12 lg:col-span-7 lg:px-16 lg:py-12 xl:col-span-6">
-          <div className="max-w-xl lg:max-w-3xl">
+          <motion.div
+            className="max-w-xl lg:max-w-3xl"
+            initial="hidden"
+            animate="visible"
+            variants={ariseVariant}
+          >
             <div className="relative -mt-16 block lg:hidden text-center">
-              <a
+              <motion.a
                 className="inline-flex items-center justify-center rounded-full bg-white text-blue-600"
                 href="#"
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.5 }}
               >
                 <FaCaravan size={40} />
-              </a>
-              <h1 className="mt-4 text-3xl font-bold text-gray-900 sm:text-4xl">
+              </motion.a>
+              <motion.h1
+                className="mt-4 text-3xl font-bold text-gray-900 sm:text-4xl"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.3, duration: 0.7 }}
+              >
                 Welcome to Mesan 👋
-              </h1>
-              <p className="mt-4 text-gray-500 leading-relaxed">
+              </motion.h1>
+              <motion.p
+                className="mt-4 text-gray-500 leading-relaxed"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.4, duration: 0.7 }}
+              >
                 We help you order your favorite food from your school canteen,
                 cooperation, or any other place you prefer.
-              </p>
+              </motion.p>
             </div>
 
-            <form onSubmit={handleSubmit} className="mt-8 grid grid-cols-6 gap-6">
+            <motion.form
+              onSubmit={handleSubmit}
+              className="mt-8 grid grid-cols-6 gap-6"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.4, duration: 0.7 }}
+            >
               {/* First Name */}
               <div className="col-span-6 sm:col-span-3">
                 <label
@@ -205,11 +253,27 @@ const Signup: React.FC = () => {
               </div>
 
               {error && <p className="col-span-6 text-red-500">{error}</p>}
-            </form>
-          </div>
+            </motion.form>
+
+            {/* Login Link */}
+            <motion.p
+              className="mt-6 text-center text-gray-500 lg:mr-70"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.5, duration: 0.7 }}
+            >
+              Already have an account?{" "}
+              <button
+                onClick={() => navigate("/login")}
+                className="text-blue-600 hover:underline"
+              >
+                Login
+              </button>
+            </motion.p>
+          </motion.div>
         </main>
       </div>
-    </section>
+    </motion.section>
   );
 };
 
