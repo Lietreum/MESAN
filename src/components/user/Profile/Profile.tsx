@@ -12,6 +12,9 @@ const ProfilePage: React.FC = () => {
   const [profileData, setProfileData] = useState<UserProfile | null>(null);
   const [editMode, setEditMode] = useState(false);  
 
+  const [editedName, setEditedName] = useState('');
+  const [editedClass, setEditedClass] = useState('');
+
   const fetchProfileData = async () => {
     try {
       console.log('Authorization Token:', localStorage.getItem('token')); // Log the token
@@ -45,15 +48,43 @@ const ProfilePage: React.FC = () => {
   }, []);
 
   const handleEditClick = () => {
+    if (profileData) {
+      setEditedName(profileData.name);
+      setEditedClass(profileData.class || '');
+    }
     setEditMode((prevMode) => !prevMode);
   };
 
   const handleSaveChanges = async () => {
-    console.log("Save changes");
-    fetchProfileData();
-    setEditMode(false);
+    try {
+      const response = await fetch('http://localhost:3001/user/profile', {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${localStorage.getItem('token')}`,
+        },
+        body: JSON.stringify({
+          name: editedName,
+          class: editedClass,
+        }),
+      });
+  
+      if (!response.ok) {
+        throw new Error('Failed to update profile');
+      }
+  
+      const result = await response.json();
+      console.log('Updated profile:', result);
+  
+      // Update the profileData with the response from the backend
+      setProfileData(result.data);
+  
+      // Exit edit mode
+      setEditMode(false);
+    } catch (error) {
+      console.error('Error updating profile:', error);
+    }
   };
-
   return (
     <Box sx={{ padding: '20px' }}>
       
@@ -111,11 +142,12 @@ const ProfilePage: React.FC = () => {
           </Typography>
 
           <Grid container spacing={2}>
-            <Grid item xs={12} sm={6}>
+          <Grid item xs={12} sm={6}>
               {editMode ? (
                 <TextField
                   label="Name"
-                  defaultValue={profileData ? profileData.name : ''}
+                  value={editedName} // Bind to the editedName state
+                  onChange={(e) => setEditedName(e.target.value)} // Update state on change
                   variant="outlined"
                   fullWidth
                 />
@@ -128,26 +160,19 @@ const ProfilePage: React.FC = () => {
             </Grid>
 
             <Grid item xs={12} sm={6}>
-              {editMode ? (
-                <TextField
-                  label="Email Address"
-                  defaultValue={profileData ? profileData.email : ''}
-                  variant="outlined"
-                  fullWidth
-                />
-              ) : (
-                <Box>
-                  <Typography variant="subtitle1" color="textSecondary">Email Address</Typography>
-                  <Typography variant="body1">{profileData ? profileData.email : 'Loading...'}</Typography>
-                </Box>
-              )}
+              <Box>
+                <Typography variant="subtitle1" color="textSecondary">Email Address</Typography>
+                <Typography variant="body1">{profileData ? profileData.email : 'Loading...'}</Typography>
+              </Box>
             </Grid>
+
 
             <Grid item xs={12} sm={6}>
               {editMode ? (
                 <TextField
                   label="Class"
-                  defaultValue={profileData ? profileData.class : ''}
+                  value={editedClass} // Bind to the editedClass state
+                  onChange={(e) => setEditedClass(e.target.value)} // Update state on change
                   variant="outlined"
                   fullWidth
                 />
