@@ -2,27 +2,30 @@ import React, { useEffect, useState } from 'react';
 import { Navigate } from 'react-router-dom';
 
 interface ProtectedRouteProps {
-  children: React.ReactNode; // Define children prop type
-  allowedRoles: string[]; // Define allowed roles prop type
+  children: React.ReactNode;
+  allowedRoles?: string[];
 }
 
 const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ children, allowedRoles }) => {
   const [isLoading, setIsLoading] = useState(true);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [userRole, setUserRole] = useState<string | null>(null); // State to store user's role
+  const [userRole, setUserRole] = useState<string | null>(null);
 
   useEffect(() => {
     const checkAuth = async () => {
       try {
-        const response = await fetch("https://api-mesan.curaweda.com/auth/", {
+        const token = localStorage.getItem("token");
+        const response = await fetch("http://localhost:3001/auth/", {
           method: "GET",
-          credentials: "include", 
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
         });
 
         if (response.ok) {
           const data = await response.json();
           setIsAuthenticated(true);
-          setUserRole(data.role); // Assume the response contains a 'role' field
+          setUserRole(data.role);
         } else {
           setIsAuthenticated(false);
         }
@@ -38,15 +41,19 @@ const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ children, allowedRoles 
   }, []);
 
   if (isLoading) {
-    return <div>Loading...</div>; // Optionally show a loading state
+    return <div>Loading...</div>;
   }
 
   if (!isAuthenticated) {
-    return <Navigate to="/login" />; // Redirect to login if not authenticated
+    return <Navigate to="/login" />;
   }
 
-  if (!allowedRoles.some((role) => role === userRole)) {
-    return <Navigate to="/unauthorized" />; // Redirect to unauthorized page if role not allowed
+  if (userRole === null) {
+    return <Navigate to="/unauthorized" />; // Redirect if user role is null
+  }
+
+  if (allowedRoles && !allowedRoles.includes(userRole)) {
+    return <Navigate to="/unauthorized" />; // Redirect if user role is not allowed
   }
 
   return <>{children}</>; // Render protected children if authenticated and authorized
