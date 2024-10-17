@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { Box, Typography, Card, CardContent, Avatar, Button, TextField, Grid } from '@mui/material';
-import DropdownUser from '../Header/Dropdown';
 
 const ProfilePage: React.FC = () => {
   interface UserProfile {
