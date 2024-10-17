@@ -69,7 +69,6 @@ const Homepage: React.FC = () => {
         />
         
       </Box>
-      
 
       {/* Store Cards Section */}
       <Grid

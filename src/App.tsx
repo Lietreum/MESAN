@@ -1,7 +1,6 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { Route, Routes, useLocation } from "react-router-dom";
 import ProtectedRoute from "./components/protect/Protected";
-import Loader from "./components/common/Loader";
 import PageTitle from "./components/admin/PageTitle";
 import AdminLayout from "./layouts/pedagang/AdminLayout";
 import UserLayout from "./layouts/siswa/UserLayout";
@@ -43,20 +42,13 @@ import NotAuthorized from './pages/auth/NotAuthorized';
 
 function App() {
 
-  const [loading, setLoading] = useState<boolean>(true);
   const { pathname } = useLocation();
 
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [pathname]);
 
-  useEffect(() => {
-    setTimeout(() => setLoading(false), 1000);
-  }, []);
-
-  return loading ? (
-    <Loader />
-  ) : (
+  return (
     <>
       <Routes>
         <Route
@@ -74,12 +66,12 @@ function App() {
          <Route
           path="/"
           element={
-            <ProtectedRoute allowedRoles={['USER']}>
+            // <ProtectedRoute allowedRoles={['USER']}>
               <UserLayout>
                 <PageTitle title="User Dashboard" />
                 <UserDashboard />
               </UserLayout>
-            </ProtectedRoute>
+            // </ProtectedRoute>
           }
         />
 

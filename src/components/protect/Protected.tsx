@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Navigate } from 'react-router-dom';
+import Loader from "../../components/common/Loader";
 
 interface ProtectedRouteProps {
   children: React.ReactNode;
@@ -41,7 +42,7 @@ const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ children, allowedRoles 
   }, []);
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return <Loader />; // gwa ganti pake ini
   }
 
   if (!isAuthenticated) {

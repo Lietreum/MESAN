@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion"; // Import framer-motion
 import SignupImage from "../../assets/data/onigiri.png";
-import { FaCaravan } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 
 type SignupFormData = {
@@ -129,7 +128,7 @@ const Signup: React.FC = () => {
             animate="visible"
             variants={ariseVariant}
           >
-            <div className="relative -mt-16 block lg:hidden text-center">
+            <div className="relative -mt-16 block lg:hidden text-center text-3xl">
               <motion.a
                 className="inline-flex items-center justify-center rounded-full bg-white text-blue-600"
                 href="#"
@@ -137,7 +136,7 @@ const Signup: React.FC = () => {
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.5 }}
               >
-                <FaCaravan size={40} />
+                😋
               </motion.a>
               <motion.h1
                 className="mt-4 text-3xl font-bold text-gray-900 sm:text-4xl"

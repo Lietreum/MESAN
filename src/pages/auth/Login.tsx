@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion"; // Import framer-motion
 import LoginImage from "../../assets/data/onigiri.png";
-import { FaCaravan } from "react-icons/fa";
 import { useNavigate } from 'react-router-dom';
 
 type LoginFormData = {
@@ -114,13 +113,13 @@ const Login: React.FC = () => {
           >
             <div className="relative -mt-16 block lg:hidden text-center">
               <motion.a
-                className="inline-flex items-center justify-center rounded-full bg-white text-blue-600"
+                className="inline-flex items-center justify-center rounded-full bg-white text-blue-600 text-3xl"
                 href="#"
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.5 }}
               >
-                <FaCaravan size={40} />
+                😋
               </motion.a>
               <motion.h1
                 className="mt-4 text-3xl font-bold text-gray-900 sm:text-4xl"
