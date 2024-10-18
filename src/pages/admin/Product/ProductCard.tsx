@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import { ImPencil } from "react-icons/im";
-import AddProductModal from './AddProduct';
-import EditProductModal from './EditProduct';
+import AddProductModal from "./AddProduct";
+import EditProductModal from "./EditProduct";
 
 const ProductPage: React.FC = () => {
   const [showAddModal, setShowAddModal] = useState(false);
@@ -22,34 +22,16 @@ const ProductPage: React.FC = () => {
       name: "Nasi Kuning",
       price: 6000,
       stock: 30,
-      imageUrl: "https://i.pinimg.com/564x/0c/c0/c6/0cc0c6a5662e002a7967d7cdbf164d5c.jpg",
-    },
-    {
-      id: 2,
-      name: "Nasi Rames",
-      price: 12000,
-      stock: 12,
-      imageUrl: "https://i.pinimg.com/736x/b6/31/f3/b631f359151c68d76cfcc588872a30f6.jpg",
-    },
-    {
-      id: 3,
-      name: "Air Mineral",
-      price: 3000,
-      stock: 40,
-      imageUrl: "https://i.pinimg.com/564x/29/ef/98/29ef98b4c173cc8c15c14917a5f27e9a.jpg",
-    },
-    {
-      id: 4,
-      name: "Kopi Sachet",
-      price: 3000,
-      stock: 50,
-      imageUrl: "https://i.pinimg.com/564x/d6/d4/4b/d6d44b1d6c3790e9a278568234ba0b09.jpg",
+      imageUrl:
+        "https://i.pinimg.com/564x/0c/c0/c6/0cc0c6a5662e002a7967d7cdbf164d5c.jpg",
     },
   ];
 
   return (
     <div className="container mx-auto px-4 py-8">
-      <h2 className="text-3xl font-bold text-black mb-8 text-center tracking-wide">Our Products</h2>
+      <h2 className="text-3xl font-bold text-black mb-8 text-center tracking-wide">
+        Barang anda
+      </h2>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
         {products.map((product) => (
@@ -68,8 +50,12 @@ const ProductPage: React.FC = () => {
               <h2 className="card-title text-xl font-semibold text-gray-800">
                 {product.name}
               </h2>
-              <p className="text-gray-600 mt-2">Rp{product.price.toLocaleString()}</p>
-              <p className="text-green-500 font-medium">{product.stock} in Stock</p>
+              <p className="text-gray-600 mt-2">
+                Rp{product.price.toLocaleString()}
+              </p>
+              <p className="text-green-500 font-medium">
+                {product.stock} in Stock
+              </p>
 
               <div className="card-actions justify-end mt-4">
                 <button
@@ -84,9 +70,10 @@ const ProductPage: React.FC = () => {
         ))}
 
         {/* Tombol untuk menambah produk */}
-        <div className="card bg-gray-100 w-96 shadow-lg border-dashed border-4 border-gray-300 flex items-center justify-center transition-transform duration-300 hover:scale-105 hover:shadow-2xl rounded-xl">
+        {/* Add Product Card */}
+        <div className="card bg-gray-100 shadow-lg transform transition-transform duration-300 hover:scale-105 hover:shadow-2xl rounded-xl overflow-hidden flex items-center justify-center">
           <button
-            className="flex flex-col items-center justify-center text-gray-500 hover:text-gray-700 transition-colors duration-300"
+            className="flex flex-col items-center justify-center text-gray-500 hover:text-gray-700 transition-colors duration-300 p-6"
             onClick={handleAddProductClick}
           >
             <span className="text-5xl mb-2">+</span>
