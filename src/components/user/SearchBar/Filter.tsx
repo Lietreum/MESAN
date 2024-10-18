@@ -6,17 +6,18 @@ const SortDropdown: React.FC = () => {
 
   const handleSortChange = (type: string) => {
     setSortType(type);
-    setOpenSort(false);
+    setOpenSort(false); // Close the dropdown after selection
+  };
+
+  const toggleSortDropdown = () => {
+    setOpenSort(prev => !prev); // Toggle the dropdown on click
   };
 
   return (
     <div className="relative inline-block">
-      <div
-        className="relative"
-        onMouseEnter={() => setOpenSort(true)}
-        onMouseLeave={() => setOpenSort(false)}
-      >
+      <div className="relative">
         <button
+          onClick={toggleSortDropdown} // Toggle dropdown on button click
           className="flex text-gray-600 bg-gray-200 items-center justify-start px-4 py-2 mt-2 text-lg text-left rounded-lg transition-all duration-200 hover:bg-gray-100"
           style={{ width: 'auto' }}
         >
