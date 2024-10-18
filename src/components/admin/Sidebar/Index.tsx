@@ -91,9 +91,9 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
           <ul className="space-y-2">
             <li>
               <NavLink
-                to="/pedagang"
+                to="/merchant"
                 className={`flex items-center gap-3 px-6 py-2 text-white rounded-md transition-colors duration-200 ${
-                  pathname === "/pedagang" ? "bg-[#1E293B]" : "hover:bg-[#1E293B]"
+                  pathname === "/merchant" ? "bg-[#1E293B]" : "hover:bg-[#1E293B]"
                 }`}
               >
                 <AiOutlineAppstore size={20} />

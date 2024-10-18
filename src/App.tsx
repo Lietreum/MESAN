@@ -225,12 +225,12 @@ function App() {
         <Route
           path="/merchant"
           element={
-            <ProtectedRoute allowedRoles={['MERCHANT']}>
+            // <ProtectedRoute allowedRoles={['MERCHANT']}>
             <AdminLayout>
               <PageTitle title="Pedagang Dashboard | Koperasi" />
               <ECommerce />
             </AdminLayout>
-            </ProtectedRoute>
+            // </ProtectedRoute>
           }
         />
 
