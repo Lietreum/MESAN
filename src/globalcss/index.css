@@ -174,3 +174,36 @@ html::-webkit-scrollbar,
 body::-webkit-scrollbar {
   display: none;             /* Chrome, Safari, and Opera */
 }
+
+/* Custom transparent scrollbar */
+#scroll-container::-webkit-scrollbar {
+  width: 8px;
+}
+
+#scroll-container::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.3); /* Slightly transparent when scrolling */
+  border-radius: 10px;
+}
+
+#scroll-container.scrollbar-hidden::-webkit-scrollbar-thumb {
+  background-color: transparent; /* Completely transparent when not scrolling */
+}
+
+/* Firefox scrollbar styles */
+#scroll-container {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(0, 0, 0, 0.3) transparent;
+}
+
+#scroll-container.scrollbar-hidden {
+  scrollbar-color: transparent transparent;
+}
+
+/* Smooth fade-out */
+.scrollbar-visible {
+  transition: scrollbar-color 0.5s ease-in-out;
+}
+
+.scrollbar-hidden {
+  transition: scrollbar-color 1s ease-in-out;
+}

@@ -14,10 +14,8 @@ const products: Product[] = [
 ];
 
 const Invoice: React.FC = () => {
-  const shippingCost = 10;
-  const couponDiscount = products.reduce((sum, product) => sum + product.quantity * product.pricePerUnit, 0) * 0.1;
-  const vat = (shippingCost - couponDiscount) * 0.05;
-  const total = products.reduce((sum, product) => sum + product.quantity * product.pricePerUnit, 0) + shippingCost - couponDiscount + vat;
+  // Calculate the total without shipping cost, discount, or VAT
+  const total = products.reduce((sum, product) => sum + product.quantity * product.pricePerUnit, 0);
 
   return (
     <div className="max-w-md mx-auto bg-white shadow-lg rounded-lg p-6">
@@ -53,20 +51,7 @@ const Invoice: React.FC = () => {
 
         {/* Summary Section */}
         <div className="mt-6 text-gray-800">
-          <div className="flex justify-between mb-2 font-semibold">
-            <p>Shipping Cost:</p>
-            <p>${shippingCost.toFixed(2)}</p>
-          </div>
-          <div className="flex justify-between mb-2 font-semibold">
-            <p>Coupon Discount:</p>
-            <p>-${couponDiscount.toFixed(2)}</p>
-          </div>
-          <div className="flex justify-between mb-4 font-semibold">
-            <p>VAT:</p>
-            <p>${vat.toFixed(2)}</p>
-          </div>
-
-          <div className="flex justify-between text-lg font-bold border-t border-gray-300 pt-2">
+          <div className="flex justify-between text-lg text-blue-600 font-bold  pt-2">
             <p>Total:</p>
             <p>${total.toFixed(2)}</p>
           </div>

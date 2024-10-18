@@ -1,29 +1,55 @@
+import React, { useEffect, useState } from 'react';
 import TopRightContent from "../../components/kasir/dashboard/TopRightContent";
 import CategoryCard from "../../components/user/CategoryCard/CategoryCard";
 import BottomRightContent from "../../components/kasir/dashboard/BottomRightContent";
-import canteenData from "../../Helpers/HomePageBanner"; // Import the data
+import canteenData from "../../Helpers/HomePageBanner"; 
 
-const DashboardKasir: React.FC = () => {
+const MainContent: React.FC = () => {
+  const [isScrolling, setIsScrolling] = useState(false);
+
+  useEffect(() => {
+    let timeout: NodeJS.Timeout;
+
+    const handleScroll = () => {
+      setIsScrolling(true);
+      clearTimeout(timeout);
+      timeout = setTimeout(() => {
+        setIsScrolling(false);
+      }, 450); // Fades scrollbar after 0.45 seconds of inactivity
+    };
+
+    const scrollContainer = document.getElementById('scroll-container');
+    scrollContainer?.addEventListener('scroll', handleScroll);
+
+    return () => {
+      scrollContainer?.removeEventListener('scroll', handleScroll);
+      clearTimeout(timeout);
+    };
+  }, []);
+
   return (
-    <div className="grid grid-cols-12 gap-6 p-6 h-screen bg-gradient-to-r from-blue-50 to-gray-50">
-      {/* Left content (Products grid) */}
-      <div className="col-span-12 md:col-span-8 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 p-4 rounded-lg bg-white shadow-xl">
-        {canteenData.map((canteen, index) => (
-          <div key={index} className="rounded-lg bg-white shadow-lg">
-            <CategoryCard data={{ name: canteen.name, img: canteen.img }} />
-          </div>
+    <div className="flex flex-col md:flex-row gap-8 p-4 h-screen overflow-hidden">
+      {/* Left Section - Store Cards */}
+      <div
+        id="scroll-container"
+        className={`w-full md:w-2/3 grid grid-cols-1 sm:grid-cols-2 gap-4 overflow-auto h-full transition-all duration-300 ${
+          isScrolling ? 'scrollbar-visible' : 'scrollbar-hidden'
+        }`}
+      >
+        {canteenData.map((store, index) => (
+          <CategoryCard key={index} data={store} />
         ))}
       </div>
 
-      {/* Right content */}
-      <div className="col-span-12 md:col-span-4 flex flex-col gap-4">
-        {/* Top-right content (order summary) */}
-        <div className="bg-white p-4 shadow-xl rounded-lg overflow-auto scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-100">
+      {/* Right Section - Payment Summary and Checkout */}
+      <div className="w-full md:w-1/3 flex flex-col gap-4">
+        {/* Top Right Content - Payment Card */}
+        <div className="bg-white shadow-md rounded-lg p-4 flex-grow">
           <TopRightContent />
         </div>
 
-        {/* Bottom-right content (payment summary) */}
-        <div className="bg-gradient-to-r from-cyan-500 to-blue-500 p-4 shadow-lg rounded-lg text-white">
+        {/* Bottom Right Content - Invoice Summary */}
+        <div className="bg-white shadow-md rounded-lg p-4 flex-grow">
           <BottomRightContent />
         </div>
       </div>
@@ -31,4 +57,4 @@ const DashboardKasir: React.FC = () => {
   );
 };
 
-export default DashboardKasir;
+export default MainContent;

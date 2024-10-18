@@ -101,9 +101,11 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
             <li>
               <NavLink
                 to="/kasir"
-                className={`flex items-center gap-3 px-4 py-2 rounded-md text-white hover:bg-[#1E293B] transition ${
-                  pathname === "/admin" ? "bg-[#1E293B]" : ""
-                }`}
+                className={({ isActive }) =>
+                  `flex items-center gap-3 px-4 py-2 rounded-md transition ${
+                    isActive ? "text-white" : "text-white"
+                  } hover:text-blue-400`
+                }
               >
                 <AiOutlineAppstore size={20} />
                 Dashboard
@@ -149,8 +151,8 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
                     <NavLink
                       to="/kasir/withdrawal"
                       className={({ isActive }) =>
-                        `block py-2 text-white transition hover:text-blue-400 ${
-                          isActive ? "text-blue-400" : ""
+                        `block py-2 transition hover:text-blue-400 ${
+                          isActive ? "text-blue-400" : "text-white"
                         }`
                       }
                     >
@@ -161,28 +163,30 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
               )}
             </SidebarLinkGroup>
 
-            {/* Messages */}
+            {/* History */}
             <li>
               <NavLink
                 to="/kasir/history"
-                className={`flex items-center gap-3 px-4 py-2 rounded-md text-white hover:bg-[#1E293B] transition ${
-                  pathname.includes("messages") ? "bg-[#1E293B]" : ""
-                }`}
+                className={({ isActive }) =>
+                  `flex items-center gap-3 px-4 py-2 rounded-md transition hover:text-blue-400 ${
+                    isActive ? "text-blue-400" : "text-white"
+                  } hover:bg-[#1E293B]`
+                }
               >
                 <CiMail size={20} />
                 History
               </NavLink>
             </li>
 
-            {/* Incoming Orders */}
-
-            {/* Profile */}
+            {/* Manage Accounts */}
             <li>
               <NavLink
                 to="/kasir/ManageAccounts"
-                className={`flex items-center gap-3 px-4 py-2 rounded-md text-white hover:bg-[#1E293B] transition ${
-                  pathname.includes("profile") ? "bg-[#1E293B]" : ""
-                }`}
+                className={({ isActive }) =>
+                  `flex items-center gap-3 px-4 py-2 rounded-md transition hover:text-blue-400 ${
+                    isActive ? "text-blue-400" : "text-white"
+                  } hover:bg-[#1E293B]`
+                }
               >
                 <BsListTask size={20} />
                 Manage Accounts
