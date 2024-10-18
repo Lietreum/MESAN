@@ -66,12 +66,12 @@ function App() {
          <Route
           path="/"
           element={
-            // <ProtectedRoute allowedRoles={['USER']}>
+            <ProtectedRoute allowedRoles={['USER']}>
               <UserLayout>
                 <PageTitle title="User Dashboard" />
                 <UserDashboard />
               </UserLayout>
-            // </ProtectedRoute>
+            </ProtectedRoute>
           }
         />
 

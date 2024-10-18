@@ -4,6 +4,7 @@ import CategoryCard from "../../components/user/CategoryCard/CategoryCard";
 import AnimatedText from "../../components/AnimatedText";
 import WalletCard from "../../components/user/Header/WalletCard";
 import Profileholder from "../../assets/admin/images/user/user-01.png"
+import DefaultImage from '../../assets/data/Kantin_ph.png';
 
 enum TokoTypes {
   Kantin = 'Kantin',
@@ -14,7 +15,7 @@ enum TokoTypes {
 interface Store {
   tokoId: string;
   name: string;
-  img: string;
+  img?: string | null;
   desc: string;
   tokoType: TokoTypes;
 }
@@ -110,7 +111,7 @@ const Homepage: React.FC = () => {
     >
       {stores.map((store) => (
         <Grid item xs={12} sm={6} md={4} lg={3} key={store.tokoId}>
-          <CategoryCard data={store} /> 
+           <CategoryCard data={{ ...store, img: store.img || DefaultImage }} /> 
         </Grid>
       ))}
     </Grid>
