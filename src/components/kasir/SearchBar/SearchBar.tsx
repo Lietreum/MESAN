@@ -10,11 +10,11 @@ const SearchBar: React.FC<SearchBarProps> = ({ searchTerm, setSearchTerm }) => {
     <div className="mb-6">
       <input
         type="text"
-        className="w-full px-4 py-2 rounded-full border border-gray-300 shadow-sm focus:outline-none"
+        className="w-full px-4 py-2 rounded-full border border-black shadow-sm focus:outline-none focus:ring focus:ring-black"
         placeholder="Find student account"
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
-        style={{ backgroundColor: "#e4e4e7" }}
+        style={{ backgroundColor: "#ffffff" }} // White background
       />
     </div>
   );

@@ -15,7 +15,6 @@ const accounts = [
 
 const WithdrawalPage: React.FC = () => {
   const [searchTerm, setSearchTerm] = React.useState('');
-  const balance = 10000000; // Example balance
 
   // Filter accounts based on search term
   const filteredAccounts = accounts.filter((account) =>
@@ -23,21 +22,26 @@ const WithdrawalPage: React.FC = () => {
   );
 
   return (
-    <div className="p-4">
-      {/* Header with Balance */}
-      <div className="mb-4">
-        <h2 className="text-2xl font-bold">Balance: Rp {balance.toLocaleString('id-ID')}</h2>
-      </div>
-
+    <div className="p-6 bg-white min-h-screen">
       {/* Search Bar */}
       <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
 
       {/* Account Cards */}
-      <div className="space-y-4">
+      <div className="mt-4 grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3">
         {filteredAccounts.map((account) => (
           <div key={account.id}>
             <Link to={`/kasir/balancewithdrawal/${account.id}`} className="block no-underline">
-              <AccountCard account={account} />
+              <div className="flex items-center p-4 bg-white rounded-lg shadow-md border border-black hover:shadow-lg transition-shadow duration-300 ease-in-out">
+                {/* Avatar */}
+                <div className="flex-shrink-0 w-14 h-14 overflow-hidden rounded-full border-2 border-black">
+                  <img src={account.avatarUrl} alt={account.name} className="w-full h-full object-cover" />
+                </div>
+                {/* Account Info */}
+                <div className="ml-4">
+                  <h2 className="text-lg font-bold text-black hover:text-gray-800 transition-colors duration-200">{account.name}</h2>
+                  <p className="text-sm text-gray-600">{account.email}</p>
+                </div>
+              </div>
             </Link>
           </div>
         ))}

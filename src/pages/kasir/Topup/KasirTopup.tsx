@@ -21,7 +21,7 @@ const accounts: Account[] = [
 
 const DashboardPage: React.FC = () => {
   const [searchTerm, setSearchTerm] = React.useState('');
-  
+
   // Example balance amount
   const balance = 10000000; 
 
@@ -30,7 +30,7 @@ const DashboardPage: React.FC = () => {
   );
 
   return (
-    <div className="p-4">
+    <div className="p-6 bg-white min-h-screen">
       {/* Balance Card */}
       <BalanceCard balance={balance} />
 
@@ -38,7 +38,7 @@ const DashboardPage: React.FC = () => {
       <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
 
       {/* Account Cards */}
-      <div className="space-y-4">
+      <div className="space-y-4 mt-4">
         {filteredAccounts.map((account) => (
           <AccountCard key={account.id} account={account} />
         ))}

@@ -1,8 +1,6 @@
-import { Link } from 'react-router-dom';
 import DropdownMessage from './DropdownMessage';
 import DropdownNotification from './DropdownNotification';
 import DropdownUser from './DropdownAdmin';
-import LogoIcon from '../../../assets/admin/images/logo/Steam Circled.png';
 
 const Header = (props: {
   sidebarOpen: string | boolean | undefined;
@@ -55,9 +53,7 @@ const Header = (props: {
           </button>
           {/* <!-- Hamburger Toggle BTN --> */}
 
-          <Link className="block flex-shrink-0 lg:hidden" to="/pedagang">
-            <img src={LogoIcon} alt="Logo" />
-          </Link>
+
         </div>
 
         <div className="hidden sm:block">
