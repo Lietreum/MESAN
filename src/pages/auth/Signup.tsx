@@ -128,9 +128,9 @@ const Signup: React.FC = () => {
             animate="visible"
             variants={ariseVariant}
           >
-            <div className="relative -mt-16 block lg:hidden text-center text-3xl">
+            <div className="relative -mt-16 block lg:hidden text-center">
               <motion.a
-                className="inline-flex items-center justify-center rounded-full bg-white text-blue-600"
+                className="inline-flex items-center justify-center rounded-full bg-white text-blue-600 text-3xl"
                 href="#"
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
