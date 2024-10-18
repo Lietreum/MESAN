@@ -53,11 +53,6 @@ const Header: React.FC = () => {
           </Link>
         </div>
 
-        {/* Filter Section (Placed next to the logo, with some space) */}
-        <div className="flex items-center gap-4 ml-4">
-          <Filter /> {/* Your filter component */}
-        </div>
-
         {/* Search Bar Section */}
         <div className="flex-grow px-6">
           <SearchBar />
