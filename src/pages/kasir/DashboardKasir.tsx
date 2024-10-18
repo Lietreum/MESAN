@@ -42,7 +42,7 @@ const MainContent: React.FC = () => {
       </div>
 
       {/* Right Section - Payment Summary and Checkout */}
-      <div className="w-full md:w-1/3 flex flex-col gap-4">
+      <div className="w-full md:w-1/3 flex flex-col gap-4 h-full overflow-auto scrollbar-hide">
         {/* Top Right Content - Payment Card */}
         <div className="bg-white shadow-md rounded-lg p-4 flex-grow">
           <TopRightContent />

@@ -35,34 +35,32 @@ const ManageAccount: React.FC = () => {
     );
 
   return (
-    <div className="p-6">
-      <div className="flex justify-between items-center mb-6">
+    <div className="p-6 bg-gray-100 min-h-screen">
+      <div className="flex flex-col sm:flex-row justify-between items-center mb-6">
         {/* Search Bar */}
-        <div className="flex items-center space-x-3">
-          <FaSearch className="text-gray-500" />
+        <div className="flex items-center space-x-3 mb-4 sm:mb-0">
+          <FaSearch className="text-gray-600" />
           <input
             type="text"
             placeholder="Find account"
             value={searchTerm}
             onChange={handleSearch}
-            className="px-4 py-2 w-80 border rounded-md"
+            className="px-4 py-2 w-full sm:w-80 border border-gray-300 rounded-md bg-white text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
           />
         </div>
 
         {/* Sort and Layout Buttons */}
         <div className="flex items-center space-x-4">
-          <div className="flex items-center space-x-2">
-            <button
-              onClick={handleSort}
-              className="flex items-center space-x-1 px-4 py-2 border rounded-md"
-            >
-              <span>Sort by</span>
-              {sortAsc ? <FaSortAmountUp /> : <FaSortAmountDown />}
-            </button>
-          </div>
+          <button
+            onClick={handleSort}
+            className="flex items-center space-x-1 px-4 py-2 border border-gray-300 rounded-md bg-white text-gray-700"
+          >
+            <span>Sort by</span>
+            {sortAsc ? <FaSortAmountUp className="text-gray-700" /> : <FaSortAmountDown className="text-gray-700" />}
+          </button>
 
           {/* Add Account Button */}
-          <button className="flex items-center px-4 py-2 bg-blue-500 text-white rounded-md space-x-2">
+          <button className="flex items-center px-4 py-2 bg-blue-600 text-white rounded-md space-x-2 hover:bg-blue-700 transition duration-200">
             <AiOutlinePlus />
             <span>Add Account</span>
           </button>
@@ -74,13 +72,13 @@ const ManageAccount: React.FC = () => {
         {filteredAccounts.map((account, index) => (
           <div
             key={index}
-            className="p-4 border rounded-md flex flex-col items-center bg-gradient-to-r from-indigo-500 to-blue-700 text-white"
+            className="p-4 border border-gray-300 rounded-md flex flex-col items-center bg-white shadow-lg transition duration-200 hover:shadow-xl"
           >
-            <div className="bg-white rounded-full p-3 mb-4">
-              <FaUser className="text-blue-700 text-2xl" />
+            <div className="bg-gray-200 rounded-full p-3 mb-4">
+              <FaUser className="text-gray-800 text-2xl" />
             </div>
-            <h3 className="text-lg font-semibold">{account.name}</h3>
-            <p className="text-sm">{account.email}</p>
+            <h3 className="text-lg font-semibold text-gray-800">{account.name}</h3>
+            <p className="text-sm text-gray-600">{account.email}</p>
           </div>
         ))}
       </div>
