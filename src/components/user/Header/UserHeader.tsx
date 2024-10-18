@@ -69,7 +69,7 @@ const Header: React.FC = () => {
             to="/messages"
             className="relative flex items-center justify-center"
           >
-            <div className="p-2 rounded-lg hover:bg-gray-400 dark:hover:bg-gray-600 hover:border hover:border-gray-400 dark:hover:border-gray-500 transition-all duration-200">
+            <div className="p-2 rounded-lg hover:bg-slate-200 dark:hover:bg-gray-600 hover:border-gray-400 dark:hover:border-gray-500">
               <PiChatDotsBold className="w-6 h-6 text-gray-600 dark:text-gray-300" />
             </div>
           </Link>
@@ -78,7 +78,7 @@ const Header: React.FC = () => {
             to="/order"
             className="relative flex items-center justify-center"
           >
-            <div className="p-2 rounded-lg hover:bg-gray-400 dark:hover:bg-gray-600 hover:border hover:border-gray-400 dark:hover:border-gray-500 transition-all duration-200">
+            <div className="p-2 rounded-lg hover:bg-slate-200 dark:hover:bg-gray-600 hover:border-gray-400 dark:hover:border-gray-500">
               <LuClipboardList className="w-6 h-6 text-gray-600 dark:text-gray-300" />
             </div>
           </Link>
@@ -87,7 +87,7 @@ const Header: React.FC = () => {
             to="/notifications"
             className="relative flex items-center justify-center"
           >
-            <div className="p-2 rounded-lg hover:bg-gray-400 dark:hover:bg-gray-600 hover:border hover:border-gray-400 dark:hover:border-gray-500 transition-all duration-200">
+            <div className="p-2 rounded-lg hover:bg-slate-200 dark:hover:bg-gray-600 hover:border-gray-400 dark:hover:border-gray-500">
               <Bell className="w-6 h-6 text-gray-600 dark:text-gray-300" />
             </div>
           </Link>
@@ -96,7 +96,7 @@ const Header: React.FC = () => {
             to="/cart"
             className="relative flex items-center justify-center"
           >
-            <div className="p-2 rounded-lg hover:bg-gray-400 dark:hover:bg-gray-600 hover:border hover:border-gray-400 dark:hover:border-gray-500 transition-all duration-200">
+            <div className="p-2 rounded-lg hover:bg-slate-200 dark:hover:bg-gray-600 hover:border-gray-400 dark:hover:border-gray-500">
               <ShoppingCart className="w-6 h-6 text-gray-600 dark:text-gray-300" />
             </div>
           </Link>
@@ -105,7 +105,7 @@ const Header: React.FC = () => {
             to="/favorites"
             className="relative flex items-center justify-center"
           >
-            <div className="p-2 rounded-lg hover:bg-gray-400 dark:hover:bg-gray-600 hover:border hover:border-gray-400 dark:hover:border-gray-500 transition-all duration-200">
+            <div className="p-2 rounded-lg hover:bg-slate-200 dark:hover:bg-gray-600 hover:border-gray-400 dark:hover:border-gray-500">
               <Heart className="w-6 h-6 text-gray-600 dark:text-gray-300" />
             </div>
           </Link>

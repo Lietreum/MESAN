@@ -1,14 +1,6 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
 
 const BalanceWithdrawal: React.FC = () => {
-  const navigate = useNavigate(); // Hook untuk navigasi
-
-  const handleButtonClick = () => {
-    // Arahkan ke halaman BalanceWithdrawalDetail
-    navigate('/balance-withdrawal-detail');
-  };
-
   return (
     <div className="p-6 bg-gray-50 rounded-xl shadow-md max-w-2xl mx-auto">
       {/* Profile and Info Section */}
@@ -17,7 +9,7 @@ const BalanceWithdrawal: React.FC = () => {
           {/* Profile Image */}
           <div className="bg-blue-200 rounded-full p-1">
             <img
-              src="https://i.pinimg.com/564x/c6/7e/c5/c67ec5e9d8ad04793db80887b8bde66c.jpg"
+              src="https://i.pinimg.com/736x/4a/d0/88/4ad088e8598cd53cb68fef1bd2a97db7.jpg"
               alt="Profile"
               className="rounded-full w-16 h-16"
             />
@@ -54,10 +46,7 @@ const BalanceWithdrawal: React.FC = () => {
       </div>
 
       {/* Withdrawal Button */}
-      <button 
-        className="w-full mt-8 bg-black text-white py-3 rounded-lg text-lg shadow btn hover:bg-slate-700" 
-        onClick={handleButtonClick} // Event handler saat tombol diklik
-      >
+      <button className="w-full mt-8 bg-black text-white py-3 rounded-lg text-lg shadow btn hover:bg-slate-700 ">
         Balance Withdrawal
       </button>
     </div>
