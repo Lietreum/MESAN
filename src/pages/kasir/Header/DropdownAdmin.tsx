@@ -39,22 +39,6 @@ const DropdownUser: React.FC = () => {
                 My Profile
               </Link>
             </li>
-            <li>
-              <Link
-                to="#"
-                className="flex items-center gap-3.5 text-sm font-medium duration-300 ease-in-out hover:text-primary lg:text-base"
-              >
-                My Contacts
-              </Link>
-            </li>
-            <li>
-              <Link
-                to="/settings"
-                className="flex items-center gap-3.5 text-sm font-medium duration-300 ease-in-out hover:text-primary lg:text-base"
-              >
-                Account Settings
-              </Link>
-            </li>
           </ul>
           <button className="flex items-center gap-3.5 px-6 py-4 text-sm font-medium duration-300 ease-in-out hover:text-primary lg:text-base">
             Log Out
