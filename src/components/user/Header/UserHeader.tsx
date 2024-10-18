@@ -6,7 +6,6 @@ import { ShoppingCart, Heart, Bell } from "lucide-react";
 import { PiChatDotsBold } from "react-icons/pi";
 import { LuClipboardList } from "react-icons/lu";
 import SearchBar from "../SearchBar/NavSearchInput"; // Updated search bar component import
-import Filter from "../SearchBar/Filter";
 
 const Header: React.FC = () => {
   const [profileData, setProfileData] = useState<{ name: string } | null>(null);
