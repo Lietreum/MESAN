@@ -8,7 +8,7 @@ const chartOptions: ApexOptions = {
     position: 'top',
     horizontalAlign: 'left',
   },
-  colors: ['#FFC107', '#FF5722'], // Yellow and Orange
+  colors: ['#3C50E0', '#80CAEE'], // blue and blue
   chart: {
     fontFamily: 'Satoshi, sans-serif',
     height: 335,
@@ -45,7 +45,7 @@ const chartOptions: ApexOptions = {
   markers: {
     size: 1,
     colors: '#fff',
-    strokeColors: ['#FFC107', '#FF5722'], // Yellow and Orange for stroke colors
+    strokeColors: ['#3056D3', '#80CAEE'], // blue and blue dot stroke
     strokeWidth: 3,
     hover: { sizeOffset: 5 },
   },
