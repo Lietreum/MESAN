@@ -30,6 +30,7 @@ import HomeKasir from "./pages/kasir/DashboardKasir";
 import KasirTopup from "./pages/kasir/Topup/KasirTopup";
 import ManageAccount from "./pages/admin/ManageAccount";
 import Withdrawal from "./pages/kasir/Withdrawal/Withdrawal";
+import BalanceWithdrawal from "./pages/kasir/Withdrawal/BalanceWithdrawal";
 import HistoryKasir from "./pages/kasir/History/HistoryKasir";
 import AddProductPage from "./pages/admin/Product/AddProduct";
 import ProfilePage from "./components/user/Profile/Profile";
@@ -66,12 +67,12 @@ function App() {
          <Route
           path="/"
           element={
-            <ProtectedRoute allowedRoles={['USER']}>
+            // <ProtectedRoute allowedRoles={['USER']}>
               <UserLayout>
                 <PageTitle title="User Dashboard" />
                 <UserDashboard />
               </UserLayout>
-            </ProtectedRoute>
+            // </ProtectedRoute>
           }
         />
 
@@ -117,6 +118,16 @@ function App() {
             <KasirLayout>
               <PageTitle title="Transaction History" />
               <Withdrawal />
+            </KasirLayout>
+          }
+        />
+
+        <Route
+          path="/kasir/balancewithdrawal/:id"
+          element={
+            <KasirLayout>
+              <PageTitle title="Edit Withdrawal" />
+              <BalanceWithdrawal />
             </KasirLayout>
           }
         />
