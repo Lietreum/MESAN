@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import SearchBar from '../../../components/kasir/SearchBar/SearchBar';
-import AccountCard from '../../../components/kasir/AccountCard/AccountCard';
+// import AccountCard from '../../../components/kasir/AccountCard/AccountCard';
 
 // Dummy account data
 const accounts = [
