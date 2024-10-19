@@ -362,7 +362,7 @@ function App() {
           path="/login"
           element={
             <>
-              <PageTitle title="Login" />
+              <PageTitle title="Login | Mesan" />
               <Login />
             </>
           }
@@ -371,7 +371,7 @@ function App() {
           path="/signup"
           element={
             <>
-              <PageTitle title="Signup" />
+              <PageTitle title="Signup | Mesan" />
               <Signup />
             </>
           }
