@@ -1,7 +1,7 @@
   import React from "react";
 import Box from "@mui/material/Box";
 import Carousel from "../Carousel/Carousel";
-import Card from "./Card";
+import Card from "./SiswaCard";
 
 const ProductList: React.FC = () => {
   return (
