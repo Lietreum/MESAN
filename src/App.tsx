@@ -55,24 +55,24 @@ function App() {
         <Route
           path="/kasir"
           element={
-            // <ProtectedRoute allowedRoles={["ADMIN"]}>
+            <ProtectedRoute allowedRoles={["ADMIN"]}>
             <KasirLayout>
               <PageTitle title="Kasir Dashboard" />
               <HomeKasir />
             </KasirLayout>
-            //  </ProtectedRoute>
+             </ProtectedRoute>
           }
         />
          {/* Protected Routes */}
          <Route
           path="/"
           element={
-            // <ProtectedRoute allowedRoles={['USER']}>
+            <ProtectedRoute allowedRoles={['USER']}>
               <UserLayout>
                 <PageTitle title="User Dashboard" />
                 <UserDashboard />
               </UserLayout>
-            // </ProtectedRoute>
+            </ProtectedRoute>
           }
         />
 
