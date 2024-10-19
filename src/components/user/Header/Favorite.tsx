@@ -1,8 +1,9 @@
 import React from "react";
 import { Heart } from "lucide-react";
-import { ProductCardProps } from '../../../types/types'; // Ensure correct path to types
+import { Link } from "react-router-dom"; // Import Link for navigation
+import { ProductCardProps } from '../../../types/types'; 
 
-// ProductCard component to display each store and its products
+// Fixing the ProductCard component to use types correctly
 const ProductCard: React.FC<ProductCardProps> = ({ storeName, products }) => {
   const formatRupiah = (number: number) => {
     return new Intl.NumberFormat("id-ID", {
@@ -12,7 +13,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ storeName, products }) => {
   };
 
   return (
-    <div className="relative mx-auto my-8 max-w-2xl rounded-lg border border-gray-900 bg-transparent p-6 md:flex flex-col">
+    <div className="relative mx-auto my-8 max-w-2xl rounded-lg border border-white bg-white shadow-lg p-6 md:flex flex-col sm:w-full sm:p-4"> {/* Updated border color and added shadow */}
       {/* Store Name Header */}
       <h3 className="text-xl font-bold text-gray-800 mb-4">{storeName}</h3>
 
@@ -24,18 +25,20 @@ const ProductCard: React.FC<ProductCardProps> = ({ storeName, products }) => {
             <img
               src={product.image}
               alt={product.productName}
-              className="w-16 h-16 object-cover rounded-md"
+              className="w-16 h-16 object-cover rounded-md sm:w-12 sm:h-12"
             />
 
             {/* Product Name, Price and Button */}
             <div className="flex justify-between w-full items-center">
               <div>
-                <h2 className="text-xl font-semibold">{product.productName}</h2>
-                <p className="text-gray-700 text-lg font-semibold">{formatRupiah(product.price)}</p>
+                <h2 className="text-xl font-semibold sm:text-lg">{product.productName}</h2>
+                <p className="text-gray-700 text-lg font-semibold sm:text-base">
+                  {formatRupiah(product.price)}
+                </p>
               </div>
 
               {/* Add Button */}
-              <button className="ml-4 bg-blue-500 text-white py-1 px-3 rounded-md flex items-center justify-center">
+              <button className="ml-4 bg-blue-500 text-white py-1 px-3 rounded-md flex items-center justify-center sm:px-2">
                 +
               </button>
             </div>
@@ -52,7 +55,6 @@ const ProductCard: React.FC<ProductCardProps> = ({ storeName, products }) => {
 };
 
 const FavoriteCards: React.FC = () => {
-  // Conversion rate from USD to IDR (1 USD = 15,000 IDR)
   const usdToIdr = 15000;
 
   const stores = [
@@ -63,45 +65,29 @@ const FavoriteCards: React.FC = () => {
         { image: "https://i.pinimg.com/564x/b4/27/9a/b4279a9dc7fbe09c12a49d3ea98ca71c.jpg", productName: "Nasi Goreng", price: 0.5 * usdToIdr },
       ],
     },
-    {
-      storeName: "Store B",
-      products: [
-        { image: "https://i.pinimg.com/564x/ee/ca/be/eecabed96fda864cf6f6f76441a260d5.jpg", productName: "Batagor", price: 0.333333 * usdToIdr },
-        { image: "https://i.pinimg.com/564x/b4/27/9a/b4279a9dc7fbe09c12a49d3ea98ca71c.jpg", productName: "Sate", price: 0.75 * usdToIdr },
-      ],
-    },
-    {
-      storeName: "Store C",
-      products: [
-        { image: "https://i.pinimg.com/564x/a2/4c/d5/a24cd5106510c99bccb6c79567fc82b0.jpg", productName: "Seblak", price: 0.6666666 * usdToIdr },
-        { image: "https://i.pinimg.com/564x/a2/4c/d5/a24cd5106510c99bccb6c79567fc82b0.jpg", productName: "Mie Goreng", price: 0.4 * usdToIdr },
-      ],
-    },
-    {
-      storeName: "Store D",  // Added new store
-      products: [
-        { image: "https://i.pinimg.com/564x/c2/6d/29/c26d29e07d792416ad3d229f528ab1c7.jpg", productName: "Martabak Manis", price: 0.6 * usdToIdr },
-        { image: "https://i.pinimg.com/564x/c2/6d/29/c26d29e07d792416ad3d229f528ab1c7.jpg", productName: "Cilok", price: 0.25 * usdToIdr },
-      ],
-    },
-    {
-      storeName: "Store E",  // Added new store
-      products: [
-        { image: "https://i.pinimg.com/564x/72/5c/e5/725ce5e7177a778f53c76327c72cdb7e.jpg", productName: "Pempek", price: 0.45 * usdToIdr },
-        { image: "https://i.pinimg.com/564x/72/5c/e5/725ce5e7177a778f53c76327c72cdb7e.jpg", productName: "Roti Bakar", price: 0.3 * usdToIdr },
-      ],
-    },
+    // Add more stores as needed
   ];
 
   return (
-    <div>
-      {stores.map((store, index) => (
-        <ProductCard
-          key={index}
-          storeName={store.storeName} // Pass storeName as prop
-          products={store.products} // Pass the list of products
-          image={""} productName={""} price={0}        />
-      ))}
+    <div className="bg-gray-100 min-h-screen py-4">
+      <div className="container mx-auto px-4 pt-16 pb-24"> {/* Adjusted padding top and bottom */}
+        {/* Back Button */}
+        <Link to="/" className="text-blue-500 font-semibold mb-4 inline-block">
+          &larr; Back to Home
+        </Link>
+
+        {/* Favorite Cards Header */}
+        <h1 className="text-xl md:text-2xl font-semibold mb-6">Favorite Stores</h1>
+
+        {stores.map((store, index) => (
+          <ProductCard
+            key={index}
+            storeName={store.storeName} // Pass storeName as prop
+            products={store.products} // Pass the list of products
+            image={""} productName={""} price={0}        
+          />
+        ))}
+      </div>
     </div>
   );
 };

@@ -3,7 +3,7 @@ import { BiHide } from "react-icons/bi";
 import { FaCoins } from "react-icons/fa";
 import { useNavigate } from 'react-router-dom';
 
-// Import gambar secara manual
+// Import images manually
 import DANA from '../../../assets/admin/images/payment/Dana.png';
 import GoPay from '../../../assets/admin/images/payment/Gopay.png';
 import BCA from '../../../assets/admin/images/payment/BCA.png';
@@ -29,7 +29,7 @@ const PaymentOptions: React.FC = () => {
     }
   };
 
-  // Daftar metode pembayaran dengan gambar yang sesuai
+  // List of payment methods with corresponding images
   const paymentMethods = [
     { name: 'DANA', image: DANA },
     { name: 'GoPay', image: GoPay },
@@ -39,15 +39,15 @@ const PaymentOptions: React.FC = () => {
   ];
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100 p-6">
+    <div className="min-h-screen flex items-center justify-center bg-gray-100 p-6" style={{ paddingTop: '80px', paddingBottom: '80px' }}>
       <div className="w-full max-w-5xl bg-white rounded-3xl overflow-hidden shadow-lg transition-all">
         
         {/* Header Section */}
-        <div className="relative bg-gradient-to-r from-[#1C2434] to-indigo-900 text-white p-10 rounded-3xl">
-          <div className="flex justify-between items-center mb-4">
+        <div className="relative bg-gradient-to-r from-[#1C2434] to-indigo-900 text-white p-6 md:p-10 rounded-t-3xl">
+          <div className="flex flex-col md:flex-row justify-between items-center mb-4">
             <div>
               <span className="block text-sm text-gray-200">Your Balance</span>
-              <span className="text-4xl font-bold flex items-center">
+              <span className="text-3xl md:text-4xl font-bold flex items-center">
                 {isBalanceHidden ? (
                   '● ● ● ● ● ● ● ●'
                 ) : (
@@ -58,7 +58,7 @@ const PaymentOptions: React.FC = () => {
                 )}
               </span>
             </div>
-            <div onClick={toggleBalanceVisibility} className="cursor-pointer">
+            <div onClick={toggleBalanceVisibility} className="cursor-pointer mt-4 md:mt-0 hover:text-gray-300 transition-colors duration-200">
               <BiHide className="w-8 h-8 text-white" />
             </div>
           </div>
@@ -68,7 +68,7 @@ const PaymentOptions: React.FC = () => {
 
         {/* White Box Content */}
         <div className="p-6">
-          <h2 className="text-xl font-semibold mb-6 text-gray-800">Choose Payment Method</h2>
+          <h2 className="text-xl font-semibold mb-6 text-gray-800">Choose Your Payment Method</h2>
           
           {/* Payment Methods */}
           <div className="space-y-4">
@@ -76,7 +76,7 @@ const PaymentOptions: React.FC = () => {
               <button
                 key={method.name}
                 onClick={() => handleSelectMethod(method.name)}
-                className={`flex items-center w-full px-4 py-3 rounded-lg shadow-lg transform transition-transform 
+                className={`flex items-center w-full px-4 py-3 rounded-lg shadow-lg transition-transform 
                   ${selectedMethod === method.name ? 'bg-blue-500 scale-105 border-2 border-blue-500' : 'bg-white hover:bg-blue-50 border border-gray-200'}`}
               >
                 <img src={method.image} alt={method.name} className="w-10 h-10 mr-4" />

@@ -3,8 +3,10 @@ import { Container, Grid, Box } from "@mui/material";
 import CategoryCard from "../../components/user/CategoryCard/CategoryCard"; 
 import AnimatedText from "../../components/AnimatedText";
 import WalletCard from "../../components/user/Header/WalletCard";
-import Profileholder from "../../assets/admin/images/user/user-01.png"
+import Profileholder from "../../assets/admin/images/user/user-01.png";
 import DefaultImage from '../../assets/data/Kantin_ph.png';
+import Filter from '../../components/user/SearchBar/Filter';
+import { FaFilter } from 'react-icons/fa';
 
 enum TokoTypes {
   Kantin = 'Kantin',
@@ -46,7 +48,7 @@ const Homepage: React.FC = () => {
         flexDirection: "column",
         justifyContent: "center",
         alignItems: "center",
-        padding: "0 16px",
+        padding: "16px",
         marginBottom: 70,
       }}
     >
@@ -54,7 +56,7 @@ const Homepage: React.FC = () => {
       <Box
         sx={{
           marginTop: 2,
-          marginBottom: 6,
+          marginBottom: 4,
           display: "flex",
           justifyContent: "center",
           width: "100%",
@@ -67,13 +69,13 @@ const Homepage: React.FC = () => {
             profileImage={Profileholder}
           />
         </Box>
-      </Box>
+      </Box>     
 
       {/* Animated Text Section */}
       <Box
         sx={{
           marginTop: 4,
-          marginBottom: 6,
+          marginBottom: 2,
           textAlign: "center",
           width: "100%",
           maxWidth: "1200px",
@@ -88,33 +90,46 @@ const Homepage: React.FC = () => {
           loopCount={2}
           style={{
             fontWeight: "bold",
-            fontSize: "48px",
+            fontSize: "32px", // Adjusted font size for responsiveness
             lineHeight: 1.2,
             textAlign: "center",
             width: "100%",
             color: "#000",
           }}
-          
         />
-        
+      </Box>
+
+      {/* Filter Section */}
+      <Box
+        sx={{
+          width: "100%", // Take up full width
+          display: "flex",
+          justifyContent: "flex-start", // Align to far left
+          alignItems: "center",
+          marginLeft: "16px", // Adjusted margin for smaller screens
+          marginBottom: 2,  // Add space between filter and store cards
+        }}
+      >
+        <FaFilter className="text-lg" />
+        <Filter /> {/* Your filter component */}
       </Box>
 
       {/* Store Cards Section */}
       <Grid
-      container
-      spacing={4}
-      justifyContent="center"
-      sx={{
-        maxWidth: "1200px",
-        margin: "0 auto",
-      }}
-    >
-      {stores.map((store) => (
-        <Grid item xs={12} sm={6} md={4} lg={3} key={store.tokoId}>
-           <CategoryCard data={{ ...store, img: store.img || DefaultImage }} /> 
-        </Grid>
-      ))}
-    </Grid>
+        container
+        spacing={2}
+        justifyContent="center"
+        sx={{
+          maxWidth: "1200px",
+          margin: "0 auto",
+        }}
+      >
+        {stores.map((store) => (
+          <Grid item xs={12} sm={6} md={4} lg={3} key={store.tokoId}>
+            <CategoryCard data={{ ...store, img: store.img || DefaultImage }} /> 
+          </Grid>
+        ))}
+      </Grid>
     </Container>
   );
 };

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Box, Typography, Card, CardContent, Avatar, Button, TextField, Grid } from '@mui/material';
+import { useNavigate } from 'react-router-dom'; // Import useNavigate
 
 const ProfilePage: React.FC = () => {
   interface UserProfile {
@@ -11,13 +12,13 @@ const ProfilePage: React.FC = () => {
 
   const [profileData, setProfileData] = useState<UserProfile | null>(null);
   const [editMode, setEditMode] = useState(false);  
-
   const [editedName, setEditedName] = useState('');
   const [editedClass, setEditedClass] = useState('');
 
+  const navigate = useNavigate(); // Initialize useNavigate
+
   const fetchProfileData = async () => {
     try {
-      console.log('Authorization Token:', localStorage.getItem('token')); // Log the token
       const response = await fetch('http://localhost:3001/user/profile', {
         method: 'GET',
         headers: {
@@ -31,7 +32,6 @@ const ProfilePage: React.FC = () => {
       }
 
       const result = await response.json();
-      console.log('Fetched data:', result); // Log the entire response
 
       if (result && result.data) {
         setProfileData(result.data);
@@ -74,27 +74,30 @@ const ProfilePage: React.FC = () => {
       }
   
       const result = await response.json();
-      console.log('Updated profile:', result);
-  
-      // Update the profileData with the response from the backend
       setProfileData(result.data);
-  
-      // Exit edit mode
       setEditMode(false);
     } catch (error) {
       console.error('Error updating profile:', error);
     }
   };
+
   return (
-    <Box sx={{ padding: '20px' }}>
-      
+    <Box
+      sx={{
+        padding: { xs: '10px', md: '20px' },
+        minHeight: '100vh',
+        marginTop: { xs: '80px', md: '100px' },
+        marginBottom: '80px', // Adjusted to accommodate the BottomNavigation height
+      }}
+    >
       <Button
         variant="text"
+        onClick={() => navigate('/')} // Navigate to home route
         sx={{
           marginBottom: '20px',
           color: 'black',
           fontFamily: 'Arial, sans-serif',
-          fontSize: '18px',
+          fontSize: { xs: '16px', md: '18px' },
           fontWeight: 'bold',
           textTransform: 'none',
           letterSpacing: '0.5px',
@@ -108,27 +111,28 @@ const ProfilePage: React.FC = () => {
 
       <Card
         variant="outlined"
-        sx={{ display: 'flex', alignItems: 'center', padding: '20px', marginBottom: '20px' }}
+        sx={{ display: 'flex', flexDirection: { xs: 'column', md: 'row' }, alignItems: 'center', padding: '20px', marginBottom: '20px' }}
       >
         <Avatar
           sx={{
             width: 90,
             height: 90,
-            marginRight: '20px',
+            marginRight: { xs: '0', md: '20px' },
+            marginBottom: { xs: '20px', md: '0' },
             borderRadius: '50%',
             objectFit: 'cover',
           }}
           src="/prof_img.jpg"
           alt="Profile"
         />
-        <Box>
+        <Box textAlign={{ xs: 'center', md: 'left' }}>
           <Typography variant="h6">{profileData ? profileData.name : 'Loading...'}</Typography>
           <Typography variant="subtitle1">{profileData ? profileData.role : 'Loading...'}</Typography>
           <Typography variant="subtitle2">{profileData ? profileData.class : 'Loading...'}</Typography>
         </Box>
         <Button
           variant="outlined"
-          sx={{ marginLeft: 'auto' }} 
+          sx={{ marginLeft: 'auto', marginTop: { xs: '10px', md: '0' } }} 
           onClick={handleEditClick}
         >
           {editMode ? 'Cancel' : 'Edit'}
@@ -142,12 +146,12 @@ const ProfilePage: React.FC = () => {
           </Typography>
 
           <Grid container spacing={2}>
-          <Grid item xs={12} sm={6}>
+            <Grid item xs={12} sm={6}>
               {editMode ? (
                 <TextField
                   label="Name"
-                  value={editedName} // Bind to the editedName state
-                  onChange={(e) => setEditedName(e.target.value)} // Update state on change
+                  value={editedName}
+                  onChange={(e) => setEditedName(e.target.value)}
                   variant="outlined"
                   fullWidth
                 />
@@ -166,13 +170,12 @@ const ProfilePage: React.FC = () => {
               </Box>
             </Grid>
 
-
             <Grid item xs={12} sm={6}>
               {editMode ? (
                 <TextField
                   label="Class"
-                  value={editedClass} // Bind to the editedClass state
-                  onChange={(e) => setEditedClass(e.target.value)} // Update state on change
+                  value={editedClass}
+                  onChange={(e) => setEditedClass(e.target.value)}
                   variant="outlined"
                   fullWidth
                 />

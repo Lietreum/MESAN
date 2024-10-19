@@ -6,7 +6,6 @@ import { ShoppingCart, Heart, Bell } from "lucide-react";
 import { PiChatDotsBold } from "react-icons/pi";
 import { LuClipboardList } from "react-icons/lu";
 import SearchBar from "../SearchBar/NavSearchInput"; // Updated search bar component import
-import Filter from "../SearchBar/Filter";
 
 const Header: React.FC = () => {
   const [profileData, setProfileData] = useState<{ name: string } | null>(null);
@@ -53,10 +52,6 @@ const Header: React.FC = () => {
           </Link>
         </div>
 
-        {/* Filter Section (Placed next to the logo, with some space) */}
-        <div className="flex items-center gap-4 ml-4">
-          <Filter /> {/* Your filter component */}
-        </div>
 
         {/* Search Bar Section */}
         <div className="flex-grow px-6">

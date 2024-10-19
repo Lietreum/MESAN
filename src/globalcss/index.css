@@ -207,3 +207,126 @@ body::-webkit-scrollbar {
 .scrollbar-hidden {
   transition: scrollbar-color 1s ease-in-out;
 }
+
+.wallet-card-container {
+  position: relative;
+}
+
+.dragon-line {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: linear-gradient(90deg, #FF6B6B, #FFC371, #FF6B6B); /* Dragon color inspiration */
+  animation: dragon-move 3s infinite ease-in-out;
+}
+
+@keyframes dragon-move {
+  0% {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  50% {
+    transform: translateX(50%);
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+}
+
+.mirage-button:hover {
+  animation: mirage-effect 0.7s infinite;
+}
+
+@keyframes mirage-effect {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.wallet-card-container {
+  position: relative;
+}
+
+.dragon-line {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: linear-gradient(90deg, #A1C4FD, #C2E9FB, #A1C4FD); /* Soft blue gradient for dragon effect */
+  animation: dragon-move 4s infinite ease-in-out;
+}
+
+@keyframes dragon-move {
+  0% {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  50% {
+    transform: translateX(50%);
+    opacity: 1;
+  }
+  100% {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+}
+
+.mirage-button:hover {
+  animation: mirage-effect 0.8s infinite;
+}
+
+@keyframes mirage-effect {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.08);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.coin-container {
+  position: relative;
+}
+
+.coin-stack {
+  position: relative;
+}
+
+.wallet-card-container {
+  /* Desktop styles */
+  padding-top: 20px; /* Default padding for desktop */
+}
+
+@media (max-width: 600px) {
+  .wallet-card-container {
+    margin-top: 80px; /* Add space to the top to prevent header overlap on mobile */
+  }
+
+  h2 {
+    font-size: 1.5rem; /* Adjust font size for better visibility on mobile */
+  }
+
+  /* Optional: Adjust the padding of the button to make it look better on mobile */
+  .mirage-button {
+    padding: 10px 20px; /* Smaller padding for mobile */
+  }
+
+  .coin-container {
+    /* Adjust size of the coin icon for mobile */
+    font-size: 1.5rem; /* Make the icons a bit smaller */
+  }
+}

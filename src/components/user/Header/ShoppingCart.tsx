@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Product } from "../../../types/types";
-import { FaRegCheckCircle, FaTruck } from "react-icons/fa"; // Importing icons from react-icons
-import { Link } from "react-router-dom"; // Import Link from react-router-dom
+import { FaRegCheckCircle, FaTruck } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 const ShoppingCart: React.FC = () => {
   const [products, setProducts] = useState<Product[]>([
@@ -14,13 +14,17 @@ const ShoppingCart: React.FC = () => {
     },
     // Add more products as needed
   ]);
-  
-  const [isPickUp, setIsPickUp] = useState(true); // State to toggle between pick up and delivery
+
+  const [isPickUp, setIsPickUp] = useState(true);
 
   const handleQuantityChange = (id: number, delta: number) => {
-    setProducts(products.map(product =>
-      product.id === id ? { ...product, quantity: Math.max(product.quantity + delta, 1) } : product
-    ));
+    setProducts(
+      products.map(product =>
+        product.id === id
+          ? { ...product, quantity: Math.max(product.quantity + delta, 1) }
+          : product
+      )
+    );
   };
 
   const formatRupiah = (number: number) => {
@@ -30,74 +34,85 @@ const ShoppingCart: React.FC = () => {
     }).format(number);
   };
 
-  const subtotal = products.reduce((total, product) => total + product.price * product.quantity, 0);
+  const subtotal = products.reduce(
+    (total, product) => total + product.price * product.quantity,
+    0
+  );
   const taxes = subtotal * 0.1; // Example tax rate of 10%
   const shipping = 0; // Free shipping
   const total = subtotal + taxes + shipping;
 
   return (
     <div className="bg-gray-100 min-h-screen py-4">
-      <div className="container mx-auto px-4">
+      {/* Add padding to avoid header and bottom navigation bar */}
+      <div className="container mx-auto px-4 pt-16 pb-24"> {/* Adjusted padding top and bottom */}
         {/* Back Button */}
         <Link to="/" className="text-blue-500 font-semibold mb-4 inline-block">
           &larr; Back to Home
         </Link>
-        
-        <h1 className="text-xl md:text-2xl font-semibold mb-4">Shopping Cart</h1>
-        <div className="flex flex-col md:flex-row gap-4 mt-8"> {/* Add margin-top to make it lower */}
+
+        {/* Shopping Cart Header */}
+        <h1 className="text-xl md:text-2xl font-semibold mb-6">Shopping Cart</h1>
+
+        <div className="flex flex-col md:flex-row gap-8 mt-4">
           <div className="w-full md:w-3/4">
-            <div className="bg-white rounded-lg shadow-md p-4 md:p-6 mb-4">
-              <table className="w-full text-sm md:text-base">
-                <thead>
-                  <tr>
-                    <th className="text-left font-semibold">Product</th>
-                    <th className="text-left font-semibold">Price</th>
-                    <th className="text-left font-semibold">Quantity</th>
-                    <th className="text-left font-semibold">Total</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {products.map(product => (
-                    <tr key={product.id}>
-                      <td className="py-2">
-                        <div className="flex items-center">
-                          <img className="h-12 w-12 md:h-16 md:w-16 mr-4" src={product.imageUrl} alt={product.name} />
-                          <span className="font-semibold">{product.name}</span>
-                        </div>
-                      </td>
-                      <td className="py-2">{formatRupiah(product.price)}</td>
-                      <td className="py-2">
-                        <div className="flex items-center">
-                          <button
-                            className="border rounded-md py-1 px-2 md:py-1 md:px-2 mr-2"
-                            onClick={() => handleQuantityChange(product.id, -1)}
-                          >
-                            -
-                          </button>
-                          <span className="text-center w-8 md:w-8">{product.quantity}</span>
-                          <button
-                            className="border rounded-md py-1 px-2 md:py-1 md:px-2 ml-2"
-                            onClick={() => handleQuantityChange(product.id, 1)}
-                          >
-                            +
-                          </button>
-                        </div>
-                      </td>
-                      <td className="py-2">{formatRupiah(product.price * product.quantity)}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
+            <div className="bg-white rounded-lg shadow-md p-4 md:p-6 mb-8">
+              {products.map(product => (
+                <div
+                  key={product.id}
+                  className="flex flex-col md:flex-row items-center justify-between border-b pb-4 mb-4 last:border-b-0 last:mb-0"
+                >
+                  {/* Image and Product Info */}
+                  <div className="flex items-center w-full md:w-1/2 mb-4 md:mb-0">
+                    <img
+                      className="h-16 w-16 mr-4"
+                      src={product.imageUrl}
+                      alt={product.name}
+                    />
+                    <div className="flex flex-col">
+                      <span className="font-semibold text-sm md:text-base">
+                        {product.name}
+                      </span>
+                      <span className="text-sm md:text-base">
+                        {formatRupiah(product.price)}
+                      </span>
+                    </div>
+                  </div>
+
+                  {/* Quantity and Total Price */}
+                  <div className="flex items-center w-full md:w-1/2 justify-between md:justify-end">
+                    <div className="flex items-center">
+                      <button
+                        className="border rounded-md py-1 px-2 md:py-2 md:px-4 mr-2"
+                        onClick={() => handleQuantityChange(product.id, -1)}
+                      >
+                        -
+                      </button>
+                      <span className="text-center w-8">{product.quantity}</span>
+                      <button
+                        className="border rounded-md py-1 px-2 md:py-2 md:px-4 ml-2"
+                        onClick={() => handleQuantityChange(product.id, 1)}
+                      >
+                        +
+                      </button>
+                    </div>
+                    <span className="font-semibold text-sm md:text-base">
+                      {formatRupiah(product.price * product.quantity)}
+                    </span>
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
+
           <div className="w-full md:w-1/4">
             {/* Pick Up / Delivery Card */}
-            <div className="bg-white rounded-lg shadow-md p-4 md:p-6 mb-4">
+            <div className="bg-white rounded-lg shadow-md p-4 md:p-6 mb-6">
               <div className="flex justify-between items-center mb-2">
                 <h2 className="text-lg font-semibold">Pick Up / Delivery</h2>
                 <button
                   className="text-black border-2 border-slate-800 rounded-md font-semibold w-16 h-8"
-                  onClick={() => setIsPickUp(!isPickUp)} // Toggle the state on button click
+                  onClick={() => setIsPickUp(!isPickUp)}
                 >
                   Switch
                 </button>
@@ -111,6 +126,7 @@ const ShoppingCart: React.FC = () => {
                 <span>{isPickUp ? "Pick Up" : "Delivery"}</span>
               </div>
             </div>
+
             {/* Summary Section */}
             <div className="bg-white rounded-lg shadow-md p-4 md:p-6">
               <h2 className="text-lg font-semibold mb-2">Summary</h2>
@@ -131,7 +147,9 @@ const ShoppingCart: React.FC = () => {
                 <span>Total</span>
                 <span>{formatRupiah(total)}</span>
               </div>
-              <button className="bg-blue-500 text-white py-2 px-4 rounded-lg mt-2 w-full">Checkout</button>
+              <button className="bg-blue-500 text-white py-2 px-4 rounded-lg mt-2 w-full">
+                Checkout
+              </button>
             </div>
           </div>
         </div>
