@@ -98,7 +98,7 @@ function App() {
           path="/kasir/ManageAccounts"
           element={
             <KasirLayout>
-              <PageTitle title="Transaction History" />
+              <PageTitle title="Manage Accounts" />
               <ManageAccount />
             </KasirLayout>
           }

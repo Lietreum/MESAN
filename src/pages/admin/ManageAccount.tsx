@@ -1,6 +1,13 @@
 import React, { useState } from "react";
-import { FaSearch, FaUser, FaSortAmountDown, FaSortAmountUp } from "react-icons/fa";
+import {
+  FaSearch,
+  FaUser,
+  FaSortAmountDown,
+  FaSortAmountUp,
+  FaEllipsisV,
+} from "react-icons/fa";
 import { AiOutlinePlus } from "react-icons/ai";
+import AccountModal from "./ModalAdd"; // Import the modal component
 
 type Account = {
   name: string;
@@ -16,6 +23,17 @@ const accounts: Account[] = [
 const ManageAccount: React.FC = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [sortAsc, setSortAsc] = useState(true);
+  const [selectedAccount, setSelectedAccount] = useState<Account | null>(null);
+
+  // Open modal with selected account
+  const openModal = (account: Account) => {
+    setSelectedAccount(account);
+  };
+
+  // Close modal
+  const closeModal = () => {
+    setSelectedAccount(null);
+  };
 
   const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(e.target.value);
@@ -26,9 +44,10 @@ const ManageAccount: React.FC = () => {
   };
 
   const filteredAccounts = accounts
-    .filter((account) =>
-      account.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      account.email.toLowerCase().includes(searchTerm.toLowerCase())
+    .filter(
+      (account) =>
+        account.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        account.email.toLowerCase().includes(searchTerm.toLowerCase())
     )
     .sort((a, b) =>
       sortAsc ? a.name.localeCompare(b.name) : b.name.localeCompare(a.name)
@@ -36,6 +55,7 @@ const ManageAccount: React.FC = () => {
 
   return (
     <div className="p-6 bg-gray-100 min-h-screen">
+      {/* Search and Buttons */}
       <div className="flex flex-col sm:flex-row justify-between items-center mb-6">
         {/* Search Bar */}
         <div className="flex items-center space-x-3 mb-4 sm:mb-0">
@@ -49,14 +69,18 @@ const ManageAccount: React.FC = () => {
           />
         </div>
 
-        {/* Sort and Layout Buttons */}
+        {/* Sort and Add Buttons */}
         <div className="flex items-center space-x-4">
           <button
             onClick={handleSort}
             className="flex items-center space-x-1 px-4 py-2 border border-gray-300 rounded-md bg-white text-gray-700"
           >
             <span>Sort by</span>
-            {sortAsc ? <FaSortAmountUp className="text-gray-700" /> : <FaSortAmountDown className="text-gray-700" />}
+            {sortAsc ? (
+              <FaSortAmountUp className="text-gray-700" />
+            ) : (
+              <FaSortAmountDown className="text-gray-700" />
+            )}
           </button>
 
           {/* Add Account Button */}
@@ -72,16 +96,30 @@ const ManageAccount: React.FC = () => {
         {filteredAccounts.map((account, index) => (
           <div
             key={index}
-            className="p-4 border border-gray-300 rounded-md flex flex-col items-center bg-white shadow-lg transition duration-200 hover:shadow-xl"
+            className="relative p-4 border border-gray-300 rounded-md flex flex-col items-center bg-white shadow-lg transition duration-200 hover:shadow-xl"
           >
+            {/* Three Dots Menu Icon */}
+            <div className="absolute top-2 right-2">
+              <FaEllipsisV
+                className="text-gray-600 cursor-pointer"
+                onClick={() => openModal(account)} // Open modal on click
+              />
+            </div>
             <div className="bg-gray-200 rounded-full p-3 mb-4">
               <FaUser className="text-gray-800 text-2xl" />
             </div>
-            <h3 className="text-lg font-semibold text-gray-800">{account.name}</h3>
+            <h3 className="text-lg font-semibold text-gray-800">
+              {account.name}
+            </h3>
             <p className="text-sm text-gray-600">{account.email}</p>
           </div>
         ))}
       </div>
+
+      {/* Modal - Show when an account is selected */}
+      {selectedAccount && (
+        <AccountModal onClose={closeModal} />
+      )}
     </div>
   );
 };
