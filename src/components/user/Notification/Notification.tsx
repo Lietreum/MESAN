@@ -66,7 +66,7 @@ const notifications = [
   {
     id: 1,
     title: "Makanan Sudah Jadi",
-    imageUrl: "https://i.pinimg.com/736x/d7/6e/96/d76e96c4e9d3d09b901ad66e606615ec.jpg",
+    imageUrl: "slimsaint",
     message: "Dek, makanannya mau diambil atau dianterin?",
     timestamp: "2 minutes ago",
     actions: [

@@ -2,27 +2,31 @@ import { CircleUser, Home, Bell, Heart, ShoppingCart, Clipboard } from "lucide-r
 import React from "react";
 import { Link } from "react-router-dom";
 import koperasiLogo from "../../../assets/Pavicon/koperasiLogo.png";
-
+import SearchBar from "../SearchBar/NavSearchInput"; // Updated search bar component import
 const BottomNavigation: React.FC = () => {
   return (
     <div>
-      {/* Header with Icon at Top Left and Notification Icon at Top Right */}
+      {/* Header with Icon at Top Left, Notification Icon, and Search Bar at Top Right */}
       <div className="fixed top-0 left-0 z-50 w-full h-16 bg-white dark:bg-gray-700 flex items-center justify-between px-4 border-b border-gray-200 dark:border-gray-600">
         {/* Icon Image at Top Left */}
         <Link to="/" className="flex items-center">
           <img src={koperasiLogo} alt="Logo" className="w-8 h-auto" />
         </Link>
 
-        {/* Notification Icon at Top Right */}
-        <Link to="/notifications" className="flex items-center">
-          <Bell className="w-6 h-6 text-gray-700 dark:text-white" />
-        </Link>
+        {/* Notification and Search Section */}
+        <div className="flex items-center space-x-4">
+          {/* Notification Icon at Top Right */}
+          <Link to="/notifications" className="flex items-center">
+            <Bell className="w-6 h-6 text-gray-700 dark:text-white" />
+          </Link>
+          {/* Search Bar */}
+          <SearchBar />
+        </div>
       </div>
 
       {/* Bottom Navigation */}
       <div className="fixed bottom-0 left-0 z-50 w-full h-16 bg-white border-t border-gray-200 dark:bg-gray-700 dark:border-gray-600">
-        {/* Increase grid columns to 5 and add more padding */}
-        <div className="grid h-full max-w-lg grid-cols-5 mx-auto font-medium gap-2 px-2"> {/* Added gap-2 for more space between items */}
+        <div className="grid h-full max-w-lg grid-cols-5 mx-auto font-medium gap-2 px-2">
           <NavButton label="Home" icon={<Home />} to="/" />
           <NavButton label="Cart" icon={<ShoppingCart />} to="/cart" />
           <NavButton label="Order" icon={<Clipboard />} to="/order" />
