@@ -99,6 +99,7 @@ const Signup: React.FC = () => {
           <img
             alt="imageSignup"
             src={SignupImage}
+            loading="lazy"
             className="absolute inset-0 h-full w-full object-cover opacity-80"
           />
           <div className="hidden lg:relative lg:block lg:p-12">

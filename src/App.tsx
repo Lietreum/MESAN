@@ -98,7 +98,7 @@ function App() {
           path="/kasir/ManageAccounts"
           element={
             <KasirLayout>
-              <PageTitle title="Manage Accounts" />
+              <PageTitle title="Manage Accounts | Kasir" />
               <ManageAccount />
             </KasirLayout>
           }
@@ -107,7 +107,7 @@ function App() {
           path="/kasir/history"
           element={
             <KasirLayout>
-              <PageTitle title="Transaction History" />
+              <PageTitle title="Transaction History | Kasir" />
               <HistoryKasir />
             </KasirLayout>
           }
@@ -116,7 +116,7 @@ function App() {
           path="/kasir/withdrawal"
           element={
             <KasirLayout>
-              <PageTitle title="Transaction History" />
+              <PageTitle title="Transaction History | Kasir" />
               <Withdrawal />
             </KasirLayout>
           }
@@ -308,7 +308,7 @@ function App() {
           path="/pedagang/messages"
           element={
             <AdminLayout>
-              <PageTitle title="Pedagang Dashboard | Koperasi" />
+              <PageTitle title="Messages | Pedagang" />
               <Messages />
             </AdminLayout>
           }

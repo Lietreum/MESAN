@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { motion } from "framer-motion"; // Import framer-motion
+import { motion } from "framer-motion"; 
 import LoginImage from "../../assets/data/onigiri.png";
 import { useNavigate } from 'react-router-dom';
 
@@ -82,6 +82,7 @@ const Login: React.FC = () => {
           <img
             alt="imagelogin"
             src={LoginImage}
+            loading="lazy"
             className="absolute inset-0 h-full w-full object-cover opacity-80"
           />
           <div className="hidden lg:relative lg:block lg:p-12">
