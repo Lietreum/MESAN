@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { motion } from "framer-motion"; // Import framer-motion
-import SignupImage from "../../assets/data/onigiri.png";
+import { motion } from "framer-motion"; 
+import SignupImage from "../../assets/data/CompressedOni.png";
 import { useNavigate } from "react-router-dom";
 
 type SignupFormData = {

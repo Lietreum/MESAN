@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion"; 
-import LoginImage from "../../assets/data/onigiri.png";
+import LoginImage from "../../assets/data/CompressedOni.png";
 import { useNavigate } from 'react-router-dom';
 import Announcement from "./Announcement"; 
 
