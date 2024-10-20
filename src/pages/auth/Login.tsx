@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { motion } from "framer-motion"; 
 import LoginImage from "../../assets/data/onigiri.png";
 import { useNavigate } from 'react-router-dom';
+import Announcement from "./Announcement"; 
 
 type LoginFormData = {
   email: string;
@@ -77,6 +78,9 @@ const Login: React.FC = () => {
       animate="visible"
       variants={ariseVariant}
     >
+      {/* Place the Announcement at the top */}
+      <Announcement />
+
       <div className="lg:grid lg:min-h-screen lg:grid-cols-12">
         <section className="relative flex h-32 items-end bg-gray-900 lg:col-span-5 lg:h-full xl:col-span-6">
           <img
