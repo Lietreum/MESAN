@@ -46,6 +46,13 @@ const SearchComponent: React.FC = () => {
     };
   }, []);
 
+  // Automatically focus input field when search bar is opened
+  useEffect(() => {
+    if (open) {
+      inputRef.current?.focus(); // Focus the input when the search bar opens
+    }
+  }, [open]);
+
   return (
     <div className="relative w-full">
       {/* Dark overlay when search bar is focused */}
