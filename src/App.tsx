@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { Route, Routes, useLocation } from "react-router-dom";
-import ProtectedRoute from "./components/protect/Protected";
+// import ProtectedRoute from "./components/protect/Protected";
 import PageTitle from "./components/admin/PageTitle";
 import AdminLayout from "./layouts/pedagang/AdminLayout";
 import UserLayout from "./layouts/siswa/UserLayout";
@@ -55,24 +55,24 @@ function App() {
         <Route
           path="/kasir"
           element={
-            <ProtectedRoute allowedRoles={["ADMIN"]}>
+            // <ProtectedRoute allowedRoles={["ADMIN"]}>
             <KasirLayout>
               <PageTitle title="Kasir Dashboard" />
               <HomeKasir />
             </KasirLayout>
-             </ProtectedRoute>
+            //  </ProtectedRoute>
           }
         />
          {/* Protected Routes */}
          <Route
           path="/"
           element={
-            <ProtectedRoute allowedRoles={['USER']}>
+            // <ProtectedRoute allowedRoles={['USER']}>
               <UserLayout>
                 <PageTitle title="User Dashboard" />
                 <UserDashboard />
               </UserLayout>
-             </ProtectedRoute>
+            //  </ProtectedRoute>
           }
         />
 
@@ -236,12 +236,12 @@ function App() {
         <Route
           path="/merchant"
           element={
-            <ProtectedRoute allowedRoles={['MERCHANT']}>
+            // <ProtectedRoute allowedRoles={['MERCHANT']}>
             <AdminLayout>
               <PageTitle title="Pedagang Dashboard | Koperasi" />
               <ECommerce />
             </AdminLayout>
-             </ProtectedRoute>
+            //  </ProtectedRoute>
           }
         />
 
