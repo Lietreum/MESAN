@@ -19,7 +19,7 @@ const ProfilePage: React.FC = () => {
 
   const fetchProfileData = async () => {
     try {
-      const response = await fetch('http://localhost:3001/user/profile', {
+      const response = await fetch('https://api-mesan.curaweda.com/user/profile', {
         method: 'GET',
         headers: {
           'Content-Type': 'application/json',
@@ -57,7 +57,7 @@ const ProfilePage: React.FC = () => {
 
   const handleSaveChanges = async () => {
     try {
-      const response = await fetch('http://localhost:3001/user/profile', {
+      const response = await fetch('https://api-mesan.curaweda.com/user/profile', {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
