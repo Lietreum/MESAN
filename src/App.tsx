@@ -55,12 +55,12 @@ function App() {
         <Route
           path="/kasir"
           element={
-            <ProtectedRoute allowedRoles={["ADMIN"]}>
+            // <ProtectedRoute allowedRoles={["ADMIN"]}>
             <KasirLayout>
               <PageTitle title="Kasir Dashboard" />
               <HomeKasir />
             </KasirLayout>
-             </ProtectedRoute>
+            //  </ProtectedRoute>
           }
         />
          {/* Protected Routes */}
@@ -146,7 +146,7 @@ function App() {
           path="/cart"
           element={
             <UserLayout>
-              <PageTitle title="Cart" />
+              <PageTitle title="Carts" />
               <ShoppingCart />
             </UserLayout>
           }
@@ -164,7 +164,7 @@ function App() {
           path="/TopupPlacehold"
           element={
             <UserLayout>
-              <PageTitle title="User Notification" />
+              <PageTitle title="Payment Options" />
               <PaymentOptions />
             </UserLayout>
           }
@@ -173,7 +173,7 @@ function App() {
           path="/Countdown"
           element={
             <UserLayout>
-              <PageTitle title="User Notification" />
+              <PageTitle title=" Payment Countdown " />
               <PaymentCountdownPage />
             </UserLayout>
           }
@@ -182,7 +182,7 @@ function App() {
           path="/PaymentDetailsPlchold"
           element={
             <UserLayout>
-              <PageTitle title="User Notification" />
+              <PageTitle title=" Payment Details " />
               <PaymentDetails />
             </UserLayout>
           }
@@ -228,7 +228,7 @@ function App() {
         element={
           <UserLayout>
             {<OrderItem />}
-            <PageTitle title="User Notification" />
+            <PageTitle title="User Orders" />
           </UserLayout>
           }
          />
@@ -317,7 +317,7 @@ function App() {
           path="/order"
           element={
             <UserLayout>
-              <PageTitle title="Order" />
+              <PageTitle title="Orders" />
               <Order />
             </UserLayout>
           }
