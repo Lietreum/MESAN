@@ -1,11 +1,10 @@
 import React from "react";
-
 import OrderVerification from "./OrderVerification";
 
 const OverlayCard: React.FC = () => {
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-200">
-      <div className="w-80 bg-white shadow-lg rounded-lg p-4 space-y-4">
+      <div className="w-72 sm:w-80 bg-white shadow-lg rounded-lg p-4 space-y-4 mt-15 mb-15 md:mt-4 md:mb-4">
         {/* QR Scan Card */}
         <div className="flex flex-col items-center p-4 bg-gray-100 rounded-lg">
           <div className="w-32 h-32 bg-gray-200 flex justify-center items-center rounded-md mb-4">
@@ -15,7 +14,7 @@ const OverlayCard: React.FC = () => {
               totalOrder={100.0}
               tax={8.5}
               total={108.5}
-            />{" "}
+            />
           </div>
           <p className="text-lg font-semibold">Please scan the QR below</p>
           <div className="mt-4 text-center">

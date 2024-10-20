@@ -67,12 +67,14 @@ const Order: React.FC = () => {
 
             {/* Buttons */}
             <div className="flex flex-col">
+              <Link to={"/qrscanplaceholder"}>
               <button 
                 className="bg-blue-500 text-white text-sm md:text-base px-4 py-2 rounded-md mb-2"
                 onClick={() => setOrderStatusVisible(true)} // Show order status modal
               >
                 View QR Order
               </button>
+              </Link>
               <Link to="/order/orderstatus"> {/* Link ke route OrderStatus */}
                 <button className="bg-blue-500 text-white text-sm md:text-base px-4 py-2 rounded-md">
                   View Order Status
