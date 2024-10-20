@@ -1,12 +1,17 @@
 import React, { useState, useEffect, useRef } from 'react';
 
-const SortDropdown: React.FC = () => {
+interface FilterProps {
+  setFilter: (filter: string) => void; // Function to update the filter state in Homepage.tsx
+}
+
+const SortDropdown: React.FC<FilterProps> = ({ setFilter }) => {
   const [openSort, setOpenSort] = useState<boolean>(false);
-  const [sortType, setSortType] = useState<string>('Kategori'); // Default category
+  const [sortType, setSortType] = useState<string>('All'); // Default to 'All'
   const dropdownRef = useRef<HTMLDivElement>(null); // Ref for dropdown
 
   const handleSortChange = (type: string) => {
     setSortType(type);
+    setFilter(type); // Update the filter state in Homepage
     setOpenSort(false); // Close the dropdown after selection
   };
 
@@ -57,6 +62,7 @@ const SortDropdown: React.FC = () => {
           <div className="absolute z-50 origin-top-right mt-2 w-56">
             <div className="px-4 pt-2 pb-2 bg-white rounded-md shadow-lg">
               <div className="flex flex-col">
+                {/* Render options dynamically */}
                 {sortType !== 'Koperasi' && (
                   <button
                     onClick={() => handleSortChange('Koperasi')}
@@ -75,15 +81,16 @@ const SortDropdown: React.FC = () => {
                   </button>
                 )}
 
-                {sortType !== 'Hydrofour' && (
+                {sortType !== 'Hydro' && (
                   <button
-                    onClick={() => handleSortChange('Hydrofour')}
+                    onClick={() => handleSortChange('Hydro')}
                     className="flex items-center justify-start w-full p-4 rounded-lg text-gray-600 hover:bg-gray-200 hover:text-blue-600 transition-all duration-200"
                   >
-                    Hydrofour
+                    Hydro
                   </button>
                 )}
 
+                {/* Option for fetching all stores */}
                 {sortType !== 'All' && (
                   <button
                     onClick={() => handleSortChange('All')}

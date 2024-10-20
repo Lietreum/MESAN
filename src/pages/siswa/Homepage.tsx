@@ -24,21 +24,22 @@ interface Store {
 
 const Homepage: React.FC = () => {
   const [stores, setStores] = useState<Store[]>([]);
+  const [filter, setFilter] = useState<string>('All');
 
   useEffect(() => {
-    // Fetch data from the backend API
-    const fetchStores = async () => {
+    // Fetch data from the correct backend API
+    const fetchStores = async (tokoType = 'All') => {
       try {
-        const response = await fetch('http://localhost:3001/store/');
+        const response = await fetch(`http://localhost:3001/store?tokoType=${tokoType}`); // Corrected the URL with tokoType query param
         const data = await response.json();
         setStores(data); // Update the state with the fetched data
       } catch (error) {
         console.error('Error fetching store data:', error);
       }
     };
-
-    fetchStores();
-  }, []); // Empty dependency array means this will run once when the component mounts
+  
+    fetchStores(filter);
+  }, [filter]); // Refetch stores when selectedType changes
 
   return (
     <Container
@@ -111,7 +112,7 @@ const Homepage: React.FC = () => {
         }}
       >
         <FaFilter className="text-lg" />
-        <Filter /> {/* Your filter component */}
+        <Filter setFilter={setFilter} />
       </Box>
 
       {/* Store Cards Section */}
