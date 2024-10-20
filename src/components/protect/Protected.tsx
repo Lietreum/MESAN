@@ -16,7 +16,7 @@ const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ children, allowedRoles 
     const checkAuth = async () => {
       try {
         const token = localStorage.getItem("token");
-        const response = await fetch("http://localhost:3001/auth/", {
+        const response = await fetch("https://api-mesan.curaweda.com/auth/", {
           method: "GET",
           headers: {
             Authorization: `Bearer ${token}`,
