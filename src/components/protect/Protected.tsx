@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Navigate } from 'react-router-dom';
 import Loader from "../../components/common/Loader";
-const jwt_decode = require('jwt-decode');
+import jwt_decode from "jwt-decode"; // Direct named import
 
 interface ProtectedRouteProps {
   children: React.ReactNode;
@@ -24,7 +24,7 @@ const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ children, allowedRoles 
         }
 
         // Decode the token to get userId
-        const decodedToken: any = jwt_decode(token);
+        const decodedToken: any = jwt_decode(token); // Directly use jwt_decode
         const userId = decodedToken.id;
 
         // Fetch the user role using the userId
@@ -62,14 +62,14 @@ const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ children, allowedRoles 
   }
 
   if (userRole === null) {
-    return <Navigate to="/unauthorized" />; 
+    return <Navigate to="/unauthorized" />;
   }
 
   if (allowedRoles && !allowedRoles.includes(userRole)) {
     return <Navigate to="/unauthorized" />;
   }
 
-  return <>{children}</>; 
+  return <>{children}</>;
 };
 
 export default ProtectedRoute;
