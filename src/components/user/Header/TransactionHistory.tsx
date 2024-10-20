@@ -41,12 +41,14 @@ const OrderHistory: React.FC = () => {
   };
 
   return (
-    <section className="py-12 bg-gray-50">
+    <section className="py-20 bg-gray-50"> {/* Increased padding for top and bottom */}
       <div className="w-full max-w-7xl mx-auto px-4 md:px-8">
         {/* Header for History Transaction */}
-        <div className="flex justify-between items-center mb-8">
-          <h2 className="font-bold text-4xl text-gray-900">History Transaction</h2>
-          <div className="flex space-x-4">
+        <div className="flex flex-col md:flex-row justify-between items-center mb-8">
+          <h2 className="font-bold text-3xl md:text-4xl text-gray-900 mb-4 md:mb-0"> {/* Added bottom margin for mobile */}
+            History Transaction
+          </h2>
+          <div className="flex space-x-4 mt-4 md:mt-0">
             <button className="border border-gray-300 rounded-lg px-4 py-2 text-sm transition-all duration-200 hover:bg-gray-100">
               Date
             </button>
@@ -60,14 +62,14 @@ const OrderHistory: React.FC = () => {
         {transactions.map((item) => (
           <div
             key={item.id}
-            className={`mb-6 p-6 bg-white rounded-2xl shadow-lg transition-transform duration-300 ease-in-out transform hover:scale-[1.02] cursor-pointer ${openItemId === item.id ? '' : ''}`}
+            className={`mb-6 p-4 md:p-6 bg-white rounded-2xl shadow-lg transition-transform duration-300 ease-in-out transform hover:scale-[1.02] cursor-pointer`}
             onClick={() => handleItemClick(item.id)}
           >
             <div className="flex justify-between items-center">
               <div className="flex items-center space-x-4">
                 <FaWallet className="text-gray-500" size={28} />
                 <div>
-                  <p className="font-semibold text-xl">{item.storeName}</p>
+                  <p className="font-semibold text-lg md:text-xl">{item.storeName}</p>
                   <p className="text-sm text-gray-400">{item.date}</p>
                 </div>
               </div>
@@ -89,9 +91,9 @@ const OrderHistory: React.FC = () => {
 
             {/* Expandable section for more details */}
             {openItemId === item.id && (
-              <div className="mt-4 bg-gray-50 p-6 rounded-xl transition-all duration-300">
+              <div className="mt-4 bg-gray-50 p-4 rounded-xl transition-all duration-300">
                 <h3 className="text-lg font-semibold mb-3 text-gray-700">Transaction Details</h3>
-                <ul className="space-y-3">
+                <ul className="space-y-2">
                   {/* Show top-up first */}
                   {item.topUpHistory?.map((history, index) => (
                     <li
@@ -121,14 +123,14 @@ const OrderHistory: React.FC = () => {
         ))}
 
         {/* Summary of income and expenses (Swapped Position) */}
-        <div className="mt-8 flex justify-between bg-white p-6 rounded-xl shadow-md">
+        <div className="mt-8 flex flex-col md:flex-row justify-between bg-white p-4 md:p-6 rounded-xl shadow-md">
           <div className="flex items-center space-x-4">
             <FaArrowUp className="text-green-500" size={28} />
-            <p className="font-semibold text-xl">Income: Rp100.000</p>
+            <p className="font-semibold text-lg md:text-xl">Income: Rp100.000</p>
           </div>
-          <div className="flex items-center space-x-4">
+          <div className="flex items-center space-x-4 mt-4 md:mt-0">
             <FaArrowDown className="text-red-500" size={28} />
-            <p className="font-semibold text-xl">Expense: Rp21.500</p>
+            <p className="font-semibold text-lg md:text-xl">Expense: Rp21.500</p>
           </div>
         </div>
       </div>

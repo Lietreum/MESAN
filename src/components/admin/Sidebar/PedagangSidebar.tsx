@@ -70,7 +70,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
         }`}
       >
         <div className="flex items-center justify-center px-10 py-0 bg-[#0F1E34]">
-          <NavLink to="#">
+          <NavLink to="/merchant">
             <img src={Logo} alt="Logo" className="w-50 h-auto" />
           </NavLink>
 
@@ -160,7 +160,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
         className="hidden lg:flex flex-col h-screen w-64 bg-[#0F1E34]"
       >
         <div className="flex items-center justify-center px-10 py-0 bg-[#0F1E34]">
-          <NavLink to="#">
+          <NavLink to="/merchant">
             <img src={Logo} alt="Logo" className="w-50 h-auto" />
           </NavLink>
         </div>

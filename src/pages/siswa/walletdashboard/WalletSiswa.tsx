@@ -1,6 +1,5 @@
 import React from 'react';
-import { MdFastfood } from "react-icons/md"; // Import the icon
-import { MdAttachMoney, MdCalendarToday } from "react-icons/md"; // Icons for money and date
+import { MdFastfood, MdAttachMoney, MdCalendarToday } from "react-icons/md"; // Import the icons
 
 // Define the types for transactions
 interface Transaction {
@@ -10,6 +9,56 @@ interface Transaction {
   date: string;
 }
 
+const BalanceCard: React.FC<{
+  balance: number;
+  userName: string;
+  cardNumber: string;
+  income: number;
+  expense: number;
+}> = ({ balance, userName, cardNumber, income, expense }) => (
+  <div className="bg-[#12192D] text-white p-8 md:p-12 rounded-2xl flex flex-col md:flex-row justify-between mb-8">
+    <div className="flex flex-col">
+      <h3 className="text-lg md:text-xl">Saldo</h3>
+      <h1 className="text-2xl md:text-3xl">Rp {balance.toLocaleString()}</h1>
+      <p className="my-2 text-base">{userName}</p>
+      <p className="my-2 text-base">{cardNumber}</p>
+    </div>
+    <div className="flex flex-col justify-center gap-4 mt-4 md:mt-0">
+      <button className="bg-[#67A6FF] text-white py-2 px-5 rounded-md">+ Rp {income.toLocaleString()}</button>
+      <button className="bg-[#FF6767] text-white py-2 px-5 rounded-md">- Rp {expense.toLocaleString()}</button>
+    </div>
+  </div>
+);
+
+const TransactionCard: React.FC<Transaction> = ({ title, amount, date }) => (
+  <div className="bg-[#F3F4F6] p-4 rounded-xl flex items-center gap-6">
+    <div className="w-16 h-16 bg-[#12192D] rounded-full flex justify-center items-center text-white">
+      {title === "Nasi Kuning" || title === "Batagor" || title === "Cimol Bojot" ? (
+        <MdFastfood className="text-3xl" />
+      ) : (
+        <MdAttachMoney className="text-3xl" />
+      )}
+    </div>
+    <div className="flex flex-col">
+      <h4 className="m-0 text-xl">{title}</h4>
+      <p className="m-1 text-base text-gray-600">
+        <MdAttachMoney /> Rp {amount.toLocaleString()}
+      </p>
+      <p className="m-1 text-base text-gray-600">
+        <MdCalendarToday /> {date}
+      </p>
+    </div>
+  </div>
+);
+
+const TransactionsList: React.FC<{ transactions: Transaction[] }> = ({ transactions }) => (
+  <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+    {transactions.map((transaction) => (
+      <TransactionCard key={transaction.id} {...transaction} />
+    ))}
+  </div>
+);
+
 const Dashboard: React.FC = () => {
   const balance: number = 15000000;
   const userName: string = "Azka Dafin Aldrik";
@@ -17,7 +66,6 @@ const Dashboard: React.FC = () => {
   const income: number = 30000;
   const expense: number = 23000;
 
-  // Transactions array
   const transactions: Transaction[] = [
     { id: 1, title: "Nasi Kuning", amount: 5000, date: "17 September 2024" },
     { id: 2, title: "Batagor", amount: 8000, date: "12 September 2024" },
@@ -25,163 +73,23 @@ const Dashboard: React.FC = () => {
     { id: 4, title: "Cimol Bojot", amount: 10000, date: "11 September 2024" },
   ];
 
-  // Inline styles
-  const containerStyle = {
-    padding: '20px',
-    fontFamily: 'Arial, sans-serif',
-  };
-
-  const balanceCardStyle = {
-    backgroundColor: '#12192D',
-    color: 'white',
-    padding: '50px',
-    borderRadius: '20px',
-    display: 'flex',
-    justifyContent: 'space-between',
-    marginBottom: '30px',
-  };
-
-  const balanceInfoStyle = {
-    display: 'flex',
-    flexDirection: 'column' as const,
-  };
-
-  const userNameStyle = {
-    margin: '7px 0',
-    fontSize: '1rem',
-  };
-
-  const cardNumberStyle = {
-    margin: '7px 0',
-    fontSize: '1rem',
-  };
-
-  const balanceActionsStyle = {
-    display: 'flex',
-    flexDirection: 'column' as const,
-    justifyContent: 'center',
-    gap: '30px',
-  };
-
-  const buttonStyle = {
-    backgroundColor: '#67A6FF',
-    color: 'white',
-    padding: '10px 20px',
-    border: 'none',
-    borderRadius: '10px',
-    fontSize: '1rem',
-    cursor: 'pointer',
-  };
-
-  const expenseButtonStyle = {
-    ...buttonStyle,
-    backgroundColor: '#FF6767',
-  };
-
-  const transactionsHeaderStyle = {
-    display: 'flex',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    marginBottom: '10px',
-    fontSize: '27px'
-  };
-
-  const viewAllButtonStyle = {
-    backgroundColor: '#67A6FF',
-    color: 'white',
-    padding: '10px 18px',
-    border: 'none',
-    borderRadius: '10px',
-    fontSize: '1.1rem',
-    cursor: 'pointer',
-  };
-
-  const transactionsListStyle = {
-    display: 'grid',
-    gridTemplateColumns: '1fr 1fr',
-    gap: '20px',
-  };
-
-  const transactionCardStyle = {
-    backgroundColor: '#F3F4F6',
-    padding: '15px',
-    borderRadius: '15px',
-    display: 'flex',
-    alignItems: 'center',
-    gap: '25px',
-  };
-
-  const iconCircleStyle = {
-    width: '65px',
-    height: '65px',
-    backgroundColor: '#12192D',
-    borderRadius: '50%',
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    color: 'white',
-  };
-
-  const transactionInfoStyle = {
-    display: 'flex',
-    flexDirection: 'column' as const,
-  };
-
-  const transactionTitleStyle = {
-    margin: '0',
-    fontSize: '1.4rem',
-  };
-
-  const transactionAmountDateStyle = {
-    margin: '5px 0',
-    fontSize: '1rem',
-    color: '#555',
-  };
-
   return (
-    <div style={containerStyle}>
+    <div className="p-5 md:p-10 lg:p-12 font-sans mt-12 mb-12 md:mt-4 md:mb-4"> {/* Increased margins for mobile */}
       {/* Balance Section */}
-      <div style={balanceCardStyle}>
-        <div style={balanceInfoStyle}>
-          <h3>Saldo</h3>
-          <h1>Rp {balance.toLocaleString()}</h1>
-          <p style={userNameStyle}>{userName}</p>
-          <p style={cardNumberStyle}>{cardNumber}</p>
-        </div>
-        <div style={balanceActionsStyle}>
-          <button style={buttonStyle}>+ Rp {income.toLocaleString()}</button>
-          <button style={expenseButtonStyle}>- Rp {expense.toLocaleString()}</button>
-        </div>
-      </div>
+      <BalanceCard
+        balance={balance}
+        userName={userName}
+        cardNumber={cardNumber}
+        income={income}
+        expense={expense}
+      />
 
       {/* Transactions Section */}
-      <div style={transactionsHeaderStyle}>
-        <h3>Latest Transactions</h3>
-        <button style={viewAllButtonStyle}>View All</button>
+      <div className="flex justify-between items-center mb-4">
+        <h3 className="text-2xl">Latest Transactions</h3>
+        <button className="bg-[#67A6FF] text-white py-2 px-4 rounded-md">View All</button>
       </div>
-
-      <div style={transactionsListStyle}>
-        {transactions.map((transaction) => (
-          <div key={transaction.id} style={transactionCardStyle}>
-            <div style={iconCircleStyle}>
-              {(transaction.title === "Nasi Kuning" || transaction.title === "Batagor" || transaction.title === "Cimol Bojot") ? (
-                <MdFastfood style={{ fontSize: '1.7rem' }} />
-              ) : (
-                <MdAttachMoney style={{ fontSize: '1.7rem' }} />
-              )}
-            </div>
-            <div style={transactionInfoStyle}>
-              <h4 style={transactionTitleStyle}>{transaction.title}</h4>
-              <p style={transactionAmountDateStyle}>
-                <MdAttachMoney /> Rp {transaction.amount.toLocaleString()}
-              </p>
-              <p style={transactionAmountDateStyle}>
-                <MdCalendarToday /> {transaction.date}
-              </p>
-            </div>
-          </div>
-        ))}
-      </div>
+      <TransactionsList transactions={transactions} />
     </div>
   );
 };

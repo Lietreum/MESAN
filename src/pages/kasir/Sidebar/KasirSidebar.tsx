@@ -74,7 +74,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }: SidebarProps) => {
     >
       {/* Sidebar Header */}
       <div className="flex items-center justify-center px-10 py-0 bg-[#0F1E34]">
-        <NavLink to="#">
+        <NavLink to="/kasir">
           <img src={Logo} alt="Logo" className="w-50 h-auto" />
         </NavLink>
 
