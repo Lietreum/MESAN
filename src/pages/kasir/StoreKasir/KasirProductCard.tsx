@@ -3,11 +3,13 @@ import { Card, CardMedia, Typography } from "@mui/material";
 
 interface ProductCardProps {
   data: {
-    id: number;
     title: string;
     price: number;
     imgUrl: string;
+    type: string;
     tokoName: string;
+    quantity: number;
+    tokoId: string;
   };
 }
 

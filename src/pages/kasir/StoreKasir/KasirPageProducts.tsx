@@ -2,17 +2,26 @@ import React from "react";
 import { useParams } from "react-router-dom";
 import ProductCard from "./KasirProductCard";
 
-// Define the Product type inline
+// Define enum for store types
+enum TokoTypes {
+  Kantin = "Kantin",
+  Hydro = "Hydro",
+  Koperasi = "Koperasi",
+}
+
+// Updated Product type to include quantity and tokoId
 type Product = {
   id: number;
   title: string;
   price: number;
   imgUrl: string;
-  type: string;
+  type: TokoTypes;  // Updated to use TokoTypes enum
   tokoName: string;
+  quantity: number;
+  tokoId: string;
 };
 
-// Mock product data
+// Updated mock product data to include store types
 const dummyProducts: Product[] = [
   {
     id: 1,
@@ -20,7 +29,9 @@ const dummyProducts: Product[] = [
     price: 19.99,
     imgUrl: "https://via.placeholder.com/150",
     tokoName: "Store A",
-    type: "Type 1",
+    type: TokoTypes.Kantin,  // Using TokoTypes enum
+    quantity: 100,
+    tokoId: "12345",
   },
   {
     id: 2,
@@ -28,7 +39,9 @@ const dummyProducts: Product[] = [
     price: 29.99,
     imgUrl: "https://via.placeholder.com/150",
     tokoName: "Store B",
-    type: "Type 2",
+    type: TokoTypes.Hydro,   // Using TokoTypes enum
+    quantity: 50,
+    tokoId: "67890",
   },
   {
     id: 3,
@@ -36,7 +49,9 @@ const dummyProducts: Product[] = [
     price: 39.99,
     imgUrl: "https://via.placeholder.com/150",
     tokoName: "Store C",
-    type: "Type 1",
+    type: TokoTypes.Koperasi, // Using TokoTypes enum
+    quantity: 200,
+    tokoId: "54321",
   },
 ];
 
@@ -44,9 +59,9 @@ const ProductPage: React.FC = () => {
   const { type } = useParams<{ type: string }>();
   const decodedType = decodeURIComponent(type || "").toLowerCase();
 
-  // Filter products by the decoded category type
-  const filteredProducts = dummyProducts.filter(
-    (product) => product.type.toLowerCase() === decodedType
+  // Map decodedType to the enum values
+  const filteredProducts = dummyProducts.filter((product) => 
+    product.type.toLowerCase() === decodedType
   );
 
   return (

@@ -2,10 +2,33 @@ import React, { useEffect, useState } from 'react';
 import TopRightContent from "../../components/kasir/dashboard/TopRightContent";
 import KasirCategoryCard from "./StoreKasir/KasirCategoryCard";
 import BottomRightContent from "../../components/kasir/dashboard/BottomRightContent";
-import canteenData from "../kasir/StoreKasir/dummy"; 
+import DefaultImage from '../../assets/data/Kantin_ph.png'; // Assuming you have a default image for missing images
+
+interface Store {
+  tokoId: string;
+  name: string;
+  img?: string | null;
+  tokoType: string;
+}
 
 const MainContent: React.FC = () => {
+  const [stores, setStores] = useState<Store[]>([]);
   const [isScrolling, setIsScrolling] = useState(false);
+
+  useEffect(() => {
+    // Fetch stores from your API
+    const fetchStores = async () => {
+      try {
+        const response = await fetch('https://api-mesan.curaweda.com/store'); // TAH TAH TAH PEW PEW
+        const data = await response.json();
+        setStores(data);
+      } catch (error) {
+        console.error('Error fetching store data:', error);
+      }
+    };
+
+    fetchStores();
+  }, []); // Fetch stores once on component mount
 
   useEffect(() => {
     let timeout: NodeJS.Timeout;
@@ -36,8 +59,16 @@ const MainContent: React.FC = () => {
           isScrolling ? 'scrollbar-visible' : 'scrollbar-hidden'
         }`}
       >
-        {canteenData.map((store, index) => (
-          <KasirCategoryCard key={index} data={{ name: store.title, img: store.imgUrl, type: store.type }} />
+        {stores.map((store) => (
+          <KasirCategoryCard 
+            key={store.tokoId} 
+            data={{ 
+              tokoId: store.tokoId, 
+              name: store.name, 
+              img: store.img || DefaultImage, // Use default image if img is missing
+              tokoType: store.tokoType 
+            }} 
+          />
         ))}
       </div>
 

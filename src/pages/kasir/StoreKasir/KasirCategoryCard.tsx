@@ -4,18 +4,19 @@ import { Link } from "react-router-dom";
 
 interface CategoryCardProps {
   data: {
+    tokoId: string;
     name: string;
     img: string;
-    type: string; // Ensure this is included
+    tokoType: string; // Use tokoType as the correct field
   };
 }
 
 const CategoryCard: React.FC<CategoryCardProps> = React.memo(({ data }) => {
-  const [loading, setLoading] = useState(true); 
+  const [loading, setLoading] = useState(true);
 
   return (
     <Link
-      to={`/kasir/product/type/${encodeURIComponent(data.type)}`} // Updated to include data.type
+      to={`/kasir/product/type/${encodeURIComponent(data.tokoType)}`} // Use tokoType instead of type
       style={{ textDecoration: 'none' }}
       aria-label={`View ${data.name} products`}
     >
