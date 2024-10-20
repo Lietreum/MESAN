@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Navigate } from 'react-router-dom';
 import Loader from "../../components/common/Loader";
+const jwt_decode = require('jwt-decode');
 
 interface ProtectedRouteProps {
   children: React.ReactNode;
@@ -16,7 +17,18 @@ const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ children, allowedRoles 
     const checkAuth = async () => {
       try {
         const token = localStorage.getItem("token");
-        const response = await fetch("https://api-mesan.curaweda.com/auth/", {
+        if (!token) {
+          setIsAuthenticated(false);
+          setIsLoading(false);
+          return;
+        }
+
+        // Decode the token to get userId
+        const decodedToken: any = jwt_decode(token);
+        const userId = decodedToken.id;
+
+        // Fetch the user role using the userId
+        const response = await fetch(`https://api-mesan.curaweda.com/auth/users/${userId}/role`, {
           method: "GET",
           headers: {
             Authorization: `Bearer ${token}`,
@@ -26,7 +38,7 @@ const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ children, allowedRoles 
         if (response.ok) {
           const data = await response.json();
           setIsAuthenticated(true);
-          setUserRole(data.role);
+          setUserRole(data.role); // Assuming the backend returns { role: 'USER' } or similar
         } else {
           setIsAuthenticated(false);
         }
@@ -42,7 +54,7 @@ const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ children, allowedRoles 
   }, []);
 
   if (isLoading) {
-    return <Loader />; // gwa ganti pake ini
+    return <Loader />;
   }
 
   if (!isAuthenticated) {
@@ -50,14 +62,14 @@ const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ children, allowedRoles 
   }
 
   if (userRole === null) {
-    return <Navigate to="/unauthorized" />; // Redirect if user role is null
+    return <Navigate to="/unauthorized" />; 
   }
 
   if (allowedRoles && !allowedRoles.includes(userRole)) {
-    return <Navigate to="/unauthorized" />; // Redirect if user role is not allowed
+    return <Navigate to="/unauthorized" />;
   }
 
-  return <>{children}</>; // Render protected children if authenticated and authorized
+  return <>{children}</>; 
 };
 
 export default ProtectedRoute;
