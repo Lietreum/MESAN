@@ -15,7 +15,7 @@ const Announcement = () => {
         <p className="text-center text-sm font-medium text-gray-900">
           New to Mesan?{" "}
           <a
-            href="https://rplthree.vercel.app"
+            href="https://mesan-about.vercel.app/"
             target="_blank"
             rel="noopener noreferrer"
             className="block underline sm:inline-block text-blue-600 hover:text-blue-800"
