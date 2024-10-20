@@ -39,10 +39,10 @@ import Order from "./pages/siswa/orderstatus/Order";
 import OrderStatus from "./pages/siswa/orderstatus/OrderStatus";
 import PaymentCountdownPage from "./components/user/Header/PaymentCountdown";
 import OrderItem from "./components/user/NotificationOrder/percobaannotifikasi";
-import NotAuthorized from './pages/auth/NotAuthorized';
+import NotAuthorized from "./pages/auth/NotAuthorized";
+import KasirPageProducts from "./pages/kasir/StoreKasir/KasirPageProducts";
 
 function App() {
-
   const { pathname } = useLocation();
 
   useEffect(() => {
@@ -55,19 +55,17 @@ function App() {
         <Route
           path="/kasir"
           element={
-            // <ProtectedRoute allowedRoles={["ADMIN"]}>
             <KasirLayout>
               <PageTitle title="Kasir Dashboard" />
               <HomeKasir />
             </KasirLayout>
-            //  </ProtectedRoute>
           }
         />
-         {/* Protected Routes */}
-         <Route
+        {/* Protected Routes */}
+        <Route
           path="/"
           element={
-            <ProtectedRoute allowedRoles={['USER']}>
+            <ProtectedRoute allowedRoles={["USER"]}>
               <UserLayout>
                 <PageTitle title="User Dashboard" />
                 <UserDashboard />
@@ -85,6 +83,18 @@ function App() {
             </UserLayout>
           }
         />
+
+        <Route
+          path="/kasir/product/type/:type"
+          element={
+            <KasirLayout>
+              <PageTitle title="Product List" />
+              <KasirPageProducts />
+            </KasirLayout>
+          }
+        />
+        
+
         <Route
           path="/transactionhistory"
           element={
@@ -140,7 +150,6 @@ function App() {
               <KasirTopup />
             </KasirLayout>
           }
-          
         />
         <Route
           path="/cart"
@@ -168,8 +177,8 @@ function App() {
               <PaymentOptions />
             </UserLayout>
           }
-          />
-          <Route
+        />
+        <Route
           path="/Countdown"
           element={
             <UserLayout>
@@ -177,7 +186,7 @@ function App() {
               <PaymentCountdownPage />
             </UserLayout>
           }
-          />
+        />
         <Route
           path="/PaymentDetailsPlchold"
           element={
@@ -219,19 +228,19 @@ function App() {
           element={
             <UserLayout>
               <PageTitle title="ProfilePage" />
-              <ProfilePage/>
+              <ProfilePage />
             </UserLayout>
           }
-          />
-          <Route
-       path="/orders/:userId"
-        element={
-          <UserLayout>
-            {<OrderItem />}
-            <PageTitle title="User Orders" />
-          </UserLayout>
+        />
+        <Route
+          path="/orders/:userId"
+          element={
+            <UserLayout>
+              {<OrderItem />}
+              <PageTitle title="User Orders" />
+            </UserLayout>
           }
-         />
+        />
         {/* Admin Routes */}
         <Route
           path="/merchant"
@@ -339,24 +348,30 @@ function App() {
           element={
             <AdminLayout>
               <PageTitle title="Add Product | Koperasi" />
-              <AddProductPage show={false} onClose={function (): void {
-                throw new Error("Function not implemented.");
-              } } />
+              <AddProductPage
+                show={false}
+                onClose={function (): void {
+                  throw new Error("Function not implemented.");
+                }}
+              />
             </AdminLayout>
           }
-          />
+        />
 
         <Route
           path="/pedagang/edit-product"
           element={
             <AdminLayout>
               <PageTitle title="Edit Product | Koperasi" />
-              <AddProductPage show={false} onClose={function (): void {
-                throw new Error("Function not implemented.");
-              } } />
+              <AddProductPage
+                show={false}
+                onClose={function (): void {
+                  throw new Error("Function not implemented.");
+                }}
+              />
             </AdminLayout>
           }
-          />
+        />
         {/* Authentication Routes */}
         <Route
           path="/login"
@@ -379,7 +394,7 @@ function App() {
 
         {/* 404 Not Found Route */}
         <Route path="*" element={<NotFound />} />
-        <Route path="/unauthorized" element={<NotAuthorized />} /> 
+        <Route path="/unauthorized" element={<NotAuthorized />} />
 
         <Route
           path="/walletsiswa"

@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import TopRightContent from "../../components/kasir/dashboard/TopRightContent";
-import CategoryCard from "../../components/user/CategoryCard/CategoryCard";
+import KasirCategoryCard from "./StoreKasir/KasirCategoryCard";
 import BottomRightContent from "../../components/kasir/dashboard/BottomRightContent";
-import canteenData from "../../Helpers/HomePageBanner"; 
+import canteenData from "../kasir/StoreKasir/dummy"; 
 
 const MainContent: React.FC = () => {
   const [isScrolling, setIsScrolling] = useState(false);
@@ -37,7 +37,7 @@ const MainContent: React.FC = () => {
         }`}
       >
         {canteenData.map((store, index) => (
-          <CategoryCard key={index} data={store} />
+          <KasirCategoryCard key={index} data={{ name: store.title, img: store.imgUrl, type: store.type }} />
         ))}
       </div>
 

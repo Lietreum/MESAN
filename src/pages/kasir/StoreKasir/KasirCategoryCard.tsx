@@ -1,14 +1,21 @@
 import React, { useState } from "react";
 import { Card, CardMedia, Typography, Box, Skeleton } from "@mui/material";
 import { Link } from "react-router-dom";
-import { CategoryCardProps } from '../../../types/types';
+
+interface CategoryCardProps {
+  data: {
+    name: string;
+    img: string;
+    type: string; // Ensure this is included
+  };
+}
 
 const CategoryCard: React.FC<CategoryCardProps> = React.memo(({ data }) => {
   const [loading, setLoading] = useState(true); 
 
   return (
     <Link
-      to={`product/type/${data.name.toLowerCase()}`}
+      to={`/kasir/product/type/${encodeURIComponent(data.type)}`} // Updated to include data.type
       style={{ textDecoration: 'none' }}
       aria-label={`View ${data.name} products`}
     >

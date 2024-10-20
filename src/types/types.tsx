@@ -57,6 +57,7 @@ export interface CategoryCardProps {
     name: string;
     img: string;
   };
+  
 }
 
 //  C:\Users\User\Desktop\allcode\s\src\components\user\Header\Favorite.tsx
