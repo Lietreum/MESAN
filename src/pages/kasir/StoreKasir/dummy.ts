@@ -1,27 +1,24 @@
 const dummyProducts = [
     {
       id: 1,
-      title: "Product 1",
-      price: 19.99,
+      title: "Store 1",
       imgUrl: "https://via.placeholder.com/150",
       tokoName: "Store A",
-      type: "Type 1"
+      type: "Kantin"
     },
     {
       id: 2,
-      title: "Product 2",
-      price: 29.99,
+      title: "Store 2",
       imgUrl: "https://via.placeholder.com/150",
       tokoName: "Store B",
-      type: "Type 2"
+      type: "Koperasi"
     },
     {
       id: 3,
-      title: "Product 3",
-      price: 39.99,
+      title: "Store 3",
       imgUrl: "https://via.placeholder.com/150",
       tokoName: "Store C",
-      type: "Type 1"
+      type: "Hydro"
     }
   ];
   
