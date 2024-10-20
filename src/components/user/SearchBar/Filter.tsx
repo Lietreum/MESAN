@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 
 const SortDropdown: React.FC = () => {
   const [openSort, setOpenSort] = useState<boolean>(false);
   const [sortType, setSortType] = useState<string>('Kategori'); // Default category
+  const dropdownRef = useRef<HTMLDivElement>(null); // Ref for dropdown
 
   const handleSortChange = (type: string) => {
     setSortType(type);
@@ -13,8 +14,25 @@ const SortDropdown: React.FC = () => {
     setOpenSort(prev => !prev); // Toggle the dropdown on click
   };
 
+  // Close dropdown when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setOpenSort(false);
+      }
+    };
+
+    // Add event listener to listen for clicks outside
+    document.addEventListener('mousedown', handleClickOutside);
+
+    // Cleanup the event listener on component unmount
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [dropdownRef]);
+
   return (
-    <div className="relative inline-block">
+    <div className="relative inline-block" ref={dropdownRef}>
       <div className="relative">
         <button
           onClick={toggleSortDropdown} // Toggle dropdown on button click
