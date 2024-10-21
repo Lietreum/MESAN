@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import TopRightContent from "../../components/kasir/dashboard/TopRightContent";
 import KasirCategoryCard from "./StoreKasir/KasirCategoryCard";
 import BottomRightContent from "../../components/kasir/dashboard/BottomRightContent";
-import DefaultImage from '../../assets/data/Kantin_ph.png'; // Assuming you have a default image for missing images
+import DefaultImage from '../../assets/data/Kantin_ph.png'; 
 
 interface Store {
   tokoId: string;
@@ -19,7 +19,7 @@ const MainContent: React.FC = () => {
     // Fetch stores from your API
     const fetchStores = async () => {
       try {
-        const response = await fetch('https://api-mesan.curaweda.com/store'); // TAH TAH TAH PEW PEW
+        const response = await fetch('https://api-mesan.curaweda.com/store'); //  
         const data = await response.json();
         setStores(data);
       } catch (error) {
