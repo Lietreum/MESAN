@@ -4,7 +4,6 @@ import { AiOutlinePlus } from "react-icons/ai";
 import AccountModal from "./ModalAdd";
 import DeleteModal from "./DeleteModal";
 import AccountInfoModal from "./AccountInfoModal";
-import axios from 'axios';
 
 interface Account {
   id: string;
@@ -35,22 +34,25 @@ const ManageAccount: React.FC = () => {
   const [, setIsSubmitting] = useState(false);
 
   useEffect(() => {
-  const fetchAccounts = async () => {
-    setIsLoading(true);
-    try {
-      const response: { data: Account[] } = await axios.get('https://api-mesan.curaweda.com/admin/users');
-      setAccounts(response.data);
-    } catch (error) {
-      console.error("Error fetching accounts:", error);
-      alert("Failed to fetch accounts. Please try again.");
-    } finally {
-      setIsLoading(false);
-    }
-  };
+    const fetchAccounts = async () => {
+      setIsLoading(true);
+      try {
+        const response = await fetch('https://api-mesan.curaweda.com/admin/users');
+        if (!response.ok) {
+          throw new Error("Error fetching accounts");
+        }
+        const data: Account[] = await response.json();
+        setAccounts(data);
+      } catch (error) {
+        console.error("Error fetching accounts:", error);
+        alert("Failed to fetch accounts. Please try again.");
+      } finally {
+        setIsLoading(false);
+      }
+    };
 
-  fetchAccounts();
+    fetchAccounts();
   }, []);
-
 
   const createAccount = async (account: Omit<Account, 'id'>) => {
     if (!account.name || !account.email || !account.password) {
@@ -60,12 +62,21 @@ const ManageAccount: React.FC = () => {
 
     setIsSubmitting(true);
     try {
-      const response = await axios.post('https://api-mesan.curaweda.com/admin/create', account, {
+      const response = await fetch('https://api-mesan.curaweda.com/admin/create', {
+        method: 'POST',
         headers: {
+          'Content-Type': 'application/json',
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
+        body: JSON.stringify(account),
       });
-      setAccounts([...accounts, response.data]);
+
+      if (!response.ok) {
+        throw new Error("Error creating account");
+      }
+
+      const newAccount = await response.json();
+      setAccounts([...accounts, newAccount]);
       setNewAccountModalOpen(false);
       alert("Account created successfully!");
     } catch (error) {
@@ -77,21 +88,28 @@ const ManageAccount: React.FC = () => {
   };
 
   const updateAccount = async (account: Account) => {
-    setIsSubmitting(true);
-
     if (!account.id) {
       alert("Account ID is missing.");
-      setIsSubmitting(false);
       return;
     }
 
+    setIsSubmitting(true);
     try {
-      const response = await axios.put(`https://api-mesan.curaweda.com/admin/update/${account.id}`, account, {
+      const response = await fetch(`https://api-mesan.curaweda.com/admin/update/${account.id}`, {
+        method: 'PUT',
         headers: {
+          'Content-Type': 'application/json',
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
+        body: JSON.stringify(account),
       });
-      setAccounts(accounts.map(a => (a.id === account.id ? response.data : a)));
+
+      if (!response.ok) {
+        throw new Error("Error updating account");
+      }
+
+      const updatedAccount = await response.json();
+      setAccounts(accounts.map((a) => (a.id === account.id ? updatedAccount : a)));
       alert("Account updated successfully!");
     } catch (error) {
       console.error("Error updating account:", error);
@@ -106,12 +124,18 @@ const ManageAccount: React.FC = () => {
 
     setIsSubmitting(true);
     try {
-      await axios.delete(`https://api-mesan.curaweda.com/admin/delete/${accountToDelete.id}`, {
+      const response = await fetch(`https://api-mesan.curaweda.com/admin/delete/${accountToDelete.id}`, {
+        method: 'DELETE',
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,
         },
       });
-      setAccounts(accounts.filter(a => a.id !== accountToDelete.id));
+
+      if (!response.ok) {
+        throw new Error("Error deleting account");
+      }
+
+      setAccounts(accounts.filter((a) => a.id !== accountToDelete.id));
       setDeleteModalOpen(false);
       setAccountToDelete(initialAccount);
       alert("Account deleted successfully!");
@@ -165,19 +189,6 @@ const ManageAccount: React.FC = () => {
     setSelectedAccount(account);
     setInfoModalOpen(true);
   };
-
-  // Handle token expiration
-  axios.interceptors.response.use(
-    response => response,
-    error => {
-      if (error.response.status === 401) {
-        alert("Session expired. Please log in again.");
-        localStorage.removeItem("token");
-        window.location.reload();
-      }
-      return Promise.reject(error);
-    }
-  );
 
   return (
     <div className="p-6 bg-gray-100 min-h-screen">
