@@ -1,124 +1,148 @@
-import React, { useState } from "react";
-import {
-  FaSearch,
-  FaUser,
-  FaSortAmountDown,
-  FaSortAmountUp,
-  FaEllipsisV,
-} from "react-icons/fa";
-import { AiOutlinePlus } from "react-icons/ai";
-import AccountModal from "./ModalAdd"; // Import the modal component
+import React, { useEffect, useState } from "react";
+import AccountModal from "./ModalAdd"; // Ensure the import path is correct
 
-type Account = {
+interface User {
+  id: string;
   name: string;
   email: string;
-};
-
-const accounts: Account[] = [
-  { name: "Pak Atep", email: "222****.pedagang@smkn4bdg.schi.id" },
-  { name: "Bu Kosim", email: "222****.pedagang@smkn4bdg.schi.id" },
-  { name: "Bu Iin", email: "222****.pedagang@smkn4bdg.schi.id" },
-];
+}
 
 const ManageAccount: React.FC = () => {
-  const [searchTerm, setSearchTerm] = useState("");
-  const [sortAsc, setSortAsc] = useState(true);
-  const [selectedAccount, setSelectedAccount] = useState<Account | null>(null);
+  const [users, setUsers] = useState<User[]>([]);
+  const [showModal, setShowModal] = useState(false);
+  const [editingUser, setEditingUser] = useState<User | null>(null);
+  const [currentUserId, setCurrentUserId] = useState<string | null>(null);
 
-  // Open modal with selected account
-  const openModal = (account: Account) => {
-    setSelectedAccount(account);
+  // Fetch the current admin ID
+  const fetchCurrentAdminId = async () => {
+    try {
+      const response = await fetch("https://api-mesan.curaweda.com/auth/current-user", {
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("token")}`, // Include your token if needed
+        },
+      });
+      const data = await response.json();
+      setCurrentUserId(data.id); // Set the current user's ID
+    } catch (error) {
+      console.error("Failed to fetch current user ID", error);
+    }
   };
 
-  // Close modal
-  const closeModal = () => {
-    setSelectedAccount(null);
+  // Fetch all users except the currently logged-in admin
+  const fetchUsers = async () => {
+    try {
+      const response = await fetch("https://api-mesan.curaweda.com/users");
+      const data = await response.json();
+      const filteredUsers = data.filter((user: User) => user.id !== currentUserId);
+      setUsers(filteredUsers);
+    } catch (error) {
+      console.error("Failed to fetch users", error);
+    }
   };
 
-  const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchTerm(e.target.value);
+  useEffect(() => {
+    fetchCurrentAdminId();
+  }, []);
+
+  useEffect(() => {
+    if (currentUserId) {
+      fetchUsers();
+    }
+  }, [currentUserId]);
+
+  const handleSave = async (user: { name: string; email: string; id?: string }) => {
+    if (editingUser) {
+      // Update existing user
+      await fetch(`https://api-mesan.curaweda.com/users/${editingUser.id}`, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(user),
+      });
+    } else {
+      // Create new user
+      await fetch("https://api-mesan.curaweda.com/users", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(user),
+      });
+    }
+
+    setShowModal(false);
+    setEditingUser(null);
+    fetchUsers(); // Refresh user list
   };
 
-  const handleSort = () => {
-    setSortAsc(!sortAsc);
+  const handleEditUser = (user: User) => {
+    setEditingUser(user);
+    setShowModal(true);
   };
 
-  const filteredAccounts = accounts
-    .filter(
-      (account) =>
-        account.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        account.email.toLowerCase().includes(searchTerm.toLowerCase())
-    )
-    .sort((a, b) =>
-      sortAsc ? a.name.localeCompare(b.name) : b.name.localeCompare(a.name)
-    );
+  const handleAddUser = () => {
+    setEditingUser(null);
+    setShowModal(true);
+  };
+
+  const handleDeleteUser = async (userId: string) => {
+    await fetch(`https://api-mesan.curaweda.com/users/${userId}`, {
+      method: "DELETE",
+    });
+    fetchUsers(); // Refresh user list after deletion
+  };
 
   return (
-    <div className="p-6 bg-gray-100 min-h-screen">
-      {/* Search and Buttons */}
-      <div className="flex flex-col sm:flex-row justify-between items-center mb-6">
-        {/* Search Bar */}
-        <div className="flex items-center space-x-3 mb-4 sm:mb-0">
-          <FaSearch className="text-gray-600" />
-          <input
-            type="text"
-            placeholder="Find account"
-            value={searchTerm}
-            onChange={handleSearch}
-            className="px-4 py-2 w-full sm:w-80 border border-gray-300 rounded-md bg-white text-gray-700 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-500"
-          />
-        </div>
-
-        {/* Sort and Add Buttons */}
-        <div className="flex items-center space-x-4">
-          <button
-            onClick={handleSort}
-            className="flex items-center space-x-1 px-4 py-2 border border-gray-300 rounded-md bg-white text-gray-700"
-          >
-            <span>Sort by</span>
-            {sortAsc ? (
-              <FaSortAmountUp className="text-gray-700" />
-            ) : (
-              <FaSortAmountDown className="text-gray-700" />
-            )}
-          </button>
-
-          {/* Add Account Button */}
-          <button className="flex items-center px-4 py-2 bg-blue-600 text-white rounded-md space-x-2 hover:bg-blue-700 transition duration-200">
-            <AiOutlinePlus />
-            <span>Add Account</span>
-          </button>
-        </div>
+    <div className="container mx-auto p-4">
+      <h1 className="text-2xl font-semibold mb-4">Manage Accounts</h1>
+      <button
+        onClick={handleAddUser}
+        className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 mb-4"
+      >
+        Add New Account
+      </button>
+      <div className="bg-white rounded shadow-md overflow-hidden">
+        <table className="min-w-full">
+          <thead className="bg-gray-100">
+            <tr>
+              <th className="py-2">Name</th>
+              <th className="py-2">Email</th>
+              <th className="py-2">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {users.map((user) => (
+              <tr key={user.id} className="border-b">
+                <td className="py-2">{user.name}</td>
+                <td className="py-2">{user.email}</td>
+                <td className="py-2">
+                  <button
+                    onClick={() => handleEditUser(user)}
+                    className="text-blue-500 hover:text-blue-700"
+                  >
+                    Edit
+                  </button>
+                  <button
+                    onClick={() => handleDeleteUser(user.id)}
+                    className="text-red-500 hover:text-red-700 ml-4"
+                  >
+                    Delete
+                  </button>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       </div>
 
-      {/* Accounts Grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        {filteredAccounts.map((account, index) => (
-          <div
-            key={index}
-            className="relative p-4 border border-gray-300 rounded-md flex flex-col items-center bg-white shadow-lg transition duration-200 hover:shadow-xl"
-          >
-            {/* Three Dots Menu Icon */}
-            <div className="absolute top-2 right-2">
-              <FaEllipsisV
-                className="text-gray-600 cursor-pointer"
-                onClick={() => openModal(account)} // Open modal on click
-              />
-            </div>
-            <div className="bg-gray-200 rounded-full p-3 mb-4">
-              <FaUser className="text-gray-800 text-2xl" />
-            </div>
-            <h3 className="text-lg font-semibold text-gray-800">
-              {account.name}
-            </h3>
-            <p className="text-sm text-gray-600">{account.email}</p>
-          </div>
-        ))}
-      </div>
-
-      {/* Modal - Show when an account is selected */}
-      {selectedAccount && (
-        <AccountModal onClose={closeModal} />
+      {showModal && (
+        <AccountModal
+          account={editingUser || { name: "", email: "" }}
+          onClose={() => setShowModal(false)}
+          onSave={handleSave}
+        />
       )}
     </div>
   );

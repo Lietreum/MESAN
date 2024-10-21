@@ -4,6 +4,8 @@ import KasirCategoryCard from "./StoreKasir/KasirCategoryCard";
 import BottomRightContent from "../../components/kasir/dashboard/BottomRightContent";
 import DefaultImage from '../../assets/data/Kantin_ph.png'; 
 
+//  the card size follow the total amount of the product and the stores. so if it one it will be very large
+
 interface Store {
   tokoId: string;
   name: string;
@@ -19,7 +21,7 @@ const MainContent: React.FC = () => {
     // Fetch stores from your API
     const fetchStores = async () => {
       try {
-        const response = await fetch('https://api-mesan.curaweda.com/store'); //  
+        const response = await fetch('https://api-mesan.curaweda.com/store'); // TAH TAH TAH PEW PEW ya maap jak :<
         const data = await response.json();
         setStores(data);
       } catch (error) {
