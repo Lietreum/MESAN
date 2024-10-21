@@ -1,16 +1,15 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import SearchBar from '../../../components/kasir/SearchBar/SearchBar';
-// import AccountCard from '../../../components/kasir/AccountCard/AccountCard';
 
 // Dummy account data
 const accounts = [
-  { id: 1, name: 'Rendra Ramadhan', email: 'rendra@smkn4bdg.sch.id', avatarUrl: 'https://via.placeholder.com/50' },
-  { id: 2, name: 'Aji Permana', email: 'aji@smkn4bdg.sch.id', avatarUrl: 'https://via.placeholder.com/50' },
-  { id: 3, name: 'Rauma', email: 'rauma@smkn4bdg.sch.id', avatarUrl: 'https://via.placeholder.com/50' },
-  { id: 4, name: 'Ashila', email: 'ashila@smkn4bdg.sch.id', avatarUrl: 'https://via.placeholder.com/50' },
-  { id: 5, name: 'Budi Santoso', email: 'budi@smkn4bdg.sch.id', avatarUrl: 'https://via.placeholder.com/50' },
-  { id: 6, name: 'Rina Melati', email: 'rina@smkn4bdg.sch.id', avatarUrl: 'https://via.placeholder.com/50' },
+  { id: 1, name: 'Rendra Ramadhan', email: 'rendra@smkn4bdg.sch.id', avatarUrl: 'https://i.pinimg.com/564x/7a/36/52/7a3652ad70c3e617f5086e2dd04e03a9.jpg' },
+  { id: 2, name: 'Aji Permana', email: 'aji@smkn4bdg.sch.id', avatarUrl: 'https://i.pinimg.com/564x/79/e4/8f/79e48ffbbe51db6f479cb22d815b72e2.jpg' },
+  { id: 3, name: 'KingVaz', email: 'faza@smkn4bdg.sch.id', avatarUrl: 'https://i.pinimg.com/564x/21/4b/d4/214bd46a4a974c7e59117f39e02c3a04.jpg' },
+  { id: 4, name: 'Rakan Danendra', email: 'rakan@smkn4bdg.sch.id', avatarUrl: 'https://i.pinimg.com/236x/06/09/15/060915179628388d01cdf3d0e71c24a4.jpg' },
+  { id: 5, name: 'Abdan Salhari', email: 'abdan@smkn4bdg.sch.id', avatarUrl: 'https://i.pinimg.com/236x/af/33/61/af33612ce6cc79659d085b769de6e768.jpg' },
+  { id: 6, name: 'Ridho Pratama', email: 'ridho@smkn4bdg.sch.id', avatarUrl: 'https://i.pinimg.com/564x/01/6f/cd/016fcda7f09781c94453a6aad619fb6f.jpg' },
 ];
 
 const WithdrawalPage: React.FC = () => {
