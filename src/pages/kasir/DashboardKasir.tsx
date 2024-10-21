@@ -19,7 +19,7 @@ const MainContent: React.FC = () => {
     // Fetch stores from your API
     const fetchStores = async () => {
       try {
-        const response = await fetch('https://api-mesan.curaweda.com/store'); // TAH TAH TAH PEW PEW
+        const response = await fetch('https://api-mesan.curaweda.com/store'); // TAH TAH TAH PEW PEW ya maap jak :<
         const data = await response.json();
         setStores(data);
       } catch (error) {
