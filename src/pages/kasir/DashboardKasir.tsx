@@ -2,7 +2,9 @@ import React, { useEffect, useState } from 'react';
 import TopRightContent from "../../components/kasir/dashboard/TopRightContent";
 import KasirCategoryCard from "./StoreKasir/KasirCategoryCard";
 import BottomRightContent from "../../components/kasir/dashboard/BottomRightContent";
-import DefaultImage from '../../assets/data/Kantin_ph.png'; // Assuming you have a default image for missing images
+import DefaultImage from '../../assets/data/Kantin_ph.png'; 
+
+//  the card size follow the total amount of the product and the stores. so if it one it will be very large
 
 interface Store {
   tokoId: string;
