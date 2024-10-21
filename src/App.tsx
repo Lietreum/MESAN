@@ -107,10 +107,12 @@ function App() {
         <Route
           path="/kasir/ManageAccounts"
           element={
+            <ProtectedRoute allowedRoles={["ADMIN"]}>
             <KasirLayout>
               <PageTitle title="Manage Accounts | Kasir" />
               <ManageAccount />
             </KasirLayout>
+            </ProtectedRoute>
           }
         />
         <Route
