@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 
 interface AccountModalProps {
-  account: { id?: string; name: string; email: string }; // id is optional
+  account: { id: string; name: string; email: string; role: string }; // id is optional
   onClose: () => void;
-  onSave: (account: { name: string; email: string; id?: string }) => void; // id is optional
+  onSave: (account: { name: string; email: string; id: string; role: string }) => void; // id is optional
 }
 
 const AccountModal: React.FC<AccountModalProps> = ({ account, onClose, onSave }) => {
@@ -11,7 +11,7 @@ const AccountModal: React.FC<AccountModalProps> = ({ account, onClose, onSave })
   const [email, setEmail] = useState(account.email || "");
 
   const handleSave = () => {
-    onSave({ id: account.id, name, email }); // Pass id if it exists
+    onSave({ id: account.id, name, email, role: account.role }); // Pass id if it exists
   };
 
   return (
