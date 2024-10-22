@@ -167,7 +167,7 @@ const Login: React.FC = () => {
                   value={formData.email}
                   onChange={handleChange}
                   className="mt-1 w-full rounded-md border border-gray-300 bg-white text-lg text-gray-800 shadow-sm focus:border-blue-500 focus:ring-blue-500 py-3 px-4"
-                  autoComplete="current-password" 
+                  autoComplete="username" 
                   required
                 />
               </div>
