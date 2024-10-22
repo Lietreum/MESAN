@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { FaSearch, FaUser, FaSortAmountDown, FaSortAmountUp, FaEllipsisV } from "react-icons/fa";
 import { AiOutlinePlus } from "react-icons/ai";
-import AccountModal from "./ModalAdd"; // Ensure the import path is correct
-import FeeModal from "./ModalFee"; // Import the FeeModal component
+import AccountModal from "./ModalAdd";
 import DeleteModal from "./DeleteModal";
 import AccountInfoModal from "./AccountInfoModal";
 
@@ -33,7 +32,6 @@ const ManageAccount: React.FC = () => {
   const [infoModalOpen, setInfoModalOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [, setIsSubmitting] = useState(false);
-  const [showFeeModal, setShowFeeModal] = useState(false); // State for FeeModal
 
   useEffect(() => {
     const fetchAccounts = async () => {
@@ -158,14 +156,23 @@ const ManageAccount: React.FC = () => {
   };
 
   const filteredAccounts = accounts
-    .filter(
-      (account) =>
-        account.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        account.email.toLowerCase().includes(searchTerm.toLowerCase())
-    )
-    .sort((a, b) =>
-      sortAsc ? a.name.localeCompare(b.name) : b.name.localeCompare(a.name)
+  .filter((account) => {
+    // Ensure account is valid and has defined name/email
+    return (
+      (account.name && typeof account.name === 'string' && 
+        account.name.toLowerCase().includes(searchTerm.toLowerCase())) ||
+      (account.email && typeof account.email === 'string' && 
+        account.email.toLowerCase().includes(searchTerm.toLowerCase()))
     );
+  })
+  .sort((a, b) => {
+    // Ensure both names are valid before comparing
+    const nameA = a.name || ''; // Fallback to empty string
+    const nameB = b.name || ''; // Fallback to empty string
+
+    return sortAsc ? nameA.localeCompare(nameB) : nameB.localeCompare(nameA);
+  });
+
 
   const openNewAccountModal = () => {
     setNewAccountModalOpen(true);
@@ -192,14 +199,11 @@ const ManageAccount: React.FC = () => {
     setInfoModalOpen(true);
   };
 
-  const handleAddFee = (feeData: { feeName: string; amount: number }) => {
-    console.log("Fee Data:", feeData);
-    setShowFeeModal(false); // Close the fee modal after saving
-  };
-
   return (
     <div className="p-6 bg-gray-100 min-h-screen">
+      {/* Search and Buttons */}
       <div className="flex flex-col sm:flex-row justify-between items-center mb-6">
+        {/* Search Bar */}
         <div className="flex items-center space-x-3 mb-4 sm:mb-0">
           <FaSearch className="text-gray-600" />
           <input
@@ -211,6 +215,7 @@ const ManageAccount: React.FC = () => {
           />
         </div>
 
+        {/* Sort and Add Buttons */}
         <div className="flex items-center space-x-4">
           <button
             onClick={handleSort}
@@ -231,16 +236,10 @@ const ManageAccount: React.FC = () => {
             <AiOutlinePlus />
             <span>Add Account</span>
           </button>
-          
-          <button
-            onClick={() => setShowFeeModal(true)}
-            className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 mb-4 ml-2"
-          >
-            Add Fee
-          </button>
         </div>
       </div>
 
+      {/* Accounts Grid */}
       {isLoading ? (
         <div className="flex justify-center items-center">
           <p>Loading accounts...</p>
@@ -252,6 +251,7 @@ const ManageAccount: React.FC = () => {
               key={account.id}
               className="relative p-4 border border-gray-300 rounded-md flex flex-col items-center bg-white shadow-lg transition duration-200 hover:shadow-xl"
             >
+              {/* Three Dots Menu Icon */}
               <div className="absolute top-2 right-2">
                 <FaEllipsisV
                   className="text-gray-600 cursor-pointer"
@@ -265,16 +265,17 @@ const ManageAccount: React.FC = () => {
                 {account.name}
               </h3>
               <p className="text-gray-600">{account.email}</p>
-              <p className="text-gray-500 text-sm capitalize mt-1">{account.role}</p>
-              <div className="flex items-center space-x-2 mt-4">
+              <p className="text-gray-600">{account.role}</p>
+
+              <div className="mt-4 flex space-x-3">
                 <button
-                  className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition duration-200"
+                  className="text-blue-500 hover:text-blue-700"
                   onClick={() => openInfoModal(account)}
                 >
-                  View Info
+                  View
                 </button>
                 <button
-                  className="px-4 py-2 bg-red-600 text-white rounded-md hover:bg-red-700 transition duration-200"
+                  className="text-red-500 hover:text-red-700"
                   onClick={() => confirmDeleteAccount(account)}
                 >
                   Delete
@@ -285,36 +286,29 @@ const ManageAccount: React.FC = () => {
         </div>
       )}
 
-      {/* Add Account Modal */}
+      {/* Modals */}
       {newAccountModalOpen && (
         <AccountModal
-          isOpen={newAccountModalOpen}
+          account={selectedAccount}
           onClose={() => setNewAccountModalOpen(false)}
           onSave={selectedAccount.id ? updateAccount : createAccount}
-          account={selectedAccount}
         />
       )}
-
-      {/* Delete Confirmation Modal */}
+  
       {deleteModalOpen && (
         <DeleteModal
-          isOpen={deleteModalOpen}
-          onClose={cancelDelete}
-          onDelete={deleteAccount}
+          accountName={accountToDelete.name}
+          onConfirm={deleteAccount}
+          onCancel={cancelDelete}
         />
       )}
 
-      {/* View Account Info Modal */}
       {infoModalOpen && (
         <AccountInfoModal
-          isOpen={infoModalOpen}
-          onClose={() => setInfoModalOpen(false)}
           account={selectedAccount}
+          onClose={() => setInfoModalOpen(false)}
         />
       )}
-
-      {/* Fee Modal */}
-      {showFeeModal && <FeeModal onClose={() => setShowFeeModal(false)} onSave={handleAddFee} />}
     </div>
   );
 };
