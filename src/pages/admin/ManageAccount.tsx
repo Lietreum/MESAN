@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import AccountModal from "./ModalAdd"; // Ensure the import path is correct
+import FeeModal from "./ModalFee"; // Import the FeeModal component
 
 interface User {
   id: string;
@@ -10,6 +11,7 @@ interface User {
 const ManageAccount: React.FC = () => {
   const [users, setUsers] = useState<User[]>([]);
   const [showModal, setShowModal] = useState(false);
+  const [showFeeModal, setShowFeeModal] = useState(false); // State for FeeModal
   const [editingUser, setEditingUser] = useState<User | null>(null);
   const [currentUserId, setCurrentUserId] = useState<string | null>(null);
 
@@ -87,6 +89,18 @@ const ManageAccount: React.FC = () => {
     setShowModal(true);
   };
 
+  const handleAddFee = (feeData: { feeName: string; amount: number }) => {
+    // Handle saving the fee data (e.g., make a POST request)
+    console.log("Fee Data:", feeData);
+    // Example:
+    // await fetch("https://api-mesan.curaweda.com/fees", {
+    //   method: "POST",
+    //   headers: { "Content-Type": "application/json" },
+    //   body: JSON.stringify(feeData),
+    // });
+    setShowFeeModal(false); // Close the fee modal after saving
+  };
+
   const handleDeleteUser = async (userId: string) => {
     await fetch(`https://api-mesan.curaweda.com/users/${userId}`, {
       method: "DELETE",
@@ -97,12 +111,22 @@ const ManageAccount: React.FC = () => {
   return (
     <div className="container mx-auto p-4">
       <h1 className="text-2xl font-semibold mb-4">Manage Accounts</h1>
+
       <button
         onClick={handleAddUser}
         className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 mb-4"
       >
         Add New Account
       </button>
+
+      {/* Add Fee Button */}
+      <button
+        onClick={() => setShowFeeModal(true)} // Open the FeeModal
+        className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600 mb-4 ml-2"
+      >
+        Add Fee
+      </button>
+
       <div className="bg-white rounded shadow-md overflow-hidden">
         <table className="min-w-full">
           <thead className="bg-gray-100">
@@ -137,11 +161,20 @@ const ManageAccount: React.FC = () => {
         </table>
       </div>
 
+      {/* Account Modal */}
       {showModal && (
         <AccountModal
           account={editingUser || { name: "", email: "" }}
           onClose={() => setShowModal(false)}
           onSave={handleSave}
+        />
+      )}
+
+      {/* Fee Modal */}
+      {showFeeModal && (
+        <FeeModal
+          onClose={() => setShowFeeModal(false)}
+          onSave={handleAddFee} // Pass the handleAddFee function
         />
       )}
     </div>
