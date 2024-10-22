@@ -4,6 +4,7 @@ import { AiOutlinePlus } from "react-icons/ai";
 import AccountModal from "./ModalAdd";
 import DeleteModal from "./DeleteModal";
 import AccountInfoModal from "./AccountInfoModal";
+import ModalFee from "./ModalFee"
 
 interface Account {
   id: string;
@@ -22,6 +23,7 @@ const initialAccount: Account = {
 };
 
 const ManageAccount: React.FC = () => {
+  const [isAddFeeModalOpen, setIsAddFeeModalOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
   const [sortAsc, setSortAsc] = useState(true);
   const [selectedAccount, setSelectedAccount] = useState<Account>(initialAccount);
@@ -199,6 +201,20 @@ const ManageAccount: React.FC = () => {
     setInfoModalOpen(true);
   };
 
+  const openAddFeeModal = () => {
+    setIsAddFeeModalOpen(true);
+  };
+
+  const closeAddFeeModal = () => {
+    setIsAddFeeModalOpen(false);
+  };
+
+  const handleSaveFee = (feeData: { amount: number; feeName: string }) => {
+    console.log("Fee Data Saved:", feeData);
+    // Here you would handle the saving logic (e.g., API call)
+    closeAddFeeModal(); // Close the modal after saving
+  };
+
   return (
     <div className="p-6 bg-gray-100 min-h-screen">
       {/* Search and Buttons */}
@@ -236,6 +252,25 @@ const ManageAccount: React.FC = () => {
             <AiOutlinePlus />
             <span>Add Account</span>
           </button>
+        </div>
+
+        <div className="flex items-center space-x-4 mt-2 ">
+
+
+        <button
+          className="flex items-center px-4 py-2 bg-blue-600 text-white rounded-md space-x-2 hover:bg-blue-700 transition duration-200"
+          onClick={openAddFeeModal}
+        >
+          <AiOutlinePlus />
+          <span>Add Fee</span>
+        </button>
+
+        {isAddFeeModalOpen && (
+        <ModalFee
+          onClose={closeAddFeeModal}
+          onSave={handleSaveFee}
+        />
+      )}
         </div>
       </div>
 
