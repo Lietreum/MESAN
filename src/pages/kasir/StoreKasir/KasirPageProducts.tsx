@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import ProductCard from "./KasirProductCard"; // Assuming this is your product card component
 import TopRightContent from "../../../components/kasir/dashboard/TopRightContent"; // Imported TopRightContent
-import BottomRightContent from "../../../components/kasir/dashboard/TopRightContent"; // Imported BottomRightContent
+import BottomRightContent from "../../../components/kasir/dashboard/BottomRightContent"; // Imported BottomRightContent
 import DefaultImage from "../../../assets/data/Kantin_ph.png"; // Fallback image for products
 
 // Define enum for store types

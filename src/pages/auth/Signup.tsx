@@ -171,7 +171,7 @@ const Signup: React.FC = () => {
                   htmlFor="FirstName"
                   className="block text-sm font-semibold text-gray-800"
                 >
-                  First Name
+                  Your Name
                 </label>
                 <input
                   type="text"
@@ -180,6 +180,7 @@ const Signup: React.FC = () => {
                   value={formData.name}
                   onChange={handleChange}
                   className="mt-1 w-full rounded-md border border-gray-300 bg-white text-lg text-gray-800 shadow-sm focus:border-blue-500 focus:ring-blue-500 py-3 px-4"
+                  autoComplete="current-password" 
                   required
                 />
               </div>
@@ -199,6 +200,7 @@ const Signup: React.FC = () => {
                   value={formData.email}
                   onChange={handleChange}
                   className="mt-1 w-full rounded-md border border-gray-300 bg-white text-lg text-gray-800 shadow-sm focus:border-blue-500 focus:ring-blue-500 py-3 px-4"
+                  autoComplete="current-password" 
                   required
                 />
               </div>
