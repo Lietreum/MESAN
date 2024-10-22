@@ -1,6 +1,9 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import ProductCard from "./KasirProductCard";
+import ProductCard from "./KasirProductCard"; // Assuming this is your product card component
+import TopRightContent from "../../../components/kasir/dashboard/TopRightContent"; // Imported TopRightContent
+import BottomRightContent from "../../../components/kasir/dashboard/TopRightContent"; // Imported BottomRightContent
+import DefaultImage from "../../../assets/data/Kantin_ph.png"; // Fallback image for products
 
 // Define enum for store types
 enum TokoTypes {
@@ -14,22 +17,21 @@ type Product = {
   id: number;
   title: string;
   price: number;
-  imgUrl: string;
-  type: TokoTypes;  // Updated to use TokoTypes enum
+  imgUrl: string | null;  // Allow imgUrl to be nullable
+  type: TokoTypes;
   tokoName: string;
   quantity: number;
   tokoId: string;
 };
 
-// Updated mock product data to include store types
 const dummyProducts: Product[] = [
   {
     id: 1,
     title: "Product 1",
     price: 19.99,
-    imgUrl: "https://via.placeholder.com/150",
+    imgUrl: null, // No image, will fall back to DefaultImage
     tokoName: "Store A",
-    type: TokoTypes.Kantin,  // Using TokoTypes enum
+    type: TokoTypes.Kantin,
     quantity: 100,
     tokoId: "12345",
   },
@@ -39,7 +41,7 @@ const dummyProducts: Product[] = [
     price: 29.99,
     imgUrl: "https://via.placeholder.com/150",
     tokoName: "Store B",
-    type: TokoTypes.Hydro,   // Using TokoTypes enum
+    type: TokoTypes.Hydro,
     quantity: 50,
     tokoId: "67890",
   },
@@ -49,7 +51,7 @@ const dummyProducts: Product[] = [
     price: 39.99,
     imgUrl: "https://via.placeholder.com/150",
     tokoName: "Store C",
-    type: TokoTypes.Koperasi, // Using TokoTypes enum
+    type: TokoTypes.Koperasi,
     quantity: 200,
     tokoId: "54321",
   },
@@ -59,20 +61,51 @@ const ProductPage: React.FC = () => {
   const { type } = useParams<{ type: string }>();
   const decodedType = decodeURIComponent(type || "").toLowerCase();
 
-  // Map decodedType to the enum values
-  const filteredProducts = dummyProducts.filter((product) => 
-    product.type.toLowerCase() === decodedType
-  );
+  // State for storing filtered products
+  const [filteredProducts, setFilteredProducts] = useState<Product[]>([]);
+
+  useEffect(() => {
+    // Filter the products by the decoded type
+    const filtered = dummyProducts.filter(
+      (product) => product.type.toLowerCase() === decodedType
+    );
+    setFilteredProducts(filtered);
+  }, [decodedType]);
 
   return (
-    <div className="grid grid-cols-2 gap-4">
-      {filteredProducts.length > 0 ? (
-        filteredProducts.map((product) => (
-          <ProductCard key={product.id} data={product} />
-        ))
-      ) : (
-        <p>No products found for this category.</p>
-      )}
+    <div className="flex flex-col md:flex-row gap-8 p-4 h-screen overflow-hidden">
+      {/* Left Section - Product Cards */}
+      <div
+        id="scroll-container"
+        className={`w-full md:w-2/3 grid grid-cols-1 sm:grid-cols-2 gap-4 overflow-auto h-full transition-all duration-300 scrollbar-hide`}
+      >
+        {filteredProducts.length > 0 ? (
+          filteredProducts.map((product) => (
+            <ProductCard
+              key={product.id}
+              data={{
+                ...product,
+                imgUrl: product.imgUrl || DefaultImage, // Use default image if imgUrl is missing
+              }}
+            />
+          ))
+        ) : (
+          <p>No products found for this category.</p>
+        )}
+      </div>
+
+      {/* Right Section - Payment Summary and Invoice Content */}
+      <div className="w-full md:w-1/3 flex flex-col gap-4 h-full overflow-auto scrollbar-hide">
+        {/* Top Right Content - Payment Card */}
+        <div className="bg-white shadow-md rounded-lg p-4 flex-grow">
+          <TopRightContent />
+        </div>
+
+        {/* Bottom Right Content - Invoice Summary */}
+        <div className="bg-white shadow-md rounded-lg p-4 flex-grow">
+          <BottomRightContent />
+        </div>
+      </div>
     </div>
   );
 };

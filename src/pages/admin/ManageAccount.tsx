@@ -156,14 +156,23 @@ const ManageAccount: React.FC = () => {
   };
 
   const filteredAccounts = accounts
-    .filter(
-      (account) =>
-        account.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        account.email.toLowerCase().includes(searchTerm.toLowerCase())
-    )
-    .sort((a, b) =>
-      sortAsc ? a.name.localeCompare(b.name) : b.name.localeCompare(a.name)
+  .filter((account) => {
+    // Ensure account is valid and has defined name/email
+    return (
+      (account.name && typeof account.name === 'string' && 
+        account.name.toLowerCase().includes(searchTerm.toLowerCase())) ||
+      (account.email && typeof account.email === 'string' && 
+        account.email.toLowerCase().includes(searchTerm.toLowerCase()))
     );
+  })
+  .sort((a, b) => {
+    // Ensure both names are valid before comparing
+    const nameA = a.name || ''; // Fallback to empty string
+    const nameB = b.name || ''; // Fallback to empty string
+
+    return sortAsc ? nameA.localeCompare(nameB) : nameB.localeCompare(nameA);
+  });
+
 
   const openNewAccountModal = () => {
     setNewAccountModalOpen(true);
