@@ -1,48 +1,53 @@
 import { useEffect } from "react";
 import { Route, Routes, useLocation } from "react-router-dom";
 // import ProtectedRoute from "./components/protect/Protected";
-import PageTitle from "./components/admin/PageTitle";
-import AdminLayout from "./layouts/pedagang/AdminLayout";
-import UserLayout from "./layouts/siswa/UserLayout";
-import ECommerce from "./pages/admin/Dashboard/Dashboard";
-import UserDashboard from "./pages/siswa/Homepage";
-import Profile from "./pages/Profile";
-import Settings from "./pages/Settings";
-import Login from "./pages/auth/Login";
-import NotFound from "./pages/NotFound";
-import Signup from "./pages/auth/Signup";
-import Product from "./pages/admin/Product/ProductCard";
-import Messages from "./components/admin/Messages/Messages";
-// import ProductList from "./components/user/ProductList/ProductList";
-import TransactionHistory from "./components/user/Header/TransactionHistory";
-import MessagesUser from "./components/user/Header/Messages";
-import ShoppingCart from "./components/user/Header/ShoppingCart";
-import Favorite from "./components/user/Header/Favorite";
-import OverlayCard from "./components/user/Header/OverlayCard";
-import IncomingOrders from "./components/admin/Product/IncomingOrders";
-import StockNotification from "./components/admin/Product/StockNotification";
-import QRAdmin from "./components/admin/Product/QRAdmin";
-import Notification from "./components/user/Notification/Notification";
-import PaymentOptions from "./components/user/Header/PaymentOptions";
-import PaymentDetails from "./components/user/Header/PaymentDetails";
-import KasirLayout from "./layouts/kasir/KasirLayout";
-import HomeKasir from "./pages/kasir/DashboardKasir";
-import KasirTopup from "./pages/kasir/Topup/KasirTopup";
-import ManageAccount from "./pages/admin/ManageAccount";
-import Withdrawal from "./pages/kasir/Withdrawal/Withdrawal";
-import BalanceWithdrawal from "./pages/kasir/Withdrawal/BalanceWithdrawal";
-import HistoryKasir from "./pages/kasir/History/HistoryKasir";
-import AddProductPage from "./pages/admin/Product/AddProduct";
-import ProfilePage from "./components/user/Profile/Profile";
-import WalletSiswa from "./pages/siswa/walletdashboard/WalletSiswa";
-import Order from "./pages/siswa/orderstatus/Order";
-import OrderStatus from "./pages/siswa/orderstatus/OrderStatus";
-import PaymentCountdownPage from "./components/user/Header/PaymentCountdown";
-import OrderItem from "./components/user/NotificationOrder/percobaannotifikasi";
-import NotAuthorized from "./pages/auth/NotAuthorized";
-import KasirPageProducts from "./pages/kasir/StoreKasir/KasirPageProducts";
-import StorePages from "./components/user/ProductList/StorePages";
+import { lazy, Suspense } from 'react';
+
+const PageTitle = lazy(() => import("./components/admin/PageTitle"));
+const AdminLayout = lazy(() => import("./layouts/pedagang/AdminLayout"));
+const UserLayout = lazy(() => import("./layouts/siswa/UserLayout"));
+const ECommerce = lazy(() => import("./pages/admin/Dashboard/Dashboard"));
+const UserDashboard = lazy(() => import("./pages/siswa/Homepage"));
+const Profile = lazy(() => import("./pages/Profile"));
+const Settings = lazy(() => import("./pages/Settings"));
+const Login = lazy(() => import("./pages/auth/Login"));
+const NotFound = lazy(() => import("./pages/NotFound"));
+const Signup = lazy(() => import("./pages/auth/Signup"));
+const Product = lazy(() => import("./pages/admin/Product/ProductCard"));
+const Messages = lazy(() => import("./components/admin/Messages/Messages"));
+// const ProductList = lazy(() => import("./components/user/ProductList/ProductList"));
+const TransactionHistory = lazy(() => import("./components/user/Header/TransactionHistory"));
+const MessagesUser = lazy(() => import("./components/user/Header/Messages"));
+const ShoppingCart = lazy(() => import("./components/user/Header/ShoppingCart"));
+const Favorite = lazy(() => import("./components/user/Header/Favorite"));
+const OverlayCard = lazy(() => import("./components/user/Header/OverlayCard"));
+const IncomingOrders = lazy(() => import("./components/admin/Product/IncomingOrders"));
+const StockNotification = lazy(() => import("./components/admin/Product/StockNotification"));
+const QRAdmin = lazy(() => import("./components/admin/Product/QRAdmin"));
+const Notification = lazy(() => import("./components/user/Notification/Notification"));
+const PaymentOptions = lazy(() => import("./components/user/Header/PaymentOptions"));
+const PaymentDetails = lazy(() => import("./components/user/Header/PaymentDetails"));
+const KasirLayout = lazy(() => import("./layouts/kasir/KasirLayout"));
+const HomeKasir = lazy(() => import("./pages/kasir/DashboardKasir"));
+const KasirTopup = lazy(() => import("./pages/kasir/Topup/KasirTopup"));
+const ManageAccount = lazy(() => import("./pages/admin/ManageAccount"));
+const Withdrawal = lazy(() => import("./pages/kasir/Withdrawal/Withdrawal"));
+const BalanceWithdrawal = lazy(() => import("./pages/kasir/Withdrawal/BalanceWithdrawal"));
+const HistoryKasir = lazy(() => import("./pages/kasir/History/HistoryKasir"));
+const AddProductPage = lazy(() => import("./pages/admin/Product/AddProduct"));
+const ProfilePage = lazy(() => import("./components/user/Profile/Profile"));
+const WalletSiswa = lazy(() => import("./pages/siswa/walletdashboard/WalletSiswa"));
+const Order = lazy(() => import("./pages/siswa/orderstatus/Order"));
+const OrderStatus = lazy(() => import("./pages/siswa/orderstatus/OrderStatus"));
+const PaymentCountdownPage = lazy(() => import("./components/user/Header/PaymentCountdown"));
+const OrderItem = lazy(() => import("./components/user/NotificationOrder/percobaannotifikasi"));
+const NotAuthorized = lazy(() => import("./pages/auth/NotAuthorized"));
+const KasirPageProducts = lazy(() => import("./pages/kasir/StoreKasir/KasirPageProducts"));
+const StorePages = lazy(() => import("./components/user/ProductList/StorePages"));
 import usePreventZoom from "./hooks/usePreventZoom";
+import Loader from "./components/common/Loader";
+
+
 
 function App() {
   const { pathname } = useLocation();
@@ -55,6 +60,8 @@ function App() {
 
   return (
     <>
+        <Suspense fallback={<div><Loader/></div>}>
+
       <Routes>
         <Route
           path="/kasir"
@@ -410,6 +417,8 @@ function App() {
           }
         />
       </Routes>
+      </Suspense>
+
     </>
   );
 }
