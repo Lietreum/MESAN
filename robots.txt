@@ -1,0 +1,32 @@
+# This file tells web crawlers which pages to crawl and which to ignore
+
+# User-agent: * applies to all web crawlers
+User-agent: *
+
+# Allow access to all content
+Allow: /
+
+# Disallow specific folders that may not need indexing
+Disallow: /admin/         # Block admin panel
+Disallow: /login/         # Block login page
+Disallow: /signup/        # Block signup page
+Disallow: /user/          # Block user-specific data (if applicable)
+Disallow: /private/       # Example of a private directory (modify as needed)
+Disallow: /temp/          # Example of a temporary folder (modify as needed)
+
+# Disallow specific file types if needed
+Disallow: /*.pdf          # Block PDF files
+Disallow: /*.doc          # Block Word documents
+
+# Allow access to the sitemap for crawlers
+Sitemap: https://mesan.curaweda.com/sitemap.xml
+
+# Crawl delay to avoid overloading the server (optional)
+# Crawl-delay: 10          # Wait 10 seconds between requests (not all crawlers honor this)
+
+# Inform specific crawlers if needed
+User-agent: Googlebot     # Google's crawler
+Disallow: /not-for-google/ # Block a specific directory for Google
+
+User-agent: Bingbot       # Bing's crawler
+Disallow: /not-for-bing/  # Block a specific directory for Bing

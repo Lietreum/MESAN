@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap-image/1.1">
+  <url>
+    <loc>https://mesan.curaweda.com/</loc>
+    <lastmod>2024-10-23</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+  </url>
+  
+  <url>
+    <loc>https://mesan.curaweda.com/login</loc>
+    <lastmod>2024-10-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://mesan.curaweda.com/signup</loc>
+    <lastmod>2024-10-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://mesan.curaweda.com/unauthorized</loc>
+    <lastmod>2024-10-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mesan.curaweda.com/kasir</loc>
+    <lastmod>2024-10-23</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://mesan.curaweda.com/</loc>
+    <lastmod>2024-10-23</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://mesan.curaweda.com/product/type/:type</loc>
+    <lastmod>2024-10-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://mesan.curaweda.com/cart</loc>
+    <lastmod>2024-10-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mesan.curaweda.com/notifications</loc>
+    <lastmod>2024-10-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mesan.curaweda.com/favorites</loc>
+    <lastmod>2024-10-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mesan.curaweda.com/profile-page</loc>
+    <lastmod>2024-10-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://mesan.curaweda.com/merchant</loc>
+    <lastmod>2024-10-23</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://mesan.curaweda.com/pedagang/product</loc>
+    <lastmod>2024-10-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://mesan.curaweda.com/pedagang/incoming-orders</loc>
+    <lastmod>2024-10-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://mesan.curaweda.com/pedagang/stock-notification</loc>
+    <lastmod>2024-10-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <url>
+    <loc>https://mesan.curaweda.com/pedagang/profile</loc>
+    <lastmod>2024-10-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://mesan.curaweda.com/kasir/manageaccounts</loc>
+    <lastmod>2024-10-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mesan.curaweda.com/kasir/history</loc>
+    <lastmod>2024-10-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mesan.curaweda.com/kasir/withdrawal</loc>
+    <lastmod>2024-10-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mesan.curaweda.com/walletsiswa</loc>
+    <lastmod>2024-10-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://mesan.curaweda.com/order</loc>
+    <lastmod>2024-10-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://mesan.curaweda.com/order/orderstatus</loc>
+    <lastmod>2024-10-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://mesan.curaweda.com/kasir/topup</loc>
+    <lastmod>2024-10-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mesan.curaweda.com/pedagang/add-product</loc>
+    <lastmod>2024-10-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://mesan.curaweda.com/pedagang/edit-product</loc>
+    <lastmod>2024-10-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+</urlset>
