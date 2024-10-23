@@ -106,7 +106,7 @@ const PurchaseModal: React.FC<{
         initial="hidden"
         animate="visible"
         exit="exit"
-        transition={{ duration: 0.35, ease: "easeInOut" }} // Slower animation
+        transition={{ duration: 0.45, ease: "easeInOut" }} // Slower animation
       >
         {/* Product Image */}
         <div className="w-full h-64 mb-4 overflow-hidden rounded-lg">

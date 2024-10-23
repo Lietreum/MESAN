@@ -30,7 +30,7 @@ const Homepage: React.FC = () => {
     // Fetch data from the correct backend API
     const fetchStores = async (tokoType = 'All') => {
       try {
-        const response = await fetch(`http://localhost:3001/store?tokoType=${tokoType}`); // Corrected the URL with tokoType query param
+        const response = await fetch(`https:/api-mesan.curaweda.com/store?tokoType=${tokoType}`); // Corrected the URL with tokoType query param
         const data = await response.json();
         setStores(data); // Update the state with the fetched data
       } catch (error) {
