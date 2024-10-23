@@ -13,7 +13,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ storeName, products }) => {
   };
 
   return (
-    <div className="relative mx-auto my-8 max-w-2xl rounded-lg border border-white bg-white shadow-lg p-6 md:flex flex-col sm:w-full sm:p-4"> {/* Updated border color and added shadow */}
+    <div className="relative mx-auto my-8 max-w-2xl rounded-lg sm:mt-0 md:mt-0 border border-white bg-white shadow-lg p-6 md:flex flex-col sm:w-full sm:p-4"> {/* Updated border color and added shadow */}
       {/* Store Name Header */}
       <h3 className="text-xl font-bold text-gray-800 mb-4">{storeName}</h3>
 

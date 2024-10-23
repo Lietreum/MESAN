@@ -3,7 +3,7 @@ import { Product } from "../../../types/types";
 import { FaRegCheckCircle, FaTruck } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
-const ShoppingCart: React.FC = () => {
+const   ShoppingCart: React.FC = () => {
   const [products, setProducts] = useState<Product[]>([
     {
       id: 1,

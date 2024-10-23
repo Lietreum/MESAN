@@ -37,12 +37,12 @@ const Order: React.FC = () => {
   };
 
   return (
-    <div className="bg-gray-100 min-h-screen py-6 px-4"> {/* Added padding top and bottom */}
+    <div className="bg-gray-100 min-h-screen py-6 px-4 mt-15 sm:mt-0 md:mt-0 lg:mt-0"> {/* Added padding top and bottom */}
       <div className="max-w-3xl mx-auto">
         {/* Back button with increased margin */}
-        <button className="flex items-center mb-6 text-gray-700 hover:text-gray-900 transition text-base md:text-lg font-semibold" onClick={handleBack}>
+        <button className="flex items-center mb-6 text-blue-500 hover:text-gray-900 transition text-base md:text-lg font-semibold" onClick={handleBack}>
           <FaArrowLeft className="mr-2" />
-          Back
+          Back to Home
         </button>
 
         {/* Order card */}

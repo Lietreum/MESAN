@@ -41,7 +41,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ title, price, imgUrl }) => {
           onLoad={() => setLoading(false)} // Hide skeleton once the image is loaded
         />
         <button
-          className="absolute bottom-2 mb-7 md:mb-5 sm:mb-5 right-2 bg-green-600 text-white rounded-full w-10 h-10 flex items-center justify-center hover:bg-gray-800"
+          className="absolute bottom-2 mb-7 md:mb-5 sm:mb-5 right-2 bg-blue-600 text-white rounded-full w-10 h-10 flex items-center justify-center hover:bg-gray-800"
           onClick={handleOpenModal}
         >
           +

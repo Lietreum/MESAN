@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useRef } from "react";
 import { FaHeart } from "react-icons/fa";
 import { motion } from "framer-motion";
+import { useNavigate } from "react-router-dom"; // Import useNavigate
 
 // Define the Product interface
 interface Product {
@@ -36,6 +37,7 @@ const PurchaseModal: React.FC<{
   const [isFavorite, setIsFavorite] = useState(false);
   const modalRef = useRef<HTMLDivElement>(null);
   const startY = useRef<number>(0);
+  const navigate = useNavigate(); // Initialize useNavigate for routing
 
   // Close modal when clicking outside of it
   useClickOutside(modalRef, onClose);
@@ -128,7 +130,7 @@ const PurchaseModal: React.FC<{
 
           {/* Favorit Button with Animated Heart Icon */}
           <button
-            className="flex items-center ml-4 focus:outline-none transition-transform duration-300 ease-in-out transform"
+            className="flex items-center ml-4 focus:outline-none transition-transform duration-300 ease-in-out transform border-2 border-indigo-600 rounded-full px-2 py-1 border-slate-300"
             onClick={toggleFavorite}
           >
             <FaHeart
@@ -144,7 +146,7 @@ const PurchaseModal: React.FC<{
         <button
           className="w-full bg-blue-600 text-white font-bold py-3 rounded-md mt-4"
           onClick={() => {
-            // Handle purchase confirmation logic here
+            navigate("/cart"); // Navigate to shopping cart page when clicked
           }}
         >
           Tambah Pembelian
