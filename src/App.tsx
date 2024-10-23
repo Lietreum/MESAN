@@ -13,7 +13,7 @@ import NotFound from "./pages/NotFound";
 import Signup from "./pages/auth/Signup";
 import Product from "./pages/admin/Product/ProductCard";
 import Messages from "./components/admin/Messages/Messages";
-import ProductList from "./components/user/ProductList/ProductList";
+// import ProductList from "./components/user/ProductList/ProductList";
 import TransactionHistory from "./components/user/Header/TransactionHistory";
 import MessagesUser from "./components/user/Header/Messages";
 import ShoppingCart from "./components/user/Header/ShoppingCart";
@@ -41,6 +41,7 @@ import PaymentCountdownPage from "./components/user/Header/PaymentCountdown";
 import OrderItem from "./components/user/NotificationOrder/percobaannotifikasi";
 import NotAuthorized from "./pages/auth/NotAuthorized";
 import KasirPageProducts from "./pages/kasir/StoreKasir/KasirPageProducts";
+import StorePages from "./components/user/ProductList/StorePages";
 
 function App() {
   const { pathname } = useLocation();
@@ -70,7 +71,7 @@ function App() {
                 <PageTitle title="User Dashboard" />
                 <UserDashboard />
               </UserLayout>
-            </ProtectedRoute>
+             </ProtectedRoute>
           }
         />
 
@@ -79,7 +80,7 @@ function App() {
           element={
             <UserLayout>
               <PageTitle title="Product List" />
-              <ProductList />
+              <StorePages />
             </UserLayout>
           }
         />

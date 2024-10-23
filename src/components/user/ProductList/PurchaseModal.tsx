@@ -1,9 +1,15 @@
 import React, { useEffect, useState } from "react";
-import { ProductListCard } from "../../../types/types";
+
+// Define the Product interface
+interface Product {
+  title: string;
+  price: string;
+  type?: string; // Optional, add more fields as necessary
+}
 
 // Modal component
 const PurchaseModal: React.FC<{
-  product: ProductListCard | null;
+  product: Product | null;
   isOpen: boolean;
   onClose: () => void;
 }> = ({ product, isOpen, onClose }) => {
