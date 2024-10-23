@@ -42,6 +42,7 @@ import OrderItem from "./components/user/NotificationOrder/percobaannotifikasi";
 import NotAuthorized from "./pages/auth/NotAuthorized";
 import KasirPageProducts from "./pages/kasir/StoreKasir/KasirPageProducts";
 import StorePages from "./components/user/ProductList/StorePages";
+import usePreventZoom from "./hooks/usePreventZoom";
 
 function App() {
   const { pathname } = useLocation();
@@ -49,6 +50,8 @@ function App() {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [pathname]);
+
+  usePreventZoom();
 
   return (
     <>
