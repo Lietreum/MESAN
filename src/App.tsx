@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { Route, Routes, useLocation } from "react-router-dom";
-import ProtectedRoute from "./components/protect/Protected";
+// import ProtectedRoute from "./components/protect/Protected";
 import PageTitle from "./components/admin/PageTitle";
 import AdminLayout from "./layouts/pedagang/AdminLayout";
 import UserLayout from "./layouts/siswa/UserLayout";
@@ -66,12 +66,12 @@ function App() {
         <Route
           path="/"
           element={
-            <ProtectedRoute allowedRoles={["USER"]}>
+            // <ProtectedRoute allowedRoles={["USER"]}>
               <UserLayout>
                 <PageTitle title="User Dashboard" />
                 <UserDashboard />
               </UserLayout>
-             </ProtectedRoute>
+            // </ProtectedRoute>
           }
         />
 

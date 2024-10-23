@@ -1,11 +1,30 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
+import { FaHeart } from "react-icons/fa";
+import { motion } from "framer-motion";
 
 // Define the Product interface
 interface Product {
   title: string;
   price: string;
-  type?: string; // Optional, add more fields as necessary
+  imgUrl: string;
+  type?: string;
 }
+
+// Custom hook to detect clicks outside of a component
+const useClickOutside = (ref: React.RefObject<HTMLDivElement>, handler: () => void) => {
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (ref.current && !ref.current.contains(event.target as Node)) {
+        handler();
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [ref, handler]);
+};
 
 // Modal component
 const PurchaseModal: React.FC<{
@@ -13,9 +32,13 @@ const PurchaseModal: React.FC<{
   isOpen: boolean;
   onClose: () => void;
 }> = ({ product, isOpen, onClose }) => {
-  const [quantity, setQuantity] = useState(1);
-  const [, setSelectedOption] = useState<string | null>(null);
-  const [notes, setNotes] = useState("");
+  const [quantity] = useState(1);
+  const [isFavorite, setIsFavorite] = useState(false);
+  const modalRef = useRef<HTMLDivElement>(null);
+  const startY = useRef<number>(0);
+
+  // Close modal when clicking outside of it
+  useClickOutside(modalRef, onClose);
 
   useEffect(() => {
     if (isOpen) {
@@ -23,39 +46,75 @@ const PurchaseModal: React.FC<{
     } else {
       document.body.style.overflow = "";
     }
+
     return () => {
       document.body.style.overflow = "";
     };
   }, [isOpen]);
 
-  if (!isOpen || !product) return null;
-
-  // Function to handle quantity change
-  const handleQuantityChange = (increment: boolean) => {
-    setQuantity((prev) => (increment ? prev + 1 : Math.max(prev - 1, 1)));
+  // Add scroll to close functionality for mobile
+  const handleTouchStart = (e: TouchEvent) => {
+    startY.current = e.touches[0].clientY;
   };
+
+  const handleTouchMove = (e: TouchEvent) => {
+    const currentY = e.touches[0].clientY;
+    if (currentY - startY.current > 100) {
+      onClose();
+    }
+  };
+
+  useEffect(() => {
+    if (isOpen) {
+      window.addEventListener("touchstart", handleTouchStart);
+      window.addEventListener("touchmove", handleTouchMove);
+    } else {
+      window.removeEventListener("touchstart", handleTouchStart);
+      window.removeEventListener("touchmove", handleTouchMove);
+    }
+
+    return () => {
+      window.removeEventListener("touchstart", handleTouchStart);
+      window.removeEventListener("touchmove", handleTouchMove);
+    };
+  }, [isOpen]);
+
+  if (!isOpen || !product) return null;
 
   // Extract the numeric value from the product price and calculate total price based on quantity
   const numericPrice = parseInt(product.price.replace(/[^0-9]/g, ""), 10);
   const totalPrice = numericPrice * quantity;
 
+  // Function to toggle favorite state with animation
+  const toggleFavorite = () => {
+    setIsFavorite(!isFavorite);
+  };
+
+  // Framer Motion animation variants
+  const modalVariants = {
+    hidden: { opacity: 0, y: "100%" },
+    visible: { opacity: 1, y: "0%" },
+    exit: { opacity: 0, y: "100%" },
+  };
+
   return (
     <div className="fixed inset-0 z-50 flex items-end justify-center bg-black bg-opacity-50">
-      <div
-        className={`bg-white rounded-t-lg p-6 w-full max-w-lg shadow-xl relative transform transition-transform duration-300 ${isOpen ? "translate-y-0" : "translate-y-full"}`}
+      <motion.div
+        ref={modalRef}
+        className="bg-white rounded-t-lg p-6 w-full max-w-lg shadow-xl relative"
+        variants={modalVariants}
+        initial="hidden"
+        animate="visible"
+        exit="exit"
+        transition={{ duration: 0.35, ease: "easeInOut" }} // Slower animation
       >
-        {/* Close Button */}
-        <button
-          className="absolute top-4 left-4 text-black text-xl font-bold"
-          onClick={onClose}
-        >
-          X
-        </button>
-
-        {/* Modal Header */}
-        <div className="flex justify-between items-center border-b border-gray-300 pb-4">
-          <h2 className="text-xl font-bold text-black ml-8">Custom purchase</h2>
-          <p className="text-lg font-bold text-black">{`Rp.${totalPrice.toLocaleString("id-ID")}`}</p>
+        {/* Product Image */}
+        <div className="w-full h-64 mb-4 overflow-hidden rounded-lg">
+          <img
+            src={product.imgUrl}
+            alt={product.title}
+            className="w-full h-full object-cover"
+          />
         </div>
 
         {/* Product Title */}
@@ -63,79 +122,34 @@ const PurchaseModal: React.FC<{
           <h3 className="text-lg font-semibold text-black">{product.title}</h3>
         </div>
 
-        {/* Options Section */}
-        {product.type === "yesTopping" && (
-          <div className="my-4">
-            <p className="font-semibold text-sm mb-1 text-black">
-              Topping <span className="text-red-500 text-xs">*Must be selected</span>
-            </p>
-            <div className="flex items-center justify-between mb-2">
-              <label className="flex items-center text-black">
-                <input
-                  type="radio"
-                  name="Topping"
-                  value="Pake"
-                  onChange={(e) => setSelectedOption(e.target.value)}
-                  className="mr-2"
-                />
-                Pake
-              </label>
-              <span className="text-gray-500 text-sm">Free</span>
-            </div>
-            <div className="flex items-center justify-between mb-2">
-              <label className="flex items-center text-black">
-                <input
-                  type="radio"
-                  name="Topping"
-                  value="Tidak Pake"
-                  onChange={(e) => setSelectedOption(e.target.value)}
-                  className="mr-2"
-                />
-                Tidak Pake
-              </label>
-              <span className="text-gray-500 text-sm">Free</span>
-            </div>
-          </div>
-        )}
+        {/* Price and Favorite Section */}
+        <div className="flex justify-between items-center border-gray-300">
+          <p className="text-lg font-bold text-black">{`Rp.${totalPrice.toLocaleString("id-ID")}`}</p>
 
-        {/* Notes Section */}
-        <textarea
-          className="w-full p-2 border border-gray-300 rounded mb-4 text-black"
-          placeholder="Add notes..."
-          value={notes}
-          onChange={(e) => setNotes(e.target.value)}
-        ></textarea>
-
-        {/* Quantity Control */}
-        <div className="flex items-center justify-between my-4">
-          <p className="font-semibold text-black">Purchase amount</p>
-          <div className="flex items-center">
-            <button
-              className="bg-gray-300 text-black px-4 py-2 rounded-l-md"
-              onClick={() => handleQuantityChange(false)}
-            >
-              -
-            </button>
-            <span className="mx-4 text-black">{quantity}</span>
-            <button
-              className="bg-gray-300 text-black px-4 py-2 rounded-r-md"
-              onClick={() => handleQuantityChange(true)}
-            >
-              +
-            </button>
-          </div>
+          {/* Favorit Button with Animated Heart Icon */}
+          <button
+            className="flex items-center ml-4 focus:outline-none transition-transform duration-300 ease-in-out transform"
+            onClick={toggleFavorite}
+          >
+            <FaHeart
+              className={`text-2xl transition-colors duration-300 ease-in-out ${
+                isFavorite ? "text-red-500" : "text-gray-400"
+              }`}
+            />
+            <span className="font-bold text-black ml-1">Favorit</span>
+          </button>
         </div>
 
         {/* Confirm Purchase Button */}
         <button
-          className="w-full bg-black text-white py-3 rounded-md mt-4"
+          className="w-full bg-blue-600 text-white font-bold py-3 rounded-md mt-4"
           onClick={() => {
             // Handle purchase confirmation logic here
           }}
         >
-          Rp.{totalPrice.toLocaleString("id-ID")}
+          Tambah Pembelian
         </button>
-      </div>
+      </motion.div>
     </div>
   );
 };

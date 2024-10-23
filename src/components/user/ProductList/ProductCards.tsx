@@ -63,7 +63,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ title, price, imgUrl }) => {
 
       {/* Purchase Modal */}
       <PurchaseModal
-        product={{ title, price }} // Replace with your actual product data type
+        product={{ title, price, imgUrl }} // Replace with your actual product data type
         isOpen={isModalOpen}
         onClose={handleCloseModal}
       />

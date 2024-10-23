@@ -21,7 +21,6 @@ const StoreDescription: React.FC<StoreDescriptionProps> = ({
       >
         <div className="px-4 pt-8 pb-10">
           <div className="absolute inset-x-0 -bottom-10 mx-auto w-36 rounded-full border-8 border-white shadow-lg">
-            <span className="absolute right-0 m-3 h-3 w-3 rounded-full bg-green-500 ring-2 ring-green-300 ring-offset-2"></span>
             <img
               className="mx-auto h-auto w-full rounded-full"
               src={profileImgUrl}
