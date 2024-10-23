@@ -2,7 +2,9 @@ import { useEffect } from "react";
 import { Route, Routes, useLocation } from "react-router-dom";
 // import ProtectedRoute from "./components/protect/Protected";
 import { lazy, Suspense } from 'react';
-
+//  if we dont want to use lazy loading we can use import statement and just copy it from the commit history
+// or reset hard to this head 6db6258a6ad83f65703d8e7241b30f7b44560eb9
+// sorry i trying to optimizing this to load like 0.2ms faster hehe
 const PageTitle = lazy(() => import("./components/admin/PageTitle"));
 const AdminLayout = lazy(() => import("./layouts/pedagang/AdminLayout"));
 const UserLayout = lazy(() => import("./layouts/siswa/UserLayout"));
@@ -47,8 +49,6 @@ const StorePages = lazy(() => import("./components/user/ProductList/StorePages")
 import usePreventZoom from "./hooks/usePreventZoom";
 import Loader from "./components/common/Loader";
 
-
-
 function App() {
   const { pathname } = useLocation();
 
@@ -60,7 +60,7 @@ function App() {
 
   return (
     <>
-        <Suspense fallback={<div><Loader/></div>}>
+        <Suspense fallback={<Loader/>}>
 
       <Routes>
         <Route
