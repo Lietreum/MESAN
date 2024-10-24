@@ -46,7 +46,6 @@ const OrderItem = lazy(() => import("./components/user/NotificationOrder/percoba
 const NotAuthorized = lazy(() => import("./pages/auth/NotAuthorized"));
 const KasirPageProducts = lazy(() => import("./pages/kasir/StoreKasir/KasirPageProducts"));
 const StorePages = lazy(() => import("./components/user/ProductList/StorePages"));
-import usePreventZoom from "./hooks/usePreventZoom";
 import Loader from "./components/common/Loader";
 
 function App() {
@@ -56,7 +55,6 @@ function App() {
     window.scrollTo(0, 0);
   }, [pathname]);
 
-  usePreventZoom();
 
   return (
     <>
