@@ -95,7 +95,7 @@ const ProfilePage: React.FC = () => {
         onClick={() => navigate('/')} // Navigate to home route
         sx={{
           marginBottom: '20px',
-          color: 'black',
+          color: 'blue',
           fontFamily: 'Arial, sans-serif',
           fontSize: { xs: '16px', md: '18px' },
           fontWeight: 'bold',
@@ -106,7 +106,7 @@ const ProfilePage: React.FC = () => {
           },
         }}
       >
-        &lt; Back
+        &lt; Back to Home
       </Button>
 
       <Card
