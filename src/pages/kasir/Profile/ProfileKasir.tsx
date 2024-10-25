@@ -1,7 +1,7 @@
 import { useState } from "react"; // Import useState untuk mengelola state
-import Breadcrumb from "../components/admin/Breadcrumbs/Breadcrumb";
-import CoverOne from "../assets/admin/images/cover/cover-01.png";
-import userSix from "../assets/admin/images/user/user-06.png";
+import Breadcrumb from "../../../components/admin/Breadcrumbs/Breadcrumb";
+import CoverOne from "../../../assets/admin/images/cover/cover-01.png";
+import userSix from "../../../assets/admin/images/user/user-06.png";
 import { FaCamera } from "react-icons/fa";
 
 const Profile = () => {
@@ -91,7 +91,7 @@ const Profile = () => {
               <div className="absolute bottom-1 right-1 z-10 xsm:bottom-4 xsm:right-4">
             <label
               htmlFor="cover"
-              className="flex cursor-pointer items-center justify-center gap-2 rounded bg-primary py-2 mr-6 mb-10 px-1 text-sm font-medium text-white hover:bg-opacity-90 xsm:px-4"
+              className="flex cursor-pointer items-center justify-center gap-2 rounded bg-primary py-2 sm:mr-10 lg:mr-10 sm:mb-22 lg:mb-22 mb-40 mr-5  text-sm font-medium text-white hover:bg-opacity-90 xsm:px-4"
             >
               <input type="file" name="cover" id="cover" className="sr-only" />
               <span>

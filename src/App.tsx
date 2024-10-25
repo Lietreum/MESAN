@@ -10,7 +10,7 @@ const AdminLayout = lazy(() => import("./layouts/pedagang/AdminLayout"));
 const UserLayout = lazy(() => import("./layouts/siswa/UserLayout"));
 const ECommerce = lazy(() => import("./pages/admin/Dashboard/Dashboard"));
 const UserDashboard = lazy(() => import("./pages/siswa/Homepage"));
-const Profile = lazy(() => import("./pages/Profile"));
+const Profile = lazy(() => import("./pages/ProfilePedagang"));
 const Settings = lazy(() => import("./pages/Settings"));
 const Login = lazy(() => import("./pages/auth/Login"));
 const NotFound = lazy(() => import("./pages/NotFound"));
@@ -47,6 +47,7 @@ const NotAuthorized = lazy(() => import("./pages/auth/NotAuthorized"));
 const KasirPageProducts = lazy(() => import("./pages/kasir/StoreKasir/KasirPageProducts"));
 const StorePages = lazy(() => import("./components/user/ProductList/StorePages"));
 import Loader from "./components/common/Loader";
+const ProfileKasir = lazy(() => import("./pages/kasir/Profile/ProfileKasir"));
 
 function App() {
   const { pathname } = useLocation();
@@ -137,6 +138,15 @@ function App() {
             <KasirLayout>
               <PageTitle title="Transaction History | Kasir" />
               <Withdrawal />
+            </KasirLayout>
+          }
+        />
+        <Route
+          path="/kasir/profile"
+          element={
+            <KasirLayout>
+              <PageTitle title="Profile | Kasir" />
+              <ProfileKasir />
             </KasirLayout>
           }
         />
